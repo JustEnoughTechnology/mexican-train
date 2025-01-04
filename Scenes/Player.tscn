@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c64q1eftgo8vx"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_27ygx"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_es3fp"]
 [ext_resource type="Texture2D" uid="uid://gs8j8o5kfjpm" path="res://Sprites/train.webp" id="2_8fbje"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1xfix"]
@@ -16,7 +16,7 @@ size = Vector2(225, 180)
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jtwvo"]
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_27ygx")
+script = ExtResource("1_es3fp")
 
 [node name="Train" type="Sprite2D" parent="."]
 position = Vector2(292, 101)

@@ -1,8 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccy2qdvxxgukh"]
 
-[ext_resource type="Script" path="res://Scenes/dominotest.gd" id="1_smyq1"]
+[ext_resource type="Script" path="res://Scripts/dominotest.gd" id="1_smyq1"]
 
 [node name="Dominotest" type="Node2D"]
 script = ExtResource("1_smyq1")
 
 [node name="DominoBag" type="Node2D" parent="."]
+
+[node name="DominoGrid" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 12

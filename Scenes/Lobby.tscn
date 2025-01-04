@@ -63,6 +63,7 @@ offset_bottom = 8.0
 text = "Host Game"
 
 [node name="JoinGameButton" type="Button" parent="Connect"]
+layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Join Game"

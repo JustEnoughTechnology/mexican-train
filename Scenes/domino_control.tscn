@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5ppii8ej4f5i"]
+
+[ext_resource type="Script" path="res://Scripts/DominoControl.gd" id="1_exjbs"]
+[ext_resource type="PackedScene" uid="uid://cj73j2i5bccwa" path="res://Scenes/domino_Node2D.tscn" id="2_lyy0u"]
+
+[node name="DominoControl" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_exjbs")
+
+[node name="DominoNode2D" parent="." instance=ExtResource("2_lyy0u")]
