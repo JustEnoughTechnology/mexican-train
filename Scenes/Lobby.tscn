@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnfdfe084a7k7"]
+
+[sub_resource type="Shader" id="Shader_c4jom"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ym82u"]
+shader = SubResource("Shader_c4jom")
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Players" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemList" type="ItemList" parent="Players"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Connect" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_ym82u")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UserName" type="VBoxContainer" parent="Connect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Connect/UserName"]
+layout_mode = 2
+text = "User Name:"
+
+[node name="LineEdit" type="LineEdit" parent="Connect/UserName"]
+layout_mode = 2
+
+[node name="ServerAddress" type="VBoxContainer" parent="Connect"]
+layout_mode = 2
+offset_top = 62.0
+offset_right = 121.0
+offset_bottom = 120.0
+
+[node name="Label" type="Label" parent="Connect/ServerAddress"]
+layout_mode = 2
+text = "Server Address:
+"
+
+[node name="LineEdit" type="LineEdit" parent="Connect/ServerAddress"]
+layout_mode = 2
+
+[node name="HostButton" type="Button" parent="Connect"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Host Game"
+
+[node name="JoinGameButton" type="Button" parent="Connect"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Join Game"

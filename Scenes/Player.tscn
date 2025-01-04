@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://c64q1eftgo8vx"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_27ygx"]
+[ext_resource type="Texture2D" uid="uid://gs8j8o5kfjpm" path="res://Sprites/train.webp" id="2_8fbje"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1xfix"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+outline_color = Color(1, 0.431373, 1, 1)
+shadow_color = Color(0.354015, 0.867377, 0.626331, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40666"]
+size = Vector2(225, 180)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jtwvo"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_27ygx")
+
+[node name="Train" type="Sprite2D" parent="."]
+position = Vector2(292, 101)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_8fbje")
+
+[node name="PlayerName" type="Label" parent="Train"]
+offset_left = -131.0
+offset_right = 136.0
+offset_bottom = 39.0
+text = "Player Name"
+label_settings = SubResource("LabelSettings_1xfix")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(291.5, 102)
+shape = SubResource("RectangleShape2D_40666")
+
+[node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_jtwvo")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../PlayerInput")
+replication_config = SubResource("SceneReplicationConfig_jtwvo")
