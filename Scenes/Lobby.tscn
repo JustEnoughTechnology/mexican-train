@@ -21,20 +21,32 @@ offset_bottom = 40.0
 
 [node name="ItemList" type="ItemList" parent="Players"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 327.0
+offset_bottom = 350.0
 allow_search = false
+
+[node name="Label" type="Label" parent="Players"]
+layout_mode = 1
+offset_right = 119.0
+offset_bottom = 23.0
+text = "Players Waiting"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Connect" type="Panel" parent="."]
 material = SubResource("ShaderMaterial_ym82u")
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
+offset_right = 325.0
+offset_bottom = 204.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Connect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -111.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -43,6 +55,8 @@ layout_mode = 2
 
 [node name="UserName" type="VBoxContainer" parent="Connect/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 2
 
 [node name="Label" type="Label" parent="Connect/HBoxContainer/VBoxContainer/UserName"]
 layout_mode = 2
@@ -53,6 +67,8 @@ layout_mode = 2
 
 [node name="ServerAddress" type="VBoxContainer" parent="Connect/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
 
 [node name="Label" type="Label" parent="Connect/HBoxContainer/VBoxContainer/ServerAddress"]
 layout_mode = 2
@@ -67,8 +83,10 @@ layout_mode = 2
 
 [node name="HostButton" type="Button" parent="Connect/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Host Game"
 
 [node name="JoinGameButton" type="Button" parent="Connect/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Join Game"
