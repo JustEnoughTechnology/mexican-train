@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://4kay2h2efg0c"]
+
+[ext_resource type="PackedScene" uid="uid://cnfdfe084a7k7" path="res://Scenes/Lobby.tscn" id="1_v0rnt"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Lobby" parent="." instance=ExtResource("1_v0rnt")]

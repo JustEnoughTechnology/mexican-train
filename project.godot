@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="Mexican Train"
-run/main_scene="res://Scenes/dominotest.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GameState="res://Scripts/game_state.gd"
+GameState="*res://Scripts/game_state.gd"

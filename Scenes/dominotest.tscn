@@ -8,6 +8,11 @@ script = ExtResource("1_smyq1")
 [node name="DominoBag" type="Node2D" parent="."]
 
 [node name="DominoGrid" type="GridContainer" parent="."]
+anchors_preset = -1
 offset_right = 40.0
 offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 columns = 12
