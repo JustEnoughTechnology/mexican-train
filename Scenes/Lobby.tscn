@@ -22,7 +22,7 @@ offset_bottom = 40.0
 [node name="ItemList" type="ItemList" parent="Players"]
 layout_mode = 0
 offset_right = 327.0
-offset_bottom = 350.0
+offset_bottom = 204.0
 allow_search = false
 
 [node name="Label" type="Label" parent="Players"]

@@ -1,49 +1,30 @@
 class_name DominoNode2D extends Node2D
-signal Domino_Node_Initialized()
-var _dots :Dictionary ={}
-var handle_notification : Callable = Callable(self,"link_parent" )
+
+var domino :Domino = preload("res://data_resources/Domino.tres")
+signal show_domino_dots
+signal hide_domino_dots
+
+func _show_dots():
+	$"GridContainer/0/Label".visible = true
+	$"GridContainer/0/Label".visible = true
+	
+func _hide_dots():
+	$"GridContainer/0/Label".visible = false
+	$"GridContainer/0/Label".visible = false
 		
 func set_dots(left:int,right:int):
-	print("setting dots:%d - %d"%[left,right])
-	_dots["0"] = left
-	_dots["1"] = right
-	$"0/Label".text = str(_dots["0"])
-	$"1/Label".text = str(_dots["1"])
+	domino.dots[0] = left
+	domino.dots[1] = right
 	
-func _enter_tree() -> void:
-	print ("node2d entering tree")
+	$"GridContainer/0/Label".text = str(domino.dots[0])
+	$"GridContainer/1/Label".text = str(domino.dots[1])
 
-func link_parent(what:int):
-	var p :DominoControl
-	match what:
-		NOTIFICATION_PARENTED:
-			
-			print("parented")
-			print( self.get_parent().get_class())
-			print(self.get_parent().name)
-			if self.get_parent().name == "DominoControl" :
-				p = self.get_parent()
-				p.node2d = self	
-				handle_notification = do_nothing
-
-func do_nothing(_what:int):
-	pass
-	
-func _notification(what: int) -> void:
-	handle_notification.call(what)
-	
-				
-func _init() ->void:
-	
-	print ("initializing node")		
-		
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print ("node ready")
-	if !_dots.has("0"):
+	self.hide_domino_dots.connect(_hide_dots)	
+	self.show_domino_dots.connect(_show_dots)
+	
+	if domino.dots.is_empty():
 		set_dots(0,0)
-	print(_dots)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	else:
+		set_dots(domino.dots[0],domino.dots[1])
