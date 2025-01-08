@@ -41,13 +41,17 @@ func _ready() -> void:
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	print("some event")
 	if event.is_action("domino_clicked"):
+<<<<<<< HEAD
 		print("Domino Node clicked")
+=======
+>>>>>>> 8123294 (adding domino as control)
 		self.domino_clicked.emit(self)
 
 func _on_toggle_dots() -> void:
 	print("toggling",self.domino.dots)
 	$"GridContainer/0/Label".visible = !$"GridContainer/0/Label".visible
 	$"GridContainer/1/Label".visible = !$"GridContainer/1/Label".visible
+<<<<<<< HEAD
 
 
 func _on_area_2d_mouse_entered() -> void:
@@ -61,3 +65,5 @@ func _on_area_2d_mouse_exited() -> void:
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action("domino_clicked"):
 	domino_clickede
+=======
+>>>>>>> 8123294 (adding domino as control)
