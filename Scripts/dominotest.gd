@@ -1,21 +1,27 @@
-extends Node
+extends Node2D
 var dominoes :Array[Control]
 # Called when the node enters the scene tree for the first time.
+func on_clicked(domino:DominoNode2D):
+	domino.toggle_dots.emit()
+	
 func _ready() -> void:
 	var a_domino:PackedScene = load( "res://Scenes/domino_Node2D.tscn")
 	var domino_node:DominoNode2D #= DominoNode2D.new()
-	var control_node:Control
+	var control_node:
 	for i in range(13):
 		
 		for j in range(i+1):
 			control_node = Control.new()
+			$Game/Boneyard/VBoxContainer/Dominos.add_child(control_node)
 			control_node.name = "Domino "+str(i)+"-"+str(j)
 			domino_node = a_domino.instantiate()
 			domino_node.name = "Domino"
 			domino_node.set_dots(i,j)
 			control_node.add_child(domino_node)
-			dominoes.append( control_node)
-			$VBoxContainer/Boneyard/Dominos.add_child(control_node)
+			control_node.custom_minimum_size= domino_node.get_size()
+			domino_node.domino_clicked.connect(on_clicked)
+			dominoes.append( control_node) 
+			
 	
 	#dominoes.shuffle()
 	
@@ -37,3 +43,8 @@ func _ready() -> void:
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_v_box_container_resized() -> void:
+	
+	pass # Replace with function body.

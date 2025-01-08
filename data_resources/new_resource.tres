@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="domino" load_steps=2 format=3 uid="uid://bm4m7nqj41pxk"]
-
-[ext_resource type="Script" path="res://data_resources/Domino.gd" id="1_0dtov"]
-
-[resource]
-script = ExtResource("1_0dtov")

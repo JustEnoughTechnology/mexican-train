@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://cquar1ayh887n"]
+
+[ext_resource type="Script" path="res://Scripts/dominotest.gd" id="1_gu0u6"]
+[ext_resource type="Script" path="res://Scenes/boneyard.gd" id="2_7qg4i"]
+[ext_resource type="Script" path="res://Scripts/domino_Node2D.gd" id="3_v76jq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ifyt7"]
+
+[node name="test2" type="Node2D"]
+script = ExtResource("1_gu0u6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(1300, 0)
+offset_right = 1300.0
+offset_bottom = 758.0
+size_flags_horizontal = 10
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Boneyard" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(1200, 250)
+layout_mode = 2
+color = Color(1, 1, 0.196078, 1)
+script = ExtResource("2_7qg4i")
+
+[node name="Dominos" type="GridContainer" parent="VBoxContainer/Boneyard"]
+material = SubResource("CanvasItemMaterial_ifyt7")
+custom_minimum_size = Vector2(1200, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 8
+
+[node name="Control" type="Control" parent="VBoxContainer/Boneyard/Dominos"]
+layout_mode = 2
+
+[node name="DominoNode2D" type="Node2D" parent="VBoxContainer/Boneyard/Dominos/Control"]
+script = ExtResource("3_v76jq")
+
+[node name="MyHand" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(1200, 250)
+layout_mode = 2
+color = Color(0.780392, 0.6, 0.0745098, 1)
+
+[node name="Dominos" type="GridContainer" parent="VBoxContainer/MyHand"]
+material = SubResource("CanvasItemMaterial_ifyt7")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="LineEdit" parent="VBoxContainer/MyHand"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.5313
+offset_right = 33.5313
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+text = "My Hand"
+alignment = 1
+editable = false
+expand_to_text_length = true
+
+[node name="PlayField" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(1200, 250)
+layout_mode = 2
+color = Color(0.717647, 1, 0.054902, 1)
+
+[node name="Dominos" type="GridContainer" parent="VBoxContainer/PlayField"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="LineEdit" parent="VBoxContainer/PlayField"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.5313
+offset_right = 33.5313
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+text = "Playfield"
+alignment = 1
+editable = false
+expand_to_text_length = true
