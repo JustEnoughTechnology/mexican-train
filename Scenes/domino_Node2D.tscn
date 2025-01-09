@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cj73j2i5bccwa"]
+[gd_scene load_steps=5 format=3 uid="uid://cj73j2i5bccwa"]
 
 [ext_resource type="Script" path="res://Scripts/domino_Node2D.gd" id="1_1qh6i"]
 
@@ -12,20 +12,18 @@ shadow_offset = Vector2(0, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_0edpg"]
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2nbb"]
-size = Vector2(80, 40)
-
 [node name="Domino" type="Node2D"]
 script = ExtResource("1_1qh6i")
+domino = null
 
 [node name="GridContainer" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(80, 40)
 layout_direction = 2
-offset_left = 0.2
-offset_right = 80.2
+offset_right = 80.0
 offset_bottom = 40.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+mouse_default_cursor_shape = 2
 theme_override_constants/h_separation = 0
 columns = 2
 
@@ -51,6 +49,7 @@ offset_right = 0.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 label_settings = SubResource("LabelSettings_wgacd")
 vertical_alignment = 1
 
@@ -75,14 +74,11 @@ offset_right = 0.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 label_settings = SubResource("LabelSettings_0edpg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_v2nbb")
-
 [connection signal="toggle_dots" from="." to="." method="_on_toggle_dots"]
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="gui_input" from="GridContainer/0/Label" to="." method="_on_gui_input"]
+[connection signal="gui_input" from="GridContainer/1/Label" to="." method="_on_gui_input"]
