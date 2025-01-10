@@ -1,19 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://cj73j2i5bccwa"]
 
 [ext_resource type="Script" path="res://Scripts/domino_Node2D.gd" id="1_1qh6i"]
+[ext_resource type="TileSet" uid="uid://bysne8abe6kqf" path="res://Tiles/domino_tile_set.tres" id="2_r8hti"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yeha1"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_wgacd"]
-font_color = Color(0, 0, 0, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bxo44"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0edpg"]
 font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2nbb"]
-size = Vector2(80, 40)
 
 [node name="Domino" type="Node2D"]
 script = ExtResource("1_1qh6i")
@@ -37,22 +32,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(1, 0.145098, 1, 1)
 
-[node name="Label" type="Label" parent="GridContainer/0"]
+[node name="Label" type="TileMapLayer" parent="GridContainer/0"]
 z_index = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -11.5
-offset_right = 0.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-label_settings = SubResource("LabelSettings_wgacd")
-vertical_alignment = 1
+material = SubResource("CanvasItemMaterial_bxo44")
+tile_set = ExtResource("2_r8hti")
 
 [node name="1" type="ColorRect" parent="GridContainer"]
 custom_minimum_size = Vector2(40, 40)
@@ -79,10 +62,4 @@ label_settings = SubResource("LabelSettings_0edpg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_v2nbb")
-
 [connection signal="toggle_dots" from="." to="." method="_on_toggle_dots"]
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
