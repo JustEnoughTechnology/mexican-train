@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Domino" load_steps=2 format=3 uid="uid://cyhpxfi5xrd7u"]
 
-[ext_resource type="Script" path="res://data_resources/Domino.gd" id="1_5gbq0"]
+[ext_resource type="Script" path="res://data_resources/domino.gd" id="1_5gbq0"]
 
 [resource]
 script = ExtResource("1_5gbq0")
-dots = Array[int]([0, 0])
+dots = Array[int]([3, 4])

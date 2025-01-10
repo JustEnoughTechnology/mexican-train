@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdyave5qs5o7l"]
+
+[ext_resource type="Script" path="res://game_pieces/domino_control.gd" id="1_bhf4g"]
+[ext_resource type="PackedScene" uid="uid://cj73j2i5bccwa" path="res://game_pieces/domino_node2d.tscn" id="1_cst26"]
+
+[node name="DominoControl" type="Control"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_bhf4g")
+
+[node name="DominoNode2D" parent="." instance=ExtResource("1_cst26")]
+
+[connection signal="domino_clicked" from="DominoNode2D" to="." method="_on_domino_node_2d_clicked"]

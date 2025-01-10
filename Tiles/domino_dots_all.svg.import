@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bketnd1pl1346"
-path="res://.godot/imported/DominoSheet.svg-4f3c43940e59a415c6fd27cb023f6bff.ctex"
+path="res://.godot/imported/domino_dots_all.svg-b7fe944b27b4d85ccb8fce26bf7da03e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/DominoSheet.svg"
-dest_files=["res://.godot/imported/DominoSheet.svg-4f3c43940e59a415c6fd27cb023f6bff.ctex"]
+source_file="res://tiles/domino_dots_all.svg"
+dest_files=["res://.godot/imported/domino_dots_all.svg-b7fe944b27b4d85ccb8fce26bf7da03e.ctex"]
 
 [params]
 

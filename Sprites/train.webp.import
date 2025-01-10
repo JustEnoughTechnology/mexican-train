@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://gs8j8o5kfjpm"
-path="res://.godot/imported/train.webp-9cde06e8ac549d5fdb316c5ecb88c984.ctex"
+path="res://.godot/imported/train.webp-e2373218ea78b3417a674dd62fe34848.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/train.webp"
-dest_files=["res://.godot/imported/train.webp-9cde06e8ac549d5fdb316c5ecb88c984.ctex"]
+source_file="res://sprites/train.webp"
+dest_files=["res://.godot/imported/train.webp-e2373218ea78b3417a674dd62fe34848.ctex"]
 
 [params]
 

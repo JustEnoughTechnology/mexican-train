@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ccy2qdvxxgukh"]
 
-[ext_resource type="Script" path="res://Scripts/dominotest.gd" id="1_smyq1"]
-[ext_resource type="Script" path="res://Scenes/boneyard.gd" id="2_lqke7"]
+[ext_resource type="Script" path="res://scripts/dominotest.gd" id="1_smyq1"]
+[ext_resource type="Script" path="res://ui/bone_yard/bone_yard.gd" id="2_lqke7"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ifyt7"]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cf5qj85i60r0l"
-path="res://.godot/imported/train-animation.svg-2b54e7304755f6dfdccf03dea0207000.ctex"
+path="res://.godot/imported/train_animation.svg-4a70270388363d79e5f24ec7e732e5bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/train-animation.svg"
-dest_files=["res://.godot/imported/train-animation.svg-2b54e7304755f6dfdccf03dea0207000.ctex"]
+source_file="res://sprites/train_animation.svg"
+dest_files=["res://.godot/imported/train_animation.svg-4a70270388363d79e5f24ec7e732e5bf.ctex"]
 
 [params]
 
