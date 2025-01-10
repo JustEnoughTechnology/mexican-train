@@ -56,5 +56,4 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource("AtlasTexture_r88as")
 
-[connection signal="toggle_dots" from="." to="." method="_on_toggle_dots"]
 [connection signal="gui_input" from="Area2D/CollisionShape2D/GridContainer" to="." method="_on_gui_input"]
