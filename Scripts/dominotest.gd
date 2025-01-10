@@ -1,13 +1,14 @@
 extends Node2D
 var dominoes :Array[Control]
 # Called when the node enters the scene tree for the first time.
+var control_node
+
 func on_clicked(domino:DominoNode2D):
 	domino.toggle_dots.emit()
 	
 func _ready() -> void:
 	var a_domino:PackedScene = load( "res://Scenes/domino_Node2D.tscn")
 	var domino_node:DominoNode2D #= DominoNode2D.new()
-	var control_node:
 	for i in range(13):
 		
 		for j in range(i+1):
