@@ -1,4 +1,4 @@
 extends Resource
 class_name Domino
 
-@export var dots: Array[int] = [0,0]
+var dots: Vector2i = Vector2i(0,0)

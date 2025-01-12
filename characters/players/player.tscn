@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c64q1eftgo8vx"]
+[gd_scene load_steps=15 format=3 uid="uid://c64q1eftgo8vx"]
 
 [ext_resource type="Script" path="res://characters/players/player.gd" id="1_p4ff8"]
 [ext_resource type="Texture2D" uid="uid://cf5qj85i60r0l" path="res://sprites/train_animation.svg" id="2_icl17"]
+[ext_resource type="PackedScene" uid="uid://w674g51m2vsv" path="res://ui/my_dominos.tscn" id="3_c01qe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dmna1"]
 atlas = ExtResource("2_icl17")
@@ -104,3 +105,5 @@ replication_config = SubResource("SceneReplicationConfig_jtwvo")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath("../PlayerInput")
 replication_config = SubResource("SceneReplicationConfig_jtwvo")
+
+[node name="MyDominos" parent="." instance=ExtResource("3_c01qe")]

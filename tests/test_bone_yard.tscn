@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dme5eea27ru3h"]
+
+[ext_resource type="Script" path="res://tests/test_bone_yard.gd" id="1_4muqb"]
+[ext_resource type="PackedScene" uid="uid://dw2xp7y4sxrc5" path="res://ui/bone_yard/bone_yard.tscn" id="2_kf2vx"]
+
+[node name="TestBoneYard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4muqb")
+
+[node name="BoneYard" parent="." instance=ExtResource("2_kf2vx")]
+layout_mode = 0
+color = Color(0.742632, 0.914429, 0.99725, 1)

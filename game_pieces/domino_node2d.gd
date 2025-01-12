@@ -1,7 +1,8 @@
 class_name DominoNode2D extends Node2D
 
-@export var  domino :Domino = preload("res://data_resources/domino.tres")
-signal domino_clicked(domino:DominoNode2D)
+var domino:Domino = Domino.new()
+
+signal domino_clicked(p_domino:DominoNode2D)
 
 var face_up :bool = true
 
@@ -15,10 +16,13 @@ func show_dots():
 	face_up = true
 
 func hide_dots():
-	$"Area2D/CollisionShape2D/GridContainer/0/Label".set_texture(load("res://tiles/domino_dots_0.tres"))
-	$"Area2D/CollisionShape2D/GridContainer/1/Label".set_texture(load("res://tiles/domino_dots_0.tres"))
+	$"Area2D/CollisionShape2D/GridContainer/0".set_texture(load("res://tiles/domino_dots_0.tres"))
+	$"Area2D/CollisionShape2D/GridContainer/1".set_texture(load("res://tiles/domino_dots_0.tres"))
 	face_up = false
 		
+func get_dots()->Vector2:
+	return domino.dots
+
 func set_dots(left:int,right:int):
 	domino.dots[0] = left
 	domino.dots[1] = right
@@ -26,11 +30,8 @@ func set_dots(left:int,right:int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if domino.dots.is_empty():
-		set_dots(0,0)
-	else:
-		set_dots(domino.dots[0],domino.dots[1])
-	self.show_dots()
+	set_dots(randi_range(0,GameState.MAX_DOTS),randi_range(0,GameState.MAX_DOTS))
+	show_dots()
 	
 func toggle_dots() -> void:
 	if face_up:
