@@ -13,5 +13,8 @@ grow_vertical = 2
 script = ExtResource("1_4muqb")
 
 [node name="BoneYard" parent="." instance=ExtResource("2_kf2vx")]
-layout_mode = 0
+layout_mode = 1
 color = Color(0.742632, 0.914429, 0.99725, 1)
+
+[connection signal="domino_clicked" from="BoneYard" to="." method="_on_bone_yard_domino_clicked"]
+[connection signal="domino_right_clicked" from="BoneYard" to="." method="_on_bone_yard_domino_right_clicked"]

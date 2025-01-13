@@ -6,6 +6,7 @@
 [node name="TestDominoNode2D" type="HBoxContainer"]
 custom_minimum_size = Vector2(200, 150)
 offset_right = 200.0
+offset_bottom = 150.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_py1s8")
@@ -13,7 +14,7 @@ script = ExtResource("1_py1s8")
 [node name="DominoNode2D" parent="." instance=ExtResource("1_ngwxv")]
 
 [node name="DominoNode2D2" parent="." instance=ExtResource("1_ngwxv")]
-position = Vector2(92, 1)
+position = Vector2(7, 57)
 
 [connection signal="domino_clicked" from="DominoNode2D" to="." method="_on_domino_node_2d_domino_clicked"]
 [connection signal="domino_clicked" from="DominoNode2D2" to="." method="_on_domino_node_2d_domino_clicked"]

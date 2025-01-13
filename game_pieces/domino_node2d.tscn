@@ -25,6 +25,8 @@ script = ExtResource("1_1qh6i")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color(1, 0.168627, 1, 1)
+self_modulate = Color(1, 1, 0.027451, 1)
 position = Vector2(39, 20)
 shape = SubResource("RectangleShape2D_v2nbb")
 
@@ -38,7 +40,7 @@ offset_bottom = 20.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
-theme_override_constants/h_separation = 2
+theme_override_constants/h_separation = 0
 columns = 2
 
 [node name="0" type="TextureRect" parent="Area2D/CollisionShape2D/GridContainer"]
@@ -48,6 +50,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource("AtlasTexture_gb30f")
+
+[node name="Line2D" type="Line2D" parent="Area2D/CollisionShape2D/GridContainer"]
+points = PackedVector2Array(40, 0, 40, 40)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="1" type="TextureRect" parent="Area2D/CollisionShape2D/GridContainer"]
 custom_minimum_size = Vector2(40, 40)

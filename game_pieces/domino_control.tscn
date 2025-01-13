@@ -13,3 +13,4 @@ script = ExtResource("1_bhf4g")
 [node name="DominoNode2D" parent="." instance=ExtResource("2_gkg2i")]
 
 [connection signal="domino_clicked" from="DominoNode2D" to="." method="_on_domino_node_2d_clicked"]
+[connection signal="domino_right_clicked" from="DominoNode2D" to="." method="_on_domino_node_2d_domino_right_clicked"]

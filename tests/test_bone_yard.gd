@@ -2,10 +2,12 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(size)
-	pass # Replace with function body.
+	$BoneYard.populate(12,true)
+	$BoneYard.shuffle()
 
+func _on_bone_yard_domino_clicked(p_domino: DominoControl) -> void:
+	p_domino.toggle_dots()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_bone_yard_domino_right_clicked(p_domino: DominoControl) -> void:
+	$BoneYard.remove_domino(p_domino) 	
+	p_domino.queue_free()
