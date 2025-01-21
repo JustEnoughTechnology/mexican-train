@@ -11,13 +11,21 @@ config_version=5
 [application]
 
 config/name="Mexican Train"
-run/main_scene="res://levels/main.tscn"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://train.svg"
 
 [autoload]
 
 GameState="*res://autoload/game_state.gd"
+
+[filesystem]
+
+import/blender/enabled=false
+
+[global_group]
+
+dropable=""
 
 [input]
 

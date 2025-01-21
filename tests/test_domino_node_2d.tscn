@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsycjruam3rss"]
 
-[ext_resource type="PackedScene" uid="uid://cj73j2i5bccwa" path="res://game_pieces/domino_node2d.tscn" id="1_ngwxv"]
+[ext_resource type="PackedScene" uid="uid://cj73j2i5bccwa" path="res://2d/game_pieces/domino_node2d.tscn" id="1_ngwxv"]
 [ext_resource type="Script" path="res://tests/test_domino_node_2d.gd" id="1_py1s8"]
 
 [node name="TestDominoNode2D" type="HBoxContainer"]

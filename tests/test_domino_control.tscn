@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3y2ukxrsmyd0"]
 
 [ext_resource type="Script" path="res://tests/test_domino_control.gd" id="1_2dpyu"]
-[ext_resource type="PackedScene" uid="uid://bdyave5qs5o7l" path="res://game_pieces/domino_control.tscn" id="2_7f1hk"]
+[ext_resource type="PackedScene" uid="uid://bdyave5qs5o7l" path="res://2d/game_pieces/domino_control.tscn" id="2_7f1hk"]
 
 [node name="TestDominoControl" type="HFlowContainer"]
 script = ExtResource("1_2dpyu")

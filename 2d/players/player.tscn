@@ -1,0 +1,121 @@
+[gd_scene load_steps=16 format=3 uid="uid://c64q1eftgo8vx"]
+
+[ext_resource type="Script" path="res://2d/players/player.gd" id="1_p4ff8"]
+[ext_resource type="Texture2D" uid="uid://cf5qj85i60r0l" path="res://2d/sprites/train_animation.svg" id="2_icl17"]
+[ext_resource type="PackedScene" uid="uid://dltaqnov4saqs" path="res://common/ui/player_hand/player_hand.tscn" id="3_q7741"]
+[ext_resource type="PackedScene" uid="uid://b5lnnko6x3lth" path="res://2d/game_board/player_train.tscn" id="4_cpnhb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmna1"]
+atlas = ExtResource("2_icl17")
+region = Rect2(0, 0, 301, 234)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc1mj"]
+atlas = ExtResource("2_icl17")
+region = Rect2(301, 0, 301, 234)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y07a3"]
+atlas = ExtResource("2_icl17")
+region = Rect2(602, 0, 301, 234)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8gfd"]
+atlas = ExtResource("2_icl17")
+region = Rect2(903, 0, 301, 234)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_df6gm"]
+atlas = ExtResource("2_icl17")
+region = Rect2(1204, 0, 301, 234)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsonn"]
+atlas = ExtResource("2_icl17")
+region = Rect2(1505, 0, 301, 234)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfd3k"]
+atlas = ExtResource("2_icl17")
+region = Rect2(1806, 0, 301, 234)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_un6yu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmna1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc1mj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y07a3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8gfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_df6gm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsonn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfd3k")
+}],
+"loop": true,
+"name": &"Train",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1xfix"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+outline_color = Color(1, 0.431373, 1, 1)
+shadow_color = Color(0.354015, 0.867377, 0.626331, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40666"]
+size = Vector2(295.5, 232)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jtwvo"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_p4ff8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(151.563, 117.125)
+scale = Vector2(1.00623, 1.00748)
+sprite_frames = SubResource("SpriteFrames_un6yu")
+animation = &"Train"
+frame = 6
+frame_progress = 0.865779
+
+[node name="PlayerName" type="Label" parent="AnimatedSprite2D"]
+offset_left = -131.0
+offset_right = 136.0
+offset_bottom = 39.0
+text = "Player Name"
+label_settings = SubResource("LabelSettings_1xfix")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(159.25, 120)
+shape = SubResource("RectangleShape2D_40666")
+
+[node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_jtwvo")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../PlayerInput")
+replication_config = SubResource("SceneReplicationConfig_jtwvo")
+
+[node name="PlayerHand" parent="." instance=ExtResource("3_q7741")]
+offset_left = 373.0
+offset_top = -76.0
+offset_right = 980.0
+offset_bottom = 211.0
+
+[node name="PlayerTrain" parent="." instance=ExtResource("4_cpnhb")]
+position = Vector2(153, 118)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[connection signal="renamed" from="." to="." method="_on_renamed"]

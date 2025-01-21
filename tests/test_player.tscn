@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://nvd7fdeibul7"]
+
+[ext_resource type="PackedScene" uid="uid://c64q1eftgo8vx" path="res://2d/players/player.tscn" id="1_ib7al"]
+
+[node name="TestPlayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player" parent="." instance=ExtResource("1_ib7al")]

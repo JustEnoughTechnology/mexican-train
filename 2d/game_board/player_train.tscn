@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5lnnko6x3lth"]
+
+[ext_resource type="Script" path="res://2d/game_board/player_train.gd" id="1_ovjps"]
+
+[node name="PlayerTrain" type="Area2D"]
+position = Vector2(1, 2)
+script = ExtResource("1_ovjps")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.954167, 1.0625)
+polygon = PackedVector2Array(0, 0, 150, 0, 150, 50, 0, 50)
+
+[node name="Control" type="Control" parent="CollisionShape2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 50.0
+
+[node name="Dominos" type="HFlowContainer" parent="CollisionShape2D/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true

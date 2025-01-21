@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsoy4hefb4es7"]
+
+[ext_resource type="PackedScene" uid="uid://c7logfy01cmey" path="res://game_board/game_board.tscn" id="1_hdjj6"]
+[ext_resource type="PackedScene" uid="uid://dw2xp7y4sxrc5" path="res://ui/bone_yard/bone_yard.tscn" id="2_amno1"]
+[ext_resource type="PackedScene" uid="uid://c64q1eftgo8vx" path="res://characters/players/player.tscn" id="3_vum4d"]
+
+[node name="Game" type="Node"]
+
+[node name="GameBoard" parent="." instance=ExtResource("1_hdjj6")]
+
+[node name="BoneYard" parent="." instance=ExtResource("2_amno1")]
+offset_left = 555.0
+offset_top = -514.0
+offset_right = 555.0
+offset_bottom = -834.0
+
+[node name="Player_1" parent="." instance=ExtResource("3_vum4d")]
+position = Vector2(386, 114)
+
+[node name="Player2" parent="." instance=ExtResource("3_vum4d")]
+position = Vector2(256, 324)
+
+[node name="Player3" parent="." instance=ExtResource("3_vum4d")]
+position = Vector2(324, -106)
+
+[node name="Player4" parent="." instance=ExtResource("3_vum4d")]
+position = Vector2(1248, 224)
+
+[node name="Player5" parent="." instance=ExtResource("3_vum4d")]
+position = Vector2(984, 330)
+
+[node name="Player6" parent="." instance=ExtResource("3_vum4d")]
+position = Vector2(1090, -64)
+
+[node name="Player7" parent="." instance=ExtResource("3_vum4d")]
+position = Vector2(716, 156)
+
+[node name="Player8" parent="." instance=ExtResource("3_vum4d")]
+position = Vector2(652, -46)
