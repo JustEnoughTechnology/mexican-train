@@ -1,5 +1,5 @@
 extends StaticBody2D
-
+origin
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	modulate = Color(Color.BROWN,0.75)
@@ -10,3 +10,11 @@ func _process(delta: float) -> void:
 		visible = true
 	else:
 		visible = false
+
+func highlight(on_off:bool):
+	if on_off:
+		modulate = Color(Color.CORAL,1)
+	else:
+		modulate = Color(1.0,1.0,1.0,1.0)
+ 	
+		

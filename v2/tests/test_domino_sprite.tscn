@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://2ry6sj1xmdaq"]
+
+[ext_resource type="Script" path="res://v2/tests/test_domino_sprite.gd" id="1_5xvgl"]
+[ext_resource type="PackedScene" uid="uid://difskv0h1goig" path="res://v2/game_pieces/domino_sprite.tscn" id="2_ne13r"]
+
+[node name="TestDominoSprite" type="Node2D"]
+script = ExtResource("1_5xvgl")
+
+[node name="DominoSprite" parent="." instance=ExtResource("2_ne13r")]
+position = Vector2(134, 66)
+rotation = 0.322886

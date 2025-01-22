@@ -7,7 +7,7 @@ var is_dragging = false
 
 enum Sort {SORT_ASCENDING,SORT_DESCENDING}
 
-var players : Array[String]
+var player_names : Array[String]
 
 func _init() -> void:
 	pass

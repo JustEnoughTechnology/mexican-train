@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dsoy4hefb4es7"]
 
-[ext_resource type="Script" path="res://2d/levels/game/game.gd" id="1_ef77d"]
+[ext_resource type="Script" path="res://2d/Scenes/levels/game/game.gd" id="1_ef77d"]
 [ext_resource type="PackedScene" uid="uid://c7logfy01cmey" path="res://2d/game_board/game_board.tscn" id="1_hdjj6"]
 [ext_resource type="PackedScene" uid="uid://dw2xp7y4sxrc5" path="res://common/ui/bone_yard/bone_yard.tscn" id="2_amno1"]
 [ext_resource type="PackedScene" uid="uid://c64q1eftgo8vx" path="res://2d/players/player.tscn" id="3_vum4d"]
