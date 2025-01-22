@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bketnd1pl1346"
-path="res://.godot/imported/domino_dots_all.svg-b7fe944b27b4d85ccb8fce26bf7da03e.ctex"
+uid="uid://bvg58fdx21psn"
+path="res://.godot/imported/domino_dots_all_cm.svg-19857ba7ca7c8ae777300e4d3a87354a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/domino_dots_all.svg"
-dest_files=["res://.godot/imported/domino_dots_all.svg-b7fe944b27b4d85ccb8fce26bf7da03e.ctex"]
+source_file="res://2d/tiles/domino_dots_all_cm.svg"
+dest_files=["res://.godot/imported/domino_dots_all_cm.svg-19857ba7ca7c8ae777300e4d3a87354a.ctex"]
 
 [params]
 
