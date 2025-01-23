@@ -6,6 +6,12 @@ class_name DominoSprite extends Sprite2D
 @onready var container :=  $"Area2D/CollisionShape2D/GridContainer"
 @onready var sep :=$Area2D/CollisionShape2D/GridContainer/Line2D
 
+signal mouse_entered_domino()
+signal mouse_exited_domino()
+signal domino_selected()
+signal domino_clicked()
+signal domino_left_clicked()
+
 func _init(p_left:int=0,p_right:int=0,p_face_up:bool=true,p_is_flipped:bool=false):
 	data = DominoData.new(p_left,p_right,p_face_up,p_is_flipped)
 
@@ -62,3 +68,8 @@ func toggle_dots() -> void:
 		
 func _process(delta: float) -> void:
 	pass		
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event.is_action_type():
+		print(event.as_text())
+		print (event.get_meta_list())

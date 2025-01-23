@@ -6,11 +6,11 @@
 [node name="TestDominoControl" type="HFlowContainer"]
 script = ExtResource("1_2dpyu")
 
-[node name="DominoControl2" parent="." instance=ExtResource("2_7f1hk")]
+[node name="DC1" parent="." instance=ExtResource("2_7f1hk")]
 layout_mode = 2
 
-[node name="DominoControl3" parent="." instance=ExtResource("2_7f1hk")]
+[node name="DC2" parent="." instance=ExtResource("2_7f1hk")]
 layout_mode = 2
 
-[connection signal="domino_clicked" from="DominoControl2" to="." method="_on_domino_control_2_domino_clicked"]
-[connection signal="domino_clicked" from="DominoControl3" to="." method="_on_domino_control_2_domino_clicked"]
+[connection signal="domino_clicked" from="DC1" to="." method="_on_domino_control_2_domino_clicked"]
+[connection signal="domino_clicked" from="DC2" to="." method="_on_domino_control_2_domino_clicked"]

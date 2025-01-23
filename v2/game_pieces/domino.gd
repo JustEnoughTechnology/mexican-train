@@ -1,7 +1,11 @@
 class_name Domino
-extends PanelContainer
+extends ColorRect
+
 signal domino_clicked(p_domino:Domino)
 signal domino_right_clicked(p_domino:Domino)
+signal mouse_entered_domino(p_domino:Domino)
+signal domino_selected(p_domino:Domino)
+
 @onready var d_node:DominoSprite = $DominoSprite
 
 func set_face_up(p_face_up:bool):

@@ -15,6 +15,3 @@ script = ExtResource("1_py1s8")
 
 [node name="DominoNode2D2" parent="." instance=ExtResource("1_ngwxv")]
 position = Vector2(7, 57)
-
-[connection signal="domino_clicked" from="DominoNode2D" to="." method="_on_domino_node_2d_domino_clicked"]
-[connection signal="domino_clicked" from="DominoNode2D2" to="." method="_on_domino_node_2d_domino_clicked"]

@@ -7,5 +7,5 @@
 script = ExtResource("1_syftj")
 
 [node name="BoneYard" parent="." instance=ExtResource("2_m3o64")]
-offset_right = 500.0
-offset_bottom = 500.0
+offset_right = 173.0
+offset_bottom = 189.0

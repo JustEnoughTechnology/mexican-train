@@ -1,4 +1,4 @@
-class_name BoneYard
+class_name Bone__Yard
 extends ColorRect
 @onready var domino_container := $VBoxContainer/HFlowContainer
 
