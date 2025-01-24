@@ -6,11 +6,12 @@ class_name DominoSprite extends Sprite2D
 @onready var container :=  $"Area2D/CollisionShape2D/GridContainer"
 @onready var sep :=$Area2D/CollisionShape2D/GridContainer/Line2D
 
-signal mouse_entered_domino()
-signal mouse_exited_domino()
-signal domino_selected()
-signal domino_clicked()
-signal domino_left_clicked()
+signal mouse_entered(p_domino:DominoSprite)
+signal mouse_exited(p_domino:DominoSprite)
+signal mouse_right_pressed(p_domino:DominoSprite)
+signal mouse_left_pressed(p_domino:DominoSprite)
+signal mouse_right_released(p_domino:DominoSprite)
+signal mouse_left_released(p_domino:DominoSprite)
 
 func _init(p_left:int=0,p_right:int=0,p_face_up:bool=true,p_is_flipped:bool=false):
 	data = DominoData.new(p_left,p_right,p_face_up,p_is_flipped)
@@ -58,18 +59,26 @@ func set_dots(p_left:int,p_right:int):
 		else:
 			hide_dots()
 
-# Called when the node enters the scene tree for the first time.
-
 func toggle_dots() -> void:
 	if data.is_face_up:
 		hide_dots()
 	else:
 		show_dots()
-		
-func _process(delta: float) -> void:
-	pass		
+
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event.is_action_type():
-		print(event.as_text())
-		print (event.get_meta_list())
+	if event.is_action_pressed("domino_left_clicked"):
+		mouse_left_pressed.emit(self)
+	elif event.is_action_released("domino_left_clicked"):
+		mouse_left_released.emit(self)
+	elif event.is_action_pressed("domino_right_clicked"):
+		mouse_right_pressed.emit(self) 
+	elif event.is_action_released("domino_right_clicked"):
+		mouse_right_released.emit(self)
+
+func _on_mouse_entered() -> void:
+	mouse_entered.emit(self)
+
+
+func _on_mouse_exited() -> void:
+	pass # Replace with function body.
