@@ -79,6 +79,6 @@ func _on_gui_input(event: InputEvent) -> void:
 func _on_mouse_entered() -> void:
 	mouse_entered.emit(self)
 
-
 func _on_mouse_exited() -> void:
-	pass # Replace with function body.
+	mouse_exited.emit(self)
+	
