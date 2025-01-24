@@ -8,8 +8,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_domino_sprite_domino_clicked(p_domino: DominoSprite) -> void:
+func _on_domino_sprite_domino_left_pressed(p_domino: DominoSprite) -> void:
 	p_domino.set_dots(randi_range(0,12),randi_range(0,12))
 
-func _on_domino_sprite_domino_right_clicked(p_domino: DominoSprite) -> void:
-	p_domino.flip()
+func _on_domino_sprite_domino_right_pressed(p_domino: DominoSprite) -> void:
+	p_domino.is_highlighted = !p_domino.is_highlighted
+	p_domino.highlight(p_domino.is_highlighted) 
+	
+	
+	

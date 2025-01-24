@@ -5,6 +5,8 @@ class_name DominoSprite extends Sprite2D
 @onready var right := $"Area2D/CollisionShape2D/GridContainer/1"
 @onready var container :=  $"Area2D/CollisionShape2D/GridContainer"
 @onready var sep :=$Area2D/CollisionShape2D/GridContainer/Line2D
+@onready var old_modulate := modulate
+@onready var is_highlighted: = false
 
 signal mouse_entered(p_domino:DominoSprite)
 signal mouse_exited(p_domino:DominoSprite)
@@ -65,7 +67,6 @@ func toggle_dots() -> void:
 	else:
 		show_dots()
 
-
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("domino_left_clicked"):
 		mouse_left_pressed.emit(self)
@@ -82,3 +83,6 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	mouse_exited.emit(self)
 	
+func highlight(on:bool = true):
+	modulate = old_modulate if !on else Color(1,1,1,0.5)
+	is_highlighted = on

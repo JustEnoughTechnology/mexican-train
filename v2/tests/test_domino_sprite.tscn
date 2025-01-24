@@ -9,3 +9,6 @@ script = ExtResource("1_5xvgl")
 [node name="DominoSprite" parent="." instance=ExtResource("2_ne13r")]
 position = Vector2(134, 66)
 rotation = 0.322886
+
+[connection signal="mouse_left_pressed" from="DominoSprite" to="." method="_on_domino_sprite_domino_left_pressed"]
+[connection signal="mouse_right_pressed" from="DominoSprite" to="." method="_on_domino_sprite_domino_right_pressed"]
