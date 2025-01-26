@@ -2,14 +2,11 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$BoneYard.set_size(get_window().size)
-	$BoneYard.populate(12,true) 
+	$BoneYard.populate(12,false) 
 	$BoneYard.shuffle()
 # Called every frame. 'delta' is the elapsed time since the previous 
-func _input(event):
-	if event.is_action_pressed("domino_selected"):
-		raycast_check_for_domino()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func raycast_check_for_domino():
@@ -20,3 +17,14 @@ func raycast_check_for_domino():
 	parameters.collision_mask = 1
 	var result = space_state.intersect_point(parameters)
 	print (result)
+	
+func _on_bone_yard_domino_left_pressed(p_domino: Domino) -> void:
+	p_domino.show_dots() # Replace with function body.
+
+func _on_bone_yard_gui_input(event: InputEvent) -> void:
+	pass
+	
+
+func _on_bone_yard_domino_right_pressed(p_domino: Domino) -> void:
+	pass # Replace with function body.
+/

@@ -20,18 +20,17 @@ func set_face_up(p_face_up:bool):
 func get_domino_size()->Vector2:
 	return container.size
 		
-func show_dots():
-	left.set_texture( load("res://2d/tiles/domino_dots_%d.tres"%data.dots[0]))
-	right.set_texture( load("res://2d/tiles/domino_dots_%d.tres"%data.dots[1]))
-	data.is_face_up = true
-	sep.visible = true
-
-func hide_dots():
-	left.set_texture(load("res://2d/tiles/domino_dots_0.tres"))
-	right.set_texture(load("res://2d/tiles/domino_dots_0.tres"))
-
-	data.is_face_up = false
-	sep.visible = false
+func show_dots(on:bool=true):
+	if on:
+		left.set_texture( load("res://2d/tiles/domino_dots_%d.tres"%data.dots[0]))
+		right.set_texture( load("res://2d/tiles/domino_dots_%d.tres"%data.dots[1]))
+		data.is_face_up = true
+		sep.visible = true
+	else:
+		left.set_texture(load("res://2d/tiles/domino_dots_0.tres"))
+		right.set_texture(load("res://2d/tiles/domino_dots_0.tres"))
+		data.is_face_up = false
+		sep.visible = false
 
 func get_dots()->Vector2:
 	return data.dots
@@ -42,13 +41,7 @@ func set_dots(p_left:int,p_right:int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if data.is_face_up:
-		show_dots()
-	else:
-		hide_dots()
-
+	show_dots(data.is_face_up)
+	
 func toggle_dots() -> void:
-	if data.is_face_up:
-		hide_dots()
-	else:
-		show_dots()
+	show_dots(data.is_face_up)

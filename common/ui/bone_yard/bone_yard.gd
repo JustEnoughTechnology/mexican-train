@@ -36,11 +36,9 @@ func populate(p_dots:int,p_face_up:bool):
 			d.domino_clicked.connect(_on_domino_clicked)
 			d.domino_right_clicked.connect(_on_domino_right_clicked)
 			d.set_dots(i,j)
-			if p_face_up :
-				d.show_dots()
-			else :
-				d.hide_dots()			
-			
+			d.show_dots(p_face_up)
+
+
 func _on_domino_clicked(p_domino:DominoControl):
 	domino_clicked.emit(p_domino)
 	

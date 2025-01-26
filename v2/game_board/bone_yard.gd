@@ -1,9 +1,15 @@
 class_name BoneYard
 extends ColorRect
-@onready var domino_container := $VBoxContainer/HFlowContainer
 
-signal domino_clicked(p_domino:Domino)
-signal domino_right_clicked(p_domino:Domino)
+@onready var domino_container := $VBoxContainer/HFlowContainer
+@onready var is_dragging:=false
+@onready var current_domino:Domino 
+
+signal domino_left_pressed(p_domino:Domino)
+signal domino_right_pressed(p_domino:Domino)
+signal domino_left_released(p_domino:Domino)
+signal domino_right_released(p_domino:Domino)
+
 var d_scene : PackedScene = preload("res://v2/game_pieces/domino.tscn")
 
 func sort_ascending(d1:Domino, d2:Domino)->bool:
@@ -33,14 +39,20 @@ func populate(p_dots:int,p_face_up:bool):
 			d = d_scene.instantiate()
 			d.name = "Domino_"+str(i)+"_"+str(j)
 			domino_container.add_child(d)
+			d.connect("mouse_left_pressed",_on_domino_left_pressed)
+			d.connect("mouse_right_pressed",_on_domino_right_pressed)
+			d.connect("mouse_right_released",_on_domino_right_released)
+			d.connect("mouse_left_released",_on_domino_left_released)
 			d.set_dots(i,j)
-			if p_face_up :
-				d.show_dots()
-			else :
-				d.hide_dots()			
+			d.show_dots(p_face_up)		
 			
-func _on_domino_clicked(p_domino:Domino):
-	domino_clicked.emit(p_domino)
-	
-func _on_domino_right_clicked(p_domino:Domino):
-	domino_right_clicked.emit(p_domino)
+func _on_domino_left_pressed(p_domino:Domino):
+	domino_left_pressed.emit(p_domino)
+func _on_domino_right_pressed(p_domino:Domino):
+	domino_right_pressed.emit(p_domino)
+func _on_domino_left_released(p_domino:Domino):
+	domino_left_released.emit(p_domino)
+func _on_domino_right_released(p_domino:Domino):
+	domino_right_released.emit(p_domino)
+func _unhandled_input(event: InputEvent) -> void:
+	gui_input.emit(event)	

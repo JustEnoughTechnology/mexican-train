@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c78ec72qsfccf"]
+
+[ext_resource type="Script" path="res://v2/tests/test_domino.gd" id="1_bvnwq"]
+[ext_resource type="PackedScene" uid="uid://htfoo57txyc1" path="res://v2/game_pieces/domino.tscn" id="1_vwk4v"]
+
+[node name="TestDomino" type="Node2D"]
+script = ExtResource("1_bvnwq")
+
+[node name="Domino1" parent="." instance=ExtResource("1_vwk4v")]
+
+[node name="Domino2" parent="." instance=ExtResource("1_vwk4v")]
+offset_left = 4.0
+offset_top = 100.0
+offset_right = 84.0
+offset_bottom = 140.0
+
+[connection signal="gui_input" from="Domino1" to="." method="_on_gui_input"]
+[connection signal="mouse_left_pressed" from="Domino1" to="." method="_on_domino_1_mouse_left_pressed"]
+[connection signal="mouse_left_released" from="Domino1" to="." method="_on_domino_1_mouse_left_released"]
+[connection signal="mouse_right_pressed" from="Domino1" to="." method="_on_domino_1_mouse_right_pressed"]

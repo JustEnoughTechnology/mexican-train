@@ -5,6 +5,15 @@
 
 [node name="Domino" type="ColorRect"]
 custom_minimum_size = Vector2(80, 40)
+mouse_filter = 1
 script = ExtResource("1_b0ayk")
 
 [node name="DominoSprite" parent="." instance=ExtResource("2_i1gv7")]
+
+[connection signal="gui_input" from="DominoSprite" to="." method="_on_domino_sprite_gui_input"]
+[connection signal="mouse_entered" from="DominoSprite" to="." method="_on_domino_sprite_mouse_entered"]
+[connection signal="mouse_exited" from="DominoSprite" to="." method="_on_domino_sprite_mouse_exited"]
+[connection signal="mouse_left_pressed" from="DominoSprite" to="." method="_on_domino_sprite_mouse_left_pressed"]
+[connection signal="mouse_left_released" from="DominoSprite" to="." method="_on_domino_sprite_mouse_left_released"]
+[connection signal="mouse_right_pressed" from="DominoSprite" to="." method="_on_domino_sprite_mouse_right_pressed"]
+[connection signal="mouse_right_released" from="DominoSprite" to="." method="_on_domino_sprite_mouse_right_released"]

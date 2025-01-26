@@ -13,14 +13,11 @@ func get_dots()->Vector2i:
 func set_dots(p_left:int,p_right:int)->void:
 	d_node.set_dots(p_left,p_right)
 
-func show_dots():
-	d_node.show_dots()
+func show_dots(on:bool=true):
+	d_node.show_dots(on)
 	
 func toggle_dots():
 	d_node.toggle_dots()
-
-func hide_dots():
-	d_node.hide_dots()
 	
 func get_domino_size() -> Vector2:
 	return d_node.get_domino_size()
