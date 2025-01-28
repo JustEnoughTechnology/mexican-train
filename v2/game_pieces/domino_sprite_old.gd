@@ -1,4 +1,4 @@
-class_name DominoSprite extends Sprite2D
+class_name DominoSpriteOld extends Sprite2D
 ## This is where the low level domino code lives. 
 ##
 ## Just the basics like face up/down, flipping lengthwise, highlighting, [br]
@@ -9,6 +9,9 @@ class_name DominoSprite extends Sprite2D
 @onready var right := $"Area2D/CollisionShape2D/GridContainer/1"
 @onready var container := $"Area2D/CollisionShape2D/GridContainer"
 @onready var sep := $Area2D/CollisionShape2D/GridContainer/Line2D
+@onready var old_modulate := modulate
+@onready var is_highlighted := false
+
 
 signal mouse_entered(p_domino: DominoSprite)	## 
 signal mouse_exited(p_domino: DominoSprite)
@@ -91,3 +94,6 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	mouse_exited.emit(self)
 	
+func highlight(on: bool = true):
+	modulate = old_modulate if !on else Color(0.9, 0.9, 0.9, 0.75)
+	is_highlighted = on

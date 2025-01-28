@@ -4,9 +4,8 @@ class_name DominoData extends Resource
 ## Prefers to have an autoload [class GameState] containing the maximum number 
 ## of dots each side of the domino can have. does basic check and clamps the values to 6 if no other guidance
 
-
 var dots: Vector2i 
-var is_face_up:bool   ## [constant true] if dots are visible
+var is_face_up:bool = false   ## [constant true] if dots are visible
 var is_flipped:= false ## [constant true] if the domino has been rotated 180 degrees
 
 ## Enforces the convention that the smaller number of dots is on the left 

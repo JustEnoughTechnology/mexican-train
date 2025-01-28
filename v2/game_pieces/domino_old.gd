@@ -1,4 +1,5 @@
-class_name Domino extends ColorRect
+class_name Domino_old
+extends ColorRect
 
 signal mouse_left_pressed(p_domino: Domino)
 signal mouse_right_pressed(p_domino: Domino)
@@ -6,24 +7,19 @@ signal mouse_left_released(p_domino: Domino)
 signal mouse_right_released(p_domino: Domino)
 signal dragged_away (p_domino:Domino)
 
+
 @onready var d_sprite: DominoSprite = $DominoSprite
-@onready var old_modulate := modulate
-@onready var is_highlighted := false
-@onready var data: DominoData
 
 func flip():
-	$CenterContainer.rotation_degrees(180.0)
+	$DominoSprite.flip()
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return false
 	
 func highlight(on: bool = true):
-	modulate = old_modulate if !on else Color(0.9, 0.9, 0.9, 0.75)
-	is_highlighted = on
-
-func face_up(p_face_up:bool = true):
-	data.is_face_up = p_face_up
-	$CenterContainer/DominoFront.visible = true
+	$DominoSprite.highlight(on)
+func set_face_up(p_face_up: bool):
+	d_sprite.set_face_up(p_face_up)
 	
 func get_dots() -> Vector2i:
 	return d_sprite.get_dots()
