@@ -5,13 +5,17 @@ signal mouse_left_pressed(p_domino: Domino)
 signal mouse_right_pressed(p_domino: Domino)
 signal mouse_left_released(p_domino: Domino)
 signal mouse_right_released(p_domino: Domino)
+signal dragged_away (p_domino:Domino)
+
 
 @onready var d_sprite: DominoSprite = $DominoSprite
 
 func flip():
 	$DominoSprite.flip()
+
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	pass
+	return false
+	
 func highlight(on: bool = true):
 	$DominoSprite.highlight(on)
 func set_face_up(p_face_up: bool):
