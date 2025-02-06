@@ -10,7 +10,7 @@ signal domino_right_pressed(p_domino:Domino)
 signal domino_left_released(p_domino:Domino)
 signal domino_right_released(p_domino:Domino)
 
-var d_scene : PackedScene = preload("res://v2/game_pieces/domino.tscn")
+var d_scene : PackedScene = preload("res://v2/game_pieces/domino.tscn") #Domino game piece
 
 func sort_ascending(d1:Domino, d2:Domino)->bool:
 	return d1.get_dots()< d2.get_dots()
@@ -27,7 +27,7 @@ func shuffle():
 		domino_container.move_child(d_array[d],d)
 
 func add_domino(i:int,j:int,face_up:bool):
-	pass
+	domino_container.add_child(Domino.new(i,j))
 	
 func remove_domino(p_domino:Domino):
 	domino_container.remove_child(p_domino)
@@ -44,7 +44,7 @@ func populate(p_dots:int,p_face_up:bool):
 			d.connect("mouse_right_released",_on_domino_right_released)
 			d.connect("mouse_left_released",_on_domino_left_released)
 			d.set_dots(i,j)
-			d.show_dots(p_face_up)		
+			d.set_face_up(p_face_up)		
 			
 func _on_domino_left_pressed(p_domino:Domino):
 	domino_left_pressed.emit(p_domino)

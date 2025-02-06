@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dltaqnov4saqs"]
+[gd_scene load_steps=3 format=3 uid="uid://c2licrx53i013"]
 
-[ext_resource type="Script" path="res://common/ui/player_hand/player_hand.gd" id="1_bnupo"]
+[ext_resource type="Script" path="res://v2/game_board/player_hand.gd" id="1_aap4c"]
 
 [sub_resource type="SystemFont" id="SystemFont_c74jb"]
 subpixel_positioning = 0
@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.903737, 0.85773, 0.992825, 1)
-script = ExtResource("1_bnupo")
+script = ExtResource("1_aap4c")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

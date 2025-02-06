@@ -7,11 +7,10 @@ subpixel_positioning = 0
 
 [node name="BoneYard" type="ColorRect"]
 custom_minimum_size = Vector2(100, 100)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 100.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 color = Color(0.903737, 0.85773, 0.992825, 1)
 script = ExtResource("1_dr1v4")
 
