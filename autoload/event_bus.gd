@@ -8,8 +8,9 @@ signal train_enabled(train)
 signal train_disabled(train)
 signal one_left (player)
 signal winner(player)
-signal mouse_over_domino(p_domino:domino)
-signal mouse_over_domino_area(p_area:DominoArea)
+#signal mouse_over_domino(p_domino:Domino)
+#signal mouse_left_domino(p_domino:Domino)
+#signal mouse_over_domino_area(p_area:DominoArea)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,11 +1,6 @@
-class_name PlayerTrain extends Node2D
-##
+class_name GameBoard extends Node2D
 
 
-func is_open()->bool:
-	if 
-	return true
-func 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

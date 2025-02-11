@@ -1,16 +1,27 @@
-class_name PlayerHand
-extends ColorRect
+class_name PlayerHand extends ColorRect
 @onready var domino_container := $VBoxContainer/HFlowContainer
-signal domino_clicked(p_domino:DominoControl)
-signal domino_right_clicked(p_domino:DominoControl)
-signal domino_dropped(p_domino:DominoControl)
+@onready var my_player : Player
 
-var d_scene : PackedScene = preload("res://2d/game_pieces/domino_control.tscn")
+var d_scene : PackedScene = preload("res://v2/game_pieces/domino.tscn")
+var count:int 
 
-func sort_ascending(domino1:DominoControl,domino2:DominoControl)->bool:
+signal domino_clicked(p_domino:Domino)
+signal domino_right_clicked(p_domino:Domino)
+signal domino_dropped(p_domino:Domino)
+
+func get_domino_count() -> int:
+	return domino_container.get_child_count()
+	
+func set_label_text(p_text:String):
+	$VBoxContainer/Label.text = p_text
+
+func get_label_text()->String:
+	return $VBoxContainer/Label.text
+	
+func sort_ascending(domino1:Domino,domino2:Domino)->bool:
 	return domino1.get_dots() < domino2.get_dots()
 
-func sort_descending(domino1:DominoControl,domino2:DominoControl)->bool:
+func sort_descending(domino1:Domino,domino2:Domino)->bool:
 	return domino1.get_dots() > domino2.get_dots()
 
 func sort(s:GameState.Sort):
@@ -31,14 +42,17 @@ func shuffle():
 	for d in range(0,d_array.size()):
 		domino_container.move_child(d_array[d],d)
 
-func add_domino(i:int,j:int,face_up:bool):
-	pass
+func add_domino(p_domino:Domino)->void:
+	p_domino.reparent(domino_container)
 	
-func remove_domino(p_domino:DominoControl):
-	domino_container.remove_child(p_domino)
+func get_domino(i:int)-> Domino:
+	return $VBoxContainer/HFlowContainer.get_child(i)
 	
+func move_domino(p_domino:Domino,p_dest) ->void:
+	p_domino.reparent(p_dest)
+		
 func populate(p_dots:int,p_face_up:bool):
-	var d:DominoControl
+	var d:Domino
 	for i:int in range(0,p_dots+1):
 		for j:int in range(0,i+1):
 			d = d_scene.instantiate()
@@ -49,10 +63,10 @@ func populate(p_dots:int,p_face_up:bool):
 			d.set_dots(i,j)
 			d.show_dots(p_face_up)
 			
-func _on_domino_clicked(p_domino:DominoControl):
+func _on_domino_clicked(p_domino:Domino):
 	domino_clicked.emit(p_domino)
 	
-func _on_domino_right_clicked(p_domino:DominoControl):
+func _on_domino_right_clicked(p_domino:Domino):
 	domino_right_clicked.emit(p_domino)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

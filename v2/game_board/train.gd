@@ -1,0 +1,24 @@
+class_name Train extends ColorRect
+
+@export var train_color:Color:
+	get: 
+		return $VBoxContainer/Label/bg.color
+	set(val):
+		$VBoxContainer/Label/bg.color = val
+		
+		
+
+@export var label_text : String  :
+	set(p_value):
+		$VBoxContainer/Label.text = p_value
+	get():
+		return $VBoxContainer/Label.text
+		
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass

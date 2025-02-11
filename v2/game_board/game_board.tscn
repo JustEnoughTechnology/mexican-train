@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://drp4ha0ihocmi"]
+
+[ext_resource type="Script" path="res://v2/game_board/game_board.gd" id="1_ci1qf"]
+[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://v2/game_board/bone_yard.tscn" id="2_2rs5i"]
+[ext_resource type="PackedScene" uid="uid://dqqn2dlw4k5ek" path="res://v2/players/player.tscn" id="3_2iejd"]
+[ext_resource type="PackedScene" uid="uid://yu1hnysgeq27" path="res://v2/game_board/player_hand.tscn" id="4_q6ch8"]
+[ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://v2/game_board/train.tscn" id="5_dlwkx"]
+[ext_resource type="PackedScene" uid="uid://c4ow5f7xb5svu" path="res://v2/game_board/station.tscn" id="6_ff128"]
+
+[node name="GameBoard" type="Node2D"]
+script = ExtResource("1_ci1qf")
+
+[node name="BoneYard" parent="." instance=ExtResource("2_2rs5i")]
+offset_left = 50.0
+offset_top = 14.0
+offset_right = 150.0
+offset_bottom = 114.0
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="Player1" parent="Players" instance=ExtResource("3_2iejd")]
+
+[node name="Hand" parent="Players/Player1" instance=ExtResource("4_q6ch8")]
+
+[node name="Station" parent="." instance=ExtResource("6_ff128")]
+
+[node name="Trains" type="Control" parent="Station"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Train" parent="Station/Trains" instance=ExtResource("5_dlwkx")]
+
+[node name="Train2" parent="Station/Trains" instance=ExtResource("5_dlwkx")]
+
+[node name="Train3" parent="Station/Trains" instance=ExtResource("5_dlwkx")]
+
+[node name="Train4" parent="Station/Trains" instance=ExtResource("5_dlwkx")]
+
+[node name="Train5" parent="Station/Trains" instance=ExtResource("5_dlwkx")]
+
+[node name="Train6" parent="Station/Trains" instance=ExtResource("5_dlwkx")]
+
+[node name="Train7" parent="Station/Trains" instance=ExtResource("5_dlwkx")]
+
+[node name="Train8" parent="Station/Trains" instance=ExtResource("5_dlwkx")]
+
+[node name="Train9" parent="Station/Trains" instance=ExtResource("5_dlwkx")]

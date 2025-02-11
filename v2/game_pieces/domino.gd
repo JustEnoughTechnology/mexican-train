@@ -21,8 +21,7 @@ func _init(left:=0,right:=0) -> void:
 	data = DominoData.new(left, right)
 	
 func flip():
-	rotation_degrees += 180.0
-	
+	rotation_degrees += 180.0	
 func flip90():
 	rotation_degrees += 90.0
 
