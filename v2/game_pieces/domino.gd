@@ -6,6 +6,7 @@ class_name Domino extends ColorRect
 @onready var imgpath :="res://common/tiles/domino-%d-%d.svg"
 @onready var old_modulate := modulate
 @onready var is_highlighted := false
+
 signal mouse_left_pressed(p_domino: Domino)
 signal mouse_right_pressed(p_domino: Domino)
 signal mouse_left_released(p_domino: Domino)

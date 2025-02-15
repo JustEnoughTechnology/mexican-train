@@ -6,3 +6,4 @@
 resource_local_to_scene = true
 resource_name = "omino"
 script = ExtResource("1_rvquw")
+dots = Vector2i(1, 2)

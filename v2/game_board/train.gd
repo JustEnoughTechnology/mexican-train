@@ -1,20 +1,25 @@
 class_name Train extends ColorRect
 
+@onready var train_container := $TrainContainer
+@onready var domino_container := $TrainContainer/bg/DominoContainer
 @export var train_color:Color:
 	get: 
-		return $VBoxContainer/Label/bg.color
+		return $TrainContainer/bg.color
 	set(val):
-		$VBoxContainer/Label/bg.color = val
-		
+		$TrainContainer/bg.color = val
 		
 
 @export var label_text : String  :
 	set(p_value):
-		$VBoxContainer/Label.text = p_value
+		$TrainContainer/bg/Label.text = p_value
 	get():
-		return $VBoxContainer/Label.text
+		return $TrainContainer/bg/Label.text
 		
-# Called when the node enters the scene tree for the first time.
+func add_domino(p_domino:Domino)->void:
+	domino_container.columns = domino_container.get_child_count()+1
+	p_domino.reparent(domino_container)
+	p_domino.set_face_up()
+	
 func _ready() -> void:
 	pass # Replace with function body.
 
