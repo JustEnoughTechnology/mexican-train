@@ -1,27 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dw2xp7y4sxrc5"]
+[gd_scene load_steps=3 format=3 uid="uid://mmbrym0sn32r"]
 
-[ext_resource type="Script" path="res://common/ui/bone_yard/bone_yard.gd" id="1_2rlaf"]
+[ext_resource type="Script" path="res://common/containers/labeled_h_flow_container.gd" id="1_meaea"]
 
-[sub_resource type="SystemFont" id="SystemFont_c74jb"]
+[sub_resource type="SystemFont" id="SystemFont_vwicw"]
 subpixel_positioning = 0
 
-[node name="BoneYard" type="ColorRect"]
-custom_minimum_size = Vector2(100, 100)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.903737, 0.85773, 0.992825, 1)
-script = ExtResource("1_2rlaf")
+[node name="LabeledHFlowContainer" type="ColorRect"]
+script = ExtResource("1_meaea")
+label_text = "Player's Train"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -34.0
-offset_bottom = -76.0
+offset_left = -65.0
+offset_top = -32.0
+offset_right = 105.0
+offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -29,10 +25,11 @@ grow_vertical = 2
 z_index = 1
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("SystemFont_c74jb")
+theme_override_fonts/font = SubResource("SystemFont_vwicw")
 theme_override_font_sizes/font_size = 14
-text = "Boneyard"
+text = "Player's Train"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -42,6 +39,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 14.0
+offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.939983, 0.47736, 0.242662, 1)
@@ -53,4 +52,5 @@ width = 1.0
 default_color = Color(0.00820202, 0.00820202, 0.00820202, 1)
 
 [node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(130, 40)
 layout_mode = 2

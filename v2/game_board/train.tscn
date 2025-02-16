@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://t4e7qw2n4d8q"]
+
+[ext_resource type="Script" path="res://v2/game_board/train.gd" id="1_60a23"]
+
+[sub_resource type="SystemFont" id="SystemFont_vwicw"]
+subpixel_positioning = 0
+
+[node name="Train" type="ColorRect"]
+script = ExtResource("1_60a23")
+
+[node name="TrainContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 225.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="bg" type="ColorRect" parent="TrainContainer"]
+z_index = -1
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.939983, 0.47736, 0.242662, 1)
+
+[node name="Label" type="Label" parent="TrainContainer/bg"]
+z_index = 1
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+offset_left = 4.0
+offset_right = 95.0
+offset_bottom = 64.0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_vwicw")
+theme_override_font_sizes/font_size = 14
+text = "Player's Train"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+
+[node name="DominoContainer" type="GridContainer" parent="TrainContainer/bg"]
+custom_minimum_size = Vector2(130, 40)
+layout_mode = 2
+offset_left = 95.0
+offset_right = 225.0
+offset_bottom = 64.0
+size_flags_horizontal = 3

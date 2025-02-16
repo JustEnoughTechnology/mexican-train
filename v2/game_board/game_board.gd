@@ -1,9 +1,7 @@
-class_name PlayerTrain_old
-extends Area2D
+class_name GameBoard extends Node2D
+@onready var bone_yard := $BoneYard
+@onready var trains := $Station/Trains
 
-func add_domino(p_domino:Domino):
-	$Dominos.add_child(p_domino)
-	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

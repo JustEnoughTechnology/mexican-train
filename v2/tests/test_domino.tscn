@@ -8,13 +8,31 @@ script = ExtResource("1_bvnwq")
 
 [node name="Domino1" parent="." instance=ExtResource("1_vwk4v")]
 
+[node name="rotation" type="TextEdit" parent="Domino1"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 42.0
+offset_right = 78.0
+offset_bottom = 83.0
+
 [node name="Domino2" parent="." instance=ExtResource("1_vwk4v")]
-offset_left = 4.0
-offset_top = 100.0
-offset_right = 84.0
-offset_bottom = 140.0
+offset_left = 146.0
+offset_top = 12.0
+offset_right = 226.0
+offset_bottom = 52.0
+
+[node name="rotation" type="TextEdit" parent="Domino2"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 42.0
+offset_right = 78.0
+offset_bottom = 83.0
 
 [connection signal="gui_input" from="Domino1" to="." method="_on_gui_input"]
-[connection signal="mouse_left_pressed" from="Domino1" to="." method="_on_domino_1_mouse_left_pressed"]
-[connection signal="mouse_left_released" from="Domino1" to="." method="_on_domino_1_mouse_left_released"]
-[connection signal="mouse_right_pressed" from="Domino1" to="." method="_on_domino_1_mouse_right_pressed"]
+[connection signal="mouse_left_pressed" from="Domino1" to="." method="_on_mouse_left_pressed"]
+[connection signal="mouse_left_released" from="Domino1" to="." method="_on_mouse_left_released"]
+[connection signal="mouse_right_pressed" from="Domino1" to="." method="_on_mouse_right_pressed"]
+[connection signal="gui_input" from="Domino2" to="." method="_on_gui_input"]
+[connection signal="mouse_left_pressed" from="Domino2" to="." method="_on_mouse_left_pressed"]
+[connection signal="mouse_left_released" from="Domino2" to="." method="_on_mouse_left_released"]
+[connection signal="mouse_right_pressed" from="Domino2" to="." method="_on_mouse_right_pressed"]

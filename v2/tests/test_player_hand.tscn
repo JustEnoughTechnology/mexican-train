@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgcyqlh63ooxj"]
+
+[ext_resource type="Script" path="res://v2/tests/test_player_hand.gd" id="1_vr0wd"]
+[ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://v2/game_board/player_hand.tscn" id="2_pbygq"]
+[ext_resource type="PackedScene" uid="uid://htfoo57txyc1" path="res://v2/game_pieces/domino.tscn" id="3_c10sq"]
+
+[node name="TestPlayerHand" type="Node2D"]
+script = ExtResource("1_vr0wd")
+
+[node name="PlayerHand" parent="." instance=ExtResource("2_pbygq")]
+custom_minimum_size = Vector2(100, 200)
+offset_right = 100.0
+offset_bottom = 200.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="dominos" type="HFlowContainer" parent="."]
+offset_left = 627.0
+offset_top = -26.0
+offset_right = 707.0
+offset_bottom = 366.0
+
+[node name="Domino" parent="dominos" instance=ExtResource("3_c10sq")]
+layout_mode = 2
+
+[node name="Domino4" parent="dominos" instance=ExtResource("3_c10sq")]
+layout_mode = 2
+
+[node name="Domino5" parent="dominos" instance=ExtResource("3_c10sq")]
+layout_mode = 2
+
+[node name="Domino6" parent="dominos" instance=ExtResource("3_c10sq")]
+layout_mode = 2
+
+[node name="Domino7" parent="dominos" instance=ExtResource("3_c10sq")]
+layout_mode = 2
+
+[node name="Domino8" parent="dominos" instance=ExtResource("3_c10sq")]
+layout_mode = 2
+
+[node name="Domino9" parent="dominos" instance=ExtResource("3_c10sq")]
+layout_mode = 2
+
+[node name="Domino2" parent="dominos" instance=ExtResource("3_c10sq")]
+layout_mode = 2
+
+[node name="Domino3" parent="dominos" instance=ExtResource("3_c10sq")]
+layout_mode = 2
+
+[connection signal="gui_input" from="PlayerHand" to="." method="_on_player_hand_gui_input"]

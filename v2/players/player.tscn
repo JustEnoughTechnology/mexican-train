@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://dqqn2dlw4k5ek"]
+[gd_scene load_steps=3 format=3 uid="uid://dqqn2dlw4k5ek"]
+
+[ext_resource type="Script" path="res://v2/players/player.gd" id="1_68ch3"]
+[ext_resource type="PackedScene" uid="uid://yu1hnysgeq27" path="res://v2/game_board/player_hand.tscn" id="1_m04r2"]
 
 [node name="Player" type="Node2D"]
+script = ExtResource("1_68ch3")
+
+[node name="PlayerHand" parent="." instance=ExtResource("1_m04r2")]
+size_flags_horizontal = 3
+size_flags_vertical = 3
