@@ -1,12 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://uq07vnk7d3e1"]
+[gd_scene load_steps=3 format=3 uid="uid://uq07vnk7d3e1"]
+
+[ext_resource type="Script" path="res://v2/game_board/hand.gd" id="1_7tpee"]
 
 [sub_resource type="SystemFont" id="SystemFont_bqjpi"]
 subpixel_positioning = 0
 
-[node name="PlayerHand" type="ColorRect"]
+[node name="Hand" type="ColorRect"]
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(1, 1, 1, 0)
+script = ExtResource("1_7tpee")
 
 [node name="HandContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -20,17 +23,21 @@ grow_vertical = 2
 
 [node name="bg" type="ColorRect" parent="HandContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(1, 0.466667, 1, 1)
 
 [node name="Label" type="Label" parent="HandContainer/bg"]
 z_index = 1
 custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-offset_top = -24.0
-offset_right = 713.0
-offset_bottom = -4.0
-grow_horizontal = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_right = 83.0
+offset_bottom = 10.0
+grow_vertical = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_bqjpi")
@@ -39,5 +46,8 @@ text = "Player Hand"
 horizontal_alignment = 1
 justification_flags = 0
 
-[node name="DominoContainer" type="GridContainer" parent="HandContainer"]
+[node name="DominoContainer" type="GridContainer" parent="HandContainer/bg"]
 layout_mode = 2
+offset_left = 713.0
+offset_right = 713.0
+offset_bottom = 89.0

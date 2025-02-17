@@ -16,14 +16,14 @@ class_name Train extends ColorRect
 		return $TrainContainer/bg/Label.text
 		
 func add_domino(p_domino:Domino)->void:
+	var d_size : Vector2 = train_container.size
+	
 	domino_container.columns = domino_container.get_child_count()+1
+	train_container.set_size(d_size+Vector2(p_domino.size.x,0))
 	p_domino.reparent(domino_container)
 	p_domino.set_face_up()
 	
-func _ready() -> void:
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_domino_container_resized() -> void:
+	print($".".get_rect())
+	pass #$TrainContainer.reset_size()

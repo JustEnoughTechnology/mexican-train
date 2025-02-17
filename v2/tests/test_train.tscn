@@ -4,25 +4,34 @@
 [ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://v2/game_board/train.tscn" id="2_yycli"]
 [ext_resource type="Script" path="res://v2/game_pieces/domino.gd" id="3_d8uvf"]
 [ext_resource type="PackedScene" uid="uid://htfoo57txyc1" path="res://v2/game_pieces/domino.tscn" id="3_wngtj"]
-[ext_resource type="Texture2D" uid="uid://cxfl6tc84ahvh" path="res://common/tiles/domino-back.svg" id="5_n4cit"]
+[ext_resource type="Texture2D" uid="uid://b2qlsftcq4ck" path="res://common/tiles/domino-back.svg" id="5_n4cit"]
 
-[node name="TestTrain" type="Node2D"]
+[node name="TestTrain" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_04e3q")
 
 [node name="Train" parent="." instance=ExtResource("2_yycli")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 train_color = Color(0, 0.733333, 0, 1)
 label_text = "PLayer1"
 
-[node name="dominos" type="Node" parent="."]
+[node name="dominos" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 419.0
+offset_right = 499.0
+offset_bottom = 524.0
 
 [node name="Domino" type="ColorRect" parent="dominos"]
 custom_minimum_size = Vector2(80, 40)
-offset_left = 50.0
-offset_top = 211.0
-offset_right = 130.0
-offset_bottom = 251.0
+layout_mode = 2
 mouse_filter = 1
 script = ExtResource("3_d8uvf")
 
@@ -50,10 +59,7 @@ layout_mode = 2
 
 [node name="Domino2" type="ColorRect" parent="dominos"]
 custom_minimum_size = Vector2(80, 40)
-offset_left = 73.0
-offset_top = 334.0
-offset_right = 153.0
-offset_bottom = 374.0
+layout_mode = 2
 mouse_filter = 1
 script = ExtResource("3_d8uvf")
 
@@ -81,10 +87,7 @@ layout_mode = 2
 
 [node name="Domino3" type="ColorRect" parent="dominos"]
 custom_minimum_size = Vector2(80, 40)
-offset_left = 74.0
-offset_top = 444.0
-offset_right = 154.0
-offset_bottom = 484.0
+layout_mode = 2
 mouse_filter = 1
 script = ExtResource("3_d8uvf")
 
@@ -111,53 +114,29 @@ visible = false
 layout_mode = 2
 
 [node name="Domino4" parent="dominos" instance=ExtResource("3_wngtj")]
-offset_left = 84.0
-offset_top = 524.0
-offset_right = 164.0
-offset_bottom = 564.0
+layout_mode = 2
 
 [node name="Domino5" parent="dominos" instance=ExtResource("3_wngtj")]
-offset_left = 110.0
-offset_top = 609.0
-offset_right = 190.0
-offset_bottom = 649.0
+layout_mode = 2
 
 [node name="Domino6" parent="dominos" instance=ExtResource("3_wngtj")]
-offset_left = 210.0
-offset_top = 218.0
-offset_right = 290.0
-offset_bottom = 258.0
+layout_mode = 2
 
 [node name="Domino7" parent="dominos" instance=ExtResource("3_wngtj")]
-offset_left = 222.0
-offset_top = 332.0
-offset_right = 302.0
-offset_bottom = 372.0
+layout_mode = 2
 
 [node name="Domino8" parent="dominos" instance=ExtResource("3_wngtj")]
-offset_left = 279.0
-offset_top = 434.0
-offset_right = 359.0
-offset_bottom = 474.0
+layout_mode = 2
 
 [node name="Domino9" parent="dominos" instance=ExtResource("3_wngtj")]
-offset_left = 569.0
-offset_top = 517.0
-offset_right = 649.0
-offset_bottom = 557.0
+layout_mode = 2
 
 [node name="Domino10" parent="dominos" instance=ExtResource("3_wngtj")]
-offset_left = 495.0
-offset_top = 397.0
-offset_right = 575.0
-offset_bottom = 437.0
+layout_mode = 2
 
 [node name="Domino12" type="ColorRect" parent="dominos"]
 custom_minimum_size = Vector2(80, 40)
-offset_left = 150.0
-offset_top = 633.0
-offset_right = 230.0
-offset_bottom = 673.0
+layout_mode = 2
 mouse_filter = 1
 script = ExtResource("3_d8uvf")
 
@@ -185,10 +164,7 @@ layout_mode = 2
 
 [node name="Domino11" type="ColorRect" parent="dominos"]
 custom_minimum_size = Vector2(80, 40)
-offset_left = 100.0
-offset_top = 422.0
-offset_right = 180.0
-offset_bottom = 462.0
+layout_mode = 2
 mouse_filter = 1
 script = ExtResource("3_d8uvf")
 

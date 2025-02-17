@@ -1,11 +1,22 @@
-class_name PlayerHand extends ColorRect
+class_name Hand extends ColorRect
 
 @onready var domino_container := $HandContainer/bg/DominoContainer
 @onready var my_player : Player
-@onready var my_label := $HandContainer/bg/Label
-
+@onready var my_label :=$HandContainer/bg/Label
+@export var hand_color:Color:
+	get: 
+		return $HandContainer/bg.color
+	set(val):
+		$HandContainer/bg.color = val
 var d_scene : PackedScene = preload("res://v2/game_pieces/domino.tscn")
-var count:int 
+
+@export var label_text : String  :
+	set(p_value):
+		$HandContainer/bg/Label.text = p_value
+	get():
+		return $HandContainer/bg/Label.text
+
+var score:int 
 
 signal domino_dropped(p_domino:Domino)
 

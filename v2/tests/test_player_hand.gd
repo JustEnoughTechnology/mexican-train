@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_domino_mouse_left_pressed(p_domino: Domino) -> void:
-	$PlayerHand.add_domino(p_domino) # Replace with function body.
+	$Hand.add_domino(p_domino) # Replace with function body.
 
 			
 					

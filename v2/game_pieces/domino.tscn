@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://htfoo57txyc1"]
 
 [ext_resource type="Script" path="res://v2/game_pieces/domino.gd" id="1_b0ayk"]
-[ext_resource type="Texture2D" uid="uid://cxfl6tc84ahvh" path="res://common/tiles/domino-back.svg" id="2_22mju"]
+[ext_resource type="Texture2D" uid="uid://b2qlsftcq4ck" path="res://common/tiles/domino-back.svg" id="2_22mju"]
 
 [node name="Domino" type="ColorRect"]
 custom_minimum_size = Vector2(80, 40)
