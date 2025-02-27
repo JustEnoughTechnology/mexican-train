@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://buu8j8y1uksri"]
-
-[ext_resource type="Texture2D" uid="uid://bketnd1pl1346" path="res://2d/tiles/domino_dots_all.svg" id="1_348el"]
-
-[resource]
-atlas = ExtResource("1_348el")
-region = Rect2(164, 0, 40, 40)

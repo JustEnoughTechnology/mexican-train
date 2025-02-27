@@ -1,26 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://htfoo57txyc1"]
+[gd_scene load_steps=4 format=3 uid="uid://htfoo57txyc1"]
 
 [ext_resource type="Script" path="res://v2/game_pieces/domino.gd" id="1_b0ayk"]
-[ext_resource type="Texture2D" uid="uid://b2qlsftcq4ck" path="res://common/tiles/domino-back.svg" id="2_22mju"]
+[ext_resource type="Texture2D" uid="uid://cxfl6tc84ahvh" path="res://common/tiles/domino-back.svg" id="2_22mju"]
+
+[sub_resource type="Theme" id="Theme_68yp3"]
 
 [node name="Domino" type="ColorRect"]
-custom_minimum_size = Vector2(80, 40)
+custom_minimum_size = Vector2(82, 40)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 80.0
+offset_bottom = 20.0
+grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_b0ayk")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(80, 40)
+custom_minimum_size = Vector2(82, 40)
 layout_direction = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
+theme = SubResource("Theme_68yp3")
 
 [node name="DominoBack" type="TextureRect" parent="CenterContainer"]
 layout_mode = 2

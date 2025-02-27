@@ -10,6 +10,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(1, 1, 1, 0)
 script = ExtResource("1_7tpee")
+bg_color = null
+label_text = null
 
 [node name="HandContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -26,6 +28,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(1, 0.466667, 1, 1)
+
+[node name="DominoContainer" type="GridContainer" parent="HandContainer/bg"]
+layout_mode = 2
+offset_left = 713.0
+offset_right = 713.0
+offset_bottom = 89.0
 
 [node name="Label" type="Label" parent="HandContainer/bg"]
 z_index = 1
@@ -45,9 +53,3 @@ theme_override_font_sizes/font_size = 14
 text = "Player Hand"
 horizontal_alignment = 1
 justification_flags = 0
-
-[node name="DominoContainer" type="GridContainer" parent="HandContainer/bg"]
-layout_mode = 2
-offset_left = 713.0
-offset_right = 713.0
-offset_bottom = 89.0
