@@ -3,7 +3,7 @@ var d_scene : PackedScene = preload("res://v2/game_pieces/domino.tscn")
 var d:Domino
 # Called when the node enters the scene tree for the first time.
 func _enter_tree() -> void:
-	breakpoint
+	pass
 	
 func _ready() -> void:
 	for i in range(35):

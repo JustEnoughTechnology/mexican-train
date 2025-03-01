@@ -8,8 +8,11 @@ func _ready() -> void:
 	super._ready()
 		
 
-
 func _on_domino_container_child_order_changed() -> void:
-	for d in domino_container.get_children():
+	score = 0
+	for d:Domino in domino_container.get_children():
+		score += d.get_dots().x+ d.get_dots().y
+	domino_count_changed.emit()
+
 		
 	

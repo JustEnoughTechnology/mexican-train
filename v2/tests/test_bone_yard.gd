@@ -4,7 +4,7 @@ extends Node2D
 @onready var current_domino:Domino 
 
 func _ready() -> void:
-	$BoneYard.set_size(get_window().size)
+	$BoneYard.set_size(get_window().size*0.75)
 	$BoneYard.populate(12,false) 
 	$BoneYard.shuffle()
 # Called every frame. 'delta' is the elapsed time since the previous 

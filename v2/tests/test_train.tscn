@@ -10,6 +10,7 @@ script = ExtResource("1_04e3q")
 
 [node name="Train" parent="." instance=ExtResource("2_yycli")]
 layout_mode = 0
+bg_color = Color(0, 0.396078, 0, 1)
 
 [node name="dominos" type="VBoxContainer" parent="."]
 layout_mode = 0

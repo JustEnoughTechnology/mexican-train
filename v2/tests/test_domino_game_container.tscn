@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcyyrp3t32lyl"]
+[gd_scene load_steps=3 format=3 uid="uid://3p1orjelylu3"]
 
 [ext_resource type="Script" path="res://v2/tests/test_train.gd" id="1_a1g1c"]
 [ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://v2/game_board/train.tscn" id="2_w8j3n"]
