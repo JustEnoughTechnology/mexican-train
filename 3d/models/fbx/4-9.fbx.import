@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://be8t2iaediqti"
-path="res://.godot/imported/4-9.fbx-7c4ef63bc011d9806c8faf1425538dab.scn"
+path="res://godot/imported/4-9.fbx-7c4ef63bc011d9806c8faf1425538dab.scn"
 
 [deps]
 
 source_file="res://3d/models/fbx/4-9.fbx"
-dest_files=["res://.godot/imported/4-9.fbx-7c4ef63bc011d9806c8faf1425538dab.scn"]
+dest_files=["res://godot/imported/4-9.fbx-7c4ef63bc011d9806c8faf1425538dab.scn"]
 
 [params]
 
@@ -18,6 +18,7 @@ nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true

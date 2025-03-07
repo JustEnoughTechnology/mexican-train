@@ -1,9 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://dsoy4hefb4es7"]
 
-[ext_resource type="Script" path="res://2d/Scenes/levels/game/game.gd" id="1_ef77d"]
+[ext_resource type="Script" uid="uid://c1utchhpqywju" path="res://2d/Scenes/levels/game/game.gd" id="1_ef77d"]
 [ext_resource type="PackedScene" uid="uid://c7logfy01cmey" path="res://2d/game_board/game_board.tscn" id="1_hdjj6"]
-[ext_resource type="PackedScene" uid="uid://dw2xp7y4sxrc5" path="res://common/ui/bone_yard/bone_yard.tscn" id="2_amno1"]
 [ext_resource type="PackedScene" uid="uid://c64q1eftgo8vx" path="res://2d/players/player.tscn" id="3_vum4d"]
+
+[sub_resource type="Resource" id="Resource_d6ete"]
+metadata/__load_path__ = "res://common/ui/bone_yard/bone_yard.tscn"
 
 [node name="MexicanTrain" type="Node2D"]
 script = ExtResource("1_ef77d")
@@ -11,7 +13,7 @@ script = ExtResource("1_ef77d")
 [node name="GameBoard" parent="." instance=ExtResource("1_hdjj6")]
 position = Vector2(856, 230)
 
-[node name="BoneYard" parent="." instance=ExtResource("2_amno1")]
+[node name="BoneYard" parent="."]
 custom_minimum_size = Vector2(1152, 500)
 offset_left = 1240.0
 offset_top = -576.0

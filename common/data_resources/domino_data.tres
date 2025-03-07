@@ -1,9 +1,8 @@
 [gd_resource type="Resource" script_class="DominoData" load_steps=2 format=3 uid="uid://cjmnoetnmx6wl"]
 
-[ext_resource type="Script" path="res://common/data_resources/domino_data.gd" id="1_rvquw"]
+[ext_resource type="Script" uid="uid://dbi13ni1w107n" path="res://common/data_resources/domino_data.gd" id="1_rvquw"]
 
 [resource]
 resource_local_to_scene = true
 resource_name = "omino"
 script = ExtResource("1_rvquw")
-dots = Vector2i(1, 2)

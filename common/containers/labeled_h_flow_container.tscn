@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://mmbrym0sn32r"]
 
-[ext_resource type="Script" path="res://common/containers/labeled_h_flow_container.gd" id="1_meaea"]
+[ext_resource type="Script" uid="uid://dc6c0gpas8wp3" path="res://common/containers/labeled_h_flow_container.gd" id="1_meaea"]
 
 [sub_resource type="SystemFont" id="SystemFont_vwicw"]
 subpixel_positioning = 0

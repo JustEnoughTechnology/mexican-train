@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c78ec72qsfccf"]
 
-[ext_resource type="Script" path="res://v2/tests/test_domino.gd" id="1_bvnwq"]
+[ext_resource type="Script" uid="uid://d1wgh1p1b18tj" path="res://v2/tests/test_domino.gd" id="1_bvnwq"]
 [ext_resource type="PackedScene" uid="uid://htfoo57txyc1" path="res://v2/game_pieces/domino.tscn" id="1_vwk4v"]
 
 [node name="TestDomino" type="Node2D"]

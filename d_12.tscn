@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://kmiswgkiid58"]
+
+[ext_resource type="PackedScene" uid="uid://bvvhmnjmvce5q" path="res://common/tiles/D12.glb" id="1_4j7yg"]
+[ext_resource type="Material" uid="uid://ddca8k587bo4p" path="res://common/materials/domino-material.tres" id="2_6ra4g"]
+
+[node name="D12" instance=ExtResource("1_4j7yg")]
+
+[node name="SurfSphere_001" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_6ra4g")
+
+[node name="SurfSphere_002" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_6ra4g")
+
+[node name="SurfSphere_003" parent="." index="3"]
+surface_material_override/0 = ExtResource("2_6ra4g")
+
+[node name="SurfSphere_004" parent="." index="4"]
+surface_material_override/0 = ExtResource("2_6ra4g")
+
+[node name="SurfSphere_005" parent="." index="5"]
+surface_material_override/0 = ExtResource("2_6ra4g")
+
+[node name="SurfSphere_006" parent="." index="6"]
+surface_material_override/0 = ExtResource("2_6ra4g")
+
+[node name="SurfSphere_007" parent="." index="7"]
+surface_material_override/0 = ExtResource("2_6ra4g")
+
+[node name="SurfSphere_008" parent="." index="8"]
+surface_material_override/0 = ExtResource("2_6ra4g")
+
+[node name="SurfSphere_009" parent="." index="9"]
+surface_material_override/0 = ExtResource("2_6ra4g")
+
+[node name="SurfSphere_010" parent="." index="10"]
+surface_material_override/0 = ExtResource("2_6ra4g")
+
+[node name="SurfSphere_011" parent="." index="11"]
+surface_material_override/0 = ExtResource("2_6ra4g")
+
+[node name="SurfSphere_012" parent="." index="12"]
+surface_material_override/0 = ExtResource("2_6ra4g")

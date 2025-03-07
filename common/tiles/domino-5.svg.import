@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdr0l5oc1actg"
-path="res://.godot/imported/domino-5.svg-8959d474d611d05a99e1b31d857f597e.ctex"
+path="res://godot/imported/domino-5.svg-8959d474d611d05a99e1b31d857f597e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://common/tiles/domino-5.svg"
-dest_files=["res://.godot/imported/domino-5.svg-8959d474d611d05a99e1b31d857f597e.ctex"]
+dest_files=["res://godot/imported/domino-5.svg-8959d474d611d05a99e1b31d857f597e.ctex"]
 
 [params]
 

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b836uq8y3fpt5"]
+
+[ext_resource type="PackedScene" uid="uid://clfh3q3gwyvud" path="res://common/tiles/D02.blend" id="1_cymv2"]
+
+[node name="D02" instance=ExtResource("1_cymv2")]

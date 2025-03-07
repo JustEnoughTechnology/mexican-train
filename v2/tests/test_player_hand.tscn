@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgcyqlh63ooxj"]
 
-[ext_resource type="Script" path="res://v2/tests/test_player_hand.gd" id="1_vr0wd"]
+[ext_resource type="Script" uid="uid://bk4nmpjchpqh8" path="res://v2/tests/test_player_hand.gd" id="1_vr0wd"]
 [ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://v2/game_board/hand.tscn" id="2_pbygq"]
 
 [node name="TestPlayerHand" type="Control"]

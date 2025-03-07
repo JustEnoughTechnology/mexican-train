@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlf6msqgpxdmv"]
 
-[ext_resource type="Script" path="res://v2/game_board/bone_yard.gd" id="1_dr1v4"]
+[ext_resource type="Script" uid="uid://cy4pqjpmyapyk" path="res://v2/game_board/bone_yard.gd" id="1_dr1v4"]
 
 [sub_resource type="SystemFont" id="SystemFont_c74jb"]
 subpixel_positioning = 0

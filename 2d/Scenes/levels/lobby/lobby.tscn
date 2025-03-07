@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnfdfe084a7k7"]
 
-[ext_resource type="Script" path="res://2d/Scenes/levels/lobby/lobby.gd" id="1_tmvv6"]
+[ext_resource type="Script" uid="uid://o4tpfqapwsta" path="res://2d/Scenes/levels/lobby/lobby.gd" id="1_tmvv6"]
 
 [sub_resource type="Shader" id="Shader_c4jom"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.

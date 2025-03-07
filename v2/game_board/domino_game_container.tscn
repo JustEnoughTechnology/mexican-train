@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qr7wtl8g3d8a"]
 
-[ext_resource type="Script" path="res://v2/game_board/domino_game_container.gd" id="1_uedm8"]
+[ext_resource type="Script" uid="uid://d1qqyucwlpivv" path="res://v2/game_board/domino_game_container.gd" id="1_uedm8"]
 
 [sub_resource type="SystemFont" id="SystemFont_vwicw"]
 subpixel_positioning = 0

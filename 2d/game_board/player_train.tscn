@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5lnnko6x3lth"]
 
-[ext_resource type="Script" path="res://2d/game_board/player_train.gd" id="1_ovjps"]
+[ext_resource type="Script" uid="uid://brg0u1hsc4mlh" path="res://2d/game_board/player_train.gd" id="1_ovjps"]
 
 [node name="PlayerTrain" type="Area2D"]
 position = Vector2(1, 2)
