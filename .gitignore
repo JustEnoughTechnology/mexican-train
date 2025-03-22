@@ -3,3 +3,4 @@
 /android/
 .venv/
 *.import
+godot/
