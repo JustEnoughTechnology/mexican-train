@@ -18,5 +18,5 @@ func set_dots(p_left:int,p_right:int):
 	dots = Vector2i(clampi(min(p_left,p_right),0,clamp_to),clampi(max(p_left,p_right),0,clamp_to))
 	
 func _init(p_left:int,p_right:int):
-	set_dots(p_right,p_right)
+	set_dots(p_left,p_right)
 		

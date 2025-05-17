@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2w8u0xmxr8wa"]
+
+[ext_resource type="Script" uid="uid://15p4a8nvhqn5" path="res://tests/test_game.gd" id="1_is0c5"]
+[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/game_board/bone_yard/bone_yard.tscn" id="2_pfc63"]
+[ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/game_board/train.tscn" id="3_trclh"]
+[ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://scenes/game_board/hand.tscn" id="4_t7u01"]
+
+[node name="TestGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_is0c5")
+
+[node name="BoneYard" parent="." instance=ExtResource("2_pfc63")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 429.0
+offset_bottom = 332.0
+grow_horizontal = 2
+
+[node name="Train" parent="." instance=ExtResource("3_trclh")]
+layout_mode = 1
+offset_top = 411.0
+offset_bottom = 411.0
+label_text = "Train"
+
+[node name="Hand" parent="." instance=ExtResource("4_t7u01")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 339.0
+offset_right = 2.0
+offset_bottom = 339.0
+label_text = "HAnd"
+
+[connection signal="too_many_dominos" from="BoneYard" to="." method="_on_bone_yard_too_many_dominos"]

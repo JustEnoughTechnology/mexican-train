@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba8a1ndmjsgun"]
+
+[ext_resource type="PackedScene" uid="uid://drp4ha0ihocmi" path="res://scenes/game_board/game_board.tscn" id="1_s5txi"]
+
+[node name="MexicanTrainGame" type="Node2D"]
+
+[node name="GameBoard" parent="." instance=ExtResource("1_s5txi")]

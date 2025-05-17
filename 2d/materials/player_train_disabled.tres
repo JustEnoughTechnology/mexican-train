@@ -1,6 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://da10yqprp6g1u"]
-
-[ext_resource type="Shader" uid="uid://duhga0v2pbkif" path="res://2d/shaders/player_train_disabled.tres" id="1_favt5"]
-
-[resource]
-shader = ExtResource("1_favt5")

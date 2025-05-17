@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://br64nek5ct7oo"]
+[gd_scene load_steps=2 format=3 uid="uid://br64nek5ct7oo"]
+
+[ext_resource type="PackedScene" uid="uid://b683q5di7x820" path="res://ui/lobby.tscn" id="1_ig7tw"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -7,3 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Lobby" parent="." instance=ExtResource("1_ig7tw")]
+layout_mode = 1
