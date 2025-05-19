@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://nv6pjou5sbls"]
+
+[ext_resource type="Script" uid="uid://t8slmmy8bdwi" path="res://tests/bone_yard/test_bone_yard.gd" id="1_syftj"]
+[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/game_board/bone_yard.tscn" id="2_m3o64"]
+
+[node name="TestBoneYard" type="Node2D"]
+script = ExtResource("1_syftj")
+
+[node name="BoneYard" parent="." instance=ExtResource("2_m3o64")]
+offset_top = 2.0
+offset_bottom = 102.0
+
+[connection signal="domino_left_pressed" from="BoneYard" to="." method="_on_bone_yard_domino_left_pressed"]
+[connection signal="domino_right_pressed" from="BoneYard" to="." method="_on_bone_yard_domino_right_pressed"]
+[connection signal="domino_right_released" from="BoneYard" to="." method="_on_bone_yard_domino_right_released"]
+[connection signal="gui_input" from="BoneYard" to="." method="_on_bone_yard_gui_input"]
+[connection signal="mouse_exited" from="BoneYard" to="." method="_on_mouse_exited"]

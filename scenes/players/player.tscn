@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqqn2dlw4k5ek"]
+
+[ext_resource type="Script" uid="uid://xnux8805011i" path="res://scripts/players/player.gd" id="1_68ch3"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_68ch3")
+
+[node name="PlayerHand" parent="."]
+size_flags_horizontal = 3
+size_flags_vertical = 3

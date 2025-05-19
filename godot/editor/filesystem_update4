@@ -1,0 +1,8 @@
+res://main.tscn
+res://scenes/game_board/bone_yard.tscn
+res://tests/domino/test_domino.tscn
+res://scenes/game_pieces/domino.tscn
+res://scripts/game_pieces/domino.gd
+res://tests/domino/test_domino.gd
+res://scripts/game_board/bone_yard.gd
+res://autoload/game_state.gd

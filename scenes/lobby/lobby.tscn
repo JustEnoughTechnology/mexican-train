@@ -1,0 +1,115 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnfdfe084a7k7"]
+
+[ext_resource type="Script" uid="uid://o4tpfqapwsta" path="res://scripts/lobby/lobby.gd" id="1_tmvv6"]
+
+[sub_resource type="Shader" id="Shader_c4jom"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ym82u"]
+shader = SubResource("Shader_c4jom")
+
+[node name="Lobby" type="Panel"]
+custom_minimum_size = Vector2(300, 600)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -852.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tmvv6")
+
+[node name="Players" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Players"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Players/VBoxContainer"]
+layout_mode = 2
+text = "Players Waiting"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="Players/VBoxContainer"]
+layout_mode = 2
+allow_search = false
+same_column_width = true
+
+[node name="Connect" type="Panel" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ym82u")
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Connect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 19.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Connect/HBoxContainer"]
+layout_mode = 2
+
+[node name="UserName" type="VBoxContainer" parent="Connect/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 2
+
+[node name="Label" type="Label" parent="Connect/HBoxContainer/VBoxContainer/UserName"]
+layout_mode = 2
+text = "User Name:"
+
+[node name="LineEdit" type="LineEdit" parent="Connect/HBoxContainer/VBoxContainer/UserName"]
+layout_mode = 2
+
+[node name="ServerAddress" type="VBoxContainer" parent="Connect/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="Label" type="Label" parent="Connect/HBoxContainer/VBoxContainer/ServerAddress"]
+layout_mode = 2
+text = "Server Address:
+"
+
+[node name="LineEdit" type="LineEdit" parent="Connect/HBoxContainer/VBoxContainer/ServerAddress"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Connect/HBoxContainer"]
+layout_mode = 2
+
+[node name="HostButton" type="Button" parent="Connect/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Host Game"
+
+[node name="JoinGameButton" type="Button" parent="Connect/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Join Game"

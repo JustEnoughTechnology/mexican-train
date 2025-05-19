@@ -1,7 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ddca8k587bo4p"]
 
-[ext_resource type="Texture2D" uid="uid://b0oek74di37nu" path="res://common/materials/domino-material_orm.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://brtkudi16hayk" path="res://common/materials/domino-material_normal.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://b5isco8d5mbac" path="res://common/materials/domino-material_orm.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://divop5cdfxbxt" path="res://common/materials/domino-material_normal.png" id="3"]
 
 [resource]
 albedo_color = Color(0, 0, 0, 1)

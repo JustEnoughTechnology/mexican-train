@@ -1,6 +1,4 @@
-class_name event_bus
-
-extends Node
+class_name event_bus extends Node
 signal domino_selected(p_domino:Domino,p_source)
 signal domino_dropped(p_domino:Domino,p_dest)
 signal domino_rejected(p_domino:Domino,p_dest)

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://t4e7qw2n4d8q"]
+
+[ext_resource type="PackedScene" uid="uid://qr7wtl8g3d8a" path="res://scenes/game_board/domino_game_container.tscn" id="1_8yh6y"]
+[ext_resource type="Script" uid="uid://yw3d2ho1cdsd" path="res://scripts/game_board/train.gd" id="1_60a23"]
+
+[node name="Train" instance=ExtResource("1_8yh6y")]
+script = ExtResource("1_60a23")
