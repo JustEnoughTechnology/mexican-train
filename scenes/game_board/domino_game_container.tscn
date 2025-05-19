@@ -1,6 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://qr7wtl8g3d8a"]
 
+<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://d1qqyucwlpivv" path="res://scripts/game_board/domino_game_container.gd" id="1_uedm8"]
+=======
+[ext_resource type="Script" uid="uid://d1qqyucwlpivv" path="res://scenes/game_board/domino_game_container.gd" id="1_uedm8"]
+>>>>>>> 8997d63e58dfdd559b24b196f66b00a42b1399ee
 
 [sub_resource type="SystemFont" id="SystemFont_vwicw"]
 subpixel_positioning = 0

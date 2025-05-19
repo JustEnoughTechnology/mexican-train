@@ -1,9 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://drp4ha0ihocmi"]
 
+<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://c6xqpuhjsqer" path="res://scripts/game_board/game_board.gd" id="1_webns"]
 [ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/game_board/bone_yard.tscn" id="2_0icm3"]
 [ext_resource type="PackedScene" uid="uid://c4ow5f7xb5svu" path="res://scenes/game_board/station.tscn" id="3_u74sj"]
 [ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/game_board/train.tscn" id="4_jhn2j"]
+=======
+[ext_resource type="Script" uid="uid://c6xqpuhjsqer" path="res://scenes/game_board/game_board.gd" id="1_ci1qf"]
+[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/game_board/bone_yard/bone_yard.tscn" id="2_2rs5i"]
+[ext_resource type="PackedScene" uid="uid://c4ow5f7xb5svu" path="res://scenes/game_board/station.tscn" id="6_ff128"]
+[ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/game_board/train.tscn" id="6_vefk1"]
+>>>>>>> 8997d63e58dfdd559b24b196f66b00a42b1399ee
 
 [node name="GameBoard" type="Node2D"]
 script = ExtResource("1_webns")

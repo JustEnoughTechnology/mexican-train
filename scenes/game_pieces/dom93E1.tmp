@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://htfoo57txyc1"]
+
+[ext_resource type="Script" path="res://v2/game_pieces/domino.gd" id="1_b0ayk"]
+[ext_resource type="Texture2D" uid="uid://cxfl6tc84ahvh" path="res://common/tiles/domino-back.svg" id="2_22mju"]
+[ext_resource type="Texture2D" uid="uid://cgripgij8bbjk" path="res://common/tiles/domino-12-10.svg" id="3_d8y6v"]
+
+[node name="Domino" type="ColorRect"]
+custom_minimum_size = Vector2(80, 40)
+mouse_filter = 1
+script = ExtResource("1_b0ayk")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(80, 40)
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+
+[node name="DominoBack" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("2_22mju")
+
+[node name="DominoFront" type="TextureRect" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_d8y6v")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
