@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2w8u0xmxr8wa"]
 
 [ext_resource type="Script" uid="uid://15p4a8nvhqn5" path="res://tests/test_game.gd" id="1_is0c5"]
-[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/game_board/bone_yard/bone_yard.tscn" id="2_pfc63"]
-[ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/game_board/train.tscn" id="3_trclh"]
-[ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://scenes/game_board/hand.tscn" id="4_t7u01"]
+[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/bone_yard/bone_yard.tscn" id="2_pfc63"]
+[ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/train/train.tscn" id="3_trclh"]
+[ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://scenes/hand/hand.tscn" id="4_t7u01"]
 
 [node name="TestGame" type="Control"]
 layout_mode = 3

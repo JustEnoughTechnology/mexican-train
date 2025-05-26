@@ -1,11 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://3p1orjelylu3"]
 
-<<<<<<<< HEAD:tests/game/test_domino_game_container.tscn
-[ext_resource type="Script" uid="uid://ckg07rf1c5rsc" path="res://tests/train/test_train.gd" id="1_a1g1c"]
-========
+
 [ext_resource type="Script" uid="uid://ckg07rf1c5rsc" path="res://tests/test_train.gd" id="1_a1g1c"]
->>>>>>>> 8997d63e58dfdd559b24b196f66b00a42b1399ee:tests/test_domino_game_container.tscn
-[ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/game_board/train.tscn" id="2_w8j3n"]
+
 
 [node name="TestTrain" type="Control"]
 layout_mode = 3

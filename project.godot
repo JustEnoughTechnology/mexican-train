@@ -25,10 +25,6 @@ Global="*res://autoload/global.gd"
 
 import/blender/enabled=false
 
-[filesystem]
-
-import/blender/enabled=false
-
 [global_group]
 
 dominos=""

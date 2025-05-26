@@ -1,11 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgcyqlh63ooxj"]
 
-<<<<<<<< HEAD:tests/player_hand/test_player_hand.tscn
-[ext_resource type="Script" uid="uid://bk4nmpjchpqh8" path="res://tests/player_hand/test_player_hand.gd" id="1_vr0wd"]
-========
+
 [ext_resource type="Script" uid="uid://bk4nmpjchpqh8" path="res://tests/test_player_hand.gd" id="1_vr0wd"]
->>>>>>>> 8997d63e58dfdd559b24b196f66b00a42b1399ee:tests/test_player_hand.tscn
-[ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://scenes/game_board/hand.tscn" id="2_pbygq"]
+[ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://scenes/hand/hand.tscn" id="2_pbygq"]
 
 [node name="TestPlayerHand" type="Control"]
 layout_mode = 3

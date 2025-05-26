@@ -1,12 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://nv6pjou5sbls"]
 
-<<<<<<<< HEAD:tests/bone_yard/test_bone_yard.tscn
-[ext_resource type="Script" uid="uid://t8slmmy8bdwi" path="res://tests/bone_yard/test_bone_yard.gd" id="1_syftj"]
-[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/game_board/bone_yard.tscn" id="2_m3o64"]
-========
+
 [ext_resource type="Script" uid="uid://t8slmmy8bdwi" path="res://tests/test_bone_yard.gd" id="1_syftj"]
-[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/game_board/bone_yard/bone_yard.tscn" id="2_m3o64"]
->>>>>>>> 8997d63e58dfdd559b24b196f66b00a42b1399ee:tests/test_bone_yard.tscn
+[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/bone_yard/bone_yard.tscn" id="2_m3o64"]
 
 [node name="TestBoneYard" type="Node2D"]
 script = ExtResource("1_syftj")

@@ -1,11 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://jlq71mph6i6a"]
 
-<<<<<<<< HEAD:tests/train/test_train.tscn
-[ext_resource type="Script" uid="uid://ckg07rf1c5rsc" path="res://tests/train/test_train.gd" id="1_04e3q"]
-========
+
 [ext_resource type="Script" uid="uid://ckg07rf1c5rsc" path="res://tests/test_train.gd" id="1_04e3q"]
->>>>>>>> 8997d63e58dfdd559b24b196f66b00a42b1399ee:tests/test_train.tscn
-[ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/game_board/train.tscn" id="2_yycli"]
+[ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/train/train.tscn" id="2_yycli"]
 
 [node name="TestTrain" type="Control"]
 layout_mode = 3
