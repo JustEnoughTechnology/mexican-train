@@ -5,8 +5,10 @@ extends Node2D
 
 func _ready() -> void:
 	$BoneYard.set_size(get_window().size*0.85)
-	$BoneYard.populate(GameState.MAX_DOTS,true) 
-	push_warning("Boneyard:",$BoneYard.get_global_rect())
+	$BoneYard.populate(GameState.MAX_DOTS,false) 
+	if EngineDebugger.is_active():
+		push_warning("Boneyard:",$BoneYard.get_global_rect())
+		push_warning("vboxcontainer",$BoneYard/VBoxContainer.get_global_rect())
 	#$BoneYard.shuffle()
 # Called every frame. 'delta' is the elapsed time since the previous 
 

@@ -1,8 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://drp4ha0ihocmi"]
 
-
 [ext_resource type="Script" uid="uid://c6xqpuhjsqer" path="res://scripts/game_board/game_board.gd" id="1_ci1qf"]
-[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/bone_yard.tscn" id="2_2rs5i"]
+[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/bone_yard/bone_yard.tscn" id="2_2rs5i"]
 [ext_resource type="PackedScene" uid="uid://c4ow5f7xb5svu" path="res://scenes/station/station.tscn" id="6_ff128"]
 [ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/train/train.tscn" id="6_vefk1"]
 

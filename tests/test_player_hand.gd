@@ -1,10 +1,8 @@
 extends Control
 var current_domino:Domino
-<<<<<<<< HEAD:tests/player_hand/test_player_hand.gd
-var d_scene : PackedScene = preload("uid://htfoo57txyc1") #domino scene
-========
-var d_scene : PackedScene = preload("res://game_pieces/domino.tscn") 
->>>>>>>> 8997d63e58dfdd559b24b196f66b00a42b1399ee:tests/test_player_hand.gd
+
+
+var d_scene : PackedScene = preload("res://scenes/domino/domino.tscn") 
 var d:Domino
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +13,7 @@ func _ready() -> void:
 		d.mouse_left_pressed.connect(_on_domino_mouse_left_pressed)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	pass
 

@@ -44,7 +44,6 @@ func populate(p_dots:int,p_face_up:bool = false):
 			d.name = "Domino_"+str(i)+"_"+str(j)
 			domino_container.add_child(d)
 	
-			d.connect("mouse_left_pressed",_on_domino_left_pressed)
 			d.set_dots(i,j)
 			d.set_face_up(p_face_up)
 			
@@ -61,4 +60,22 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_resized() -> void:
+	if EngineDebugger.is_active():
+		push_warning("boneyard resized:",self.get_global_rect())
+	
 	pass # Replace with function body.
+
+#func _notification(what):
+	##match what:
+		##40,41,42,60,61,2016,1002,1004: pass
+		##_:	
+	#push_warning("notification: ",what," ", Global.get_notification_name(what))
+	#
+	##if what == NOTIFICATION_PARENTED or what == NOTIFICATION_RESIZED:
+		##var parent_control = get_parent() as Control
+		##if parent_control:
+			##self.size = Vector2(self.size.x,parent_control.size.y)  
+func _ready() -> void:
+	if EngineDebugger.is_active():
+		push_warning("boneyard ready")
+	#self.size = Vector2($VBoxContainer.size.x,self.size.y)

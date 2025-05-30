@@ -1,5 +1,4 @@
 # Autoload this script as 'NotificationUtil'
-class_name NotificationUtil
 
 # Class-scoped notification constants
 const NOTIFICATIONS_BY_CLASS = {
@@ -15,10 +14,10 @@ const NOTIFICATIONS_BY_CLASS = {
 	"Window": {"NOTIFICATION_VISIBILITY_CHANGED": 30, "NOTIFICATION_THEME_CHANGED": 32},
 }
 
-func get_notification_name(class_name: String, code: int) -> String:
-	if class_name in NOTIFICATIONS_BY_CLASS:
-		for name in NOTIFICATIONS_BY_CLASS[class_name].keys():
-			if NOTIFICATIONS_BY_CLASS[class_name][name] == code:
+func get_notification_name(p_class_name: String, code: int) -> String:
+	if p_class_name in NOTIFICATIONS_BY_CLASS:
+		for name in NOTIFICATIONS_BY_CLASS[p_class_name].keys():
+			if NOTIFICATIONS_BY_CLASS[p_class_name][name] == code:
 				return name
 	# Fallback search
 	for cls in NOTIFICATIONS_BY_CLASS.keys():
@@ -27,15 +26,15 @@ func get_notification_name(class_name: String, code: int) -> String:
 				return name + " (from " + cls + ")"
 	return "UNKNOWN_NOTIFICATION"
 
-func get_notification_code(class_name: String, name: String) -> int:
-	if class_name in NOTIFICATIONS_BY_CLASS and name in NOTIFICATIONS_BY_CLASS[class_name]:
-		return NOTIFICATIONS_BY_CLASS[class_name][name]
+func get_notification_code(p_class_name: String, name: String) -> int:
+	if p_class_name in NOTIFICATIONS_BY_CLASS and name in NOTIFICATIONS_BY_CLASS[p_class_name]:
+		return NOTIFICATIONS_BY_CLASS[p_class_name][name]
 	return -1
 
 # Optional editor tool GUI can be implemented here.
 # You could use this data to populate dropdowns or code completion.
 # Example: provide a method that returns all notification names for a class.
-func get_all_notifications_for_class(class_name: String) -> Array:
-	if class_name in NOTIFICATIONS_BY_CLASS:
-		return NOTIFICATIONS_BY_CLASS[class_name].keys()
+func get_all_notifications_for_class(p_class_name: String) -> Array:
+	if p_class_name in NOTIFICATIONS_BY_CLASS:
+		return NOTIFICATIONS_BY_CLASS[p_class_name].keys()
 	return []

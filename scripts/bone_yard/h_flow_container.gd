@@ -10,6 +10,7 @@ func _ready() -> void:
 	_hookup_child_signals()
 	resize_hflowcontainer_to_fit_children()
 
+@warning_ignore("unused_parameter")
 func _on_child_modified(child: Node) -> void:
 	# Reconnect signals for new/removed children
 	_hookup_child_signals()

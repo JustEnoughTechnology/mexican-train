@@ -7,7 +7,8 @@ func _init():
 		_reverse_notifications[code] = key
 		
 func is_child_outside_parent(child: Control, parent: Control) -> bool:
-	push_warning("child: ",child.get_global_rect()," parent: ",parent.get_global_rect())
+	if EngineDebugger.is_active():
+		push_warning("child: ",child.get_global_rect()," parent: ",parent.get_global_rect())
 	return not parent.get_global_rect().encloses(child.get_global_rect())
  
 func resize_hbox_to_fit_children(hbox: HBoxContainer):	
