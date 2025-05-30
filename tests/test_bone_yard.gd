@@ -12,7 +12,8 @@ func _ready() -> void:
 	#$BoneYard.shuffle()
 # Called every frame. 'delta' is the elapsed time since the previous 
 
-func _process(_delta: float) -> void:
+@warning_ignore("unused_parameter")
+func _process(delta: float) -> void:
 	pass
 	
 func _on_bone_yard_domino_left_pressed(p_domino: Domino) -> void:

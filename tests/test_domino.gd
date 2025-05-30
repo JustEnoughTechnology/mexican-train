@@ -12,7 +12,8 @@ func _ready() -> void:
 	
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+@warning_ignore("unused_parameter")
+func _process(delta: float) -> void:
 	pass
 	
 func _on_mouse_left_pressed(p_domino: Domino) -> void:
