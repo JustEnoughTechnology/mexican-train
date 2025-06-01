@@ -10,7 +10,7 @@ func _ready() -> void:
 	$Hand.set_position($Train.position+Vector2(0.0,$Train.size.y))
 	$BoneYard.populate(dot_count,true)
 	if EngineDebugger.is_active():
-		push_warning($BoneYard.get_global_rect())
+		print($BoneYard.get_global_rect())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 

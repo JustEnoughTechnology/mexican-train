@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0m6hw8tl8bo"]
+
+[ext_resource type="Script" uid="uid://klt4qaeje8v8" path="res://tests/test_domino_orientation.gd" id="1"]
+
+[node name="TestDominoOrientation" type="Node"]
+script = ExtResource("1")

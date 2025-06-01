@@ -1,11 +1,19 @@
 class_name DominoData extends Resource
+
+# Orientation constants (single source of truth)
+const ORIENTATION_LARGEST_LEFT = 0
+const ORIENTATION_LARGEST_RIGHT = 1
+const ORIENTATION_LARGEST_TOP = 2
+const ORIENTATION_LARGEST_BOTTOM = 3
 ## Basic data resource for [class DominoSprite]
 
 ## Prefers to have an autoload [class GameState] containing the maximum number 
 ## of dots each side of the domino can have. does basic check and clamps the values to 6 if no other guidance
 
 var dots: Vector2i 
-var is_face_up:=false
+var is_face_up := false
+# Orientation property (matches Domino orientation constants)
+var orientation: int = 0
 ## Enforces the convention that the smaller number of dots is on the left and that they are not larger than the max value allowed
 
 func set_dots(p_left:int,p_right:int):

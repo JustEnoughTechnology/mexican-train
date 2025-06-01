@@ -33,6 +33,9 @@ func _on_mouse_left_released(p_domino: Domino) -> void:
 		#current_domino.position += event.relative
 		#
 func _on_mouse_right_pressed(p_domino: Domino) -> void:
-	p_domino.flip90()
-	p_domino.get_child(-1).text = str(p_domino.rotation_degrees)
+	if p_domino.has_method("set_orientation"):
+		p_domino.set_orientation(p_domino.ORIENTATION_LARGEST_TOP)
+		p_domino.get_child(-1).text = str(p_domino.rotation_degrees)
+	else:
+		p_domino.get_child(-1).text = "no set_orientation()" 
 			

@@ -1,20 +1,53 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgcyqlh63ooxj"]
 
-
 [ext_resource type="Script" uid="uid://bk4nmpjchpqh8" path="res://tests/test_player_hand.gd" id="1_vr0wd"]
 [ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://scenes/hand/hand.tscn" id="2_pbygq"]
 
 [node name="TestPlayerHand" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_vr0wd")
 
 [node name="Hand" parent="." instance=ExtResource("2_pbygq")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = -200.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
 
-[node name="dominos" type="HFlowContainer" parent="."]
-layout_mode = 0
-offset_left = 627.0
-offset_top = -26.0
-offset_right = 707.0
-offset_bottom = 366.0
+[node name="dominos" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 200.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 8
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "Drag and drop testing"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=3 uid="uid://tnjviebtpqtg"]
+
+[ext_resource type="Script" uid="uid://btlaskvj6gvt0" path="res://tests/test_hand_drag_drop.gd" id="1_h4x8k"]
+[ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://scenes/hand/hand.tscn" id="2_hand"]
+
+[node name="TestHandDragDrop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h4x8k")
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 600.0
+offset_bottom = -10.0
+grow_vertical = 0
+text = "Loading hand drag and drop test..."
+
+[node name="DominoPool" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -450.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 250.0
+grow_horizontal = 0
+columns = 4
+
+[node name="TestHand" parent="." instance=ExtResource("2_hand")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -60.0
+offset_right = 200.0
+offset_bottom = 60.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" parent="TestHand" index="0"]
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PoolLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -450.0
+offset_top = 20.0
+offset_right = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+text = "Domino Pool (drag from here):"
+horizontal_alignment = 1
+
+[node name="HandLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -180.0
+offset_right = 350.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Hand (drop dominoes here):"
+horizontal_alignment = 1
+
+[editable path="TestHand"]

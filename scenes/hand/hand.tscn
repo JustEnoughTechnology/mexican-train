@@ -1,10 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://uq07vnk7d3e1"]
+[gd_scene load_steps=2 format=3 uid="uid://uq07vnk7d3e1"]
 
 [ext_resource type="Script" uid="uid://duduvwx6cnwym" path="res://scripts/hand/hand.gd" id="1_7tpee"]
-[ext_resource type="PackedScene" uid="uid://qr7wtl8g3d8a" path="res://scenes/util/domino_game_container.tscn" id="1_c1ut4"]
 
-[node name="Hand" instance=ExtResource("1_c1ut4")]
+[node name="Hand" type="ColorRect"]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+offset_bottom = -20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.903737, 0.85773, 0.992825, 1)
 script = ExtResource("1_7tpee")
+max_width_percent = null
+max_height_percent = null
+bg_color = null
+label_text = null
 
-[node name="Label" parent="TopContainer/bg" index="0"]
+[node name="hand_layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="label" type="Label" parent="hand_layout"]
+z_index = 1
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
 text = "Hand"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+
+[node name="bg" type="ColorRect" parent="hand_layout/label"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.55, 0.75, 0.95, 1)
+
+[node name="domino_container" type="HFlowContainer" parent="hand_layout"]
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 2

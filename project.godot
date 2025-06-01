@@ -18,7 +18,7 @@ config/icon="res://train.svg"
 
 [autoload]
 
-GameState="*res://autoload/game_state.gd"
+GameState="*res://scripts/bone_yard/game_state.gd"
 Global="*res://autoload/global.gd"
 
 [filesystem]
