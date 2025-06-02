@@ -11,6 +11,7 @@ extends Control
 var debug_label: Label
 
 func _ready():
+	get_window().title = get_name()
 	status_label.text = "Drag dominoes from the boneyard to the hand."
 	# Use the BoneYard's built-in populate function for a 6x6 set (max dots = 6)
 	if boneyard.has_method("populate"):

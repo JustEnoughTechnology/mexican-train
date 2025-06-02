@@ -1,78 +1,152 @@
+#!/usr/bin/env python3
+"""
+Script to generate rotated domino SVG files for Mexican Train game.
+Creates pre-rotated versions for each orientation to eliminate programmatic rotation issues.
+
+This script uses Inkscape command line to rotate SVG files.
+Requires Inkscape to be installed and available in PATH.
+
+Orientations:
+- _left: 0 degrees (original, largest pips on left)
+- _right: 180 degrees (largest pips on right)  
+- _top: 90 degrees clockwise (largest pips on top)
+- _bottom: 270 degrees clockwise / -90 degrees (largest pips on bottom)
+"""
+
 import os
-import re
+import subprocess
+import sys
+from pathlib import Path
 
-REF_DIR = r"assets/tiles/dominos-ref"
-OUT_DIR = r"assets/tiles/dominos-new"
-SVG_SIZE = 40
-DOMINO_WIDTH = 82
-DOMINO_HEIGHT = 42
-DOMINO_WIDTH_V = 42
-DOMINO_HEIGHT_V = 82
+def check_inkscape():
+    """Check if Inkscape is available in PATH."""
+    try:
+        result = subprocess.run(['inkscape', '--version'], 
+                              capture_output=True, text=True, check=True)
+        print(f"Found Inkscape: {result.stdout.strip()}")
+        return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        print("ERROR: Inkscape not found in PATH")
+        print("Please install Inkscape and ensure it's in your PATH")
+        return False
 
-def extract_svg_content(svg_path):
-    with open(svg_path, encoding="utf-8") as f:
-        content = f.read()
-    rect_match = re.search(r'(<rect[^>]+/>)', content)
-    circles = re.findall(r'(<circle[^>]+/>)', content)
-    return rect_match.group(1), circles
-
-def make_domino_svg(n, m, orientation):
-    left_rect, left_circles = extract_svg_content(os.path.join(REF_DIR, f"domino-{n}-flat-arranged.svg"))
-    right_rect, right_circles = extract_svg_content(os.path.join(REF_DIR, f"domino-{m}-flat-arranged.svg"))
-
-    if orientation in ("left", "right"):
-        width, height = DOMINO_WIDTH, DOMINO_HEIGHT
-        if orientation == "left":
-            left_face, right_face = (n, left_rect, left_circles), (m, right_rect, right_circles)
-        else:
-            left_face, right_face = (m, right_rect, right_circles), (n, left_rect, left_circles)
-        svg = [
-            '<?xml version="1.0" encoding="UTF-8"?>',
-            f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" version="1.1">',
-            f'  <rect style="fill:#000000;stroke-width:0" width="{width}" height="{height}" x="0" y="0"/>',
-            '  <g transform="translate(0,1)">',
-            f'    {left_face[1]}',
-            *(f'    {c}' for c in left_face[2]),
-            '  </g>',
-            '  <g transform="translate(42,1)">',
-            f'    {right_face[1]}',
-            *(f'    {c}' for c in right_face[2]),
-            '  </g>',
-            '</svg>'
+def rotate_svg(input_file, output_file, rotation_degrees):
+    """Rotate an SVG file using Inkscape command line."""
+    try:
+        # Use Inkscape to rotate the SVG
+        cmd = [
+            'inkscape',
+            '--export-type=svg',
+            f'--export-filename={output_file}',
+            '--actions=select-all;transform-rotate:{};export-do'.format(rotation_degrees),
+            str(input_file)
         ]
+        
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        if result.returncode == 0:
+            print(f"  ✓ Created {output_file}")
+            return True
+        else:
+            print(f"  ✗ Failed to create {output_file}: {result.stderr}")
+            return False
+            
+    except subprocess.CalledProcessError as e:
+        print(f"  ✗ Inkscape error for {output_file}: {e.stderr}")
+        return False
+    except Exception as e:
+        print(f"  ✗ Unexpected error for {output_file}: {e}")
+        return False
+
+def generate_rotated_dominoes():
+    """Generate all rotated domino SVG files."""
+    
+    # Check if Inkscape is available
+    if not check_inkscape():
+        return False
+    
+    # Define paths
+    dominos_dir = Path("c:/development/mexican-train/assets/tiles/dominos")
+    print(f"[INFO] Output directory for rotated dominoes: {dominos_dir}")
+    if not dominos_dir.exists():
+        print(f"ERROR: Dominos directory not found: {dominos_dir}")
+        print("Please ensure the directory exists and is correct.")
+        return False
+    
+    # Find all domino SVG files (excluding already rotated ones)
+    domino_files = []
+    print(f"[DEBUG] Scanning for base domino SVGs in: {dominos_dir}")
+    for svg_file in dominos_dir.glob("domino-*.svg"):
+        # Skip files that already have orientation suffixes
+        if not any(suffix in svg_file.name for suffix in ['_left', '_right', '_top', '_bottom']):
+            domino_files.append(svg_file)
+            print(f"[DEBUG] Found base SVG: {svg_file}")
+        else:
+            print(f"[DEBUG] Skipping oriented SVG: {svg_file}")
+    print(f"Found {len(domino_files)} domino SVG files to process")
+    
+    # Rotation mappings (degrees clockwise)
+    rotations = {
+        '_left': 0,      # Original orientation (largest pips on left)
+        '_right': 180,   # Largest pips on right
+        '_top': 90,      # Largest pips on top  
+        '_bottom': 270   # Largest pips on bottom (same as -90)
+    }
+    
+    success_count = 0
+    total_files = len(domino_files) * len(rotations)
+    
+    for svg_file in domino_files:
+        print(f"Processing {svg_file.name}...")
+        base_name = svg_file.stem
+        for suffix, rotation in rotations.items():
+            output_name = f"{base_name}{suffix}.svg"
+            output_path = dominos_dir / output_name
+            print(f"[DEBUG] Will create: {output_path} (rotation: {rotation}°)")
+            if suffix == '_left' and rotation == 0:
+                try:
+                    import shutil
+                    shutil.copy2(svg_file, output_path)
+                    print(f"  ✓ Copied {output_name}")
+                    print(f"    [CREATED] {output_path}")
+                    success_count += 1
+                except Exception as e:
+                    print(f"  ✗ Failed to copy {output_name}: {e}")
+            else:
+                if rotate_svg(svg_file, output_path, rotation):
+                    print(f"    [CREATED] {output_path}")
+                    success_count += 1
+    
+    print(f"\nCompleted: {success_count}/{total_files} files processed successfully")
+    
+    if success_count == total_files:
+        print("✓ All domino rotations generated successfully!")
+        return True
     else:
-        width, height = DOMINO_WIDTH_V, DOMINO_HEIGHT_V
-        if orientation == "top":
-            top_face, bottom_face = (n, left_rect, left_circles), (m, right_rect, right_circles)
-        else:
-            top_face, bottom_face = (m, right_rect, right_circles), (n, left_rect, left_circles)
-        svg = [
-            '<?xml version="1.0" encoding="UTF-8"?>',
-            f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" version="1.1">',
-            f'  <rect style="fill:#000000;stroke-width:0" width="{width}" height="{height}" x="0" y="0"/>',
-            '  <g transform="translate(1,0)">',
-            f'    {top_face[1]}',
-            *(f'    {c}' for c in top_face[2]),
-            '  </g>',
-            '  <g transform="translate(1,42)">',
-            f'    {bottom_face[1]}',
-            *(f'    {c}' for c in bottom_face[2]),
-            '  </g>',
-            '</svg>'
-        ]
-    return "\n".join(svg)
+        print(f"✗ {total_files - success_count} files failed to process")
+        return False
 
 def main():
-    os.makedirs(OUT_DIR, exist_ok=True)
-    orientations = ["left", "right", "top", "bottom"]
-    for n in range(0, 19):
-        for m in range(0, n+1):
-            for orientation in orientations:
-                out_path = os.path.join(OUT_DIR, f"domino-{n}-{m}-{orientation}.svg")
-                svg = make_domino_svg(n, m, orientation)
-                with open(out_path, "w", encoding="utf-8") as f:
-                    f.write(svg)
-    print("All rotated dominoes generated.")
+    """Main entry point."""
+    print("Mexican Train Domino Rotation Generator")
+    print("=" * 50)
+    
+    try:
+        success = generate_rotated_dominoes()
+        if success:
+            print("\nNext steps:")
+            print("1. Update domino.gd to use pre-rotated SVG files")
+            print("2. Test the new orientation system")
+            print("3. Remove rotation_degrees code from domino logic")
+        else:
+            print("\nSome files failed to process. Check errors above.")
+            sys.exit(1)
+            
+    except KeyboardInterrupt:
+        print("\n\nOperation cancelled by user")
+        sys.exit(1)
+    except Exception as e:
+        print(f"\nUnexpected error: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

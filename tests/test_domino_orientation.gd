@@ -7,6 +7,7 @@ var domino: Domino
 
 
 func _ready() -> void:
+	get_window().title = get_name()
 	var DominoScene: PackedScene = preload("res://scenes/domino/domino.tscn")
 	domino = DominoScene.instantiate() as Domino
 	add_child(domino)

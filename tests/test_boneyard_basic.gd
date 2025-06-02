@@ -6,6 +6,7 @@ extends Control
 @onready var status_label = $StatusLabel
 
 func _ready():
+	get_window().title = get_name()
 	status_label.text = "Drag a domino from the boneyard. Right-click to flip."
 	boneyard.populate(6, false)
 	# Connect right-click signal for all dominoes

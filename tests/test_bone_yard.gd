@@ -6,6 +6,7 @@ extends Control
 var debug_label: Label
 
 func _ready() -> void:
+	get_window().title = get_name()
 	$BoneYard.set_size(get_window().size*0.85)
 	$BoneYard.populate(GameState.MAX_DOTS,false)
 	# Add a label to display debug_show_warnings

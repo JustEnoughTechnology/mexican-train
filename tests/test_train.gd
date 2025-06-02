@@ -6,6 +6,7 @@ func _enter_tree() -> void:
 	pass
 	
 func _ready() -> void:
+	get_window().title = get_name()
 	for i in range(35):
 		d = d_scene.instantiate()
 		$dominos.add_child(d)

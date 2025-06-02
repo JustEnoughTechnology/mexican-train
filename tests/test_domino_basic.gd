@@ -8,6 +8,7 @@ var test_domino: Domino
 @onready var status_label: Label = $StatusLabel
 
 func _ready() -> void:
+	get_window().title = get_name()
 	# Create a single test domino
 	create_test_domino()
 	

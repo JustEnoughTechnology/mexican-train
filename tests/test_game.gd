@@ -3,6 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_window().title = get_name()
 	$BoneYard.set_size(get_window().size*0.85)
 	$BoneYard.set_position(Vector2(0,0))
 	

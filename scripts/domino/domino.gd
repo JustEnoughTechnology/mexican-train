@@ -19,7 +19,6 @@ signal mouse_right_pressed(p_domino: Domino)
 ## Emitted when a domino is dropped onto this one
 signal domino_dropped(target: Domino, dropped: Domino)
 
-
 func _ready() -> void:
 	# Ensure the front texture is set on scene start using current data
 	set_dots(data.dots.x, data.dots.y)
@@ -31,23 +30,17 @@ func _ready() -> void:
 	# Set pivot to center for proper rotation
 	set_pivot_to_center()
 
-
 # Helper to set pivot to center
 func set_pivot_to_center() -> void:
 	# Use current size, or default if not yet set
 	var center = size * 0.5
 	pivot_offset = center
 
-
-
-
 func _init(left := 0, right := 0) -> void:
 	print("init:L%d R%d"%[left,right])
 	data = DominoData.new(left, right)
 
 # Orientation constants (for convenience, mirror DominoData usage)
-
-
 
 # TEMPORARY: Color-coding for orientation debugging
 var ORIENTATION_COLORS = {
@@ -66,8 +59,6 @@ var show_orientation_label: bool = false:
 		show_orientation_label = value
 		if orientation_label:
 			orientation_label.visible = value
-
-
 	
 ## Returns a preview control for drag and drop operations
 ## The preview shows either the front or back based on face up state
@@ -191,20 +182,14 @@ func set_dots(p_left: int, p_right: int) -> void:
 	if not front:
 		push_error("[DOMINO] set_dots: 'front' is null for %s. You must add the domino to the scene tree before calling set_dots." % name)
 		return
-	var texture_path: String = imgpath % [data.dots[0], data.dots[1]]
+	# Always use oriented texture path, never bare domino
+	var texture_path: String = get_texture_path_for_orientation()
 	front.set_texture(load(texture_path))
 	# Do not call set_orientation here to avoid recursion. Caller must update orientation if needed.
 
 ## Get the correct texture path based on current orientation
 func get_texture_path_for_orientation() -> String:
-	var base_path = imgpath % [data.dots[0], data.dots[1]]
-	
-	# If no orientation is set, use base texture
-	if data.orientation == 0:
-		print("[DOMINO] Using base texture: %s" % base_path)
-		return base_path
-	
-	# Use pre-rotated textures based on orientation
+	# Always use oriented textures - never bare domino
 	var orientation_suffix = ""
 	match data.orientation:
 		DominoData.ORIENTATION_LARGEST_LEFT:
@@ -216,14 +201,22 @@ func get_texture_path_for_orientation() -> String:
 		DominoData.ORIENTATION_LARGEST_BOTTOM:
 			orientation_suffix = "_bottom"
 		_:
-			# Fallback to base texture for invalid orientations
-			print("[DOMINO] Invalid orientation %s, using base texture: %s" % [data.orientation, base_path])
-			return base_path
+			# Default to left orientation for invalid orientations
+			print("[DOMINO] Invalid orientation %s, defaulting to left" % data.orientation)
+			orientation_suffix = "_left"
 	
-	# Build oriented texture path
-	var base_name = base_path.get_basename()  # removes .svg
-	var oriented_path = base_name + orientation_suffix + ".svg"
-	print("[DOMINO] Using oriented texture: %s (orientation: %s)" % [oriented_path, data.orientation])
+	# Build oriented texture path using imgpath_oriented format
+	var oriented_path = imgpath_oriented % [data.dots[0], data.dots[1], orientation_suffix.substr(1)]  # Remove leading underscore
+	print("[DOMINO] Attempting to load texture: %s (orientation: %s)" % [oriented_path, data.orientation])
+	
+	# Check if the file exists
+	if not ResourceLoader.exists(oriented_path):
+		print("[DOMINO] ERROR: Texture file does not exist: %s" % oriented_path)
+		# Try to load with a fallback - if we have the file, but just import issues
+		var fallback_path = "res://assets/tiles/dominos/domino-back.svg"
+		print("[DOMINO] Using fallback texture: %s" % fallback_path)
+		return fallback_path
+	
 	return oriented_path
 
 ## Toggle between face up and face down
@@ -243,51 +236,31 @@ func set_orientation(orientation: int) -> void:
 	# Set the orientation in the data model
 	data.orientation = orientation
 
-	# Reset all rotations
-	rotation = 0
-	if container:
-		container.rotation = 0
+	# No node rotation needed; use pre-rotated SVGs
+	# Set the correct dots order (largest first)
+	if data.dots.x >= data.dots.y:
+		set_dots(data.dots.x, data.dots.y)
+	else:
+		set_dots(data.dots.y, data.dots.x)
+
+	# Set the correct SVG for the orientation
 	if front:
-		front.rotation = 0
+		var texture_path = get_texture_path_for_orientation()
+		front.set_texture(load(texture_path))
+
+	# Set the correct size for horizontal/vertical
+	var current_size = Vector2(82, 40)  # Default horizontal
+	if orientation == DominoData.ORIENTATION_LARGEST_TOP or orientation == DominoData.ORIENTATION_LARGEST_BOTTOM:
+		current_size = Vector2(40, 82)
+	if front:
+		front.custom_minimum_size = current_size
 	if back:
-		back.rotation = 0
-
-	# Always set pivot to center for correct rotation
-	set_pivot_to_center()
-
-	# Set the rotation and dot order based on orientation
-	# Note: The domino images are horizontal by default (larger value on left)
-	match orientation:
-		DominoData.ORIENTATION_LARGEST_LEFT:
-			rotation_degrees = 0  # No rotation needed, largest on left naturally
-			if data.dots.x >= data.dots.y:
-				set_dots(data.dots.x, data.dots.y)
-			else:
-				set_dots(data.dots.y, data.dots.x)
-		DominoData.ORIENTATION_LARGEST_RIGHT:
-			rotation_degrees = 180  # Flip 180 to put largest on right
-			if data.dots.x >= data.dots.y:
-				set_dots(data.dots.x, data.dots.y)
-			else:
-				set_dots(data.dots.y, data.dots.x)
-		DominoData.ORIENTATION_LARGEST_TOP:
-			rotation_degrees = 90  # Rotate clockwise to put largest at top
-			if data.dots.x >= data.dots.y:
-				set_dots(data.dots.x, data.dots.y)
-			else:
-				set_dots(data.dots.y, data.dots.x)
-		DominoData.ORIENTATION_LARGEST_BOTTOM:
-			rotation_degrees = -90  # Rotate counter-clockwise to put largest at bottom
-			if data.dots.x >= data.dots.y:
-				set_dots(data.dots.x, data.dots.y)
-			else:
-				set_dots(data.dots.y, data.dots.x)
-		_:
-			push_error("[DOMINO] set_orientation: Invalid orientation value: %s" % orientation)
+		back.custom_minimum_size = current_size
+	if container:
+		container.custom_minimum_size = current_size
 
 	# Update the orientation label overlay if present
 	if orientation_label:
-		# Map orientation to human-friendly label
 		var orientation_map = {
 			DominoData.ORIENTATION_LARGEST_LEFT: "L",
 			DominoData.ORIENTATION_LARGEST_RIGHT: "R",
@@ -299,6 +272,9 @@ func set_orientation(orientation: int) -> void:
 		else:
 			orientation_label.text = "?"
 		orientation_label.visible = show_orientation_label
+		
+		# Position and rotate the label based on orientation
+		_update_orientation_label_position(orientation)
 
 ## Helper method to toggle the orientation label overlay
 # Only call this from external scripts (e.g., test scripts) to control the overlay.
@@ -307,3 +283,63 @@ func toggle_orientation_label(value: Variant = null) -> void:
 		show_orientation_label = !show_orientation_label
 	else:
 		show_orientation_label = value
+	
+	if orientation_label:
+		orientation_label.visible = show_orientation_label
+
+## Update the orientation label position and rotation based on domino orientation
+func _update_orientation_label_position(orientation: int) -> void:
+	if not orientation_label:
+		return
+	
+	# Reset to default anchors and offsets
+	orientation_label.rotation = 0
+	
+	# Base label size
+	var label_size = Vector2(24, 24)
+	var margin = 4
+	
+	match orientation:
+		DominoData.ORIENTATION_LARGEST_LEFT:
+			# Horizontal domino with largest on left - label at top-right
+			orientation_label.anchor_left = 1.0
+			orientation_label.anchor_right = 1.0
+			orientation_label.anchor_top = 0.0
+			orientation_label.anchor_bottom = 0.0
+			orientation_label.offset_left = -label_size.x - margin
+			orientation_label.offset_right = -margin
+			orientation_label.offset_top = margin
+			orientation_label.offset_bottom = label_size.y + margin
+			
+		DominoData.ORIENTATION_LARGEST_RIGHT:
+			# Horizontal domino with largest on right - label at top-left
+			orientation_label.anchor_left = 0.0
+			orientation_label.anchor_right = 0.0
+			orientation_label.anchor_top = 0.0
+			orientation_label.anchor_bottom = 0.0
+			orientation_label.offset_left = margin
+			orientation_label.offset_right = label_size.x + margin
+			orientation_label.offset_top = margin
+			orientation_label.offset_bottom = label_size.y + margin
+			
+		DominoData.ORIENTATION_LARGEST_TOP:
+			# Vertical domino with largest on top - label at bottom-right
+			orientation_label.anchor_left = 1.0
+			orientation_label.anchor_right = 1.0
+			orientation_label.anchor_top = 1.0
+			orientation_label.anchor_bottom = 1.0
+			orientation_label.offset_left = -label_size.x - margin
+			orientation_label.offset_right = -margin
+			orientation_label.offset_top = -label_size.y - margin
+			orientation_label.offset_bottom = -margin
+			
+		DominoData.ORIENTATION_LARGEST_BOTTOM:
+			# Vertical domino with largest on bottom - label at top-right
+			orientation_label.anchor_left = 1.0
+			orientation_label.anchor_right = 1.0
+			orientation_label.anchor_top = 0.0
+			orientation_label.anchor_bottom = 0.0
+			orientation_label.offset_left = -label_size.x - margin
+			orientation_label.offset_right = -margin
+			orientation_label.offset_top = margin
+			orientation_label.offset_bottom = label_size.y + margin

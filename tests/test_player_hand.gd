@@ -9,6 +9,7 @@ var d: Domino
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_window().title = get_name()
 	# Create a pool of dominos for testing
 	create_test_dominos(12) # Create 12 random dominos
 	

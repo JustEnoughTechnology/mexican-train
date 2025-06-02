@@ -4,13 +4,14 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_window().title = get_name()
 	
 	$Domino1.set_dots(5,6) 
 	$Domino2.set_dots(8,9) 
 	$Domino1.set_face_up()
 	$Domino2.set_face_up()
 	
-		
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:

@@ -13,6 +13,7 @@ var hand_scene: PackedScene = preload("res://scenes/hand/hand.tscn")
 var test_dominoes: Array[Domino] = []
 
 func _ready() -> void:
+	get_window().title = get_name()
 	# Create the hand if it doesn't exist in the scene
 	if not test_hand:
 		create_test_hand()
