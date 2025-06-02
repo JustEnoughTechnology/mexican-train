@@ -66,8 +66,16 @@ func _ready():
 	key_panel.add_child(key_vbox)
 	add_child(key_panel)
 
+
 	# Defer domino creation until after panel is in the scene tree
 	call_deferred("_build_orientation_key", key_vbox, DominoScene, orientations, orientation_names)
+
+	# Toggle on the orientation indicator for all dominoes in boneyard and hand
+	var boneyard_dominoes = boneyard.get_node("boneyard_layout/domino_container").get_children()
+	for d in boneyard_dominoes:
+		if d.has_method("toggle_orientation_label"):
+			d.toggle_orientation_label(true)
+
 
 func _build_orientation_key(key_vbox, DominoScene, orientations, orientation_names):
 	for i in range(orientations.size()):
@@ -97,6 +105,12 @@ func _on_hand_domino_count_changed():
 	var count = hand.get_domino_count() if hand.has_method("get_domino_count") else 0
 	status_label.text = "Hand now has %d dominoes. Drag more from the boneyard!" % count
 
+	# Enable overlay for all dominoes in the hand
+	var hand_dominoes = hand.get_node("hand_layout/domino_container").get_children()
+	for d in hand_dominoes:
+		if d.has_method("toggle_orientation_label"):
+			d.toggle_orientation_label(true)
+
 func _on_hand_mouse_entered():
 	hand.modulate = Color(0.8, 1.0, 0.8, 1.0) # light green highlight
 
@@ -115,3 +129,19 @@ func _input(event):
 			GameState.DEBUG_SHOW_WARNINGS = not GameState.DEBUG_SHOW_WARNINGS
 			if debug_label:
 				debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameState.DEBUG_SHOW_WARNINGS)
+		elif keycode == KEY_O:
+			# Toggle orientation overlays for all dominoes
+			_toggle_all_orientation_overlays()
+
+func _toggle_all_orientation_overlays():
+	# Toggle all dominoes in boneyard
+	var boneyard_dominoes = boneyard.get_node("boneyard_layout/domino_container").get_children()
+	for d in boneyard_dominoes:
+		if d.has_method("toggle_orientation_label"):
+			d.toggle_orientation_label()
+	
+	# Toggle all dominoes in hand
+	var hand_dominoes = hand.get_node("hand_layout/domino_container").get_children()
+	for d in hand_dominoes:
+		if d.has_method("toggle_orientation_label"):
+			d.toggle_orientation_label()

@@ -1,0 +1,112 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/bone_yard/game_state.gd" id="1_28aoi"]
+[ext_resource type="Script" path="res://autoload/global.gd" id="2_jnlp7"]
+[ext_resource type="PackedScene" path="res://tests/test_boneyard_hand_drag_drop.tscn" id="3_l8v81"]
+[ext_resource type="PackedScene" path="res://scenes/domino/domino.tscn" id="4_vyht1"]
+
+[sub_resource type="World3D" id="World3D_bf3um"]
+
+[node name="root" type="Window"]
+process_mode = 1
+auto_translate_mode = 1
+world_3d = SubResource("World3D_bf3um")
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+physics_object_picking = true
+gui_embed_subwindows = true
+positional_shadow_atlas_size = 4096
+title = "Mexican Train"
+position = Vector2i(192, 1321)
+size = Vector2i(1152, 648)
+min_size = Vector2i(64, 64)
+content_scale_size = Vector2i(1152, 648)
+content_scale_aspect = 1
+
+[node name="GameState" type="Node" parent="."]
+script = ExtResource("1_28aoi")
+
+[node name="Global" type="Node" parent="."]
+script = ExtResource("2_jnlp7")
+
+[node name="TestBoneyardHandDragDrop" parent="." instance=ExtResource("3_l8v81")]
+
+[node name="DebugShowWarningsLabel" type="Label" parent="TestBoneyardHandDragDrop"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 10.0
+offset_bottom = 10.0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+text = "DEBUG_SHOW_WARNINGS: false"
+
+[node name="OrientationColorKeyPanel" type="PanelContainer" parent="TestBoneyardHandDragDrop"]
+custom_minimum_size = Vector2(260, 160)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="_VBoxContainer_3" type="VBoxContainer" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="_Label_2" type="Label" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+text = "Orientation Color Key (6|5):"
+
+[node name="_HBoxContainer_4" type="HBoxContainer" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Domino" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3/_HBoxContainer_4" instance=ExtResource("4_vyht1")]
+layout_mode = 2
+
+[node name="_Label_5" type="Label" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3/_HBoxContainer_4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+text = "Largest Left (Red)"
+vertical_alignment = 1
+
+[node name="_HBoxContainer_6" type="HBoxContainer" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Domino" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3/_HBoxContainer_6" instance=ExtResource("4_vyht1")]
+layout_mode = 2
+
+[node name="_Label_7" type="Label" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3/_HBoxContainer_6"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+text = "Largest Right (Blue)"
+vertical_alignment = 1
+
+[node name="_HBoxContainer_8" type="HBoxContainer" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Domino" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3/_HBoxContainer_8" instance=ExtResource("4_vyht1")]
+layout_mode = 2
+
+[node name="_Label_9" type="Label" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3/_HBoxContainer_8"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+text = "Largest Top (Green)"
+vertical_alignment = 1
+
+[node name="_HBoxContainer_10" type="HBoxContainer" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Domino" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3/_HBoxContainer_10" instance=ExtResource("4_vyht1")]
+layout_mode = 2
+
+[node name="_Label_11" type="Label" parent="TestBoneyardHandDragDrop/OrientationColorKeyPanel/_VBoxContainer_3/_HBoxContainer_10"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+text = "Largest Bottom (Yellow)"
+vertical_alignment = 1

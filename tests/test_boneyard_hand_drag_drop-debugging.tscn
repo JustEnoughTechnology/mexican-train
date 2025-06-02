@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2h3drgsm7oi4"]
+
+[ext_resource type="Script" uid="uid://b7eupi6vss2ak" path="res://tests/test_boneyard_hand_drag_drop.gd" id="1_yhx6w"]
+[ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://scenes/hand/hand.tscn" id="2_4rvup"]
+[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/bone_yard/bone_yard.tscn" id="3_wirxf"]
+
+[node name="TestBoneyardHandDragDrop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_yhx6w")
+
+[node name="Hand" parent="." instance=ExtResource("2_4rvup")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -539.0
+offset_top = 40.0
+offset_right = 539.0
+offset_bottom = 200.0
+max_width_percent = 0.5
+max_height_percent = 0.25
+bg_color = Color(0, 0, 0, 1)
+label_text = ""
+
+[node name="BoneYard" parent="." instance=ExtResource("3_wirxf")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -539.0
+offset_top = 260.0
+offset_right = 539.0
+offset_bottom = 200.0
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+offset_bottom = 40.0
+text = "Drag dominoes from the boneyard to the hand."
+horizontal_alignment = 1

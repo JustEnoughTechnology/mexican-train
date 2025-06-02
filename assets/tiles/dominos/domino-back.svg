@@ -1,49 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   width="82"
-   height="40"
-   viewBox="0 0 21.695833 10.583333"
-   version="1.1"
-   id="svg1"
-   sodipodi:docname="domino-back.svg"
-   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview1"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="px"
-     inkscape:zoom="0.65477694"
-     inkscape:cx="396.31817"
-     inkscape:cy="561.25984"
-     inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="1912"
-     inkscape:window-y="1072"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="g1" />
-  <defs
-     id="defs1" />
-  <g
-     inkscape:groupmode="layer"
-     inkscape:label="L1"
-     id="g1">
-    <rect
-       x="1.110223e-16"
-       y="1.110223e-16"
-       width="21.695833"
-       height="10.583333"
-       style="fill:#ff0000;stroke:#000000;stroke-width:0;stroke-dasharray:none"
-       id="rect1" />
-  </g>
-</svg>
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:ns2="http://www.inkscape.org/namespaces/inkscape" width="82" height="40" viewBox="0 0 21.695833 10.583333" version="1.1" id="svg1" ns1:docname="domino-back.svg" ns2:version="1.4 (86a8ad7, 2024-10-11)">
+  <ns1:namedview id="namedview1" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" ns2:showpageshadow="2" ns2:pageopacity="0.0" ns2:pagecheckerboard="0" ns2:deskcolor="#d1d1d1" ns2:document-units="px" ns2:zoom="0.65477694" ns2:cx="396.31817" ns2:cy="561.25984" ns2:window-width="1920" ns2:window-height="1009" ns2:window-x="1912" ns2:window-y="1072" ns2:window-maximized="1" ns2:current-layer="g1" />
+  <ns0:defs id="defs1" />
+  <ns0:g ns2:groupmode="layer" ns2:label="L1" id="g1">
+    <ns0:rect x="1.110223e-16" y="1.110223e-16" width="21.695833" height="10.583333" style="fill:#ff0000;stroke:#000000;stroke-width:0;stroke-dasharray:none" id="rect1" />
+  </ns0:g>
+</ns0:svg>

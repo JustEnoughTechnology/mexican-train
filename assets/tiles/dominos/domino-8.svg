@@ -1,102 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   width="40"
-   height="40"
-   viewBox="0 0 10.583333 10.583333"
-   version="1.1"
-   id="svg1"
-   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
-   sodipodi:docname="domino-8.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview1"
-     pagecolor="#505050"
-     bordercolor="#eeeeee"
-     borderopacity="1"
-     inkscape:showpageshadow="0"
-     inkscape:pageopacity="0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#505050"
-     inkscape:document-units="px"
-     inkscape:zoom="0.71891835"
-     inkscape:cx="-569.60571"
-     inkscape:cy="-157.87606"
-     inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="1912"
-     inkscape:window-y="1072"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
-  <defs
-     id="defs1" />
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-255.85208,-189.97082)">
-    <g
-       id="g38"
-       transform="matrix(0.26458333,0,0,0.26458333,254.36094,173.54666)">
-      <rect
-         style="fill:#ff0000;stroke-width:0.264583"
-         id="rect1-3-7"
-         width="40"
-         height="40"
-         x="5.6357913"
-         y="62.075577" />
-      <circle
-         style="fill:#000000;stroke-width:0.264583"
-         id="dot-1"
-         cx="9.9129667"
-         cy="68.884117"
-         r="3" />
-      <circle
-         style="fill:#000000;stroke-width:0.264583"
-         id="dot-2"
-         cx="39.904495"
-         cy="68.884117"
-         r="3" />
-      <circle
-         style="fill:#000000;stroke-width:0.264583"
-         id="dot-3"
-         cx="25.173309"
-         cy="68.884117"
-         r="3" />
-      <circle
-         style="fill:#000000;stroke-width:0.264583"
-         id="dot-4"
-         cx="9.9129667"
-         cy="81.498688"
-         r="3" />
-      <circle
-         style="fill:#000000;stroke-width:0.264583"
-         id="dot-5"
-         cx="39.904495"
-         cy="81.498688"
-         r="3" />
-      <circle
-         style="fill:#000000;stroke-width:0.264583"
-         id="dot-6"
-         cx="9.9129667"
-         cy="94.113266"
-         r="3" />
-      <circle
-         style="fill:#000000;stroke-width:0.264583"
-         id="dot-7"
-         cx="39.904495"
-         cy="94.113266"
-         r="3" />
-      <circle
-         style="fill:#000000;stroke-width:0.264583"
-         id="dot-8"
-         cx="25.173309"
-         cy="94.113266"
-         r="3" />
-    </g>
-  </g>
-</svg>
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.inkscape.org/namespaces/inkscape" xmlns:ns2="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="40" height="40" viewBox="0 0 10.583333 10.583333" version="1.1" id="svg1" ns1:version="1.4 (86a8ad7, 2024-10-11)" ns2:docname="domino-8.svg">
+  <ns2:namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" ns1:showpageshadow="0" ns1:pageopacity="0" ns1:pagecheckerboard="0" ns1:deskcolor="#505050" ns1:document-units="px" ns1:zoom="0.71891835" ns1:cx="-569.60571" ns1:cy="-157.87606" ns1:window-width="1920" ns1:window-height="1009" ns1:window-x="1912" ns1:window-y="1072" ns1:window-maximized="1" ns1:current-layer="layer1" />
+  <ns0:defs id="defs1" />
+  <ns0:g ns1:label="Layer 1" ns1:groupmode="layer" id="layer1" transform="translate(-255.85208,-189.97082)">
+    <ns0:g id="g38" transform="matrix(0.26458333,0,0,0.26458333,254.36094,173.54666)">
+      <ns0:rect style="fill:#ff0000;stroke-width:0.264583" id="rect1-3-7" width="40" height="40" x="5.6357913" y="62.075577" />
+      <ns0:circle style="fill:#000000;stroke-width:0.264583" id="dot-1" cx="9.9129667" cy="68.884117" r="3" />
+      <ns0:circle style="fill:#000000;stroke-width:0.264583" id="dot-2" cx="39.904495" cy="68.884117" r="3" />
+      <ns0:circle style="fill:#000000;stroke-width:0.264583" id="dot-3" cx="25.173309" cy="68.884117" r="3" />
+      <ns0:circle style="fill:#000000;stroke-width:0.264583" id="dot-4" cx="9.9129667" cy="81.498688" r="3" />
+      <ns0:circle style="fill:#000000;stroke-width:0.264583" id="dot-5" cx="39.904495" cy="81.498688" r="3" />
+      <ns0:circle style="fill:#000000;stroke-width:0.264583" id="dot-6" cx="9.9129667" cy="94.113266" r="3" />
+      <ns0:circle style="fill:#000000;stroke-width:0.264583" id="dot-7" cx="39.904495" cy="94.113266" r="3" />
+      <ns0:circle style="fill:#000000;stroke-width:0.264583" id="dot-8" cx="25.173309" cy="94.113266" r="3" />
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>

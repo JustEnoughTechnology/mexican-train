@@ -1,16 +1,17 @@
 class_name Domino
 extends ColorRect
 ## Visual representation of a domino tile
-@onready var data: DominoData
-@onready var back := $CenterContainer/DominoBack
-@onready var front := $CenterContainer/DominoFront
-@onready var container := $CenterContainer
+var data: DominoData
+@onready var back: TextureRect = $CenterContainer/DominoBack
+@onready var front: TextureRect = $CenterContainer/DominoFront
+@onready var container: CenterContainer = $CenterContainer
 @onready var orientation_label: Label = null
 
-var imgpath = "res://assets/tiles/dominos/domino-%d-%d.svg"
+var imgpath: String = "res://assets/tiles/dominos/domino-%d-%d.svg"
+var imgpath_oriented: String = "res://assets/tiles/dominos/domino-%d-%d_%s.svg"
 
-@onready var old_modulate := modulate
-@onready var is_highlighted := false
+@onready var old_modulate: Color = modulate
+@onready var is_highlighted: bool = false
 
 ## Emitted when right mouse button is pressed on this domino
 @warning_ignore("unused_signal")
@@ -18,93 +19,30 @@ signal mouse_right_pressed(p_domino: Domino)
 ## Emitted when a domino is dropped onto this one
 signal domino_dropped(target: Domino, dropped: Domino)
 
+
 func _ready() -> void:
-	# Add orientation label overlay (for debugging orientation)
-	if not has_node("OrientationLabel"):
-		orientation_label = Label.new()
-		orientation_label.name = "OrientationLabel"
-		orientation_label.text = ""
-		orientation_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		orientation_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		orientation_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		orientation_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		orientation_label.anchor_left = 0.0
-		orientation_label.anchor_top = 0.0
-		orientation_label.anchor_right = 1.0
-		orientation_label.anchor_bottom = 1.0
-		orientation_label.position = Vector2(0, 0)
-		orientation_label.custom_minimum_size = Vector2(82, 40)
-		# Make the overlay invisible for now
-		orientation_label.visible = false
-		add_child(orientation_label)
-	else:
-		orientation_label = $OrientationLabel
-	if GameState.DEBUG_SHOW_WARNINGS:
-		print("[DOMINO] _ready: %s mouse_filter=%s" % [name, self.mouse_filter])
+	# Ensure the front texture is set on scene start using current data
+	set_dots(data.dots.x, data.dots.y)
+	# Use the OrientationLabel node from the scene if present
+	orientation_label = $OrientationLabel if has_node("OrientationLabel") else null
+
 	self.mouse_filter = Control.MOUSE_FILTER_STOP
-func _gui_input(event):
-	if GameState.DEBUG_SHOW_WARNINGS:
-		print("[DOMINO] _gui_input: %s event=%s" % [name, event])
 
-	# Initialize data if it doesn't exist (when instantiated from scene)
-	if data == null:
-		data = DominoData.new(0, 0)  # Default to 0-0 domino
+	# Set pivot to center for proper rotation
+	set_pivot_to_center()
 
-	# Ensure consistent sizes - the domino and all children should be 82x40, rounded to whole pixels
-	var domino_size = Vector2(82, 40)
-	if size != domino_size:
-		call_deferred("set", "size", domino_size)
 
-	# Set pivot points for proper rotation
-	pivot_offset = size / 2
+# Helper to set pivot to center
+func set_pivot_to_center() -> void:
+	# Use current size, or default if not yet set
+	var center = size * 0.5
+	pivot_offset = center
 
-	# For now, give the domino a visible background for debugging
-	# We'll make it semi-transparent gray so we can see the domino bounds
-	self.color = Color(0.5, 0.5, 0.5, 0.3)  # Light gray, semi-transparent
 
-	# Make sure container has the exact same size as the domino
-	container.custom_minimum_size = domino_size
-	container.set_deferred("size", domino_size)
-	container.pivot_offset = domino_size / 2
-
-	# Set up properties for front and back textures
-	if front:
-		# Set explicit size for front texture
-		front.custom_minimum_size = domino_size
-		front.size = domino_size
-		front.pivot_offset = Vector2(round(41), round(20))  # Half of 82x40
-		# Make sure front texture fits properly
-		front.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-		front.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		# Ensure front is fully opaque
-		front.modulate = Color(1, 1, 1, 1)
-
-	if back:
-		# Set explicit size for back texture
-		back.custom_minimum_size = domino_size
-		back.size = domino_size
-		back.pivot_offset = Vector2(round(41), round(20))  # Half of 82x40
-		# Make sure back texture fits properly
-		back.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-		back.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		# Ensure back is fully opaque
-		back.modulate = Color(1, 1, 1, 1)
-
-	# Initialize face-up state and enforce mutual exclusivity of front and back visibility
-	set_face_up(data.is_face_up)
-
-	# Make sure all children have zero rotation relative to their parent
-	container.rotation = 0
-	if front:
-		front.rotation = 0
-	if back:
-		back.rotation = 0
-
-	# Do not connect gui_input signal manually; Godot already routes _gui_input automatically.
-	# gui_input.connect(_gui_input)  # <-- REMOVE this line to avoid duplicate connection error
 
 
 func _init(left := 0, right := 0) -> void:
+	print("init:L%d R%d"%[left,right])
 	data = DominoData.new(left, right)
 
 # Orientation constants (for convenience, mirror DominoData usage)
@@ -119,92 +57,15 @@ var ORIENTATION_COLORS = {
 	DominoData.ORIENTATION_LARGEST_BOTTOM: Color(1, 1, 0.4, 0.35),    # Light Yellow, subtle
 }
 
-func set_orientation(new_orientation: int) -> void:
-	print("[DEBUG][%s] set_orientation called: %s (at %s)" % [name, str(new_orientation), str(Time.get_ticks_msec())])
-	# Optionally print the call stack for deep debugging:
-	# print_stack()
-	data.orientation = new_orientation
-	# Always start with default: largest on left, horizontal
-	var left = data.dots.x
-	var right = data.dots.y
-	var rot = 0.0
-	match data.orientation:
-		DominoData.ORIENTATION_LARGEST_LEFT:
-			# Largest on left, horizontal
-			if left < right:
-				var tmp = left
-				left = right
-				right = tmp
-			rot = 0.0
-		DominoData.ORIENTATION_LARGEST_RIGHT:
-			# Largest on right, horizontal
-			if left > right:
-				var tmp = left
-				left = right
-				right = tmp
-			rot = 180.0
-		DominoData.ORIENTATION_LARGEST_TOP:
-			# Largest on top, vertical
-			if left < right:
-				var tmp = left
-				left = right
-				right = tmp
-			rot = -90.0
-		DominoData.ORIENTATION_LARGEST_BOTTOM:
-			# Largest on bottom, vertical
-			if left > right:
-				var tmp = left
-				left = right
-				right = tmp
-			rot = 90.0
-		_:
-			rot = 0.0
-	# Set the rotation only; do not call set_dots here to avoid recursion
-	# (Orientation and dots must be set independently)
-	# If you need to update the visual after changing dots, call set_orientation after set_dots externally.
-	# (No call to set_dots here)
-
-	# TEMPORARY: Overlay actual visual orientation letter for debugging
-	var visual_orientation = "?"
-	# After all swaps and rotation, determine where the largest value is visually
-	if rot == 0.0:
-		# Horizontal, largest on left
-		visual_orientation = "L"
-	elif rot == 180.0:
-		# Horizontal, largest on right
-		visual_orientation = "R"
-	elif rot == -90.0:
-		# Vertical, largest on top
-		visual_orientation = "T"
-	elif rot == 90.0:
-		# Vertical, largest on bottom
-		visual_orientation = "B"
-	if orientation_label:
-		orientation_label.text = visual_orientation
-		orientation_label.visible = true
-	# Remove or comment out color modulation for clarity
-	modulate = old_modulate
-
-	# Ensure the pivot is at the center for correct rotation
-	pivot_offset = size / 2
-	# Also ensure container and children have their pivots at center
-	if container:
-		container.pivot_offset = container.size / 2
-	if front:
-		front.pivot_offset = front.size / 2
-	if back:
-		back.pivot_offset = back.size / 2
-
-	rotation_degrees = rot
-	# Ensure children are not rotated
-	if container:
-		container.rotation = 0
-	if front:
-		front.rotation = 0
-	if back:
-		back.rotation = 0
-	if GameState.DEBUG_SHOW_WARNINGS:
-		print("[DOMINO] set_orientation: orientation=%d, dots=(%d,%d), rotation=%.1f, pivot_offset=%s" % [data.orientation, left, right, rot, str(pivot_offset)])
+## Orientation label overlay contract:
+# Only external scripts (such as test scripts) should toggle the orientation label overlay.
+# The domino script itself never toggles the orientation label automatically, including when added to the hand.
+# To show or hide the overlay, use the `show_orientation_label` property or call `toggle_orientation_label()` from outside this script.
+var show_orientation_label: bool = false:
+	set(value):
+		show_orientation_label = value
+		if orientation_label:
+			orientation_label.visible = value
 
 
 	
@@ -212,29 +73,35 @@ func set_orientation(new_orientation: int) -> void:
 ## The preview shows either the front or back based on face up state
 func get_preview() -> Control:
 	# Create a simple preview that exactly matches the current domino
-	var preview = ColorRect.new()
-	preview.size = Vector2(82, 40) # Use consistent size of 82x40
+	var preview: ColorRect = ColorRect.new()
+	
+	# Use size based on current orientation
+	var preview_size = Vector2(82, 40)  # Default horizontal
+	if data.orientation == DominoData.ORIENTATION_LARGEST_TOP or data.orientation == DominoData.ORIENTATION_LARGEST_BOTTOM:
+		preview_size = Vector2(40, 82)  # Vertical orientations
+	
+	preview.size = preview_size
 	preview.color = color
 	preview.modulate = modulate.lightened(0.2) # Slightly lighter to show it's a preview
 	preview.z_index = 0 # Base at the bottom
 
 	# Set pivot for proper rotation
-	preview.pivot_offset = Vector2(41, 20) # Half of 82x40
+	preview.pivot_offset = preview_size * 0.5
 
 	# Create a centered container like the original domino
-	var preview_container = CenterContainer.new()
-	preview_container.size = Vector2(82, 40) # Use consistent size
-	preview_container.custom_minimum_size = Vector2(82, 40)
+	var preview_container: CenterContainer = CenterContainer.new()
+	preview_container.size = preview_size
+	preview_container.custom_minimum_size = preview_size
 	preview_container.anchors_preset = Control.PRESET_FULL_RECT
 	preview_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	preview_container.z_index = 1 # Container in the middle
 	preview.add_child(preview_container)
 
 	# Create the appropriate visual element based on face up state
-	var visual
+	var visual: TextureRect
 	if data.is_face_up:
 		visual = TextureRect.new()
-		var texture_path = imgpath % [data.dots[0], data.dots[1]]
+		var texture_path: String = get_texture_path_for_orientation()
 		visual.texture = load(texture_path)
 		visual.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 		visual.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
@@ -243,12 +110,12 @@ func get_preview() -> Control:
 		visual.texture = back.texture
 
 	# Ensure proper size and alignment
-	visual.custom_minimum_size = Vector2(size.x * 0.8, size.y * 0.8)
+	visual.custom_minimum_size = Vector2(preview_size.x * 0.8, preview_size.y * 0.8)
 	visual.z_index = 2 # Visual elements on top
 	preview_container.add_child(visual)
 
-	# Apply the rotation to the preview itself, not to its children
-	preview.rotation = rotation
+	# No rotation needed - using pre-rotated textures
+	# preview.rotation = rotation
 
 	return preview
 
@@ -275,7 +142,7 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	
 ## Highlight or unhighlight the domino
 func highlight(is_on: bool = true) -> void:
-	modulate = old_modulate if !is_on else Color(0.9, 0.9, 0.9, 0.75)
+	# Optionally implement highlight by changing border or outline, but do not use modulate
 	is_highlighted = is_on
 
 ## Set whether the domino is face up (showing dots) or face down
@@ -283,36 +150,35 @@ func set_face_up(is_on: bool = true) -> void:
 	# Update the data model
 	data.is_face_up = is_on
 	
-	# Keep the background visible for debugging (light gray, semi-transparent)
-	# Don't make it fully transparent as it helps us see the domino bounds
-	self.color = Color(0.5, 0.5, 0.5, 0.3)  # Light gray, semi-transparent
+	# Do not use modulate or color for face switching; only use visible property
 	
 	# Strictly enforce mutual exclusivity of front and back visibility
 	if front and back:
 		if is_on:
-			# Face up: front visible, back hidden
 			front.visible = true
 			back.visible = false
 		else:
-			# Face down: back visible, front hidden
 			front.visible = false
 			back.visible = true
 	
-	# Keep container rotation at 0
-	if container:
-		container.rotation = 0
+	# DO NOT reset rotations here - preserve orientation settings
+	# The rotation should only be controlled by set_orientation()
 	
-	# Front and Back on top with proper sizing
+	# Front and Back on top with proper sizing based on current orientation
+	var current_size = Vector2(82, 40)  # Default horizontal
+	if data.orientation == DominoData.ORIENTATION_LARGEST_TOP or data.orientation == DominoData.ORIENTATION_LARGEST_BOTTOM:
+		current_size = Vector2(40, 82)  # Vertical orientations
+	
 	if front:
 		front.z_index = 2
-		front.rotation = 0
-		front.custom_minimum_size = Vector2(82, 40)
+		# DO NOT reset front.rotation - preserve orientation
+		front.custom_minimum_size = current_size
 	if back:
 		back.z_index = 2
-		back.rotation = 0
-		back.custom_minimum_size = Vector2(82, 40)
+		# DO NOT reset back.rotation - preserve orientation  
+		back.custom_minimum_size = current_size
 	# Do not set size directly; layout will handle sizing
-	container.custom_minimum_size = Vector2(82, 40)
+	container.custom_minimum_size = current_size
 	container.set_deferred("anchors_preset", Control.PRESET_FULL_RECT)
 	
 ## Get the dots on this domino
@@ -325,9 +191,40 @@ func set_dots(p_left: int, p_right: int) -> void:
 	if not front:
 		push_error("[DOMINO] set_dots: 'front' is null for %s. You must add the domino to the scene tree before calling set_dots." % name)
 		return
-	var texture_path = imgpath % [data.dots[0], data.dots[1]]
+	var texture_path: String = imgpath % [data.dots[0], data.dots[1]]
 	front.set_texture(load(texture_path))
 	# Do not call set_orientation here to avoid recursion. Caller must update orientation if needed.
+
+## Get the correct texture path based on current orientation
+func get_texture_path_for_orientation() -> String:
+	var base_path = imgpath % [data.dots[0], data.dots[1]]
+	
+	# If no orientation is set, use base texture
+	if data.orientation == 0:
+		print("[DOMINO] Using base texture: %s" % base_path)
+		return base_path
+	
+	# Use pre-rotated textures based on orientation
+	var orientation_suffix = ""
+	match data.orientation:
+		DominoData.ORIENTATION_LARGEST_LEFT:
+			orientation_suffix = "_left"
+		DominoData.ORIENTATION_LARGEST_RIGHT:
+			orientation_suffix = "_right"
+		DominoData.ORIENTATION_LARGEST_TOP:
+			orientation_suffix = "_top"
+		DominoData.ORIENTATION_LARGEST_BOTTOM:
+			orientation_suffix = "_bottom"
+		_:
+			# Fallback to base texture for invalid orientations
+			print("[DOMINO] Invalid orientation %s, using base texture: %s" % [data.orientation, base_path])
+			return base_path
+	
+	# Build oriented texture path
+	var base_name = base_path.get_basename()  # removes .svg
+	var oriented_path = base_name + orientation_suffix + ".svg"
+	print("[DOMINO] Using oriented texture: %s (orientation: %s)" % [oriented_path, data.orientation])
+	return oriented_path
 
 ## Toggle between face up and face down
 func toggle_dots() -> void:
@@ -340,3 +237,73 @@ func toggle_dots() -> void:
 func _on_domino_dropped(target: Domino, dropped: Domino) -> void:
 	# This function can be used for testing or override in subclasses
 	domino_dropped.emit(target, dropped)
+
+# Set the orientation of the domino visually and logically
+func set_orientation(orientation: int) -> void:
+	# Set the orientation in the data model
+	data.orientation = orientation
+
+	# Reset all rotations
+	rotation = 0
+	if container:
+		container.rotation = 0
+	if front:
+		front.rotation = 0
+	if back:
+		back.rotation = 0
+
+	# Always set pivot to center for correct rotation
+	set_pivot_to_center()
+
+	# Set the rotation and dot order based on orientation
+	# Note: The domino images are horizontal by default (larger value on left)
+	match orientation:
+		DominoData.ORIENTATION_LARGEST_LEFT:
+			rotation_degrees = 0  # No rotation needed, largest on left naturally
+			if data.dots.x >= data.dots.y:
+				set_dots(data.dots.x, data.dots.y)
+			else:
+				set_dots(data.dots.y, data.dots.x)
+		DominoData.ORIENTATION_LARGEST_RIGHT:
+			rotation_degrees = 180  # Flip 180 to put largest on right
+			if data.dots.x >= data.dots.y:
+				set_dots(data.dots.x, data.dots.y)
+			else:
+				set_dots(data.dots.y, data.dots.x)
+		DominoData.ORIENTATION_LARGEST_TOP:
+			rotation_degrees = 90  # Rotate clockwise to put largest at top
+			if data.dots.x >= data.dots.y:
+				set_dots(data.dots.x, data.dots.y)
+			else:
+				set_dots(data.dots.y, data.dots.x)
+		DominoData.ORIENTATION_LARGEST_BOTTOM:
+			rotation_degrees = -90  # Rotate counter-clockwise to put largest at bottom
+			if data.dots.x >= data.dots.y:
+				set_dots(data.dots.x, data.dots.y)
+			else:
+				set_dots(data.dots.y, data.dots.x)
+		_:
+			push_error("[DOMINO] set_orientation: Invalid orientation value: %s" % orientation)
+
+	# Update the orientation label overlay if present
+	if orientation_label:
+		# Map orientation to human-friendly label
+		var orientation_map = {
+			DominoData.ORIENTATION_LARGEST_LEFT: "L",
+			DominoData.ORIENTATION_LARGEST_RIGHT: "R",
+			DominoData.ORIENTATION_LARGEST_TOP: "T",
+			DominoData.ORIENTATION_LARGEST_BOTTOM: "B"
+		}
+		if orientation_map.has(orientation):
+			orientation_label.text = orientation_map[orientation]
+		else:
+			orientation_label.text = "?"
+		orientation_label.visible = show_orientation_label
+
+## Helper method to toggle the orientation label overlay
+# Only call this from external scripts (e.g., test scripts) to control the overlay.
+func toggle_orientation_label(value: Variant = null) -> void:
+	if value == null:
+		show_orientation_label = !show_orientation_label
+	else:
+		show_orientation_label = value

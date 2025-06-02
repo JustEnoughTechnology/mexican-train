@@ -1,3 +1,6 @@
+assets/tiles/*
+!assets/tiles/dominos/
+!assets/tiles/dominos/**
 # Godot 4+ specific ignores
 
 .godot/*
