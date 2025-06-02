@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://co2rnqiaeg0kt"]
+[gd_scene load_steps=4 format=3 uid="uid://co2rnqiaeg0kt"]
 
 [ext_resource type="Script" uid="uid://c7ssioqtv3x3x" path="res://scripts/domino/domino.gd" id="1_b0ayk"]
-[ext_resource type="Texture2D" path="res://assets/tiles/dominos/domino-back.svg" id="2_22mju"]
 
 [sub_resource type="Theme" id="Theme_68yp3"]
 
@@ -32,7 +31,6 @@ theme = SubResource("Theme_68yp3")
 z_index = 1
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("2_22mju")
 
 [node name="DominoFront" type="TextureRect" parent="CenterContainer"]
 visible = false

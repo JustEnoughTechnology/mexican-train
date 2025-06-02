@@ -19,9 +19,42 @@ signal mouse_right_pressed(p_domino: Domino)
 ## Emitted when a domino is dropped onto this one
 signal domino_dropped(target: Domino, dropped: Domino)
 
+
 func _ready() -> void:
+	# Set proper initial size based on orientation
+	var current_size = Vector2(82, 40)  # Default horizontal
+	if data.orientation == DominoData.ORIENTATION_LARGEST_TOP or data.orientation == DominoData.ORIENTATION_LARGEST_BOTTOM:
+		current_size = Vector2(40, 82)  # Vertical orientations
+	
+	# Set initial domino size
+	custom_minimum_size = current_size
+	size = current_size
+	
 	# Ensure the front texture is set on scene start using current data
 	set_dots(data.dots.x, data.dots.y)
+	
+	# Ensure the back texture is also set with proper orientation
+	if back:
+		var back_texture_path = get_back_texture_path_for_orientation()
+		back.set_texture(load(back_texture_path))
+	
+	# Ensure container is properly sized
+	if container:
+		container.custom_minimum_size = current_size
+		# Don't set size directly, let the container manage its own size
+	
+	# Configure TextureRect nodes for proper display
+	if front:
+		front.custom_minimum_size = current_size
+		front.size = current_size
+		front.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		front.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	if back:
+		back.custom_minimum_size = current_size
+		back.size = current_size
+		back.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		back.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	
 	# Use the OrientationLabel node from the scene if present
 	orientation_label = $OrientationLabel if has_node("OrientationLabel") else null
 
@@ -30,17 +63,23 @@ func _ready() -> void:
 	# Set pivot to center for proper rotation
 	set_pivot_to_center()
 
+
 # Helper to set pivot to center
 func set_pivot_to_center() -> void:
 	# Use current size, or default if not yet set
 	var center = size * 0.5
 	pivot_offset = center
 
+
+
+
 func _init(left := 0, right := 0) -> void:
 	print("init:L%d R%d"%[left,right])
 	data = DominoData.new(left, right)
 
 # Orientation constants (for convenience, mirror DominoData usage)
+
+
 
 # TEMPORARY: Color-coding for orientation debugging
 var ORIENTATION_COLORS = {
@@ -59,6 +98,8 @@ var show_orientation_label: bool = false:
 		show_orientation_label = value
 		if orientation_label:
 			orientation_label.visible = value
+
+
 	
 ## Returns a preview control for drag and drop operations
 ## The preview shows either the front or back based on face up state
@@ -98,7 +139,10 @@ func get_preview() -> Control:
 		visual.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	else:
 		visual = TextureRect.new()
-		visual.texture = back.texture
+		var back_texture_path: String = get_back_texture_path_for_orientation()
+		visual.texture = load(back_texture_path)
+		visual.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		visual.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 
 	# Ensure proper size and alignment
 	visual.custom_minimum_size = Vector2(preview_size.x * 0.8, preview_size.y * 0.8)
@@ -151,6 +195,9 @@ func set_face_up(is_on: bool = true) -> void:
 		else:
 			front.visible = false
 			back.visible = true
+			# Ensure back texture uses the oriented version
+			var back_texture_path = get_back_texture_path_for_orientation()
+			back.set_texture(load(back_texture_path))
 	
 	# DO NOT reset rotations here - preserve orientation settings
 	# The rotation should only be controlled by set_orientation()
@@ -164,13 +211,19 @@ func set_face_up(is_on: bool = true) -> void:
 		front.z_index = 2
 		# DO NOT reset front.rotation - preserve orientation
 		front.custom_minimum_size = current_size
+		front.size = current_size
+		front.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		front.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	if back:
 		back.z_index = 2
 		# DO NOT reset back.rotation - preserve orientation  
 		back.custom_minimum_size = current_size
-	# Do not set size directly; layout will handle sizing
+		back.size = current_size
+		back.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		back.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	# Update container size to match orientation
 	container.custom_minimum_size = current_size
-	container.set_deferred("anchors_preset", Control.PRESET_FULL_RECT)
+	# Don't set container size directly, let it manage itself
 	
 ## Get the dots on this domino
 func get_dots() -> Vector2i:
@@ -219,6 +272,37 @@ func get_texture_path_for_orientation() -> String:
 	
 	return oriented_path
 
+## Get the correct back texture path based on current orientation
+func get_back_texture_path_for_orientation() -> String:
+	# Always use oriented back textures
+	var orientation_suffix = ""
+	match data.orientation:
+		DominoData.ORIENTATION_LARGEST_LEFT:
+			orientation_suffix = "_left"
+		DominoData.ORIENTATION_LARGEST_RIGHT:
+			orientation_suffix = "_right"
+		DominoData.ORIENTATION_LARGEST_TOP:
+			orientation_suffix = "_top"
+		DominoData.ORIENTATION_LARGEST_BOTTOM:
+			orientation_suffix = "_bottom"
+		_:
+			# Default to left orientation for invalid orientations
+			print("[DOMINO] Invalid back orientation %s, defaulting to left" % data.orientation)
+			orientation_suffix = "_left"
+	
+	# Build oriented back texture path
+	var oriented_back_path = "res://assets/tiles/dominos/domino-back%s.svg" % orientation_suffix
+	print("[DOMINO] Attempting to load back texture: %s (orientation: %s)" % [oriented_back_path, data.orientation])
+	
+	# Check if the file exists
+	if not ResourceLoader.exists(oriented_back_path):
+		print("[DOMINO] ERROR: Back texture file does not exist: %s" % oriented_back_path)
+		# Fallback to basic back texture
+		var fallback_path = "res://assets/tiles/dominos/domino-back.svg"
+		print("[DOMINO] Using fallback back texture: %s" % fallback_path)
+		return fallback_path
+	
+	return oriented_back_path
 ## Toggle between face up and face down
 func toggle_dots() -> void:
 	set_face_up(!data.is_face_up)
@@ -236,7 +320,9 @@ func set_orientation(orientation: int) -> void:
 	# Set the orientation in the data model
 	data.orientation = orientation
 
-	# No node rotation needed; use pre-rotated SVGs
+	# No container rotation needed - we use pre-oriented SVG textures
+	# The oriented textures handle the visual rotation
+	
 	# Set the correct dots order (largest first)
 	if data.dots.x >= data.dots.y:
 		set_dots(data.dots.x, data.dots.y)
@@ -247,17 +333,42 @@ func set_orientation(orientation: int) -> void:
 	if front:
 		var texture_path = get_texture_path_for_orientation()
 		front.set_texture(load(texture_path))
+	
+	# Set the correct back texture for the orientation
+	if back:
+		var back_texture_path = get_back_texture_path_for_orientation()
+		back.set_texture(load(back_texture_path))
 
-	# Set the correct size for horizontal/vertical
+	# Set the correct size for horizontal/vertical orientations
+	# Since we use pre-oriented textures, adjust the container size to match
 	var current_size = Vector2(82, 40)  # Default horizontal
 	if orientation == DominoData.ORIENTATION_LARGEST_TOP or orientation == DominoData.ORIENTATION_LARGEST_BOTTOM:
-		current_size = Vector2(40, 82)
-	if front:
-		front.custom_minimum_size = current_size
-	if back:
-		back.custom_minimum_size = current_size
+		current_size = Vector2(40, 82)  # Vertical orientations need swapped dimensions
+	
+	# Update the domino's own size to match the orientation
+	custom_minimum_size = current_size
+	size = current_size
+	
+	# Update container size - only set custom_minimum_size, let it expand naturally
 	if container:
 		container.custom_minimum_size = current_size
+		# Don't set size directly, let the container manage its own size
+	
+	# Update TextureRect nodes - use proper sizing for display
+	if front:
+		# Set the TextureRect to fill the container
+		front.custom_minimum_size = current_size
+		front.size = current_size
+		# Use expand mode that fills the available space
+		front.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		front.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	if back:
+		# Set the TextureRect to fill the container
+		back.custom_minimum_size = current_size
+		back.size = current_size
+		# Use expand mode that fills the available space
+		back.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		back.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 
 	# Update the orientation label overlay if present
 	if orientation_label:

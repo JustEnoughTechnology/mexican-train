@@ -36,6 +36,7 @@ func _ready() -> void:
 	call_deferred("_center_domino")
 	call_deferred("_update_status")
 	print("Use arrow keys to change orientation: Up=Top, Down=Bottom, Left=Left, Right=Right")
+	print("Press SPACE to toggle face up/down, O to toggle orientation label")
 
 func _center_domino() -> void:
 	if not domino:
@@ -63,6 +64,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				changed = true
 			KEY_RIGHT:
 				domino.set_orientation(DominoData.ORIENTATION_LARGEST_RIGHT)
+				changed = true
+			KEY_SPACE:
+				domino.toggle_dots()
 				changed = true
 			KEY_O:
 				domino.toggle_orientation_label()
