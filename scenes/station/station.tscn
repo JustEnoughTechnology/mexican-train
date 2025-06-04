@@ -1,5 +1,72 @@
-[gd_scene format=3 uid="uid://c4ow5f7xb5svu"]
+[gd_scene load_steps=4 format=3 uid="uid://bvxqwerty12345"]
 
-[node name="Station" type="Polygon2D"]
-color = Color(0.298039, 1, 1, 1)
-polygon = PackedVector2Array(116.77, -42.5, 116.77, 42.5, 62.13, 107.61, -21.58, 122.37, -95.19, 79.87, -124.26, 0, -95.19, -79.87, -21.58, -122.37, 62.13, -107.61)
+[ext_resource type="Script" path="res://scripts/station/station.gd" id="1_station"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+bg_color = Color(0.9, 0.4, 0.7, 0.9)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.6, 0.8, 1)
+corner_radius_top_left = 82
+corner_radius_top_right = 82
+corner_radius_bottom_right = 82
+corner_radius_bottom_left = 82
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2"]
+bg_color = Color(1, 0.7, 0.9, 0.5)
+corner_radius_top_left = 82
+corner_radius_top_right = 82
+corner_radius_bottom_right = 82
+corner_radius_bottom_left = 82
+
+[node name="Station" type="Panel"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 164.0
+offset_bottom = 164.0
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1")
+script = ExtResource("1_station")
+
+[node name="DropHighlight" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2")
+
+[node name="StationLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -40.0
+offset_right = 60.0
+offset_bottom = -10.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "STATION
+(Drop 6-6 here)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DominoContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = 10.0
+offset_right = 41.0
+offset_bottom = 50.0
+mouse_filter = 2

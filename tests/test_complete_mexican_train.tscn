@@ -1,0 +1,135 @@
+[gd_scene load_steps=5 format=3 uid="uid://complete_mexican_train"]
+
+[ext_resource type="Script" path="res://tests/test_complete_mexican_train.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/bone_yard/bone_yard.tscn" id="2_boneyard"]
+[ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://scenes/hand/hand.tscn" id="3_hand"]
+[ext_resource type="PackedScene" uid="uid://bvxqwerty12345" path="res://scenes/station/station.tscn" id="4_station"]
+[ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/train/train.tscn" id="5_train"]
+
+[node name="CompleteMexicanTrainGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="GameLayout" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BoneYard" parent="GameLayout" instance=ExtResource("2_boneyard")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_top = 40.0
+offset_right = -20.0
+offset_bottom = 300.0
+max_width_percent = 0.4
+max_height_percent = 0.4
+
+[node name="Hand" parent="GameLayout" instance=ExtResource("3_hand")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -160.0
+offset_right = 700.0
+offset_bottom = -20.0
+max_width_percent = 0.6
+max_height_percent = 0.2
+bg_color = Color(0.2, 0.3, 0.5, 0.8)
+label_text = "Your Hand"
+
+[node name="CenterArea" type="Control" parent="GameLayout"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -100.0
+offset_right = 350.0
+offset_bottom = 100.0
+
+[node name="Station" parent="GameLayout/CenterArea" instance=ExtResource("4_station")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -82.0
+offset_right = 184.0
+offset_bottom = 82.0
+
+[node name="Train" parent="GameLayout/CenterArea" instance=ExtResource("5_train")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -32.0
+offset_right = -16.0
+offset_bottom = 32.0
+color = Color(0.94, 0.48, 0.24, 1)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="StatusLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 10.0
+offset_right = 300.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 14
+text = "Loading game..."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="InstructionsLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -380.0
+offset_top = 320.0
+offset_right = -20.0
+offset_bottom = 500.0
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+text = "Loading instructions..."
+autowrap_mode = 2
+vertical_alignment = 1
+
+[node name="DebugButton" type="Button" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -50.0
+offset_right = -10.0
+offset_bottom = -10.0
+text = "Debug Stats"
+
+[connection signal="pressed" from="UI/DebugButton" to="." method="_on_debug_button_pressed"]

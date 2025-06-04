@@ -2,6 +2,8 @@
 
 This document lists all functions in the `scripts/domino/domino.gd` file.
 
+**Version**: 0.5.0 - Updated with drag-drop restrictions and source detection
+
 ## Public Functions
 
 ### 1. `_ready() -> void`
@@ -28,20 +30,28 @@ This document lists all functions in the `scripts/domino/domino.gd` file.
 - **Behavior**: Shows front texture if face up, back texture if face down
 
 ### 5. `_get_drag_data(_at_position: Vector2) -> Variant`
-- **Purpose**: Godot drag-and-drop handler
-- **Parameters**: `_at_position`: Mouse position (unused)
-- **Returns**: Reference to self for drag operations
-- **Actions**: 
-  - Creates drag preview
-  - Stores drag reference in scene tree meta
-  - Includes debug logging if enabled
+- **Purpose**: Godot drag-and-drop handler with source-based restrictions
+- **Returns**: `self` if drag allowed, `null` if blocked
+- **New Features (v0.5.0)**:
+  - Detects source container type using `_get_source_type()`
+  - Blocks dragging from trains and stations
+  - Stores source metadata for drop validation
+  - Enforces realistic game movement rules
 
-### 6. `highlight(is_on: bool = true) -> void`
+### 6. `_get_source_type() -> String` **[NEW in v0.5.0]**
+- **Purpose**: Identify the container type holding this domino
+- **Returns**: String identifying source: "boneyard", "hand", "train", "station", or "unknown"
+- **Logic**:
+  - Traverses parent hierarchy to identify container type
+  - Checks for specific node names and method signatures
+  - Used by drag-drop system to enforce movement restrictions
+
+### 7. `highlight(is_on: bool = true) -> void`
 - **Purpose**: Highlight or unhighlight the domino
 - **Parameters**: `is_on`: Whether to highlight (default true)
 - **Note**: Currently only sets internal flag, visual highlighting not implemented
 
-### 7. `set_face_up(is_on: bool = true) -> void`
+### 8. `set_face_up(is_on: bool = true) -> void`
 - **Purpose**: Set whether domino shows front (dots) or back texture
 - **Parameters**: `is_on`: Whether to show front (default true)
 - **Actions**:
@@ -49,11 +59,11 @@ This document lists all functions in the `scripts/domino/domino.gd` file.
   - Controls front/back texture visibility
   - Adjusts sizing based on current orientation
 
-### 8. `get_dots() -> Vector2i`
+### 9. `get_dots() -> Vector2i`
 - **Purpose**: Get the dot values on this domino
 - **Returns**: `Vector2i` with x=larger value, y=smaller value
 
-### 9. `set_dots(p_left: int, p_right: int) -> void`
+### 10. `set_dots(p_left: int, p_right: int) -> void`
 - **Purpose**: Set the dot values and update front texture
 - **Parameters**: 
   - `p_left`: Left side dot count
@@ -62,7 +72,7 @@ This document lists all functions in the `scripts/domino/domino.gd` file.
   - Stores dots with larger value first
   - Loads oriented texture using `get_texture_path_for_orientation()`
 
-### 10. `get_texture_path_for_orientation() -> String`
+### 11. `get_texture_path_for_orientation() -> String`
 - **Purpose**: Get the correct oriented SVG texture path
 - **Returns**: Path to oriented texture file
 - **Behavior**: 
@@ -70,18 +80,18 @@ This document lists all functions in the `scripts/domino/domino.gd` file.
   - Includes resource existence checking
   - Falls back to domino-back.svg if oriented texture missing
 
-### 11. `toggle_dots() -> void`
+### 12. `toggle_dots() -> void`
 - **Purpose**: Toggle between face up and face down
 - **Actions**: Calls `set_face_up()` with opposite of current state
 
-### 12. `_on_domino_dropped(target: Domino, dropped: Domino) -> void`
+### 13. `_on_domino_dropped(target: Domino, dropped: Domino) -> void`
 - **Purpose**: Handler for domino_dropped signal
 - **Parameters**:
   - `target`: Domino being dropped onto
   - `dropped`: Domino being dropped
 - **Actions**: Re-emits the signal (can be overridden in subclasses)
 
-### 13. `set_orientation(orientation: int) -> void`
+### 14. `set_orientation(orientation: int) -> void`
 - **Purpose**: Set the visual and logical orientation of the domino
 - **Parameters**: `orientation`: One of DominoData orientation constants
 - **Actions**:
@@ -91,14 +101,14 @@ This document lists all functions in the `scripts/domino/domino.gd` file.
   - Adjusts sizing for horizontal/vertical orientations
   - Updates orientation label text and position
 
-### 14. `toggle_orientation_label(value: Variant = null) -> void`
+### 15. `toggle_orientation_label(value: Variant = null) -> void`
 - **Purpose**: Toggle or set the visibility of orientation label overlay
 - **Parameters**: `value`: Optional boolean to set specific state (null toggles)
 - **Note**: Should only be called from external scripts (test scripts, etc.)
 
 ## Private Functions
 
-### 15. `_update_orientation_label_position(orientation: int) -> void`
+### 16. `_update_orientation_label_position(orientation: int) -> void`
 - **Purpose**: Position and align orientation label based on domino orientation
 - **Parameters**: `orientation`: One of DominoData orientation constants
 - **Actions**:
@@ -134,4 +144,4 @@ This document lists all functions in the `scripts/domino/domino.gd` file.
 
 ---
 
-**Total Functions: 15** (12 public, 3 private/lifecycle)
+**Total Functions: 16** (14 public, 3 private/lifecycle)

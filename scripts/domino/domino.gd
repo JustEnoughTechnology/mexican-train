@@ -155,25 +155,50 @@ func get_preview() -> Control:
 	return preview
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
+	# Determine the source type by checking parent hierarchy
+	var source_type = _get_source_type()
+	
+	# Block dragging from train and station (engine)
+	if source_type == "train" or source_type == "station":
+		if GameState.DEBUG_SHOW_WARNINGS:
+			print("[DOMINO] Drag blocked: Cannot drag from %s" % source_type)
+		return null
+	
 	if GameState.DEBUG_SHOW_WARNINGS:
-		print("[DOMINO] _get_drag_data called for domino: %s" % name)
+		print("[DOMINO] _get_drag_data called for domino: %s from %s" % [name, source_type])
 		print("Starting drag operation for domino: " + name)
-		print("[DEBUG] Drag started: Domino %s, parent: %s" % [name, get_parent().name])
+		print("[DEBUG] Drag started: Domino %s, parent: %s, source: %s" % [name, get_parent().name, source_type])
 		print("[DEBUG] Domino state: dots=%s, face_up=%s, rotation=%s" % [data.dots, data.is_face_up, rotation_degrees])
-		print("[DEBUG] Container rotation: %s" % [container.rotation_degrees])
-		print("Drag started: Domino %s, parent: %s" % [name, get_parent().name])
-		print("Domino state: dots=%s, face_up=%s, rotation=%s" % [data.dots, data.is_face_up, rotation_degrees])
-		print("Container rotation: %s" % [container.rotation_degrees])
 
 	var preview = get_preview()
 	set_drag_preview(preview)
 
-	# Store a reference to self in a property that won't be garbage collected
+	# Store a reference to self and source type in metadata
 	get_tree().set_meta("current_drag_domino", self)
+	get_tree().set_meta("current_drag_source", source_type)
 
 	# Return self as the drag data
-	# Note: Godot's _drop_data will receive this return value
 	return self
+
+## Determine the source type by checking the parent hierarchy
+func _get_source_type() -> String:
+	var current_node = get_parent()
+	while current_node:
+		# Check if we're in a boneyard
+		if current_node.has_method("is_boneyard"):
+			return "boneyard"
+		# Check if we're in a hand
+		if current_node is Hand:
+			return "hand"
+		# Check if we're in a train
+		if current_node.name.to_lower().contains("train") or current_node.has_method("get_open_end"):
+			return "train"
+		# Check if we're in a station (engine)
+		if current_node.name.to_lower().contains("station") or current_node.has_method("can_place_engine"):
+			return "station"
+		current_node = current_node.get_parent()
+	
+	return "unknown"
 	
 ## Highlight or unhighlight the domino
 func highlight(is_on: bool = true) -> void:
@@ -231,7 +256,8 @@ func get_dots() -> Vector2i:
 
 ## Set the dots on this domino
 func set_dots(p_left: int, p_right: int) -> void:
-	data.dots = Vector2i(max(p_left, p_right), min(p_left, p_right))
+	# Use the DominoData.set_dots() method which preserves order as (x,y)
+	data.set_dots(p_left, p_right)
 	if not front:
 		push_error("[DOMINO] set_dots: 'front' is null for %s. You must add the domino to the scene tree before calling set_dots." % name)
 		return
@@ -258,16 +284,19 @@ func get_texture_path_for_orientation() -> String:
 			print("[DOMINO] Invalid orientation %s, defaulting to left" % data.orientation)
 			orientation_suffix = "_left"
 	
-	# Build oriented texture path using imgpath_oriented format
-	var oriented_path = imgpath_oriented % [data.dots[0], data.dots[1], orientation_suffix.substr(1)]  # Remove leading underscore
-	print("[DOMINO] Attempting to load texture: %s (orientation: %s)" % [oriented_path, data.orientation])
+	# Texture files are always named domino-L-R_orientation.svg where L >= R
+	# So we need to ensure we use max(x,y) and min(x,y) for the filename
+	var larger_dots = max(data.dots.x, data.dots.y)
+	var smaller_dots = min(data.dots.x, data.dots.y)
+	
+	# Build oriented texture path using imgpath_oriented format with larger-smaller ordering
+	var oriented_path = imgpath_oriented % [larger_dots, smaller_dots, orientation_suffix.substr(1)]  # Remove leading underscore
 	
 	# Check if the file exists
 	if not ResourceLoader.exists(oriented_path):
 		print("[DOMINO] ERROR: Texture file does not exist: %s" % oriented_path)
-		# Try to load with a fallback - if we have the file, but just import issues
-		var fallback_path = "res://assets/tiles/dominos/domino-back.svg"
-		print("[DOMINO] Using fallback texture: %s" % fallback_path)
+		# Use a fallback texture that actually exists
+		var fallback_path = "res://assets/tiles/dominos/domino-0-0_left.svg"
 		return fallback_path
 	
 	return oriented_path
@@ -292,14 +321,12 @@ func get_back_texture_path_for_orientation() -> String:
 	
 	# Build oriented back texture path
 	var oriented_back_path = "res://assets/tiles/dominos/domino-back%s.svg" % orientation_suffix
-	print("[DOMINO] Attempting to load back texture: %s (orientation: %s)" % [oriented_back_path, data.orientation])
 	
 	# Check if the file exists
 	if not ResourceLoader.exists(oriented_back_path):
 		print("[DOMINO] ERROR: Back texture file does not exist: %s" % oriented_back_path)
-		# Fallback to basic back texture
-		var fallback_path = "res://assets/tiles/dominos/domino-back.svg"
-		print("[DOMINO] Using fallback back texture: %s" % fallback_path)
+		# Use a fallback texture that actually exists - just use the front texture
+		var fallback_path = "res://assets/tiles/dominos/domino-0-0_left.svg"
 		return fallback_path
 	
 	return oriented_back_path

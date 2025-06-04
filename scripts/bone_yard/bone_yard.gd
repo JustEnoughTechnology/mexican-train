@@ -12,6 +12,11 @@ var d_scene : PackedScene = preload("res://scenes/domino/domino.tscn") #Domino g
 # --- Configurable max size percentages for BoneYard ---
 @export var max_width_percent: float = 0.98 # 98% of window width
 @export var max_height_percent: float = 0.6 # 60% of window height
+
+func is_boneyard() -> bool:
+	"""Identify this container as a boneyard for drop restriction purposes"""
+	return true
+
 ## --- HFlowContainer logic merged from h_flow_container.gd ---
 func _boneyard_hookup_child_signals() -> void:
 	# Ensure all current children are connected for resize/visibility

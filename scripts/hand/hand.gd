@@ -59,9 +59,8 @@ func add_domino(p_domino:Domino, p_face_up:bool=true) -> void:
 			original_parent.remove_child(p_domino)
 		domino_container.add_child(p_domino)
 
-	# Always set orientation to LARGEST_TOP before displaying in hand
-	p_domino.set_orientation(DominoData.ORIENTATION_LARGEST_TOP)
-	print("[HAND] add_domino: Set orientation for domino %s to LARGEST_TOP (should be vertical)" % p_domino.name)
+	# Orient domino based on engine value if available
+	_orient_domino_for_hand(p_domino)
 	call_deferred("_update_hand_size_and_layout")
 	p_domino.set_face_up(p_face_up)
 	domino_count_changed.emit()
@@ -70,6 +69,54 @@ func remove_domino(p_domino:Domino) -> void:
 		domino_container.remove_child(p_domino)
 		call_deferred("_update_hand_size_and_layout")
 		domino_count_changed.emit()
+
+func _orient_domino_for_hand(p_domino: Domino) -> void:
+	"""Orient domino so the side matching the engine value is on the left"""
+	# Try to find a station in the scene to get the engine value
+	var station = _find_station_in_scene()
+	
+	if station and station.has_engine():
+		var engine_value = station.get_engine_value()
+		var domino_dots = p_domino.get_dots()
+		
+		print("[HAND] Orienting domino %d-%d for engine value %d" % [domino_dots.x, domino_dots.y, engine_value])
+		
+		# Check if either side matches the engine value
+		if domino_dots.x == engine_value:
+			# Left side already matches - use LARGEST_LEFT orientation
+			p_domino.set_orientation(DominoData.ORIENTATION_LARGEST_LEFT)
+			print("[HAND] Set orientation LARGEST_LEFT (left side %d matches engine %d)" % [domino_dots.x, engine_value])
+		elif domino_dots.y == engine_value:
+			# Right side matches - swap values so engine value is on left
+			p_domino.set_dots(domino_dots.y, domino_dots.x)  # Swap so engine value becomes left
+			p_domino.set_orientation(DominoData.ORIENTATION_LARGEST_LEFT)
+			print("[HAND] Swapped dots and set LARGEST_LEFT (right side %d now left matches engine %d)" % [domino_dots.y, engine_value])
+		else:
+			# No match - use default horizontal orientation
+			p_domino.set_orientation(DominoData.ORIENTATION_LARGEST_LEFT)
+			print("[HAND] No engine match - using default LARGEST_LEFT orientation")
+	else:
+		# No station or engine - use default horizontal orientation
+		p_domino.set_orientation(DominoData.ORIENTATION_LARGEST_LEFT)
+		print("[HAND] No engine found - using default LARGEST_LEFT orientation")
+
+func _find_station_in_scene() -> Station:
+	"""Find a Station node in the current scene"""
+	# Look for a station starting from the scene root
+	var scene_root = get_tree().current_scene
+	return _find_station_recursive(scene_root)
+
+func _find_station_recursive(node: Node) -> Station:
+	"""Recursively search for a Station node"""
+	if node is Station:
+		return node
+	
+	for child in node.get_children():
+		var result = _find_station_recursive(child)
+		if result:
+			return result
+	
+	return null
 # Update hand size for left-to-right layout and extra space
 func _update_hand_size_and_layout() -> void:
 	var gap = 8
@@ -141,7 +188,9 @@ func move_domino(p_domino:Domino,p_dest) ->void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_label_text(self.name)
+	# Set player name using PlayerNameUtil
+	var player_name_util = preload("res://scripts/util/player_name_util.gd")
+	set_label_text(player_name_util.get_hand_label())
 	# Only set custom_minimum_size, do not set size directly (avoids anchor warnings)
 	var rounded_cms = Vector2(round(custom_minimum_size.x), round(custom_minimum_size.y))
 	if custom_minimum_size != rounded_cms:
@@ -245,4 +294,6 @@ func _drop_data(_position: Vector2, data: Variant) -> void:
 			add_domino(drag_domino, true)
 			if get_tree().has_meta("current_drag_domino"):
 				get_tree().remove_meta("current_drag_domino")
+			if get_tree().has_meta("current_drag_source"):
+				get_tree().remove_meta("current_drag_source")
 			print("Domino moved to hand successfully")

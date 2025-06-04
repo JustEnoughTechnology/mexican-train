@@ -1,0 +1,99 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnbm8408f4kvo"]
+
+[ext_resource type="Script" uid="uid://c05ei6xhp3fxl" path="res://tests/test_comparison.gd" id="1_comparison"]
+
+[node name="TestComparison" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_comparison")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "Comparison: Original vs Simplified Approach"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OriginalSide" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="OriginalTitle" type="Label" parent="HSplitContainer/OriginalSide"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "ORIGINAL: All 28 dominoes in pool"
+horizontal_alignment = 1
+
+[node name="OriginalPool" type="GridContainer" parent="HSplitContainer/OriginalSide"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 7
+
+[node name="OriginalTrain" type="VBoxContainer" parent="HSplitContainer/OriginalSide"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="OriginalTrainLabel" type="Label" parent="HSplitContainer/OriginalSide/OriginalTrain"]
+layout_mode = 2
+text = "Train (Empty):"
+
+[node name="OriginalTrainContainer" type="HBoxContainer" parent="HSplitContainer/OriginalSide/OriginalTrain"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="SimplifiedSide" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="SimplifiedTitle" type="Label" parent="HSplitContainer/SimplifiedSide"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "SIMPLIFIED: 27 dominoes in pool, 6-6 in train"
+horizontal_alignment = 1
+
+[node name="SimplifiedPool" type="GridContainer" parent="HSplitContainer/SimplifiedSide"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 7
+
+[node name="SimplifiedTrain" type="VBoxContainer" parent="HSplitContainer/SimplifiedSide"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="SimplifiedTrainLabel" type="Label" parent="HSplitContainer/SimplifiedSide/SimplifiedTrain"]
+layout_mode = 2
+text = "Train (with 6-6 engine):"
+
+[node name="SimplifiedTrainContainer" type="HBoxContainer" parent="HSplitContainer/SimplifiedSide/SimplifiedTrain"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "Visual comparison of the two approaches"
+horizontal_alignment = 1
+vertical_alignment = 1

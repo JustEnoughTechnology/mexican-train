@@ -14,7 +14,9 @@ var dots: Vector2i
 var is_face_up := false
 # Orientation property (matches Domino orientation constants)
 var orientation: int = 0
-## Enforces the convention that the smaller number of dots is on the left and that they are not larger than the max value allowed
+## Stores dots as (x,y) coordinates where x and y represent the dot counts for each side
+## For horizontal orientations: x=left side dots, y=right side dots
+## For vertical orientations: x=top side dots, y=bottom side dots
 
 func set_dots(p_left:int,p_right:int):
 	var clamp_to :int = (
@@ -23,7 +25,11 @@ func set_dots(p_left:int,p_right:int):
 		else 6
 		)
 	
-	dots = Vector2i(clampi(min(p_left,p_right),0,clamp_to),clampi(max(p_left,p_right),0,clamp_to))
+	# Store dots as (x,y) where:
+	# - For horizontal orientations: x=left_dots, y=right_dots  
+	# - For vertical orientations: x=top_dots, y=bottom_dots
+	# Do NOT sort them - preserve the order passed in
+	dots = Vector2i(clampi(p_left,0,clamp_to), clampi(p_right,0,clamp_to))
 	
 func _init(p_left:int,p_right:int):
 	set_dots(p_left,p_right)

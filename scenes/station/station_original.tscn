@@ -1,0 +1,5 @@
+[gd_scene load_steps=0 format=3 uid="uid://dchaeh8rbh5b0"]
+
+[node name="Station" type="Polygon2D"]
+color = Color(0.298039, 1, 1, 1)
+polygon = PackedVector2Array(116.77, -42.5, 116.77, 42.5, 62.13, 107.61, -21.58, 122.37, -95.19, 79.87, -124.26, 0, -95.19, -79.87, -21.58, -122.37, 62.13, -107.61)

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpw7k6x42cvq5"]
+
+[ext_resource type="Script" path="res://tests/test_player_naming.gd" id="1_naming"]
+
+[node name="TestPlayerNaming" type="Control"]
+script = ExtResource("1_naming")
