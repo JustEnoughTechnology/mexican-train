@@ -1,0 +1,301 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh3xs7rkl6q1d"]
+
+[ext_resource type="Script" path="res://tests/test_multiplayer_mexican_train.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://1n6w8nnhxdmq" path="res://scenes/bone_yard/bone_yard.tscn" id="2_boneyard"]
+[ext_resource type="PackedScene" uid="uid://c3mls3l4kk7sv" path="res://scenes/station/station.tscn" id="3_station"]
+[ext_resource type="PackedScene" uid="uid://dt5uwnhtk0n64" path="res://scenes/train/train.tscn" id="4_train"]
+
+[node name="MultiplayerMexicanTrain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="GameLayout" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BoneYard" parent="GameLayout" instance=ExtResource("2_boneyard")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_top = 40.0
+offset_right = -20.0
+offset_bottom = 300.0
+max_width_percent = 0.35
+max_height_percent = 0.4
+
+[node name="CenterArea" type="Control" parent="GameLayout"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+
+[node name="Station" parent="GameLayout/CenterArea" instance=ExtResource("3_station")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -82.0
+offset_right = 82.0
+offset_bottom = 82.0
+
+[node name="MexicanTrain" parent="GameLayout/CenterArea" instance=ExtResource("4_train")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -40.0
+offset_right = 200.0
+label_text = "Mexican Train"
+bg_color = Color(0.8, 0.4, 0.2, 0.8)
+
+[node name="PlayerAreas" type="Control" parent="GameLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TopLeft" type="Control" parent="GameLayout/PlayerAreas"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 350.0
+offset_bottom = 200.0
+
+[node name="TopCenter" type="Control" parent="GameLayout/PlayerAreas"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 50.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+
+[node name="TopRight" type="Control" parent="GameLayout/PlayerAreas"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -350.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 200.0
+grow_horizontal = 0
+
+[node name="RightCenter" type="Control" parent="GameLayout/PlayerAreas"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -75.0
+offset_right = -50.0
+offset_bottom = 75.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="BottomRight" type="Control" parent="GameLayout/PlayerAreas"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -200.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="BottomCenter" type="Control" parent="GameLayout/PlayerAreas"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BottomLeft" type="Control" parent="GameLayout/PlayerAreas"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -200.0
+offset_right = 350.0
+offset_bottom = -50.0
+grow_vertical = 0
+
+[node name="LeftCenter" type="Control" parent="GameLayout/PlayerAreas"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -75.0
+offset_right = 350.0
+offset_bottom = 75.0
+grow_vertical = 2
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ConnectionPanel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="VBox" type="VBoxContainer" parent="UI/ConnectionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="TitleLabel" type="Label" parent="UI/ConnectionPanel/VBox"]
+layout_mode = 2
+text = "Mexican Train - Multiplayer"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/ConnectionPanel/VBox"]
+layout_mode = 2
+
+[node name="HostButton" type="Button" parent="UI/ConnectionPanel/VBox"]
+layout_mode = 2
+text = "Host Game"
+
+[node name="HSeparator2" type="HSeparator" parent="UI/ConnectionPanel/VBox"]
+layout_mode = 2
+
+[node name="JoinLabel" type="Label" parent="UI/ConnectionPanel/VBox"]
+layout_mode = 2
+text = "Server Address:"
+
+[node name="AddressInput" type="LineEdit" parent="UI/ConnectionPanel/VBox"]
+layout_mode = 2
+placeholder_text = "127.0.0.1 (localhost)"
+
+[node name="JoinButton" type="Button" parent="UI/ConnectionPanel/VBox"]
+layout_mode = 2
+text = "Join Game"
+
+[node name="HSeparator3" type="HSeparator" parent="UI/ConnectionPanel/VBox"]
+layout_mode = 2
+
+[node name="InfoLabel" type="Label" parent="UI/ConnectionPanel/VBox"]
+layout_mode = 2
+text = "Host: Create a new game for others to join
+Join: Connect to an existing game server
+
+ESC to disconnect and return to this screen"
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="GamePanel" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="StatusLabel" type="Label" parent="UI/GamePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 35.0
+grow_horizontal = 2
+text = "Waiting for players..."
+horizontal_alignment = 1
+
+[node name="TurnIndicator" type="Label" parent="UI/GamePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 40.0
+offset_right = 100.0
+offset_bottom = 65.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+text = "Waiting..."
+horizontal_alignment = 1
+
+[node name="InstructionsLabel" type="Label" parent="UI/GamePanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -100.0
+offset_right = -20.0
+offset_bottom = 100.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "MULTIPLAYER MEXICAN TRAIN
+
+1. Collect dominoes from boneyard to your hand
+2. Place engine domino (double) in station
+3. Extend your train by matching dots
+4. Only your hand/train respond to input
+5. Other players' areas are view-only
+
+CONTROLS:
+• Drag dominoes with mouse
+• Right-click to flip face up/down
+• ENTER to toggle debug info
+• ESC to disconnect"
+autowrap_mode = 2
+vertical_alignment = 1

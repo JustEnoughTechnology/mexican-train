@@ -160,11 +160,11 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	
 	# Block dragging from train and station (engine)
 	if source_type == "train" or source_type == "station":
-		if GameState.DEBUG_SHOW_WARNINGS:
+		if GameConfig.DEBUG_SHOW_WARNINGS:
 			print("[DOMINO] Drag blocked: Cannot drag from %s" % source_type)
 		return null
 	
-	if GameState.DEBUG_SHOW_WARNINGS:
+	if GameConfig.DEBUG_SHOW_WARNINGS:
 		print("[DOMINO] _get_drag_data called for domino: %s from %s" % [name, source_type])
 		print("Starting drag operation for domino: " + name)
 		print("[DEBUG] Drag started: Domino %s, parent: %s, source: %s" % [name, get_parent().name, source_type])

@@ -171,8 +171,8 @@ func _input(event: InputEvent) -> void:
 		
 		# Toggle debug warnings with Enter
 		if keycode == KEY_ENTER or keycode == KEY_KP_ENTER:
-			GameState.DEBUG_SHOW_WARNINGS = not GameState.DEBUG_SHOW_WARNINGS
-			update_status("Debug warnings: %s" % ("ON" if GameState.DEBUG_SHOW_WARNINGS else "OFF"))
+			GameConfig.DEBUG_SHOW_WARNINGS = not GameConfig.DEBUG_SHOW_WARNINGS
+			update_status("Debug warnings: %s" % ("ON" if GameConfig.DEBUG_SHOW_WARNINGS else "OFF"))
 		
 		# Handle spacebar for orientation changes
 		elif keycode == KEY_SPACE:

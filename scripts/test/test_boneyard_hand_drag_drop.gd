@@ -24,7 +24,7 @@ func _ready():
 	# Add a label to display debug_show_warnings
 	debug_label = Label.new()
 	debug_label.name = "DebugShowWarningsLabel"
-	debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameState.DEBUG_SHOW_WARNINGS)
+	debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameConfig.DEBUG_SHOW_WARNINGS)
 	debug_label.anchor_left = 0.0
 	debug_label.anchor_top = 0.0
 	debug_label.anchor_right = 0.0
@@ -121,15 +121,15 @@ func _on_hand_mouse_exited():
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if debug_label:
-		debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameState.DEBUG_SHOW_WARNINGS)
+		debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameConfig.DEBUG_SHOW_WARNINGS)
 
 func _input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
 		var keycode = event.keycode
 		if keycode == KEY_ENTER or keycode == KEY_KP_ENTER:
-			GameState.DEBUG_SHOW_WARNINGS = not GameState.DEBUG_SHOW_WARNINGS
+			GameConfig.DEBUG_SHOW_WARNINGS = not GameConfig.DEBUG_SHOW_WARNINGS
 			if debug_label:
-				debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameState.DEBUG_SHOW_WARNINGS)
+				debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameConfig.DEBUG_SHOW_WARNINGS)
 		elif keycode == KEY_O:
 			# Toggle orientation overlays for all dominoes
 			_toggle_all_orientation_overlays()

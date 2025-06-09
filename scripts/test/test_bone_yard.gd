@@ -8,11 +8,11 @@ var debug_label: Label
 func _ready() -> void:
 	get_window().title = get_name()
 	$BoneYard.set_size(get_window().size*0.85)
-	$BoneYard.populate(GameState.MAX_DOTS,false)
+	$BoneYard.populate(GameConfig.MAX_DOTS,false)
 	# Add a label to display debug_show_warnings
 	debug_label = Label.new()
 	debug_label.name = "DebugShowWarningsLabel"
-	debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameState.DEBUG_SHOW_WARNINGS)
+	debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameConfig.DEBUG_SHOW_WARNINGS)
 	debug_label.anchor_right = 1.0
 	debug_label.anchor_top = 0.0
 	debug_label.anchor_bottom = 0.0
@@ -29,15 +29,15 @@ func _ready() -> void:
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if debug_label:
-		debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameState.DEBUG_SHOW_WARNINGS)
+		debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameConfig.DEBUG_SHOW_WARNINGS)
 
 func _input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
 		# Toggle on Enter/Return
 		if event.scancode == KEY_ENTER or event.scancode == KEY_KP_ENTER:
-			GameState.DEBUG_SHOW_WARNINGS = not GameState.DEBUG_SHOW_WARNINGS
+			GameConfig.DEBUG_SHOW_WARNINGS = not GameConfig.DEBUG_SHOW_WARNINGS
 			if debug_label:
-				debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameState.DEBUG_SHOW_WARNINGS)
+				debug_label.text = "DEBUG_SHOW_WARNINGS: %s" % str(GameConfig.DEBUG_SHOW_WARNINGS)
 	
 
 func _on_bone_yard_domino_right_pressed(p_domino: Domino) -> void:

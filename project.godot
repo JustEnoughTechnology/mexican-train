@@ -11,15 +11,20 @@ config_version=5
 [application]
 
 config/name="Mexican Train"
+config/version="0.6.0"
 run/main_scene="uid://br64nek5ct7oo"
 config/use_hidden_project_data_directory=false
+config/use_custom_user_dir=true
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://train.svg"
 
 [autoload]
 
-GameState="*res://scripts/bone_yard/game_state.gd"
 Global="*res://autoload/global.gd"
+EventBus="*res://autoload/event_bus.gd"
+GameConfig="*res://autoload/game_config.gd"
+LobbyManager="*res://autoload/lobby_manager.gd"
+NetworkManager="*res://autoload/network_manager.gd"
 
 [filesystem]
 

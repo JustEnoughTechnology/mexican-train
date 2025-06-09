@@ -7,8 +7,7 @@ const ORIENTATION_LARGEST_TOP = 2
 const ORIENTATION_LARGEST_BOTTOM = 3
 ## Basic data resource for [class DominoSprite]
 
-## Prefers to have an autoload [class GameState] containing the maximum number 
-## of dots each side of the domino can have. does basic check and clamps the values to 6 if no other guidance
+## Uses the GameConfig autoload for the maximum number of dots per domino side
 
 var dots: Vector2i 
 var is_face_up := false
@@ -19,11 +18,7 @@ var orientation: int = 0
 ## For vertical orientations: x=top side dots, y=bottom side dots
 
 func set_dots(p_left:int,p_right:int):
-	var clamp_to :int = (
-		GameState.get("MAX_DOTS") 
-		if GameState.get("MAX_DOTS") != null 
-		else 6
-		)
+	var clamp_to :int = GameConfig.MAX_DOTS
 	
 	# Store dots as (x,y) where:
 	# - For horizontal orientations: x=left_dots, y=right_dots  

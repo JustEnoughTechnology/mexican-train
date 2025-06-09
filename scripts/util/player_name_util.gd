@@ -1,6 +1,13 @@
 class_name PlayerNameUtil
 
 ## Utility class for generating player names based on OS username or fallback
+## Also supports unique naming for multiplayer scenarios
+
+# Static array to track used player names to ensure uniqueness
+static var used_player_names: Array[String] = []
+# Static dictionary to cache player names by player number
+static var player_name_cache: Dictionary = {}
+
 static func get_player_name() -> String:
 	"""
 	Generate a player name using the following rules:
@@ -69,3 +76,83 @@ static func get_train_label(player_name: String = "") -> String:
 	if player_name == "":
 		player_name = get_player_name()
 	return "%s's Train" % player_name
+
+static func get_unique_player_name(player_number: int = -1) -> String:
+	"""
+	Generate a unique player name for multiplayer scenarios
+	Args:
+		player_number: Optional player number (1-8 for 8-player game)
+	Returns:
+		A unique player name with 3-digit suffix if needed
+	"""
+	# If we've already generated a name for this player number, return it
+	if player_number > 0 and player_number in player_name_cache:
+		return player_name_cache[player_number]
+	
+	var base_name = ""
+	
+	# Try to get OS username first
+	var os_username = get_os_username()
+	if os_username != "":
+		base_name = os_username
+	else:
+		base_name = "Player"
+	
+	var candidate_name = ""
+	
+	# If player_number is specified, use it as suffix
+	if player_number > 0:
+		candidate_name = "%s%03d" % [base_name, player_number]
+		if not candidate_name in used_player_names:
+			used_player_names.append(candidate_name)
+			player_name_cache[player_number] = candidate_name
+			print("Generated unique player name: %s" % candidate_name)
+			return candidate_name
+	
+	# Check if base name is unique (for cases without player_number)
+	if not base_name in used_player_names:
+		used_player_names.append(base_name)
+		if player_number > 0:
+			player_name_cache[player_number] = base_name
+		print("Using unique base name: %s" % base_name)
+		return base_name
+	
+	# Base name is taken, generate unique suffix
+	var suffix = 1
+	candidate_name = "%s%03d" % [base_name, suffix]
+	
+	while candidate_name in used_player_names:
+		suffix += 1
+		candidate_name = "%s%03d" % [base_name, suffix]
+		
+		# Safety check to prevent infinite loop
+		if suffix > 999:
+			break
+	
+	used_player_names.append(candidate_name)
+	if player_number > 0:
+		player_name_cache[player_number] = candidate_name
+	print("Generated unique player name with suffix: %s" % candidate_name)
+	return candidate_name
+
+static func get_unique_hand_label(player_number: int = -1) -> String:
+	"""
+	Generate a unique hand label for multiplayer scenarios
+	"""
+	var player_name = get_unique_player_name(player_number)
+	return "%s's Hand" % player_name
+
+static func get_unique_train_label(player_number: int = -1) -> String:
+	"""
+	Generate a unique train label for multiplayer scenarios
+	"""
+	var player_name = get_unique_player_name(player_number)
+	return "%s's Train" % player_name
+
+static func clear_used_names() -> void:
+	"""
+	Clear the list of used player names (useful for restarting games)
+	"""
+	used_player_names.clear()
+	player_name_cache.clear()
+	print("Cleared used player names list and cache")

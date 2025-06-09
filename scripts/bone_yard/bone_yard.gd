@@ -75,7 +75,7 @@ func remove_domino(p_domino:Domino):
 	
 func populate(p_dots:int,p_face_up:bool = false):
 	var d:Domino
-	if p_dots > GameState.MAX_DOTS :
+	if p_dots > GameConfig.MAX_DOTS :
 		too_many_dominos.emit(p_dots)
 	for i:int in range(0,p_dots+1):
 		for j:int in range(0,i+1):
@@ -183,7 +183,7 @@ func _on_resized() -> void:
 	##match what:
 		##40,41,42,60,61,2016,1002,1004: pass
 		##_:	
-#if GameState.DEBUG_SHOW_WARNINGS:
+#if GameConfig.DEBUG_SHOW_WARNINGS:
 #    print("notification: ",what," ", Global.get_notification_name(what))
 	#
 	##if what == NOTIFICATION_PARENTED or what == NOTIFICATION_RESIZED:

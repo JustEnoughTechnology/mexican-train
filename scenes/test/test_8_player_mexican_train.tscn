@@ -1,0 +1,373 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0wk6ige1qc4e"]
+
+[ext_resource type="Script" uid="uid://ddflojyymykyh" path="res://tests/test_8_player_mexican_train.gd" id="1_8player"]
+[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/bone_yard/bone_yard.tscn" id="2_boneyard"]
+[ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://scenes/hand/hand.tscn" id="3_hand"]
+[ext_resource type="PackedScene" uid="uid://bt1p4yyg48ujg" path="res://scenes/station/station.tscn" id="4_station"]
+[ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/train/train.tscn" id="5_train"]
+
+[node name="Test8PlayerMexicanTrain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8player")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.12, 0.16, 0.22, 1)
+
+[node name="GameLayout" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CentralStation" parent="GameLayout" instance=ExtResource("4_station")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -82.0
+offset_right = 82.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoneYard" parent="GameLayout" instance=ExtResource("2_boneyard")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+max_width_percent = 0.15
+max_height_percent = 0.15
+
+[node name="MexicanTrain" parent="GameLayout" instance=ExtResource("5_train")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -32.0
+offset_right = 450.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.85, 0.2, 0.3, 1)
+label_text = "MEXICAN TRAIN"
+
+[node name="Player1Hand" parent="GameLayout" instance=ExtResource("3_hand")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -320.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 100.0
+grow_horizontal = 0
+max_width_percent = 0.25
+max_height_percent = 0.08
+bg_color = Color(0.3, 0.6, 0.8, 0.9)
+label_text = "Player 1 Hand"
+
+[node name="Player1Train" parent="GameLayout" instance=ExtResource("5_train")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 110.0
+offset_right = -20.0
+offset_bottom = 150.0
+grow_horizontal = 0
+color = Color(0.3, 0.6, 0.8, 0.8)
+label_text = "Player 1 Train"
+
+[node name="Player2Hand" parent="GameLayout" instance=ExtResource("3_hand")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -320.0
+offset_top = -100.0
+offset_right = -20.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+max_width_percent = 0.25
+max_height_percent = 0.08
+bg_color = Color(0.6, 0.4, 0.7, 0.9)
+label_text = "Player 2 Hand"
+
+[node name="Player2Train" parent="GameLayout" instance=ExtResource("5_train")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -150.0
+offset_right = -20.0
+offset_bottom = -110.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.6, 0.4, 0.7, 0.8)
+label_text = "Player 2 Train"
+
+[node name="Player3Hand" parent="GameLayout" instance=ExtResource("3_hand")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_left = 20.0
+offset_top = -100.0
+offset_right = 320.0
+offset_bottom = 0.0
+grow_vertical = 0
+max_width_percent = 0.25
+max_height_percent = 0.08
+bg_color = Color(0.5, 0.7, 0.4, 0.9)
+label_text = "Player 3 Hand"
+
+[node name="Player3Train" parent="GameLayout" instance=ExtResource("5_train")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -150.0
+offset_right = 320.0
+offset_bottom = -110.0
+grow_vertical = 0
+color = Color(0.5, 0.7, 0.4, 0.8)
+label_text = "Player 3 Train"
+
+[node name="Player4Hand" parent="GameLayout" instance=ExtResource("3_hand")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 100.0
+max_width_percent = 0.25
+max_height_percent = 0.08
+bg_color = Color(0.8, 0.6, 0.3, 0.9)
+label_text = "Player 4 Hand"
+
+[node name="Player4Train" parent="GameLayout" instance=ExtResource("5_train")]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 110.0
+offset_right = 320.0
+offset_bottom = 150.0
+color = Color(0.8, 0.6, 0.3, 0.8)
+label_text = "Player 4 Train"
+
+[node name="Player5Hand" parent="GameLayout" instance=ExtResource("3_hand")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 20.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+max_width_percent = 0.25
+max_height_percent = 0.08
+bg_color = Color(0.7, 0.5, 0.6, 0.9)
+label_text = "Player 5 Hand"
+
+[node name="Player5Train" parent="GameLayout" instance=ExtResource("5_train")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 110.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7, 0.5, 0.6, 0.8)
+label_text = "Player 5 Train"
+
+[node name="Player6Hand" parent="GameLayout" instance=ExtResource("3_hand")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 2
+max_width_percent = 0.25
+max_height_percent = 0.08
+bg_color = Color(0.4, 0.7, 0.7, 0.9)
+label_text = "Player 6 Hand"
+
+[node name="Player6Train" parent="GameLayout" instance=ExtResource("5_train")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = -110.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.4, 0.7, 0.7, 0.8)
+label_text = "Player 6 Train"
+
+[node name="Player7Hand" parent="GameLayout" instance=ExtResource("3_hand")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -40.0
+offset_right = -350.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+max_width_percent = 0.12
+max_height_percent = 0.08
+bg_color = Color(0.6, 0.3, 0.5, 0.9)
+label_text = "Player 7 Hand"
+
+[node name="Player7Train" parent="GameLayout" instance=ExtResource("5_train")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = 50.0
+offset_right = -350.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.6, 0.3, 0.5, 0.8)
+label_text = "Player 7 Train"
+
+[node name="Player8Hand" parent="GameLayout" instance=ExtResource("3_hand")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 350.0
+offset_top = -40.0
+offset_right = 500.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+max_width_percent = 0.12
+max_height_percent = 0.08
+bg_color = Color(0.8, 0.4, 0.2, 0.9)
+label_text = "Player 8 Hand"
+
+[node name="Player8Train" parent="GameLayout" instance=ExtResource("5_train")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 350.0
+offset_top = 50.0
+offset_right = 500.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8, 0.4, 0.2, 0.8)
+label_text = "Player 8 Train"
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+text = "8-Player Mexican Train - Aesthetic Test"
+horizontal_alignment = 1
+
+[node name="InstructionsLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 200.0
+offset_right = 150.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = "• Spacebar: Toggle debug overlays
+• Enter: Toggle debug warnings
+• C: Change color themes"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

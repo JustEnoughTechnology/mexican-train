@@ -1,0 +1,278 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdhj8qxfxg2vx"]
+
+[ext_resource type="Script" uid="uid://b0crtdr7tyevx" path="res://tests/test_8_player_layout_clean.gd" id="1_0x1vf"]
+[ext_resource type="PackedScene" uid="uid://dlf6msqgpxdmv" path="res://scenes/bone_yard/bone_yard.tscn" id="2_1x2vf"]
+[ext_resource type="PackedScene" uid="uid://bt1p4yyg48ujg" path="res://scenes/station/station.tscn" id="3_2x3vf"]
+[ext_resource type="PackedScene" uid="uid://t4e7qw2n4d8q" path="res://scenes/train/train.tscn" id="4_3x4vf"]
+
+[node name="Test8PlayerLayoutClean" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0x1vf")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.16, 0.22, 1)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 10.0
+offset_right = 250.0
+offset_bottom = 40.0
+grow_horizontal = 2
+text = "8-Player Mexican Train - Ocean Breeze Theme"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstructionsLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -35.0
+offset_right = -10.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CONTROLS: C=Themes, S=Single Domino Mode, D=Debug Info, H=Toggle Hand Windows, ESC=Quit  •  LAYOUT: Hands=Floating Windows, Trains=Around Station"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AreaLabels" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HandsLabel" type="Label" parent="AreaLabels"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 30.0
+grow_horizontal = 0
+text = "PLAYER HANDS (Floating Windows)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameBoardLabel" type="Label" parent="AreaLabels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 50.0
+offset_right = 100.0
+offset_bottom = 70.0
+grow_horizontal = 2
+text = "GAME BOARD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrainsLabel" type="Label" parent="AreaLabels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 40.0
+offset_right = 120.0
+offset_bottom = 60.0
+grow_horizontal = 2
+text = "PLAYER TRAINS (Around Station)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameBoard" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoneYard" parent="GameBoard" instance=ExtResource("2_1x2vf")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -550.0
+offset_top = 10.0
+offset_right = -50.0
+offset_bottom = 110.0
+grow_horizontal = 0
+
+[node name="CentralStation" parent="GameBoard" instance=ExtResource("3_2x3vf")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -30.0
+offset_right = 75.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MexicanTrain" parent="GameBoard" instance=ExtResource("4_3x4vf")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 180.0
+offset_top = -20.0
+offset_right = 350.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="PlayerTrains" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player1Train" parent="PlayerTrains" instance=ExtResource("4_3x4vf")]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 1
+offset_left = 200.0
+offset_top = 150.0
+offset_right = 360.0
+offset_bottom = 190.0
+grow_vertical = 0
+
+[node name="Player2Train" parent="PlayerTrains" instance=ExtResource("4_3x4vf")]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 120.0
+offset_right = 80.0
+offset_bottom = 160.0
+grow_horizontal = 2
+
+[node name="Player3Train" parent="PlayerTrains" instance=ExtResource("4_3x4vf")]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = 150.0
+offset_right = -200.0
+offset_bottom = 190.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Player4Train" parent="PlayerTrains" instance=ExtResource("4_3x4vf")]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Player5Train" parent="PlayerTrains" instance=ExtResource("4_3x4vf")]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 580.0
+offset_top = -140.0
+offset_right = 740.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Player6Train" parent="PlayerTrains" instance=ExtResource("4_3x4vf")]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -110.0
+offset_right = 80.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Player7Train" parent="PlayerTrains" instance=ExtResource("4_3x4vf")]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = -140.0
+offset_right = 360.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Player8Train" parent="PlayerTrains" instance=ExtResource("4_3x4vf")]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -20.0
+offset_right = 180.0
+offset_bottom = 20.0
+grow_vertical = 2

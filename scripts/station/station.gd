@@ -69,7 +69,7 @@ func _can_drop_data(_position: Vector2, data) -> bool:
 	
 	# Only allow drops from hand
 	if source_type != "hand":
-		if GameState.DEBUG_SHOW_WARNINGS:
+		if GameConfig.DEBUG_SHOW_WARNINGS:
 			print("Station _can_drop_data: Rejected - source is '%s', only 'hand' allowed" % source_type)
 		if drop_highlight:
 			drop_highlight.visible = false
@@ -96,7 +96,7 @@ func _can_drop_data(_position: Vector2, data) -> bool:
 		print("Station: Dragged object is not a domino - type: %s" % str(type_string(typeof(domino))))
 		return false
 	
-	if GameState.DEBUG_SHOW_WARNINGS:
+	if GameConfig.DEBUG_SHOW_WARNINGS:
 		print("Station _can_drop_data: source_type = %s (allowed)" % source_type)
 	
 	# Only accept if we don't already have an engine
@@ -196,3 +196,14 @@ func initialize_empty() -> void:
 	# Update label to show instruction for user
 	station_label.text = "STATION\n(Drop double here)"
 	print("Station initialized empty - waiting for engine domino")
+
+func set_background_color(bg_color_value: Color) -> void:
+	"""Set the background color of the station for visibility"""
+	# Panel nodes use modulate for background color
+	modulate = bg_color_value
+	# Also try setting via stylebox if available
+	if has_theme_stylebox_override("panel"):
+		var stylebox = get_theme_stylebox("panel").duplicate()
+		if stylebox is StyleBoxFlat:
+			stylebox.bg_color = bg_color_value
+			add_theme_stylebox_override("panel", stylebox)

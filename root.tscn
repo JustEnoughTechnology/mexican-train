@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://scripts/bone_yard/game_state.gd" id="1_28aoi"]
 [ext_resource type="Script" path="res://autoload/global.gd" id="2_jnlp7"]
 [ext_resource type="PackedScene" path="res://tests/test_boneyard_hand_drag_drop.tscn" id="3_l8v81"]
 [ext_resource type="PackedScene" path="res://scenes/domino/domino.tscn" id="4_vyht1"]
@@ -22,9 +21,6 @@ size = Vector2i(1152, 648)
 min_size = Vector2i(64, 64)
 content_scale_size = Vector2i(1152, 648)
 content_scale_aspect = 1
-
-[node name="GameState" type="Node" parent="."]
-script = ExtResource("1_28aoi")
 
 [node name="Global" type="Node" parent="."]
 script = ExtResource("2_jnlp7")

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvx8h3k2m9r4p"]
+
+[ext_resource type="Script" path="res://scripts/hand/floating_hand_window.gd" id="1_floating"]
+[ext_resource type="PackedScene" uid="uid://uq07vnk7d3e1" path="res://scenes/hand/hand.tscn" id="2_hand"]
+
+[node name="FloatingHandWindow" type="Window"]
+title = "Player Hand"
+initial_position = 1
+size = Vector2i(400, 150)
+min_size = Vector2i(300, 100)
+max_size = Vector2i(800, 300)
+script = ExtResource("1_floating")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.1, 0.9)
+
+[node name="Hand" parent="." instance=ExtResource("2_hand")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0

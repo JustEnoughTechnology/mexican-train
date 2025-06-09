@@ -3,6 +3,9 @@ class_name Train extends ColorRect
 # Signals
 signal domino_added
 
+# Display mode for the train
+@export var show_single_domino: bool = false  # When true, shows only the most recent domino
+
 @onready var my_player : Player
 @onready var top_container :HBoxContainer = $TopContainer
 @onready var domino_container : HBoxContainer = $TopContainer/bg/DominoContainer
@@ -22,14 +25,42 @@ var d_scene : PackedScene = preload("res://scenes/domino/domino.tscn")
 	get():
 		return $TopContainer/bg/Label.text
 
+func set_background_color(bg_color_value: Color) -> void:
+	"""Set the background color of the train for visibility"""
+	bg_color = bg_color_value
+	if has_node("TopContainer/bg"):
+		$TopContainer/bg.color = bg_color_value
+
+func set_single_domino_mode(enabled: bool) -> void:
+	"""Enable or disable single domino display mode"""
+	show_single_domino = enabled
+	if enabled:
+		# If enabling single mode and we have multiple dominoes, keep only the last one
+		var children = domino_container.get_children()
+		var dominoes = []
+		for child in children:
+			if child is Domino:
+				dominoes.append(child)
+		
+		if dominoes.size() > 1:
+			# Keep only the last domino (most recently added)
+			for i in range(dominoes.size() - 1):
+				domino_container.remove_child(dominoes[i])
+				dominoes[i].queue_free()
+	
+	_update_train_size()
+
 func get_domino_count() -> int:
 	return domino_container.get_child_count()
 	
 func set_label_text(p_text:String):
-	self.my_label.text = p_text
+	if my_label:
+		my_label.text = p_text
+	else:
+		push_warning("Train: my_label is null, cannot set label text.")
 
 func get_label_text()->String:
-	return self.my_label.text
+	return self.my_label.text if my_label else ""
 	
 func sort_ascending(domino1:Domino,domino2:Domino)->bool:
 	return domino1.get_dots() < domino2.get_dots()
@@ -37,13 +68,13 @@ func sort_ascending(domino1:Domino,domino2:Domino)->bool:
 func sort_descending(domino1:Domino,domino2:Domino)->bool:
 	return domino1.get_dots() > domino2.get_dots()
 
-func sort(s:GameState.Sort):
+func sort(s:GameConfig.Sort):
 	var d_array = domino_container.get_children()
 	
 	match s:
-		GameState.Sort.SORT_ASCENDING:
+		GameConfig.Sort.SORT_ASCENDING:
 			d_array.sort_custom(sort_ascending)
-		GameState.Sort.SORT_DESCENDING:
+		GameConfig.Sort.SORT_DESCENDING:
 			d_array.sort_custom(sort_descending)
 		_:
 			pass		
@@ -60,6 +91,13 @@ func add_domino(p_domino:Domino, p_face_up:bool=true) -> void:
 		else:
 			p_domino.set_orientation(DominoData.ORIENTATION_LARGEST_RIGHT)
 			print("Forced to LARGEST_RIGHT")
+	
+	# If in single domino mode, remove all existing dominoes first
+	if show_single_domino:
+		for child in domino_container.get_children():
+			if child is Domino:
+				domino_container.remove_child(child)
+				child.queue_free()
 	
 	# Add domino to the RIGHT side of the container (normal add_child behavior)
 	domino_container.add_child(p_domino)
@@ -96,7 +134,7 @@ func _can_drop_data(_position: Vector2, data) -> bool:
 	
 	# Only allow drops from hand
 	if source_type != "hand":
-		if GameState.DEBUG_SHOW_WARNINGS:
+		if GameConfig.DEBUG_SHOW_WARNINGS:
 			print("Train _can_drop_data: Rejected - source is '%s', only 'hand' allowed" % source_type)
 		return false
 	
@@ -105,7 +143,7 @@ func _can_drop_data(_position: Vector2, data) -> bool:
 	if get_tree().has_meta("current_drag_domino"):
 		drag_domino = get_tree().get_meta("current_drag_domino")
 	
-	if GameState.DEBUG_SHOW_WARNINGS:
+	if GameConfig.DEBUG_SHOW_WARNINGS:
 		print("Train _can_drop_data: source_type = %s (allowed)" % source_type)
 	
 	var incoming_dots = drag_domino.get_dots()
@@ -288,10 +326,11 @@ func _ready() -> void:
 
 func _orient_domino_for_connection(domino: Domino) -> void:
 	"""Orient the domino so it connects properly to the train"""
+	var domino_dots = domino.get_dots()
+	
 	# If train is empty, orient first domino as if engine were immediately before it
 	if get_domino_count() == 0:
 		print("=== FIRST DOMINO ===")
-		var domino_dots = domino.get_dots()
 		print("Orienting first domino %d-%d for engine connection" % [domino_dots.x, domino_dots.y])
 		
 		# Get the engine value from the station
@@ -347,7 +386,7 @@ func _orient_domino_for_connection(domino: Domino) -> void:
 	
 	# Get the correct right-side value based on domino orientation  
 	var required_dots = _get_domino_right_side_value(last_domino)
-	var domino_dots = domino.get_dots()
+	domino_dots = domino.get_dots()
 	
 	# We need the matching value on the LEFT side of the new domino
 	# With (x,y) coordinates: x=left_dots, y=right_dots for horizontal dominoes

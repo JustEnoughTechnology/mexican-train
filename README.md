@@ -71,7 +71,7 @@ The game enforces realistic domino movement restrictions:
 ### Utility Classes
 - `PlayerNameUtil`: OS username detection and player identification
 - `DominoData`: Data model for domino state
-- `GameState`: Global game configuration
+- `GameConfig`: Global game configuration constants and settings
 
 ### Key Features Implementation
 
@@ -175,14 +175,19 @@ This project is open source. See LICENSE file for details.
 
 ## 🏷️ Version History
 
-### v0.5.0 (Current)
-- ✅ Complete domino orientation system
-- ✅ Drag-drop restriction enforcement
-- ✅ Player identification with OS username
-- ✅ Full game integration test
-- ✅ Comprehensive documentation
+### v0.6.0 (Current)
+- ✅ GameState → GameConfig refactoring
+- ✅ Multiplayer networking infrastructure
+- ✅ AI player foundation
+- ✅ Enhanced player management with unique naming
+- ✅ Color theme management system
+- ✅ Comprehensive test suite restructuring
+- ✅ 8-player layout support
+- ✅ Lobby system for multiplayer games
+- ✅ Advanced drag-and-drop improvements
 
 ### Previous Versions
+- v0.5.0 - Complete domino orientation system, drag-drop restrictions, player identification
 - Development builds with individual component testing
 
 ## 🎯 Roadmap
