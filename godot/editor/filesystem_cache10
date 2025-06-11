@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1749635002
+::res://::1749637357
 CHANGELOG.md::TextFile/TextFile::-1::1749046457::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::2122875676687997803::1748266671::1748266671::1::::<><><>0<>0<>b270024632a2077a86cb79267d434d2c<>res://godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 main.gd::GDScript/GDScript::9206126985962732879::1749477442::0::1::::<>Node<><>0<>0<><>::
@@ -7,6 +7,7 @@ main.tscn::PackedScene/PackedScene::3645410970934460130::1749480205::0::1::::<><
 README.md::TextFile/TextFile::-1::1749479741::0::1::::<><><>0<>0<><>::
 root.tscn::PackedScene/PackedScene::-1::1749479741::0::1::::<><><>0<>0<><>::res://autoload/global.gd<>res://tests/test_boneyard_hand_drag_drop.tscn<>res://scenes/domino/domino.tscn
 test_domino_count.gd::GDScript/GDScript::375737730212593364::1749477442::0::1::::<>Node<><>0<>0<><>::
+test_gameconfig.gd::GDScript/GDScript::4736873025054122598::1749635154::0::1::::<>SceneTree<><>0<>0<><>::
 test_orientation_debug.gd::GDScript/GDScript::4949447534188591013::1749477442::0::1::::<>Node<><>0<>0<><>::
 test_orientation_fix.gd::GDScript/GDScript::4054805027750978124::1749477442::0::1::::<>Control<><>0<>0<><>::
 test_texture_debug.gd::GDScript/GDScript::5594043468911996525::1749477442::0::1::::<>Node<><>0<>0<><>::
@@ -791,11 +792,13 @@ domino-back_bottom.svg::CompressedTexture2D/CompressedTexture2D::762882468583722
 domino-back_left.svg::CompressedTexture2D/CompressedTexture2D::8190882320874136559::1748895605::1748904417::1::::<><><>0<>0<>aeb5e602d48aa914e7556106db81d5c7<>res://godot/imported/domino-back_left.svg-337598bab20452102399ecef9a82f616.ctex::
 domino-back_right.svg::CompressedTexture2D/CompressedTexture2D::352450660502688331::1748895605::1748904451::1::::<><><>0<>0<>74dd3981ce62d6957115507600ad409a<>res://godot/imported/domino-back_right.svg-81322be13002927505c3251002fe31f3.ctex::
 domino-back_top.svg::CompressedTexture2D/CompressedTexture2D::1674951219556636193::1748896135::1748904453::1::::<><><>0<>0<>b4f69ecf115d635973aab1cf8cbcc997<>res://godot/imported/domino-back_top.svg-b67b1cc3398c909e37a1b98a8fd3aaa3.ctex::
-::res://autoload/::1749478043
+::res://autoload/::1749637246
 event_bus.gd::GDScript/GDScript::8827757987782203751::1749477442::0::1::::<>Node<><>0<>0<><>::
 game_config.gd::GDScript/GDScript::7726504516310832137::1749634843::0::1::::<>Node<><>0<>0<><>::
 global.gd::GDScript/GDScript::1358819927964971823::1749477442::0::1::::<>Node<><>0<>0<><>::
-lobby_manager.gd::GDScript/GDScript::8527969617611678555::1749480114::0::1::::<>Node<><>0<>0<><>::
+lobby_manager.gd::GDScript/GDScript::8527969617611678555::1749635548::0::1::::<>Node<><>0<>0<><>::
+lobby_manager_broken.gd::GDScript/GDScript::5616998778697984027::1749480114::0::1::::<>Node<><>0<>0<><>::
+lobby_manager_clean.gd::GDScript::6834063158109396943::1749637246::0::1::::<>Node<><>0<>0<><>::
 network_manager.gd::GDScript/GDScript::2462705917640661162::1749479962::0::1::::<>Node<><>0<>0<><>::
 ::res://common/::1748266670
 ::res://common/containers/::1748266670
@@ -893,7 +896,7 @@ hand.gd::GDScript/GDScript::8570485091085375036::1749477442::0::1::::Hand<>Color
 client_lobby.gd::GDScript/GDScript::6355284708503042084::1749477442::0::1::::<>Control<><>0<>0<><>::
 lobby_manager.gd::GDScript/GDScript::2434659012879400229::1749477287::0::1::::<>RefCounted<><>0<>0<><>::
 network_manager.gd::GDScript/GDScript::3422701011083469050::1749477288::0::1::::<>RefCounted<><>0<>0<><>::
-server_launcher.gd::GDScript::3797814466139297572::1749634893::0::1::::<>Control<><>0<>0<><>::
+server_launcher.gd::GDScript/GDScript::3797814466139297572::1749635154::0::1::::<>Control<><>0<>0<><>::
 ::res://scripts/players/::1749393175
 ai_player.gd::GDScript/GDScript::7074691162426933155::1749477442::0::1::::AIPlayer<>Player<><>0<>0<><>::
 player.gd::GDScript/GDScript::1642437513018753516::1749477442::0::1::::Player<>Node2D<><>0<>0<><>::
@@ -931,7 +934,7 @@ test_texture_debug.gd::GDScript/GDScript::6325470957803601049::1749477442::0::1:
 test_train.gd::GDScript/GDScript::5488692042321170490::1749477442::0::1::::<>Control<><>0<>0<><>::
 test_train_drag_drop.gd::GDScript/GDScript::65852221111473726::1749477442::0::1::::<>Control<><>0<>0<><>::
 test_train_orientation.gd::GDScript/GDScript::7065374286527940580::1749477442::0::1::::<>Node<><>0<>0<><>::
-test_train_station_drag_drop.gd::GDScript/GDScript::1641848775993723879::1749634850::0::1::::<>Control<><>0<>0<><>::
+test_train_station_drag_drop.gd::GDScript/GDScript::1641848775993723879::1749635372::0::1::::<>Control<><>0<>0<><>::
 test_train_station_drag_drop_simple.gd::GDScript/GDScript::3655987371956564871::1749477442::0::1::::<>Control<><>0<>0<><>::
 test_unique_player_names.gd::GDScript/GDScript::3224293607818414068::1749477442::0::1::::<>Control<><>0<>0<><>::
 verify_fixes.gd::GDScript/GDScript::8430573477642553646::1749477442::0::1::::<>SceneTree<><>0<>0<><>::
