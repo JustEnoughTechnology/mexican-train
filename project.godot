@@ -25,6 +25,7 @@ EventBus="*res://autoload/event_bus.gd"
 GameConfig="*res://autoload/game_config.gd"
 LobbyManager="*res://autoload/lobby_manager.gd"
 NetworkManager="*res://autoload/network_manager.gd"
+ServerAdmin="*res://autoload/server_admin.gd"
 
 [filesystem]
 

@@ -111,6 +111,9 @@ func create_game(host_id: int, host_name: String) -> String:
 	active_games[game_code] = game_room
 	player_to_game[host_id] = game_code
 	
+	# Record statistics for ServerAdmin (if available)
+	_record_game_created()
+	
 	var game_info = get_game_info(game_code)
 	game_created.emit(game_code, game_info)
 	lobby_updated.emit(get_lobby_data())
@@ -132,12 +135,15 @@ func join_game(game_code: String, player_id: int, player_name: String) -> bool:
 	if game_room.is_full():
 		print("Game is full: %s" % game_code)
 		return false
-	
-	# Remove player from previous game if any
+		# Remove player from previous game if any
 	leave_current_game(player_id)
 	
 	if game_room.add_player(player_id, player_name):
 		player_to_game[player_id] = game_code
+		
+		# Record statistics for ServerAdmin
+		_record_player_joined()
+		
 		game_joined.emit(game_code, player_id)
 		lobby_updated.emit(get_lobby_data())
 		print("Player %s joined game %s" % [player_name, game_code])
@@ -287,3 +293,22 @@ func cleanup_empty_games() -> void:
 	
 	if to_remove.size() > 0:
 		lobby_updated.emit(get_lobby_data())
+
+## Helper functions for ServerAdmin integration
+func _record_game_created() -> void:
+	# Use call_deferred to avoid potential autoload ordering issues
+	call_deferred("_try_record_game_created")
+
+func _try_record_game_created() -> void:
+	if has_node("/root/ServerAdmin"):
+		var server_admin = get_node("/root/ServerAdmin")
+		server_admin.record_game_created()
+
+func _record_player_joined() -> void:
+	# Use call_deferred to avoid potential autoload ordering issues
+	call_deferred("_try_record_player_joined")
+
+func _try_record_player_joined() -> void:
+	if has_node("/root/ServerAdmin"):
+		var server_admin = get_node("/root/ServerAdmin")
+		server_admin.record_player_joined()

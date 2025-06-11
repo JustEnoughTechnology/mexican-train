@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://dl3lu4wrb1q66"]
 
-[ext_resource type="Script" path="res://tests/server_launcher.gd" id="1_server"]
+[ext_resource type="Script" uid="uid://budxpjq2uq35y" path="res://scripts/test/test_server_mechanics.gd" id="1_server"]
+
 
 [node name="ServerLauncher" type="Control"]
 layout_mode = 3
