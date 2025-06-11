@@ -43,13 +43,11 @@ func create_complete_domino_set() -> void:
 	
 	# Generate all 28 unique domino combinations
 	var unique_dominoes = generate_unique_domino_set(28)
-	
-	# Create all test dominoes
+		# Create all test dominoes
 	for i in range(unique_dominoes.size()):
 		var domino = d_scene.instantiate()
 		
 		# Add to the pool container first
-		domino_pool.add_child(domino)
 		domino_pool.add_child(domino)
 		
 		# Wait for domino to be ready
