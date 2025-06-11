@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://buxtf3jg0hdlv"]
-
-[ext_resource type="Script" path="res://tests/test_train_orientation.gd" id="1_3kwch"]
-
-[node name="TestTrainOrientation" type="Node"]
-script = ExtResource("1_3kwch")

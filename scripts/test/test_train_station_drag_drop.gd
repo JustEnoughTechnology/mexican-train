@@ -204,3 +204,24 @@ func _orientation_to_string(orientation: int) -> String:
 			return "LARGEST_BOTTOM"
 		_:
 			return "UNKNOWN"
+
+func generate_unique_domino_set(max_count: int) -> Array[Vector2i]:
+	"""Generate a list of unique domino combinations (double-six standard set)"""
+	var unique_dominoes: Array[Vector2i] = []
+	
+	# Generate all unique combinations where larger >= smaller (avoid duplicates)
+	for smaller in range(0, 7):  # 0 to 6 (standard domino set)
+		for larger in range(smaller, 7):  # larger >= smaller
+			unique_dominoes.append(Vector2i(larger, smaller))
+			
+			# Stop if we reach the requested count
+			if unique_dominoes.size() >= max_count:
+				break
+		if unique_dominoes.size() >= max_count:
+			break
+	
+	# Shuffle the dominoes for variety
+	unique_dominoes.shuffle()
+	
+	print("Generated %d unique domino combinations" % unique_dominoes.size())
+	return unique_dominoes

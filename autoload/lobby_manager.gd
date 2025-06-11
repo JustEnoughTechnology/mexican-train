@@ -9,7 +9,7 @@ signal game_started(game_code: String)
 signal lobby_updated(games: Dictionary)
 
 # Game configuration - using GameConfig constants
-const MAX_PLAYERS_PER_GAME = GameConfig.MAX_PLAYERS
+var MAX_PLAYERS_PER_GAME: int = 8  # Will be set to GameConfig.MAX_PLAYERS in _ready()
 const GAME_CODE_LENGTH = 6
 
 # Game rooms storage
@@ -22,7 +22,7 @@ class GameRoom:
 	var players: Dictionary = {}  # player_id -> player_data
 	var ai_players: Dictionary = {}  # ai_id -> ai_data
 	var is_started: bool = false
-	var max_players: int = MAX_PLAYERS_PER_GAME
+	var max_players: int = 8  # Will be updated in _ready()
 	var created_time: float
 	
 	func _init(game_code: String, host_player_id: int, host_name: String):
@@ -99,7 +99,9 @@ class GameRoom:
 		return -(ai_players.size() + 1000)
 
 func _ready() -> void:
-	print("LobbyManager initialized")
+	# Sync with GameConfig values
+	MAX_PLAYERS_PER_GAME = GameConfig.MAX_PLAYERS
+	print("LobbyManager initialized - Max players per game: %d" % MAX_PLAYERS_PER_GAME)
 
 ## Create a new game room
 func create_game(host_id: int, host_name: String) -> String:

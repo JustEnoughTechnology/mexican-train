@@ -17,7 +17,7 @@ const DEFAULT_PORT = 9957
 
 # Game state
 var is_server: bool = false  # True if this is the central server
-var is_connected: bool = false
+var network_connected: bool = false
 var local_player_id: int = 0
 var players: Dictionary = {}  # peer_id -> player_data
 var current_game_code: String = ""
@@ -41,7 +41,7 @@ func start_server(port: int = DEFAULT_PORT) -> bool:
 	if error == OK:
 		multiplayer.multiplayer_peer = multiplayer_peer
 		is_server = true
-		is_connected = true
+		network_connected = true
 		local_player_id = 1
 		
 		# Connect lobby signals to the autoloaded LobbyManager
@@ -73,7 +73,7 @@ func connect_to_server(address: String, port: int = DEFAULT_PORT) -> bool:
 
 ## Create a new game (client request to server)
 func create_game() -> void:
-	if not is_connected or is_server:
+	if not network_connected or is_server:
 		return
 	
 	var player_name_util = preload("res://scripts/util/player_name_util.gd")
@@ -82,7 +82,7 @@ func create_game() -> void:
 
 ## Join a game with code (client request to server)
 func join_game_with_code(game_code: String) -> void:
-	if not is_connected or is_server:
+	if not network_connected or is_server:
 		return
 	
 	var player_name_util = preload("res://scripts/util/player_name_util.gd")
@@ -91,28 +91,28 @@ func join_game_with_code(game_code: String) -> void:
 
 ## Request lobby data (client request to server)
 func request_lobby_data() -> void:
-	if not is_connected or is_server:
+	if not network_connected or is_server:
 		return
 	
 	rpc_id(1, "_request_lobby_data")
 
 ## Add AI player to current game (client request to server)
 func add_ai_player() -> void:
-	if not is_connected or is_server or current_game_code.is_empty():
+	if not network_connected or is_server or current_game_code.is_empty():
 		return
 	
 	rpc_id(1, "_request_add_ai", current_game_code)
 
 ## Set ready status (client request to server)
 func set_ready_status(is_ready: bool) -> void:
-	if not is_connected or is_server:
+	if not network_connected or is_server:
 		return
 	
 	rpc_id(1, "_request_set_ready", is_ready)
 
 ## Start current game (client request to server)
 func start_current_game() -> void:
-	if not is_connected or is_server or current_game_code.is_empty():
+	if not network_connected or is_server or current_game_code.is_empty():
 		return
 	
 	rpc_id(1, "_request_start_game", current_game_code)
@@ -123,7 +123,7 @@ func disconnect_from_server() -> void:
 		multiplayer_peer.close()
 	
 	multiplayer.multiplayer_peer = null
-	is_connected = false
+	network_connected = false
 	local_player_id = 0
 	players.clear()
 	current_game_code = ""
@@ -276,7 +276,7 @@ func _on_peer_disconnected(peer_id: int) -> void:
 
 func _on_connected_to_server() -> void:
 	print("Connected to server")
-	is_connected = true
+	network_connected = true
 	local_player_id = multiplayer.get_unique_id()
 	
 	# Request current lobby data

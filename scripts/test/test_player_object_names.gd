@@ -2,19 +2,15 @@ extends SceneTree
 
 # Test script to verify Player object creation with unique names
 
-# Load the Player class explicitly
-const Player = preload("res://scripts/players/player.gd")
-
 func _ready():
 	print("=== Testing Player Object Creation with Unique Names ===")
 	
 	# Test creating multiple Player objects
 	var players: Array[Player] = []
-	
 	print("\n--- Creating 8 Player objects ---")
 	for i in range(8):
 		var player = Player.new()
-		player.initialize_player(i + 1, true)  # player_number, is_human
+		player.initialize_player(i + 1, "", Color.WHITE, true)  # player_number, name, color, is_human
 		players.append(player)
 		print("Player %d: %s (Color: %s)" % [player.player_number, player.player_name, player.player_color])
 	
@@ -34,9 +30,8 @@ func _ready():
 	
 	if not duplicates_found:
 		print("SUCCESS: All player names are unique!")
-	
-	print("\n--- Testing Player Name Util directly ---")
-	PlayerNameUtil.reset_all()  # Reset for clean test
+		print("\n--- Testing Player Name Util directly ---")
+	PlayerNameUtil.clear_used_names()  # Reset for clean test
 	
 	var direct_names = []
 	for i in range(8):

@@ -1,6 +1,6 @@
 extends Node
 
-## Global game config	return ((MAX_DOTS + 1) * (MAX_DOTS + 2)) // 2ration constants and settings for Mexican Train
+## Global game configuration constants and settings for Mexican Train
 ## This autoload contains server-wide settings and constants used across the entire application
 
 # Network configuration
@@ -34,5 +34,5 @@ func _check_godot_version() -> void:
 		get_tree().quit()
 
 func get_total_domino_count() -> int:
-	"""Calculate total number of dominoes in a set from 0-0 to MAX_DOTS-MAX_DOTS"""
-	return ((MAX_DOTS + 1) * (MAX_DOTS + 2)) // 2
+	# Calculate total number of dominoes in a set from 0-0 to MAX_DOTS-MAX_DOTS
+	return (MAX_DOTS + 1) * (MAX_DOTS + 2) / 2

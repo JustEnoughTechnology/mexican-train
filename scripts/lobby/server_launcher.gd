@@ -6,32 +6,36 @@ extends Control
 @onready var server_status_label = $VBox/ServerStatus
 @onready var lobby_info_label = $VBox/LobbyInfo
 @onready var games_list = $VBox/ScrollContainer/GamesList
-@onready var start_server_button = $VBox/ButtonContainer/StartServerButton
-@onready var stop_server_button = $VBox/ButtonContainer/StopServerButton
+@onready var start_server_button = $VBox/StartServerButton
+@onready var stop_server_button = $VBox/StopServerButton
 
+var network_manager: NetworkManager
 var update_timer: Timer
 
 func _ready() -> void:
 	get_window().title = "Mexican Train - Central Server"
 	
-	# Connect signals to autoloaded NetworkManager
-	NetworkManager.lobby_updated.connect(_on_lobby_updated)
+	network_manager = NetworkManager.new()
+	add_child(network_manager)
+	
+	# Connect signals
+	network_manager.lobby_updated.connect(_on_lobby_updated)
 	
 	# Setup UI
 	stop_server_button.disabled = true
 	start_server_button.pressed.connect(_on_start_server)
 	stop_server_button.pressed.connect(_on_stop_server)
-		# Setup update timer for periodic lobby updates
+	
+	# Setup update timer for periodic lobby updates
 	update_timer = Timer.new()
 	update_timer.wait_time = 2.0
 	update_timer.timeout.connect(_update_server_info)
 	add_child(update_timer)
 	
-	# Defer the initial update to ensure all nodes are ready
-	call_deferred("_update_server_info")
+	_update_server_info()
 
 func _on_start_server() -> void:
-	if NetworkManager.start_server():
+	if network_manager.start_server():
 		server_status_label.text = "Server Status: RUNNING on port %d" % NetworkManager.DEFAULT_PORT
 		server_status_label.modulate = Color.GREEN
 		start_server_button.disabled = true
@@ -44,7 +48,7 @@ func _on_start_server() -> void:
 		print("Failed to start Mexican Train server")
 
 func _on_stop_server() -> void:
-	NetworkManager.disconnect_from_server()
+	network_manager.disconnect_from_server()
 	server_status_label.text = "Server Status: STOPPED"
 	server_status_label.modulate = Color.GRAY
 	start_server_button.disabled = false
@@ -57,20 +61,14 @@ func _on_lobby_updated(lobby_data: Dictionary) -> void:
 	_update_games_display(lobby_data)
 
 func _update_server_info() -> void:
-	if not lobby_info_label:
-		return  # Nodes not ready yet
-		
-	if NetworkManager.is_server:
-		var lobby_data = LobbyManager.get_lobby_data()
+	if network_manager.is_server and network_manager.lobby_manager:
+		var lobby_data = network_manager.lobby_manager.get_lobby_data()
 		lobby_info_label.text = "Active Games: %d" % lobby_data.size()
 		_update_games_display(lobby_data)
 	else:
 		lobby_info_label.text = "Server not running"
 
 func _update_games_display(lobby_data: Dictionary) -> void:
-	if not games_list:
-		return  # Nodes not ready yet
-		
 	# Clear existing game info
 	_clear_games_display()
 	
@@ -109,16 +107,15 @@ func _create_game_panel(game_code: String, game_info: Dictionary) -> Control:
 	var can_start = game_info.get("can_start", false)
 	status_label.text = "Players: %d/%d | Can Start: %s" % [player_count, max_players, "Yes" if can_start else "No"]
 	vbox.add_child(status_label)
-	
-	# Player list
+		# Player list
 	var players_info = game_info.get("players", {})
 	var players_text = "Players: "
 	var player_names = []
 	for player_data in players_info.values():
-		var name = player_data.get("name", "Unknown")
+		var player_name = player_data.get("name", "Unknown")
 		var ready_status = " (Ready)" if player_data.get("is_ready", false) else " (Not Ready)"
 		var ai_status = " [AI]" if player_data.get("is_ai", false) else ""
-		player_names.append(name + ready_status + ai_status)
+		player_names.append(player_name + ready_status + ai_status)
 	
 	players_text += ", ".join(player_names) if player_names.size() > 0 else "None"
 	

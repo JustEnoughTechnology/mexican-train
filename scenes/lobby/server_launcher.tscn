@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkx3y2z1server"]
+[gd_scene load_steps=2 format=3 uid="uid://dl3lu4wrb1q66"]
 
-[ext_resource type="Script" path="res://scripts/lobby/server_launcher.gd" id="1_server"]
+[ext_resource type="Script" path="res://tests/server_launcher.gd" id="1_server"]
 
 [node name="ServerLauncher" type="Control"]
 layout_mode = 3
@@ -23,6 +23,7 @@ offset_bottom = -20.0
 layout_mode = 2
 text = "Mexican Train - Central Server"
 horizontal_alignment = 1
+add_theme_font_size_override("font_size", 24)
 
 [node name="HSeparator" type="HSeparator" parent="VBox"]
 layout_mode = 2
@@ -31,6 +32,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Server Status: STOPPED"
 horizontal_alignment = 1
+add_theme_font_size_override("font_size", 18)
 
 [node name="LobbyInfo" type="Label" parent="VBox"]
 layout_mode = 2
@@ -57,6 +59,7 @@ layout_mode = 2
 [node name="GamesLabel" type="Label" parent="VBox"]
 layout_mode = 2
 text = "Active Games:"
+add_theme_font_size_override("font_size", 16)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBox"]
 layout_mode = 2

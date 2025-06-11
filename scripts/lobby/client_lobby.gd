@@ -28,16 +28,20 @@ extends Control
 @onready var start_game_button = $GameRoomPanel/VBox/ButtonContainer/StartGameButton
 @onready var leave_game_button = $GameRoomPanel/VBox/ButtonContainer/LeaveGameButton
 
+var network_manager: NetworkManager
 var is_ready: bool = false
 
 func _ready() -> void:
 	get_window().title = "Mexican Train - Player Lobby"
 	
-	# Connect signals to autoloaded NetworkManager
-	NetworkManager.lobby_updated.connect(_on_lobby_updated)
-	NetworkManager.game_created.connect(_on_game_created)
-	NetworkManager.game_joined.connect(_on_game_joined)
-	NetworkManager.game_started.connect(_on_game_started)
+	network_manager = NetworkManager.new()
+	add_child(network_manager)
+	
+	# Connect signals
+	network_manager.lobby_updated.connect(_on_lobby_updated)
+	network_manager.game_created.connect(_on_game_created)
+	network_manager.game_joined.connect(_on_game_joined)
+	network_manager.game_started.connect(_on_game_started)
 	
 	# Setup button connections
 	connect_button.pressed.connect(_on_connect_pressed)
@@ -71,47 +75,48 @@ func _on_connect_pressed() -> void:
 	var address = server_address_input.text.strip_edges()
 	if address.is_empty():
 		address = "127.0.0.1"
-		connection_status.text = "Connecting to %s..." % address
 	
-	if NetworkManager.connect_to_server(address):
+	connection_status.text = "Connecting to %s..." % address
+	
+	if network_manager.connect_to_server(address):
 		# Wait for connection result
-		await NetworkManager.connected_to_server
+		await network_manager.connected_to_server
 		connection_status.text = "Connected to server!"
 		connection_status.modulate = Color.GREEN
 		show_lobby_panel()
-		NetworkManager.request_lobby_data()
+		network_manager.request_lobby_data()
 	else:
 		connection_status.text = "Failed to connect to server"
 		connection_status.modulate = Color.RED
 
 func _on_create_game_pressed() -> void:
-	NetworkManager.create_game()
+	network_manager.create_game()
 
 func _on_join_game_pressed() -> void:
 	var game_code = join_code_input.text.strip_edges().to_upper()
 	if game_code.length() >= 4:
-		NetworkManager.join_game_with_code(game_code)
+		network_manager.join_game_with_code(game_code)
 	else:
 		lobby_status.text = "Please enter a valid game code"
 		lobby_status.modulate = Color.ORANGE
 
 func _on_refresh_lobby_pressed() -> void:
-	NetworkManager.request_lobby_data()
+	network_manager.request_lobby_data()
 
 func _on_add_ai_pressed() -> void:
-	NetworkManager.add_ai_player()
+	network_manager.add_ai_player()
 
 func _on_ready_pressed() -> void:
 	is_ready = not is_ready
-	NetworkManager.set_ready_status(is_ready)
+	network_manager.set_ready_status(is_ready)
 	ready_button.text = "Not Ready" if is_ready else "Ready"
 	ready_button.modulate = Color.GREEN if is_ready else Color.WHITE
 
 func _on_start_game_pressed() -> void:
-	NetworkManager.start_current_game()
+	network_manager.start_current_game()
 
 func _on_leave_game_pressed() -> void:
-	NetworkManager.disconnect_from_server()
+	network_manager.disconnect_from_server()
 	show_connection_panel()
 	connection_status.text = "Disconnected from game"
 	connection_status.modulate = Color.GRAY
@@ -186,7 +191,7 @@ func _create_game_item(game_code: String, game_info: Dictionary) -> Control:
 	return item_panel
 
 func _join_specific_game(game_code: String) -> void:
-	NetworkManager.join_game_with_code(game_code)
+	network_manager.join_game_with_code(game_code)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
