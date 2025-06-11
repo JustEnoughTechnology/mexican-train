@@ -6,8 +6,8 @@ extends Control
 @onready var server_status_label = $VBox/ServerStatus
 @onready var lobby_info_label = $VBox/LobbyInfo
 @onready var games_list = $VBox/ScrollContainer/GamesList
-@onready var start_server_button = $VBox/StartServerButton
-@onready var stop_server_button = $VBox/StopServerButton
+@onready var start_server_button = $VBox/ButtonContainer/StartServerButton
+@onready var stop_server_button = $VBox/ButtonContainer/StopServerButton
 
 var network_manager: NetworkManager
 var update_timer: Timer
