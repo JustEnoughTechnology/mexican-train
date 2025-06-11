@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1749638577
+::res://::1749638965
 CHANGELOG.md::TextFile/TextFile::-1::1749046457::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::2122875676687997803::1748266671::1748266671::1::::<><><>0<>0<>b270024632a2077a86cb79267d434d2c<>res://godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 main.gd::GDScript/GDScript::9206126985962732879::1749477442::0::1::::<>Node<><>0<>0<><>::
@@ -792,15 +792,15 @@ domino-back_bottom.svg::CompressedTexture2D/CompressedTexture2D::762882468583722
 domino-back_left.svg::CompressedTexture2D/CompressedTexture2D::8190882320874136559::1748895605::1748904417::1::::<><><>0<>0<>aeb5e602d48aa914e7556106db81d5c7<>res://godot/imported/domino-back_left.svg-337598bab20452102399ecef9a82f616.ctex::
 domino-back_right.svg::CompressedTexture2D/CompressedTexture2D::352450660502688331::1748895605::1748904451::1::::<><><>0<>0<>74dd3981ce62d6957115507600ad409a<>res://godot/imported/domino-back_right.svg-81322be13002927505c3251002fe31f3.ctex::
 domino-back_top.svg::CompressedTexture2D/CompressedTexture2D::1674951219556636193::1748896135::1748904453::1::::<><><>0<>0<>b4f69ecf115d635973aab1cf8cbcc997<>res://godot/imported/domino-back_top.svg-b67b1cc3398c909e37a1b98a8fd3aaa3.ctex::
-::res://autoload/::1749638325
+::res://autoload/::1749638579
 event_bus.gd::GDScript/GDScript::8827757987782203751::1749477442::0::1::::<>Node<><>0<>0<><>::
 game_config.gd::GDScript/GDScript::7726504516310832137::1749634843::0::1::::<>Node<><>0<>0<><>::
 global.gd::GDScript/GDScript::1358819927964971823::1749477442::0::1::::<>Node<><>0<>0<><>::
-lobby_manager.gd::GDScript::8527969617611678555::1749638561::0::1::::<>Node<><>0<>0<><>::
+lobby_manager.gd::GDScript::8527969617611678555::1749638931::0::1::::<>Node<><>0<>0<><>::
 lobby_manager_broken.gd::GDScript/GDScript::5616998778697984027::1749480114::0::1::::<>Node<><>0<>0<><>::
 lobby_manager_broken_20250611_062505.gd::GDScript/GDScript::186921201296354137::1749635548::0::1::::<>Node<><>0<>0<><>::
 network_manager.gd::GDScript/GDScript::2462705917640661162::1749479962::0::1::::<>Node<><>0<>0<><>::
-server_admin.gd::GDScript::5172800475979207810::1749638494::0::1::::<>Node<><>0<>0<><>::
+server_admin.gd::GDScript::5172800475979207810::1749638931::0::1::::<>Node<><>0<>0<><>::
 ::res://common/::1748266670
 ::res://common/containers/::1748266670
 labeled_h_flow_container.gd::GDScript/GDScript::7363801865901920474::1749477442::0::1::::LabeledHFlowContainer<>ColorRect<><>0<>1<><>::
@@ -865,8 +865,8 @@ test_hand_drag_drop.tscn::PackedScene/PackedScene::1361009320969746708::17487796
 test_multiplayer_mexican_train.tscn::PackedScene/PackedScene::7709816876262291807::1749390278::0::1::::<><><>0<>0<><>::res://tests/test_multiplayer_mexican_train.gd<>uid://1n6w8nnhxdmq::::res://scenes/bone_yard/bone_yard.tscn<>uid://c3mls3l4kk7sv::::res://scenes/station/station.tscn<>uid://dt5uwnhtk0n64::::res://scenes/train/train.tscn
 test_player_hand.tscn::PackedScene/PackedScene::2813168871575253663::1748626364::0::1::::<><><>0<>0<><>::uid://bk4nmpjchpqh8::::res://tests/test_player_hand.gd<>uid://uq07vnk7d3e1::::res://scenes/hand/hand.tscn
 test_player_naming.tscn::PackedScene/PackedScene::3486632115668645554::1749045861::0::1::::<><><>0<>0<><>::res://tests/test_player_naming.gd
-test_server_admin_dashboard.tscn::PackedScene::5734816807854717478::1749638558::0::1::::<><><>0<>0<><>::res://scripts/test/test_server_admin_dashboard.gd
-test_server_mechanics.tscn::PackedScene::7989847068947493501::1749638558::0::1::::<><><>0<>0<><>::uid://budxpjq2uq35y::::res://scripts/test/test_server_mechanics.gd
+test_server_admin_dashboard.tscn::PackedScene::5734816807854717478::1749638931::0::1::::<><><>0<>0<><>::res://scripts/test/test_server_admin_dashboard.gd
+test_server_mechanics.tscn::PackedScene::7989847068947493501::1749638931::0::1::::<><><>0<>0<><>::uid://budxpjq2uq35y::::res://scripts/test/test_server_mechanics.gd
 test_station_drag_fix.tscn::PackedScene/PackedScene::5449220900509016369::1748973739::0::1::::<><><>0<>0<><>::res://tests/test_station_drag_fix.gd
 test_station_only.tscn::PackedScene/PackedScene::6536441884881244354::1749303380::0::1::::<><><>0<>0<><>::uid://mdlg1s8wl78h::::res://tests/test_station_only.gd
 test_train.tscn::PackedScene/PackedScene::655437750163040262::1749303380::0::1::::<><><>0<>0<><>::uid://ckg07rf1c5rsc::::res://tests/test_train.gd<>uid://t4e7qw2n4d8q::::res://scenes/train/train.tscn
@@ -903,7 +903,7 @@ ai_player.gd::GDScript/GDScript::7074691162426933155::1749477442::0::1::::AIPlay
 player.gd::GDScript/GDScript::1642437513018753516::1749477442::0::1::::Player<>Node2D<><>0<>0<><>::
 ::res://scripts/station/::1748948617
 station.gd::GDScript/GDScript::4299407411422777351::1749477442::0::1::::Station<>Panel<><>0<>0<><>::
-::res://scripts/test/::1749638462
+::res://scripts/test/::1749638579
 debug_station_layout.gd::GDScript/GDScript::2336466750495209331::1749477442::0::1::::<>Control<><>0<>0<><>::
 mexican_train_launcher.gd::GDScript/GDScript::9221592263114260325::1749477442::0::1::::<>Control<><>0<>0<><>::
 minimal_station_test.gd::GDScript/GDScript::6800966454903681647::1749477442::0::1::::<>Control<><>0<>0<><>::
@@ -929,8 +929,8 @@ test_orientation_fix.gd::GDScript/GDScript::2718560849818192551::1749477442::0::
 test_player_hand.gd::GDScript/GDScript::3148987627228306615::1749477442::0::1::::<>Control<><>0<>0<><>::
 test_player_naming.gd::GDScript/GDScript::4117217016137574753::1749477442::0::1::::<>Control<><>0<>0<><>::
 test_player_object_names.gd::GDScript/GDScript::2769328529803657341::1749634849::0::1::::<>SceneTree<><>0<>0<><>::
-test_server_admin_dashboard.gd::GDScript::5997796090790999896::1749638494::0::1::::<>Control<><>0<>0<><>::
-test_server_mechanics.gd::GDScript::2069988215197223716::1749637917::0::1::::<>Control<><>0<>0<><>::
+test_server_admin_dashboard.gd::GDScript::5997796090790999896::1749638931::0::1::::<>Control<><>0<>0<><>::
+test_server_mechanics.gd::GDScript/GDScript::2069988215197223716::1749637917::0::1::::<>Control<><>0<>0<><>::
 test_station_drag_fix.gd::GDScript/GDScript::3987039022975534438::1749477442::0::1::::<>Control<><>0<>0<><>::
 test_station_only.gd::GDScript/GDScript::849139253545250497::1749477442::0::1::::<>Control<><>0<>0<><>::
 test_texture_debug.gd::GDScript/GDScript::6325470957803601049::1749477442::0::1::::<>Node<><>0<>0<><>::

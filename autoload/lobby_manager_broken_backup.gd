@@ -135,8 +135,7 @@ func join_game(game_code: String, player_id: int, player_name: String) -> bool:
 	if game_room.is_full():
 		print("Game is full: %s" % game_code)
 		return false
-	
-	# Remove player from previous game if any
+		# Remove player from previous game if any
 	leave_current_game(player_id)
 	
 	if game_room.add_player(player_id, player_name):
