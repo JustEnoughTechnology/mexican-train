@@ -110,6 +110,66 @@ PlayerNameUtil.get_player_name()  # Returns OS username or "Player123"
 # Or use the project's test runner
 ```
 
+## 🖥️ Server Testing & Administration
+
+### Quick Server Testing
+```bash
+# Run the automated test launcher
+./test_server.ps1
+```
+
+### Manual Testing Options
+
+#### 1. Automated System Tests
+```bash
+godot scenes/test/test_server_system.tscn
+```
+- Comprehensive automated testing of all server components
+- Tests autoloads, authentication, networking, and statistics
+- **Recommended first step** for verifying system integrity
+
+#### 2. Server Mechanics
+```bash
+godot scenes/test/test_server_mechanics.tscn
+```
+- Start/stop central server
+- Monitor active games and connections
+- Basic server management interface
+
+#### 3. Admin Dashboard
+```bash
+godot scenes/test/test_server_admin_dashboard.tscn
+```
+- **Login**: `admin@mexicantrain.local` / `admin123`
+- Real-time server metrics and monitoring
+- Statistics tracking and server control
+- Administrative functions
+
+#### 4. Client Lobby
+```bash
+godot scenes/lobby/client_lobby.tscn
+```
+- Connect to server at `127.0.0.1`
+- Create and join games
+- Test multiplayer lobby functionality
+
+#### 5. Complete Integration Test
+Run all components simultaneously to test full system:
+```bash
+# Automated multi-window launch
+./test_server.ps1
+# Choose option 5 for complete integration test
+```
+
+### Testing Workflow
+1. **Start Server**: Use server mechanics to start central server
+2. **Admin Login**: Access admin dashboard with provided credentials  
+3. **Client Connect**: Join lobby from client interface
+4. **Create Game**: Host a new game and verify it appears in admin dashboard
+5. **Monitor**: Watch real-time statistics and server metrics
+
+For detailed testing instructions, see `TESTING_GUIDE.md`.
+
 ## 📁 Project Structure
 
 ```
