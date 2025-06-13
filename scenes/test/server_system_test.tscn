@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://da0ab8vrcfw5m"]
+
+[ext_resource type="Script" uid="uid://ct8y7g14n6bjb" path="res://scripts/test/server_system_test.gd" id="1_test"]
+
+[node name="ServerSystemTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_test")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Mexican Train - Server System Test Suite"
+horizontal_alignment = 1
+
+[node name="InstructionsLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "This test suite verifies that all server components are working correctly.
+It checks autoloads, server admin system, networking, and statistics tracking."
+autowrap_mode = 2
+
+[node name="RunTestsButton" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Run All Tests"
+
+[node name="ProgressBar" type="ProgressBar" parent="VBox"]
+layout_mode = 2
+max_value = 8.0
+step = 1.0
+show_percentage = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TestOutput" type="RichTextLabel" parent="VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Test output will appear here..."
+scroll_following = true

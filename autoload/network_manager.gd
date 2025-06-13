@@ -129,6 +129,16 @@ func disconnect_from_server() -> void:
 	current_game_code = ""
 	print("Disconnected from server")
 
+## Check if server is currently running
+func is_server_running() -> bool:
+	return is_server and network_connected and multiplayer_peer != null
+
+## Get number of connected peers (for server monitoring)
+func get_connected_peer_count() -> int:
+	if not is_server or not multiplayer_peer:
+		return 0
+	return multiplayer.get_peers().size()
+
 # Server-side lobby management RPCs
 @rpc("any_peer", "call_local", "reliable")
 func _request_create_game(player_name: String) -> void:
@@ -238,7 +248,7 @@ func _receive_start_result(success: bool) -> void:
 		print("Failed to start game")
 
 # Lobby signal handlers (server-side)
-func _on_lobby_game_created(game_code: String, game_info: Dictionary) -> void:
+func _on_lobby_game_created(game_code: String, _game_info: Dictionary) -> void:
 	print("Lobby: Game created - %s" % game_code)
 
 func _on_lobby_game_joined(game_code: String, player_id: int) -> void:
@@ -254,6 +264,8 @@ func _on_lobby_game_started(game_code: String) -> void:
 				rpc_id(player_id, "_receive_game_started", game_code)
 
 func _on_lobby_updated(lobby_data: Dictionary) -> void:
+	# Emit the lobby_updated signal locally
+	lobby_updated.emit(lobby_data)
 	# Broadcast lobby update to all connected clients
 	rpc("_receive_lobby_data", lobby_data)
 
@@ -266,6 +278,12 @@ func _receive_game_started(game_code: String) -> void:
 # Network event handlers
 func _on_peer_connected(peer_id: int) -> void:
 	print("Peer connected: %d" % peer_id)
+	
+	if is_server:
+		# Get player name from the connected peer if available
+		var player_name = "Player %d" % peer_id  # Default name
+		players[peer_id] = {"name": player_name}
+		player_connected.emit(peer_id, player_name)
 
 func _on_peer_disconnected(peer_id: int) -> void:
 	print("Peer disconnected: %d" % peer_id)
@@ -273,6 +291,9 @@ func _on_peer_disconnected(peer_id: int) -> void:
 	if is_server:
 		# Remove player from their current game
 		LobbyManager.leave_current_game(peer_id)
+	
+	# Emit the signal to notify other systems
+	player_disconnected.emit(peer_id)
 
 func _on_connected_to_server() -> void:
 	print("Connected to server")

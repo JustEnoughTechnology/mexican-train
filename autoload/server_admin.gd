@@ -28,7 +28,7 @@ var peak_concurrent_games: int = 0
 var peak_concurrent_players: int = 0
 
 func _ready() -> void:
-	server_start_time = Time.get_time_dict_from_system()["unix"]
+	server_start_time = Time.get_unix_time_from_system()
 	
 	# Setup metrics update timer
 	metrics_update_timer = Timer.new()
@@ -77,26 +77,31 @@ func is_admin_authenticated(email: String) -> bool:
 
 ## Get comprehensive server metrics
 func get_server_metrics() -> Dictionary:
-	var current_time = Time.get_time_dict_from_system()["unix"]
+	var current_time = Time.get_unix_time_from_system()
 	var uptime_seconds = current_time - server_start_time
 	
-	# Get current game/player counts from LobbyManager
-	var current_games = LobbyManager.active_games.size()
+	# Get current game/player counts from LobbyManager (safely)
+	var current_games = 0
 	var current_players = 0
 	var active_games_info = []
 	
-	for game_code in LobbyManager.active_games:
-		var game_room = LobbyManager.active_games[game_code]
-		var player_count = game_room.get_total_player_count()
-		current_players += player_count
+	if LobbyManager and LobbyManager.active_games:
+		current_games = LobbyManager.active_games.size()
 		
-		active_games_info.append({
-			"code": game_code,
-			"players": player_count,
-			"host": game_room.players[game_room.host_id].name,
-			"started": game_room.is_started,
-			"created_ago": current_time - game_room.created_time
-		})
+		for game_code in LobbyManager.active_games:
+			var game_room = LobbyManager.active_games[game_code]
+			var player_count = 1  # Simplified player count for now
+			if game_room.has("players"):
+				player_count = game_room.players.size()
+				current_players += player_count
+		
+			active_games_info.append({
+				"code": game_code,
+				"players": player_count,
+				"host": game_room.players[game_room.host_id].name,
+				"started": game_room.is_started,
+				"created_ago": current_time - game_room.created_time
+			})
 	
 	# Update peak statistics
 	if current_games > peak_concurrent_games:
@@ -125,7 +130,7 @@ func get_server_metrics() -> Dictionary:
 			"peak_concurrent_games": peak_concurrent_games,
 			"peak_concurrent_players": peak_concurrent_players
 		},		"system_resources": {
-			"memory_usage_mb": memory_usage / 1024 / 1024,
+			"memory_usage_mb": float(memory_usage) / 1024.0 / 1024.0,
 			"platform": OS.get_name(),
 			"processor_count": OS.get_processor_count(),
 			"network_port": str(NetworkManager.DEFAULT_PORT) if NetworkManager else "N/A"
@@ -167,10 +172,14 @@ func _is_valid_email(email: String) -> bool:
 	return email.contains("@") and email.contains(".") and email.length() > 5
 
 func _format_uptime(seconds: float) -> String:
-	var days = int(seconds) / 86400
-	var hours = (int(seconds) % 86400) / 3600
-	var minutes = (int(seconds) % 3600) / 60
-	var secs = int(seconds) % 60
+	var total_seconds: int  = int(seconds)
+	@warning_ignore("integer_division")
+	var days: int = total_seconds / 86400
+	@warning_ignore("integer_division")
+	var hours :int = (total_seconds % 86400) / 3600
+	@warning_ignore("integer_division")
+	var minutes :int = (total_seconds % 3600) / 60
+	var secs = total_seconds % 60
 	
 	if days > 0:
 		return "%dd %dh %dm %ds" % [days, hours, minutes, secs]

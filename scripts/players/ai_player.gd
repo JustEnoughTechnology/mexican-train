@@ -49,7 +49,7 @@ func get_playable_dominoes() -> Array[Domino]:
 	# TODO: Implement logic to find valid dominoes from hand
 	return []
 
-func evaluate_move(domino: Domino, target_location: String) -> int:
+func evaluate_move(_domino: Domino, _target_location: String) -> int:
 	"""Evaluate the quality of a potential move (for future AI improvement)"""
 	# TODO: Implement scoring logic for move evaluation
 	return 0

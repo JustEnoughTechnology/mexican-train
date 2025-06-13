@@ -134,9 +134,9 @@ func _on_game_joined(game_code: String) -> void:
 	game_code_label.text = "Game Code: %s" % game_code
 	show_game_room_panel()
 
-func _on_game_started(game_code: String) -> void:
+func _on_game_started(_game_code: String) -> void:
 	# Switch to actual game scene
-	get_tree().change_scene_to_file("res://tests/test_multiplayer_mexican_train.tscn")
+	get_tree().change_scene_to_file("res://scenes/test/mexican_train_multiplayer_test.tscn")
 
 func _update_games_list(lobby_data: Dictionary) -> void:
 	# Clear existing games

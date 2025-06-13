@@ -35,4 +35,5 @@ func _check_godot_version() -> void:
 
 func get_total_domino_count() -> int:
 	# Calculate total number of dominoes in a set from 0-0 to MAX_DOTS-MAX_DOTS
+	@warning_ignore("integer_division")
 	return (MAX_DOTS + 1) * (MAX_DOTS + 2) / 2

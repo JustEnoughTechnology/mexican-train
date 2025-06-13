@@ -1,6 +1,7 @@
 # Changelog
 
-All notable changes to the Mexican Train Dominoes project will be documented in this file.
+All notable changes to the Mexican Train Dominoes project will be
+documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -8,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.5.0] - 2025-01-18
 
 ### Added
+
 - **Complete Domino Orientation System**
   - First domino in train now orients with engine-matching side on the left
   - Automatic domino swapping when engine value is on the right side
@@ -34,11 +36,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Documentation**
   - Complete README.md with game features and usage
-  - Architecture documentation
-  - Development setup instructions
+  - Architecture documentation  - Development setup instructions
   - Troubleshooting guide
 
 ### Changed
+
 - **Train Orientation Logic**
   - Rewrote `Train._orient_domino_for_connection()` for proper engine connection
   - Modified first domino placement to ensure engine-side positioning
@@ -55,6 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Dynamic username detection based on operating system
 
 ### Fixed
+
 - **Domino Orientation Issues**
   - Fixed first domino not orienting correctly with engine
   - Resolved domino swapping logic for proper connections
@@ -71,6 +74,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Fixed label updates in component initialization
 
 ### Technical Details
+
 - **Files Modified:**
   - `scripts/domino/domino.gd` - Added source detection and drag blocking
   - `scripts/train/train.gd` - Rewrote orientation logic and drag validation
@@ -83,9 +87,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All test scenarios now validate new features
 
 ### Breaking Changes
+
 - None - All changes are backward compatible
 
 ### Migration Guide
+
 - No migration needed - existing saves and configurations remain compatible
 - New player naming system activates automatically
 - Drag-drop restrictions are enforced immediately
@@ -95,6 +101,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Previous Development]
 
 ### Pre-0.5.0
+
 - Basic domino, boneyard, hand, train, and station implementation
 - Initial drag-drop functionality
 - Core game mechanics
@@ -103,4 +110,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-**Note**: This changelog tracks major feature releases. For detailed commit history, see the Git log.
+**Note**: This changelog tracks major feature releases. For detailed commit
+history, see the Git log.
