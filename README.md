@@ -26,6 +26,7 @@ and proper domino orientation behavior.
 - **Connection Validation**: Ensures dominoes match properly
 - **Dynamic Sizing**: Responsive layouts for all game components
 - **Debug Overlays**: Visual orientation indicators for testing
+- **Professional Logging**: RFC 5424 syslog-compatible logging system with configurable levels and areas
 
 ## 🚀 Quick Start
 
@@ -255,6 +256,40 @@ Customize component sizing in individual scripts:
 2. **Wrong orientation**: Verify engine domino is placed correctly
 3. **Layout issues**: Adjust size percentages in component scripts
 
+## 🔍 Logging System
+
+The game includes a professional logging system for debugging and monitoring:
+
+### Usage
+
+```gdscript
+# Basic logging
+Logger.log_info(Logger.LogArea.GAME, "Player action completed")
+Logger.log_error(Logger.LogArea.NETWORK, "Connection failed")
+Logger.log_debug(Logger.LogArea.AI, "AI evaluating move")
+
+# Available areas: ADMIN, MULTIPLAYER, AI, GAME, LOBBY, NETWORK, SYSTEM, UI, GENERAL
+```
+
+### Configuration
+
+Configure in `autoload/global.gd`:
+
+```gdscript
+func get_logging_config() -> Dictionary:
+    return {
+        "global_level": Logger.LogLevel.INFO,
+        "areas": {
+            Logger.LogArea.NETWORK: Logger.LogLevel.DEBUG,  # Debug network issues
+            Logger.LogArea.AI: Logger.LogLevel.WARNING,     # Less verbose AI
+        }
+    }
+```
+
+### Documentation
+
+See `docs/LOGGING_SYSTEM.md` for complete documentation and examples.
+
 ## 🤝 Contributing
 
 ### Development Setup
@@ -277,7 +312,15 @@ This project is open source. See LICENSE file for details.
 
 ## 🏷️ Version History
 
-### v0.6.0 (Current)
+### v0.6.1 (Current)
+
+- ✅ Professional RFC 5424 syslog-compatible logging system
+- ✅ Comprehensive logging conversion across all core game files
+- ✅ Configurable log levels and application areas
+- ✅ Runtime logging configuration and control
+- ✅ Enhanced debugging and monitoring capabilities
+
+### v0.6.0
 
 - ✅ GameState → GameConfig refactoring
 - ✅ Multiplayer networking infrastructure

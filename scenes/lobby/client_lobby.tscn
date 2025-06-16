@@ -1,19 +1,23 @@
 [gd_scene load_steps=2 format=3 uid="uid://csxyqiskkgbus"]
 
-[ext_resource type="Script" path="res://tests/client_lobby.gd" id="1_lobby"]
+[ext_resource type="Script" uid="uid://cwssu05hj5o1y" path="res://scripts/lobby/client_lobby.gd" id="1_xiqry"]
 
 [node name="ClientLobby" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource("1_lobby")
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xiqry")
 
 [node name="ConnectionPanel" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBox" type="VBoxContainer" parent="ConnectionPanel"]
 layout_mode = 1
@@ -26,15 +30,13 @@ offset_left = -200.0
 offset_top = -150.0
 offset_right = 200.0
 offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TitleLabel" type="Label" parent="ConnectionPanel/VBox"]
 layout_mode = 2
 text = "Mexican Train - Join Server"
 horizontal_alignment = 1
-add_theme_font_size_override("font_size", 20)
-
-[node name="HSeparator" type="HSeparator" parent="ConnectionPanel/VBox"]
-layout_mode = 2
 
 [node name="ServerAddressLabel" type="Label" parent="ConnectionPanel/VBox"]
 layout_mode = 2
@@ -42,7 +44,13 @@ text = "Server Address:"
 
 [node name="ServerAddressInput" type="LineEdit" parent="ConnectionPanel/VBox"]
 layout_mode = 2
-placeholder_text = "127.0.0.1 (localhost)"
+placeholder_text = "address:port (leave blank for localhost:9957)"
+
+[node name="HelpLabel" type="Label" parent="ConnectionPanel/VBox"]
+modulate = Color(0.8, 0.8, 0.8, 1)
+layout_mode = 2
+text = "Examples: 192.168.1.100  •  example.com:8000  •  blank = localhost:9957"
+horizontal_alignment = 1
 
 [node name="ConnectButton" type="Button" parent="ConnectionPanel/VBox"]
 layout_mode = 2
@@ -62,6 +70,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBox" type="VBoxContainer" parent="LobbyPanel"]
 layout_mode = 1
@@ -72,16 +82,17 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = -20.0
 offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TitleLabel" type="Label" parent="LobbyPanel/VBox"]
 layout_mode = 2
-text = "Mexican Train - Game Lobby"
+text = "Lobby - Loading..."
 horizontal_alignment = 1
-add_theme_font_size_override("font_size", 20)
 
 [node name="LobbyStatus" type="Label" parent="LobbyPanel/VBox"]
 layout_mode = 2
-text = "Lobby - Loading..."
+text = "Lobby - 0 active games"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="LobbyPanel/VBox"]
@@ -111,8 +122,8 @@ layout_mode = 2
 text = "Join with code:"
 
 [node name="JoinCodeInput" type="LineEdit" parent="LobbyPanel/VBox/JoinContainer"]
-layout_mode = 2
 custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 placeholder_text = "ABCD12"
 
 [node name="JoinGameButton" type="Button" parent="LobbyPanel/VBox/JoinContainer"]
@@ -140,6 +151,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBox" type="VBoxContainer" parent="GameRoomPanel"]
 layout_mode = 1
@@ -150,21 +163,18 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = -20.0
 offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TitleLabel" type="Label" parent="GameRoomPanel/VBox"]
 layout_mode = 2
-text = "Mexican Train - Game Room"
+text = "Game Code: ABCD12"
 horizontal_alignment = 1
-add_theme_font_size_override("font_size", 20)
 
 [node name="GameCodeLabel" type="Label" parent="GameRoomPanel/VBox"]
 layout_mode = 2
-text = "Game Code: ABCD12"
+text = "Game Code: Loading..."
 horizontal_alignment = 1
-add_theme_font_size_override("font_size", 16)
-
-[node name="HSeparator" type="HSeparator" parent="GameRoomPanel/VBox"]
-layout_mode = 2
 
 [node name="PlayersLabel" type="Label" parent="GameRoomPanel/VBox"]
 layout_mode = 2

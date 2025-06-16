@@ -10,7 +10,7 @@ extends Control
 var server_running: bool = false
 
 func _ready() -> void:
-	print("Server Launcher initialized")
+	Logger.log_info(Logger.LogArea.SYSTEM, "Server Launcher initialized")
 	get_window().title = "Mexican Train - Server Launcher"
 	
 	# Setup UI if nodes exist
@@ -22,21 +22,21 @@ func _ready() -> void:
 	update_ui()
 
 func _on_start_pressed() -> void:
-	print("Starting server...")
+	Logger.log_info(Logger.LogArea.NETWORK, "Starting server...")
 	if NetworkManager and NetworkManager.has_method("start_server"):
 		if NetworkManager.start_server():
 			server_running = true
-			print("Server started successfully")
+			Logger.log_info(Logger.LogArea.NETWORK, "Server started successfully")
 		else:
-			print("Failed to start server")
+			Logger.log_error(Logger.LogArea.NETWORK, "Failed to start server")
 	update_ui()
 
 func _on_stop_pressed() -> void:
-	print("Stopping server...")
+	Logger.log_info(Logger.LogArea.NETWORK, "Stopping server...")
 	if NetworkManager and NetworkManager.has_method("disconnect_from_server"):
 		NetworkManager.disconnect_from_server()
 		server_running = false
-		print("Server stopped")
+		Logger.log_info(Logger.LogArea.NETWORK, "Server stopped")
 	update_ui()
 
 func update_ui() -> void:

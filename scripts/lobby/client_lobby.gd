@@ -33,15 +33,16 @@ var is_ready: bool = false
 
 func _ready() -> void:
 	get_window().title = "Mexican Train - Player Lobby"
-	
-	network_manager = NetworkManager.new()
-	add_child(network_manager)
+		# Use the autoload singleton instead of creating a new instance
+	network_manager = NetworkManager
 	
 	# Connect signals
 	network_manager.lobby_updated.connect(_on_lobby_updated)
 	network_manager.game_created.connect(_on_game_created)
 	network_manager.game_joined.connect(_on_game_joined)
 	network_manager.game_started.connect(_on_game_started)
+	network_manager.connected_to_server.connect(_on_connected_to_server)
+	network_manager.connection_failed.connect(_on_connection_failed)
 	
 	# Setup button connections
 	connect_button.pressed.connect(_on_connect_pressed)
@@ -72,22 +73,63 @@ func show_game_room_panel() -> void:
 	game_room_panel.visible = true
 
 func _on_connect_pressed() -> void:
-	var address = server_address_input.text.strip_edges()
-	if address.is_empty():
+	Logger.log_debug(Logger.LogArea.LOBBY, "Connect button pressed")
+	var input_text = server_address_input.text.strip_edges()
+	var address: String
+	var port: int
+	
+	# Parse the input according to the three scenarios:
+	# 1) Empty = localhost:9957
+	# 2) Address only = address:9957  
+	# 3) Address:port = address:port
+	
+	if input_text.is_empty():
+		# Scenario 1: Empty input - use defaults
 		address = "127.0.0.1"
-	
-	connection_status.text = "Connecting to %s..." % address
-	
-	if network_manager.connect_to_server(address):
-		# Wait for connection result
-		await network_manager.connected_to_server
-		connection_status.text = "Connected to server!"
-		connection_status.modulate = Color.GREEN
-		show_lobby_panel()
-		network_manager.request_lobby_data()
+		port = NetworkManager.DEFAULT_PORT
+		Logger.log_info(Logger.LogArea.LOBBY, "Using default connection: %s:%d" % [address, port])
+	elif ":" in input_text:
+		# Scenario 3: Address:port specified
+		var parts = input_text.split(":", false, 1)  # Split on first colon only
+		address = parts[0].strip_edges()
+		if address.is_empty():
+			address = "127.0.0.1"  # Handle edge case ":9957"
+		
+		var port_text = parts[1].strip_edges()
+		port = port_text.to_int()
+		if port <= 0 or port > 65535:
+			connection_status.text = "Invalid port number: %s" % port_text
+			connection_status.modulate = Color.RED
+			Logger.log_warning(Logger.LogArea.LOBBY, "Invalid port: %s" % port_text)
+			return
+		Logger.log_info(Logger.LogArea.LOBBY, "Using address:port: %s:%d" % [address, port])
 	else:
-		connection_status.text = "Failed to connect to server"
+		# Scenario 2: Address only - use default port
+		address = input_text
+		port = NetworkManager.DEFAULT_PORT
+		Logger.log_info(Logger.LogArea.LOBBY, "Using address with default port: %s:%d" % [address, port])
+	
+	connection_status.text = "Connecting to %s:%d..." % [address, port]
+	connection_status.modulate = Color.YELLOW
+	Logger.log_info(Logger.LogArea.LOBBY, "Attempting to connect to %s:%d" % [address, port])
+	
+	var connection_result = network_manager.connect_to_server(address, port)
+	Logger.log_debug(Logger.LogArea.LOBBY, "Connection result: %s" % connection_result)
+	
+	if not connection_result:
+		connection_status.text = "Failed to initiate connection"
 		connection_status.modulate = Color.RED
+		Logger.log_error(Logger.LogArea.LOBBY, "Connection failed to initiate")
+
+func _on_connected_to_server() -> void:
+	connection_status.text = "Connected to server!"
+	connection_status.modulate = Color.GREEN
+	show_lobby_panel()
+	network_manager.request_lobby_data()
+
+func _on_connection_failed() -> void:
+	connection_status.text = "Failed to connect to server"
+	connection_status.modulate = Color.RED
 
 func _on_create_game_pressed() -> void:
 	network_manager.create_game()

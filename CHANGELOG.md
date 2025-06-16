@@ -6,6 +6,73 @@ documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.1] - 2025-06-16
+
+### Added
+
+- **Professional Logging System**
+  - Complete RFC 5424 syslog-compatible logging framework
+  - Logger autoload with 8 log levels (Emergency to Debug)
+  - 10 application-specific log areas (Admin, AI, Game, Lobby, Network, etc.)
+  - Runtime configuration with per-area log level control
+  - Timestamp support and formatted console output
+  - Backward compatibility with existing `Global.debug_print()` calls
+
+### Changed
+
+- **Comprehensive Logging Conversion**
+  - Converted all `print()` statements in core game files to structured Logger calls
+  - Converted all `push_error()` and `push_warning()` statements to appropriate log levels
+  - Replaced informal debug output with professional logging throughout codebase
+  - Updated all core game components: Domino, Player, AI Player, Admin Dashboard, Server, Lobby, etc.
+
+- **Improved Code Quality**
+  - Consistent logging patterns across entire codebase
+  - Proper error categorization with appropriate log levels
+  - Enhanced debugging capabilities with area-specific filtering
+  - Better production-ready logging for deployment
+
+### Technical Details
+
+- **New Files:**
+  - `autoload/logger.gd` - Complete logging framework
+  - `docs/LOGGING_SYSTEM.md` - Comprehensive logging documentation
+  - `docs/logging_configuration_examples.gd` - Configuration examples
+  - Test files for logging system validation
+
+- **Core Files Updated with Logger Integration:**
+  - `scripts/domino/domino.gd` - Game logic logging
+  - `scripts/players/player.gd` - Player state logging
+  - `scripts/players/ai_player.gd` - AI decision logging
+  - `scripts/admin/admin_dashboard.gd` - Admin operations logging
+  - `scripts/server/headless_server.gd` - Server lifecycle logging
+  - `scripts/lobby/client_lobby.gd` - Connection and lobby logging
+  - `scripts/lobby/server_launcher.gd` - Server management logging
+  - `scripts/bone_yard/v_box_container.gd` - Component logging
+  - All autoload files with deprecation warnings converted
+
+### Fixed
+
+- **Inconsistent Debug Output**
+  - Replaced informal print statements with structured logging
+  - Fixed missing error handling with proper log levels
+  - Resolved debug output inconsistencies across components
+
+### Migration Guide
+
+- **For Developers:**
+  - Use `Logger.log_info(Logger.LogArea.GAME, "message")` instead of `print()`
+  - Use `Logger.log_error(Logger.LogArea.SYSTEM, "error")` instead of `push_error()`
+  - Configure logging in `Global.gd` using `get_logging_config()` method
+  - Test files retain print statements for development purposes
+
+- **For Users:**
+  - No changes required - logging is transparent to end users
+  - Better error messages and debugging information available
+  - Configurable log verbosity for troubleshooting
+
+---
+
 ## [0.5.0] - 2025-01-18
 
 ### Added

@@ -57,7 +57,7 @@ func set_label_text(p_text:String):
 	if my_label:
 		my_label.text = p_text
 	else:
-		push_warning("Train: my_label is null, cannot set label text.")
+		Logger.log_warning(Logger.LogArea.UI, "Train: my_label is null, cannot set label text.")
 
 func get_label_text()->String:
 	return self.my_label.text if my_label else ""
@@ -83,14 +83,14 @@ func add_domino(p_domino:Domino, p_face_up:bool=true) -> void:
 	# Force horizontal orientation for all dominoes in train
 	var domino_dots = p_domino.get_dots()
 	if p_domino.data.orientation == DominoData.ORIENTATION_LARGEST_TOP or p_domino.data.orientation == DominoData.ORIENTATION_LARGEST_BOTTOM:
-		print("WARNING: Domino %s has vertical orientation %d, forcing to horizontal" % [p_domino.name, p_domino.data.orientation])
+		Logger.log_warning(Logger.LogArea.GAME, "WARNING: Domino %s has vertical orientation %d, forcing to horizontal" % [p_domino.name, p_domino.data.orientation])
 		# Force to horizontal based on which side has more dots
 		if domino_dots.x >= domino_dots.y:
 			p_domino.set_orientation(DominoData.ORIENTATION_LARGEST_LEFT)
-			print("Forced to LARGEST_LEFT")
+			Logger.log_debug(Logger.LogArea.GAME, "Forced to LARGEST_LEFT")
 		else:
 			p_domino.set_orientation(DominoData.ORIENTATION_LARGEST_RIGHT)
-			print("Forced to LARGEST_RIGHT")
+			Logger.log_debug(Logger.LogArea.GAME, "Forced to LARGEST_RIGHT")
 	
 	# If in single domino mode, remove all existing dominoes first
 	if show_single_domino:
@@ -106,7 +106,7 @@ func add_domino(p_domino:Domino, p_face_up:bool=true) -> void:
 	# Update train sizing
 	_update_train_size()
 	
-	print("Added domino to train (right side). Total dominoes: ", get_domino_count())
+	Logger.log_info(Logger.LogArea.GAME, "Added domino to train (right side). Total dominoes: " + str(get_domino_count()))
 
 func _update_train_size() -> void:
 	# Calculate required size based on dominoes
@@ -135,7 +135,7 @@ func _can_drop_data(_position: Vector2, data) -> bool:
 	# Only allow drops from hand
 	if source_type != "hand":
 		if GameConfig.DEBUG_SHOW_WARNINGS:
-			print("Train _can_drop_data: Rejected - source is '%s', only 'hand' allowed" % source_type)
+			Logger.log_debug(Logger.LogArea.GAME, "Train _can_drop_data: Rejected - source is '%s', only 'hand' allowed" % source_type)
 		return false
 	
 	var drag_domino = data
@@ -144,7 +144,7 @@ func _can_drop_data(_position: Vector2, data) -> bool:
 		drag_domino = get_tree().get_meta("current_drag_domino")
 	
 	if GameConfig.DEBUG_SHOW_WARNINGS:
-		print("Train _can_drop_data: source_type = %s (allowed)" % source_type)
+		Logger.log_debug(Logger.LogArea.GAME, "Train _can_drop_data: source_type = %s (allowed)" % source_type)
 	
 	var incoming_dots = drag_domino.get_dots()
 	
@@ -152,20 +152,19 @@ func _can_drop_data(_position: Vector2, data) -> bool:
 	if get_domino_count() == 0:
 		# Look for a station in the scene to get the engine value
 		var station = find_station_in_scene()
-		if station and station.has_engine():
-			var required_engine_value = station.get_engine_value()
+		if station and station.has_engine():		var required_engine_value = station.get_engine_value()
 			
-			print("\n=== EMPTY TRAIN CONNECTION CHECK ===")
-			print("Station engine value: %d" % required_engine_value)
-			print("Incoming domino: %d-%d" % [incoming_dots.x, incoming_dots.y])
-			print("Checking if %d or %d matches required %d" % [incoming_dots.x, incoming_dots.y, required_engine_value])
+			Logger.log_debug(Logger.LogArea.GAME, "\n=== EMPTY TRAIN CONNECTION CHECK ===")
+			Logger.log_debug(Logger.LogArea.GAME, "Station engine value: %d" % required_engine_value)
+			Logger.log_debug(Logger.LogArea.GAME, "Incoming domino: %d-%d" % [incoming_dots.x, incoming_dots.y])
+			Logger.log_debug(Logger.LogArea.GAME, "Checking if %d or %d matches required %d" % [incoming_dots.x, incoming_dots.y, required_engine_value])
 			
 			var can_connect_to_station = (incoming_dots.x == required_engine_value or incoming_dots.y == required_engine_value)
-			print("Can connect to station: %s" % str(can_connect_to_station))
-			print("===================================\n")
+			Logger.log_debug(Logger.LogArea.GAME, "Can connect to station: %s" % str(can_connect_to_station))
+			Logger.log_debug(Logger.LogArea.GAME, "===================================\n")
 			return can_connect_to_station
 		else:
-			print("No station found or station has no engine - train cannot accept dominoes yet")
+			Logger.log_warning(Logger.LogArea.GAME, "No station found or station has no engine - train cannot accept dominoes yet")
 			return false
 	
 	# Get the rightmost domino and its right-side dot count
@@ -175,24 +174,21 @@ func _can_drop_data(_position: Vector2, data) -> bool:
 	
 	# Get the correct right-side value based on domino orientation
 	var required_dots = _get_domino_right_side_value(last_domino)
-	
-	# DEBUG: Print detailed connection info
-	print("\n=== DOMINO CONNECTION CHECK ===")
-	print("Checking domino: %s" % drag_domino.name)
-	print("  Original dots: %d-%d (x=%d, y=%d)" % [incoming_dots.x, incoming_dots.y, incoming_dots.x, incoming_dots.y])
-	print("  Original orientation: %d (%s)" % [drag_domino.data.orientation, _orientation_to_string(drag_domino.data.orientation)])
-	print("Last domino: %d-%d, orientation: %d (%s)" % [last_domino.get_dots().x, last_domino.get_dots().y, last_domino.data.orientation, _orientation_to_string(last_domino.data.orientation)])
-	print("Last domino right side value: %d" % required_dots)
-	print("Checking if %d or %d matches required %d" % [incoming_dots.x, incoming_dots.y, required_dots])
+		# DEBUG: Print detailed connection info
+	Logger.log_debug(Logger.LogArea.GAME, "\n=== DOMINO CONNECTION CHECK ===")
+	Logger.log_debug(Logger.LogArea.GAME, "Checking domino: %s" % drag_domino.name)
+	Logger.log_debug(Logger.LogArea.GAME, "  Original dots: %d-%d (x=%d, y=%d)" % [incoming_dots.x, incoming_dots.y, incoming_dots.x, incoming_dots.y])
+	Logger.log_debug(Logger.LogArea.GAME, "  Original orientation: %d (%s)" % [drag_domino.data.orientation, _orientation_to_string(drag_domino.data.orientation)])
+	Logger.log_debug(Logger.LogArea.GAME, "Last domino: %d-%d, orientation: %d (%s)" % [last_domino.get_dots().x, last_domino.get_dots().y, last_domino.data.orientation, _orientation_to_string(last_domino.data.orientation)])	Logger.log_debug(Logger.LogArea.GAME, "Last domino right side value: %d" % required_dots)
+	Logger.log_debug(Logger.LogArea.GAME, "Checking if %d or %d matches required %d" % [incoming_dots.x, incoming_dots.y, required_dots])
 	
 	# Check if either side of the incoming domino matches the required connection
 	var can_connect = (incoming_dots.x == required_dots or incoming_dots.y == required_dots)
 	
-	print("Can connect: %s" % str(can_connect))
-	print("===============================")
-	
-	if not can_connect:
-		print("Cannot drop domino %s: needs %d dots to connect, but has %d-%d" % [
+	Logger.log_debug(Logger.LogArea.GAME, "Can connect: %s" % str(can_connect))
+	Logger.log_debug(Logger.LogArea.GAME, "===============================")
+		if not can_connect:
+		Logger.log_warning(Logger.LogArea.GAME, "Cannot drop domino %s: needs %d dots to connect, but has %d-%d" % [
 			drag_domino.name, required_dots, incoming_dots.x, incoming_dots.y])
 	
 	return can_connect
@@ -201,25 +197,24 @@ func _drop_data(_position: Vector2, data) -> void:
 	if data is Domino:
 		var drag_domino = data
 		# Get the domino from metadata if available (matching Hand implementation)
-		if get_tree().has_meta("current_drag_domino"):
-			drag_domino = get_tree().get_meta("current_drag_domino")
+		if get_tree().has_meta("current_drag_domino"):		drag_domino = get_tree().get_meta("current_drag_domino")
 		
 		# ====== DEBUG: ORIGINAL DOMINO STATE ======
-		print("\n========== DOMINO DROP DEBUG START ==========")
-		print("ORIGINAL DOMINO STATE (before any changes):")
-		print("  Name: %s" % drag_domino.name)
-		print("  Dots: %d-%d (x=%d, y=%d)" % [drag_domino.get_dots().x, drag_domino.get_dots().y, drag_domino.get_dots().x, drag_domino.get_dots().y])
-		print("  Orientation: %d (%s)" % [drag_domino.data.orientation, _orientation_to_string(drag_domino.data.orientation)])
+		Logger.log_debug(Logger.LogArea.GAME, "\n========== DOMINO DROP DEBUG START ==========")
+		Logger.log_debug(Logger.LogArea.GAME, "ORIGINAL DOMINO STATE (before any changes):")
+		Logger.log_debug(Logger.LogArea.GAME, "  Name: %s" % drag_domino.name)
+		Logger.log_debug(Logger.LogArea.GAME, "  Dots: %d-%d (x=%d, y=%d)" % [drag_domino.get_dots().x, drag_domino.get_dots().y, drag_domino.get_dots().x, drag_domino.get_dots().y])
+		Logger.log_debug(Logger.LogArea.GAME, "  Orientation: %d (%s)" % [drag_domino.data.orientation, _orientation_to_string(drag_domino.data.orientation)])
 		
 		# Get expected connection info
 		var required_dots = -1
 		if get_domino_count() > 0:
 			var last_domino = get_last_domino()
 			required_dots = _get_domino_right_side_value(last_domino)
-			print("  Must connect to: %d dots (from last domino)" % required_dots)
+			Logger.log_debug(Logger.LogArea.GAME, "  Must connect to: %d dots (from last domino)" % required_dots)
 		else:
-			print("  First domino - no connection required")
-		print("=============================================")
+			Logger.log_debug(Logger.LogArea.GAME, "  First domino - no connection required")
+		Logger.log_debug(Logger.LogArea.GAME, "=============================================")
 		
 		# Remove from original parent before adding to train
 		if drag_domino.get_parent():
@@ -227,13 +222,12 @@ func _drop_data(_position: Vector2, data) -> void:
 		
 		# Auto-orient the domino for proper connection
 		_orient_domino_for_connection(drag_domino)
-		
-		# ====== DEBUG: AFTER ORIENTATION ======
-		print("\nAFTER ORIENTATION (before adding to train):")
-		print("  Name: %s" % drag_domino.name)
-		print("  Dots: %d-%d (x=%d, y=%d)" % [drag_domino.get_dots().x, drag_domino.get_dots().y, drag_domino.get_dots().x, drag_domino.get_dots().y])
-		print("  Orientation: %d (%s)" % [drag_domino.data.orientation, _orientation_to_string(drag_domino.data.orientation)])
-		print("==========================================")
+				# ====== DEBUG: AFTER ORIENTATION ======
+		Logger.log_debug(Logger.LogArea.GAME, "\nAFTER ORIENTATION (before adding to train):")
+		Logger.log_debug(Logger.LogArea.GAME, "  Name: %s" % drag_domino.name)
+		Logger.log_debug(Logger.LogArea.GAME, "  Dots: %d-%d (x=%d, y=%d)" % [drag_domino.get_dots().x, drag_domino.get_dots().y, drag_domino.get_dots().x, drag_domino.get_dots().y])
+		Logger.log_debug(Logger.LogArea.GAME, "  Orientation: %d (%s)" % [drag_domino.data.orientation, _orientation_to_string(drag_domino.data.orientation)])
+		Logger.log_debug(Logger.LogArea.GAME, "==========================================")
 		
 		# Add to train with horizontal orientation
 		add_domino(drag_domino)
@@ -242,18 +236,17 @@ func _drop_data(_position: Vector2, data) -> void:
 		domino_added.emit()
 		
 		# ====== DEBUG: FINAL DOMINO STATE ======
-		print("\nFINAL DOMINO STATE (after orientation and add):")
-		print("  Name: %s" % drag_domino.name)
-		print("  Dots: %d-%d (x=%d, y=%d)" % [drag_domino.get_dots().x, drag_domino.get_dots().y, drag_domino.get_dots().x, drag_domino.get_dots().y])
-		print("  Orientation: %d (%s)" % [drag_domino.data.orientation, _orientation_to_string(drag_domino.data.orientation)])
+		Logger.log_debug(Logger.LogArea.GAME, "\nFINAL DOMINO STATE (after orientation and add):")
+		Logger.log_debug(Logger.LogArea.GAME, "  Name: %s" % drag_domino.name)		Logger.log_debug(Logger.LogArea.GAME, "  Dots: %d-%d (x=%d, y=%d)" % [drag_domino.get_dots().x, drag_domino.get_dots().y, drag_domino.get_dots().x, drag_domino.get_dots().y])
+		Logger.log_debug(Logger.LogArea.GAME, "  Orientation: %d (%s)" % [drag_domino.data.orientation, _orientation_to_string(drag_domino.data.orientation)])
 		
 		# Verify connection is correct
 		if required_dots >= 0:
 			var left_side_actual = drag_domino.get_dots().x
-			print("  Left side value: %d" % left_side_actual)
-			print("  Connection check: %d should equal %d -> %s" % [left_side_actual, required_dots, str(left_side_actual == required_dots)])
+			Logger.log_debug(Logger.LogArea.GAME, "  Left side value: %d" % left_side_actual)
+			Logger.log_debug(Logger.LogArea.GAME, "  Connection check: %d should equal %d -> %s" % [left_side_actual, required_dots, str(left_side_actual == required_dots)])
 		
-		print("========== DOMINO DROP DEBUG END ==========\n")
+		Logger.log_debug(Logger.LogArea.GAME, "========== DOMINO DROP DEBUG END ==========\n")
 		
 		# Clean up drag metadata
 		if get_tree().has_meta("current_drag_domino"):
@@ -261,7 +254,7 @@ func _drop_data(_position: Vector2, data) -> void:
 		if get_tree().has_meta("current_drag_source"):
 			get_tree().remove_meta("current_drag_source")
 		
-		print("Domino successfully dropped into train")
+		Logger.log_info(Logger.LogArea.GAME, "Domino successfully dropped into train")
 
 func get_domino(i:int)-> Domino:
 	return domino_container.get_child(i)
@@ -314,7 +307,7 @@ func enable_drop_target() -> void:
 		var bg = $"TopContainer/bg"
 		bg.mouse_filter = Control.MOUSE_FILTER_PASS
 	
-	print("Train enabled as drop target")
+	Logger.log_debug(Logger.LogArea.UI, "Train enabled as drop target")
 
 func _ready() -> void:
 	# Set player name using PlayerNameUtil
@@ -327,55 +320,54 @@ func _ready() -> void:
 func _orient_domino_for_connection(domino: Domino) -> void:
 	"""Orient the domino so it connects properly to the train"""
 	var domino_dots = domino.get_dots()
-	
-	# If train is empty, orient first domino as if engine were immediately before it
+		# If train is empty, orient first domino as if engine were immediately before it
 	if get_domino_count() == 0:
-		print("=== FIRST DOMINO ===")
-		print("Orienting first domino %d-%d for engine connection" % [domino_dots.x, domino_dots.y])
+		Logger.log_debug(Logger.LogArea.GAME, "=== FIRST DOMINO ===")
+		Logger.log_debug(Logger.LogArea.GAME, "Orienting first domino %d-%d for engine connection" % [domino_dots.x, domino_dots.y])
 		
 		# Get the engine value from the station
 		var station = find_station_in_scene()
 		if station and station.has_engine():
 			var engine_value = station.get_engine_value()
-			print("Engine value: %d" % engine_value)
+			Logger.log_debug(Logger.LogArea.GAME, "Engine value: %d" % engine_value)
 			
 			# Orient domino so engine-matching side is on the left (connecting side)
 			if domino_dots.x == engine_value:
 				# The left value (x) matches engine - orient based on which side has more dots
 				if domino_dots.x >= domino_dots.y:
 					domino.set_orientation(DominoData.ORIENTATION_LARGEST_LEFT)
-					print("Set first domino to LARGEST_LEFT (engine-matching %d on left)" % domino_dots.x)
+					Logger.log_debug(Logger.LogArea.GAME, "Set first domino to LARGEST_LEFT (engine-matching %d on left)" % domino_dots.x)
 				else:
 					domino.set_orientation(DominoData.ORIENTATION_LARGEST_RIGHT)
-					print("Set first domino to LARGEST_RIGHT (engine-matching %d on left)" % domino_dots.x)
+					Logger.log_debug(Logger.LogArea.GAME, "Set first domino to LARGEST_RIGHT (engine-matching %d on left)" % domino_dots.x)
 			elif domino_dots.y == engine_value:
 				# The right value (y) matches engine - swap so engine value is on left
 				domino.set_dots(domino_dots.y, domino_dots.x)  # Swap so engine value is on left
 				var new_dots = domino.get_dots()
 				if new_dots.x >= new_dots.y:
 					domino.set_orientation(DominoData.ORIENTATION_LARGEST_LEFT)
-					print("Set first domino to LARGEST_LEFT after swapping (engine-matching %d now on left)" % new_dots.x)
+					Logger.log_debug(Logger.LogArea.GAME, "Set first domino to LARGEST_LEFT after swapping (engine-matching %d now on left)" % new_dots.x)
 				else:
 					domino.set_orientation(DominoData.ORIENTATION_LARGEST_RIGHT)
-					print("Set first domino to LARGEST_RIGHT after swapping (engine-matching %d now on left)" % new_dots.x)
+					Logger.log_debug(Logger.LogArea.GAME, "Set first domino to LARGEST_RIGHT after swapping (engine-matching %d now on left)" % new_dots.x)
 			else:
 				# This shouldn't happen if validation worked correctly
-				print("WARNING: First domino %d-%d doesn't match engine %d" % [domino_dots.x, domino_dots.y, engine_value])
+				Logger.log_warning(Logger.LogArea.GAME, "WARNING: First domino %d-%d doesn't match engine %d" % [domino_dots.x, domino_dots.y, engine_value])
 				# Default fallback
 				if domino_dots.x >= domino_dots.y:
 					domino.set_orientation(DominoData.ORIENTATION_LARGEST_LEFT)
 				else:
 					domino.set_orientation(DominoData.ORIENTATION_LARGEST_RIGHT)
 		else:
-			print("WARNING: No station or engine found - using default orientation")
+			Logger.log_warning(Logger.LogArea.GAME, "WARNING: No station or engine found - using default orientation")
 			# Fallback to original behavior
 			if domino_dots.x >= domino_dots.y:
 				domino.set_orientation(DominoData.ORIENTATION_LARGEST_LEFT)
-				print("Set first domino to LARGEST_LEFT (larger value %d on left)" % domino_dots.x)
+				Logger.log_debug(Logger.LogArea.GAME, "Set first domino to LARGEST_LEFT (larger value %d on left)" % domino_dots.x)
 			else:
 				domino.set_orientation(DominoData.ORIENTATION_LARGEST_RIGHT)
-				print("Set first domino to LARGEST_RIGHT (larger value %d on right)" % domino_dots.y)
-		print("==================")
+				Logger.log_debug(Logger.LogArea.GAME, "Set first domino to LARGEST_RIGHT (larger value %d on right)" % domino_dots.y)
+		Logger.log_debug(Logger.LogArea.GAME, "==================")
 		return
 	
 	# Get the rightmost domino and its right-side dot count
@@ -387,24 +379,23 @@ func _orient_domino_for_connection(domino: Domino) -> void:
 	# Get the correct right-side value based on domino orientation  
 	var required_dots = _get_domino_right_side_value(last_domino)
 	domino_dots = domino.get_dots()
-	
-	# We need the matching value on the LEFT side of the new domino
+		# We need the matching value on the LEFT side of the new domino
 	# With (x,y) coordinates: x=left_dots, y=right_dots for horizontal dominoes
 	
-	print("=== ORIENTING DOMINO FOR CONNECTION ===")
-	print("Need to connect to: %d dots" % required_dots)
-	print("New domino data: %d-%d (x=left, y=right when horizontal)" % [domino_dots.x, domino_dots.y])
-	print("Current domino orientation: %d" % domino.data.orientation)
+	Logger.log_debug(Logger.LogArea.GAME, "=== ORIENTING DOMINO FOR CONNECTION ===")
+	Logger.log_debug(Logger.LogArea.GAME, "Need to connect to: %d dots" % required_dots)
+	Logger.log_debug(Logger.LogArea.GAME, "New domino data: %d-%d (x=left, y=right when horizontal)" % [domino_dots.x, domino_dots.y])
+	Logger.log_debug(Logger.LogArea.GAME, "Current domino orientation: %d" % domino.data.orientation)
 	
 	if domino_dots.x == required_dots:
 		# The left value (x) matches - domino is already in correct orientation
 		# Use orientation based on which side has more dots
 		if domino_dots.x >= domino_dots.y:
 			domino.set_orientation(DominoData.ORIENTATION_LARGEST_LEFT)
-			print("Oriented domino %s as LARGEST_LEFT (left %d matches required %d)" % [domino.name, domino_dots.x, required_dots])
+			Logger.log_debug(Logger.LogArea.GAME, "Oriented domino %s as LARGEST_LEFT (left %d matches required %d)" % [domino.name, domino_dots.x, required_dots])
 		else:
 			domino.set_orientation(DominoData.ORIENTATION_LARGEST_RIGHT)
-			print("Oriented domino %s as LARGEST_RIGHT (left %d matches required %d)" % [domino.name, domino_dots.x, required_dots])
+			Logger.log_debug(Logger.LogArea.GAME, "Oriented domino %s as LARGEST_RIGHT (left %d matches required %d)" % [domino.name, domino_dots.x, required_dots])
 	elif domino_dots.y == required_dots:
 		# The right value (y) matches - need to flip domino so y becomes left side
 		# This means swapping the domino's left/right values
@@ -412,28 +403,28 @@ func _orient_domino_for_connection(domino: Domino) -> void:
 		var new_dots = domino.get_dots()
 		if new_dots.x >= new_dots.y:
 			domino.set_orientation(DominoData.ORIENTATION_LARGEST_LEFT)
-			print("Oriented domino %s as LARGEST_LEFT after swapping (now left %d matches required %d)" % [domino.name, new_dots.x, required_dots])
+			Logger.log_debug(Logger.LogArea.GAME, "Oriented domino %s as LARGEST_LEFT after swapping (now left %d matches required %d)" % [domino.name, new_dots.x, required_dots])
 		else:
 			domino.set_orientation(DominoData.ORIENTATION_LARGEST_RIGHT)
-			print("Oriented domino %s as LARGEST_RIGHT after swapping (now left %d matches required %d)" % [domino.name, new_dots.x, required_dots])
+			Logger.log_debug(Logger.LogArea.GAME, "Oriented domino %s as LARGEST_RIGHT after swapping (now left %d matches required %d)" % [domino.name, new_dots.x, required_dots])
 	else:
 		# This shouldn't happen if _can_drop_data worked correctly
-		print("WARNING: Domino %s cannot connect (needs %d, has %d-%d)" % [
+		Logger.log_debug(Logger.LogArea.GAME, "WARNING: Domino %s cannot connect (needs %d, has %d-%d)" % [
 			domino.name, required_dots, domino_dots.x, domino_dots.y])
 		# Default to LARGEST_RIGHT as fallback
 		domino.set_orientation(DominoData.ORIENTATION_LARGEST_RIGHT)
 	
-	print("Final domino orientation: %d" % domino.data.orientation)
-	print("=====================================")
+	Logger.log_debug(Logger.LogArea.GAME, "Final domino orientation: %d" % domino.data.orientation)
+	Logger.log_debug(Logger.LogArea.GAME, "=====================================")
 
 func _get_domino_right_side_value(domino: Domino) -> int:
 	"""Get the dot value on the right side of a domino based on its orientation"""
 	var dots = domino.get_dots()
 	var orientation = domino.data.orientation
 	
-	print("DEBUG _get_domino_right_side_value:")
-	print("  Domino dots: %d-%d (x=%d, y=%d)" % [dots.x, dots.y, dots.x, dots.y])
-	print("  Orientation: %d (%s)" % [orientation, _orientation_to_string(orientation)])
+	Logger.log_debug(Logger.LogArea.GAME, "DEBUG _get_domino_right_side_value:")
+	Logger.log_debug(Logger.LogArea.GAME, "  Domino dots: %d-%d (x=%d, y=%d)" % [dots.x, dots.y, dots.x, dots.y])
+	Logger.log_debug(Logger.LogArea.GAME, "  Orientation: %d (%s)" % [orientation, _orientation_to_string(orientation)])
 	
 	var right_side_value: int
 	match orientation:
@@ -444,7 +435,7 @@ func _get_domino_right_side_value(domino: Domino) -> int:
 				right_side_value = dots.x  # x is larger, so it's on the right
 			else:
 				right_side_value = dots.y  # y is larger, so it's on the right
-			print("  LARGEST_RIGHT: larger value %d is on the right" % right_side_value)
+			Logger.log_debug(Logger.LogArea.GAME, "  LARGEST_RIGHT: larger value %d is on the right" % right_side_value)
 		DominoData.ORIENTATION_LARGEST_LEFT:
 			# LARGEST_LEFT means the larger number is positioned on the left
 			# So the smaller number is on the right
@@ -452,16 +443,16 @@ func _get_domino_right_side_value(domino: Domino) -> int:
 				right_side_value = dots.y  # x is larger (on left), so y is on right
 			else:
 				right_side_value = dots.x  # y is larger (on left), so x is on right
-			print("  LARGEST_LEFT: smaller value %d is on the right" % right_side_value)
+			Logger.log_debug(Logger.LogArea.GAME, "  LARGEST_LEFT: smaller value %d is on the right" % right_side_value)
 		DominoData.ORIENTATION_LARGEST_TOP, DominoData.ORIENTATION_LARGEST_BOTTOM:
 			# For vertical orientations, we shouldn't be connecting horizontally in trains
-			print("  WARNING: Vertical orientation in horizontal train connection")
+			Logger.log_debug(Logger.LogArea.GAME, "  WARNING: Vertical orientation in horizontal train connection")
 			right_side_value = dots.y  # Default fallback
 		_:
-			print("  ERROR: Unknown domino orientation %s" % orientation)
+			Logger.log_debug(Logger.LogArea.GAME, "  ERROR: Unknown domino orientation %s" % orientation)
 			right_side_value = dots.y  # Default fallback
 	
-	print("  Final right-side value: %d" % right_side_value)
+	Logger.log_debug(Logger.LogArea.GAME, "  Final right-side value: %d" % right_side_value)
 	return right_side_value
 
 # Helper function to convert orientation to string for debugging
@@ -524,3 +515,4 @@ func get_open_end() -> int:
 func clear_train() -> void:
 	"""Clear all dominoes from the train"""
 	clear_dominoes()
+

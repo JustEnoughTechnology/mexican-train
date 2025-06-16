@@ -21,6 +21,15 @@ signal turn_changed(active_player_id: int)
 signal network_domino_action(action: String, data: Dictionary)
 @warning_ignore("unused_signal")
 signal player_list_updated(players: Dictionary)
+
+# Admin dashboard signals  
+@warning_ignore("unused_signal")
+signal admin_data_received(dashboard_data: Dictionary)
+@warning_ignore("unused_signal")
+signal admin_auth_result(admin_email: String, success: bool)
+@warning_ignore("unused_signal")
+signal server_control_result(action: String, success: bool, message: String)
+
 #signal mouse_over_domino(p_domino:Domino)
 #signal mouse_left_domino(p_domino:Domino)
 #signal mouse_over_domino_area(p_area:DominoArea)

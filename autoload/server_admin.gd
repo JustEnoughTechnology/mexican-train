@@ -32,12 +32,11 @@ func _ready() -> void:
 	
 	# Setup metrics update timer
 	metrics_update_timer = Timer.new()
-	metrics_update_timer.wait_time = 5.0  # Update every 5 seconds
-	metrics_update_timer.timeout.connect(_update_server_metrics)
+	metrics_update_timer.wait_time = 5.0  # Update every 5 seconds	metrics_update_timer.timeout.connect(_update_server_metrics)
 	metrics_update_timer.autostart = true
 	add_child(metrics_update_timer)
 	
-	print("ServerAdmin initialized - Version %s" % server_version)
+	Logger.log_info(Logger.LogArea.ADMIN, "ServerAdmin initialized - Version %s" % server_version)
 
 ## Authenticate admin user by email
 func authenticate_admin(email: String, password: String = "") -> bool:
@@ -59,17 +58,17 @@ func authenticate_admin(email: String, password: String = "") -> bool:
 	
 	# Add to authenticated admins if not already present
 	if not email in authenticated_admins:
-		authenticated_admins.append(email)
+	authenticated_admins.append(email)
 	
 	admin_authenticated.emit(email)
-	print("Admin authenticated: %s" % email)
+	Logger.log_info(Logger.LogArea.ADMIN, "Admin authenticated: %s" % email)
 	return true
 
 ## Remove admin authentication
 func logout_admin(email: String) -> void:
 	if email in authenticated_admins:
 		authenticated_admins.erase(email)
-		print("Admin logged out: %s" % email)
+		Logger.log_info(Logger.LogArea.ADMIN, "Admin logged out: %s" % email)
 
 ## Check if email is authenticated admin
 func is_admin_authenticated(email: String) -> bool:
@@ -102,19 +101,20 @@ func get_server_metrics() -> Dictionary:
 				"started": game_room.is_started,
 				"created_ago": current_time - game_room.created_time
 			})
-	
-	# Update peak statistics
+		# Update peak statistics
 	if current_games > peak_concurrent_games:
 		peak_concurrent_games = current_games
 	if current_players > peak_concurrent_players:
 		peak_concurrent_players = current_players
-		# System resource information
+	
+	# System resource information
 	var memory_usage = OS.get_static_memory_peak_usage()
 	
 	return {
 		"server_info": {
 			"version": server_version,
-			"uptime_seconds": uptime_seconds,
+			"status": "RUNNING" if (NetworkManager and NetworkManager.is_server_running()) else "STOPPED",
+			"uptime": uptime_seconds,
 			"uptime_formatted": _format_uptime(uptime_seconds),
 			"start_time": Time.get_datetime_string_from_unix_time(int(server_start_time))
 		},
@@ -123,21 +123,20 @@ func get_server_metrics() -> Dictionary:
 			"active_players": current_players,
 			"authenticated_admins": authenticated_admins.size(),
 			"game_details": active_games_info
-		},
-		"statistics": {
+		},		"statistics": {
 			"total_games_created": total_games_created,
 			"total_players_served": total_players_served,
 			"peak_concurrent_games": peak_concurrent_games,
 			"peak_concurrent_players": peak_concurrent_players
-		},		"system_resources": {
+		},
+		"system_resources": {
 			"memory_usage_mb": float(memory_usage) / 1024.0 / 1024.0,
 			"platform": OS.get_name(),
 			"processor_count": OS.get_processor_count(),
 			"network_port": str(NetworkManager.DEFAULT_PORT) if NetworkManager else "N/A"
-		},
-		"network_status": {
+		},		"network_status": {
 			"server_running": NetworkManager.is_server_running() if NetworkManager else false,
-			"connected_peers": NetworkManager.get_connected_peer_count() if NetworkManager else 0,
+			"connections": NetworkManager.get_connected_peer_count() if NetworkManager else 0,
 			"default_port": GameConfig.DEFAULT_PORT
 		}
 	}
@@ -150,10 +149,9 @@ func add_authorized_admin(email: String, requester_email: String) -> bool:
 	
 	if not _is_valid_email(email):
 		return false
-	
-	if not email in ADMIN_EMAILS:
+		if not email in ADMIN_EMAILS:
 		# Note: This only adds for current session, not persistent
-		print("Admin %s added %s to authorized list (session only)" % [requester_email, email])
+		Logger.log_info(Logger.LogArea.ADMIN, "Admin %s added %s to authorized list (session only)" % [requester_email, email])
 		return true
 	
 	return false

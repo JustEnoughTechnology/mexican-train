@@ -38,12 +38,11 @@ func initialize_player(p_number: int, p_name: String = "", p_color: Color = Colo
 		player_name = player_name_util.get_unique_player_name(player_number)
 	else:
 		player_name = p_name
-	
-	# Create hand and train components
+		# Create hand and train components
 	await create_hand()
 	await create_train()
 	
-	print("Player %d initialized: %s (Color: %s, Human: %s)" % [player_number, player_name, player_color, is_human])
+	Logger.log_info(Logger.LogArea.GAME, "Player %d initialized: %s (Color: %s, Human: %s)" % [player_number, player_name, player_color, is_human])
 
 func create_hand() -> void:
 	"""Create and configure the player's hand"""
@@ -124,9 +123,9 @@ func set_active_turn(active: bool) -> void:
 func _on_hand_domino_count_changed() -> void:
 	"""Handle when hand domino count changes"""
 	update_domino_count()
-	print("Player %s: Hand now has %d dominoes" % [player_name, domino_count])
+	Logger.log_debug(Logger.LogArea.GAME, "Player %s: Hand now has %d dominoes" % [player_name, domino_count])
 
 func _on_train_domino_added() -> void:
 	"""Handle when a domino is added to the train"""
 	var train_length = train.get_domino_count() if train and train.has_method("get_domino_count") else 0
-	print("Player %s: Train extended to %d dominoes" % [player_name, train_length])
+	Logger.log_debug(Logger.LogArea.GAME, "Player %s: Train extended to %d dominoes" % [player_name, train_length])

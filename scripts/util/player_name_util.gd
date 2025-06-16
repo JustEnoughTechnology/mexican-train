@@ -13,16 +13,15 @@ static func get_player_name() -> String:
 	Generate a player name using the following rules:
 	1. Try to get OS username
 	2. If that fails, use "Player" + 3-digit random number (001-999)
-	"""
-	var os_username = get_os_username()
+	"""	var os_username = get_os_username()
 	
 	if os_username != "":
-		print("Using OS username for player: %s" % os_username)
+		Logger.log_info(Logger.LogArea.UI, "Using OS username for player: %s" % os_username)
 		return os_username
 	else:
 		var random_number = randi_range(1, 999)
 		var player_name = "Player%03d" % random_number
-		print("Using fallback player name: %s" % player_name)
+		Logger.log_info(Logger.LogArea.UI, "Using fallback player name: %s" % player_name)
 		return player_name
 
 static func get_os_username() -> String:
@@ -31,13 +30,12 @@ static func get_os_username() -> String:
 	Returns empty string if unable to determine username
 	"""
 	var username = ""
-	
-	# Method 1: Try environment variables (works on Windows, Linux, macOS)
+		# Method 1: Try environment variables (works on Windows, Linux, macOS)
 	var env_vars = ["USERNAME", "USER", "LOGNAME"]
 	for env_var in env_vars:
 		username = OS.get_environment(env_var)
 		if username != "":
-			print("Found username via %s: %s" % [env_var, username])
+			Logger.log_debug(Logger.LogArea.SYSTEM, "Found username via %s: %s" % [env_var, username])
 			return username
 	
 	# Method 2: Try system info (Godot 4.x specific)
@@ -55,10 +53,10 @@ static func get_os_username() -> String:
 				if path_parts[i] == "Users" or path_parts[i] == "home":
 					if i + 1 < path_parts.size():
 						username = path_parts[i + 1]
-						print("Extracted username from user data path: %s" % username)
+						Logger.log_debug(Logger.LogArea.SYSTEM, "Extracted username from user data path: %s" % username)
 						return username
 	
-	print("Unable to determine OS username, will use fallback")
+	Logger.log_debug(Logger.LogArea.SYSTEM, "Unable to determine OS username, will use fallback")
 	return ""
 
 static func get_hand_label(player_name: String = "") -> String:
@@ -106,7 +104,7 @@ static func get_unique_player_name(player_number: int = -1) -> String:
 		if not candidate_name in used_player_names:
 			used_player_names.append(candidate_name)
 			player_name_cache[player_number] = candidate_name
-			print("Generated unique player name: %s" % candidate_name)
+			Logger.log_debug(Logger.LogArea.SYSTEM, "Generated unique player name: %s" % candidate_name)
 			return candidate_name
 	
 	# Check if base name is unique (for cases without player_number)
@@ -114,7 +112,7 @@ static func get_unique_player_name(player_number: int = -1) -> String:
 		used_player_names.append(base_name)
 		if player_number > 0:
 			player_name_cache[player_number] = base_name
-		print("Using unique base name: %s" % base_name)
+		Logger.log_debug(Logger.LogArea.SYSTEM, "Using unique base name: %s" % base_name)
 		return base_name
 	
 	# Base name is taken, generate unique suffix
@@ -132,7 +130,7 @@ static func get_unique_player_name(player_number: int = -1) -> String:
 	used_player_names.append(candidate_name)
 	if player_number > 0:
 		player_name_cache[player_number] = candidate_name
-	print("Generated unique player name with suffix: %s" % candidate_name)
+	Logger.log_debug(Logger.LogArea.SYSTEM, "Generated unique player name with suffix: %s" % candidate_name)
 	return candidate_name
 
 static func get_unique_hand_label(player_number: int = -1) -> String:
@@ -155,4 +153,4 @@ static func clear_used_names() -> void:
 	"""
 	used_player_names.clear()
 	player_name_cache.clear()
-	print("Cleared used player names list and cache")
+	Logger.log_debug(Logger.LogArea.SYSTEM, "Cleared used player names list and cache")

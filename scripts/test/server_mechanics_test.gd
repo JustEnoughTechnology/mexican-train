@@ -11,14 +11,17 @@ extends Control
 
 var network_manager: NetworkManager
 var update_timer: Timer
+var last_server_state: bool = false  # Track the last known server state
 
 func _ready() -> void:
 	get_window().title = "Mexican Train - Central Server"
 	
 	# Use the autoload singleton instead of creating a new instance
 	network_manager = NetworkManager
-		# Connect signals
+	
+	# Connect signals
 	network_manager.lobby_updated.connect(_on_lobby_updated)
+	network_manager.player_disconnected.connect(_on_player_disconnected)
 	
 	# Setup UI
 	stop_server_button.disabled = true
@@ -32,6 +35,14 @@ func _ready() -> void:
 	add_child(update_timer)
 	
 	_update_server_info()
+
+func _process(_delta: float) -> void:
+	# Monitor server state changes continuously
+	var current_server_state = network_manager.is_server_running()
+	if current_server_state != last_server_state:
+		last_server_state = current_server_state
+		_update_server_info()
+		print("Server state changed to: %s" % ("RUNNING" if current_server_state else "STOPPED"))
 
 func _on_start_server() -> void:
 	if network_manager.start_server():
@@ -59,13 +70,37 @@ func _on_stop_server() -> void:
 func _on_lobby_updated(lobby_data: Dictionary) -> void:
 	_update_games_display(lobby_data)
 
+func _on_player_disconnected(_peer_id: int) -> void:
+	# When players disconnect, update the server info
+	# This also handles when the server itself is stopped
+	_update_server_info()
+
 func _update_server_info() -> void:
-	if network_manager.is_server:
+	# Check if the server is actually running
+	if network_manager.is_server_running():
 		var lobby_data = LobbyManager.get_lobby_data()
 		lobby_info_label.text = "Active Games: %d" % lobby_data.size()
 		_update_games_display(lobby_data)
+		
+		# Ensure server status label reflects running state
+		if server_status_label.text.contains("STOPPED"):
+			server_status_label.text = "Server Status: RUNNING on port %d" % NetworkManager.DEFAULT_PORT
+			server_status_label.modulate = Color.GREEN
+			start_server_button.disabled = true
+			stop_server_button.disabled = false
+			update_timer.start()
 	else:
 		lobby_info_label.text = "Server not running"
+		
+		# Update server status label to reflect stopped state
+		server_status_label.text = "Server Status: STOPPED"
+		server_status_label.modulate = Color.GRAY
+		start_server_button.disabled = false
+		stop_server_button.disabled = true
+		update_timer.stop()
+		_clear_games_display()
+		
+		print("Server status updated to STOPPED")
 
 func _update_games_display(lobby_data: Dictionary) -> void:
 	# Clear existing game info
@@ -106,7 +141,8 @@ func _create_game_panel(game_code: String, game_info: Dictionary) -> Control:
 	var can_start = game_info.get("can_start", false)
 	status_label.text = "Players: %d/%d | Can Start: %s" % [player_count, max_players, "Yes" if can_start else "No"]
 	vbox.add_child(status_label)
-		# Player list
+	
+	# Player list
 	var players_info = game_info.get("players", {})
 	var players_text = "Players: "
 	var player_names = []

@@ -206,13 +206,13 @@ static func create_color_variation(base_color: Color, variation_factor: float = 
 	
 	return Color.from_hsv(h, s, v, a)
 
-## Print all available themes (for debugging)
+## Log all available themes (for debugging)
 static func print_available_themes() -> void:
-	print("=== Available Color Themes ===")
+	Logger.log_info(Logger.LogArea.UI, "=== Available Color Themes ===")
 	for i in range(themes.size()):
 		var theme = themes[i]
-		print("%d. %s - %s" % [i + 1, theme.name, theme.description])
-	print("=============================")
+		Logger.log_info(Logger.LogArea.UI, "%d. %s - %s" % [i + 1, theme.name, theme.description])
+	Logger.log_info(Logger.LogArea.UI, "=============================")
 
 ## Get a random theme
 static func get_random_theme() -> Dictionary:

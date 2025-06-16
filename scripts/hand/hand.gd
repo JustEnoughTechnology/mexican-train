@@ -69,19 +69,19 @@ func _orient_domino_for_hand(p_domino: Domino) -> void:
 	"""Orient domino vertically with largest number up for hand display"""
 	var domino_dots = p_domino.get_dots()
 	
-	print("[HAND] Orienting domino %d-%d vertically with largest number up" % [domino_dots.x, domino_dots.y])
+	Logger.log_debug(Logger.LogArea.GAME, "[HAND] Orienting domino %d-%d vertically with largest number up" % [domino_dots.x, domino_dots.y])
 	
 	# Ensure the larger number is in the x position (top when vertical)
 	if domino_dots.x >= domino_dots.y:
 		# Larger number is already in x position, use LARGEST_TOP
 		p_domino.set_orientation(DominoData.ORIENTATION_LARGEST_TOP)
-		print("[HAND] Set orientation LARGEST_TOP (larger value %d on top)" % [domino_dots.x])
+		Logger.log_debug(Logger.LogArea.GAME, "[HAND] Set orientation LARGEST_TOP (larger value %d on top)" % [domino_dots.x])
 	else:
 		# Smaller number is in x position, swap so larger is on top
 		p_domino.set_dots(domino_dots.y, domino_dots.x)  # Swap so larger value is in x (top)
 		p_domino.set_orientation(DominoData.ORIENTATION_LARGEST_TOP)
 		var new_dots = p_domino.get_dots()
-		print("[HAND] Swapped dots and set LARGEST_TOP (larger value %d now on top)" % [new_dots.x])
+		Logger.log_debug(Logger.LogArea.GAME, "[HAND] Swapped dots and set LARGEST_TOP (larger value %d now on top)" % [new_dots.x])
 
 func _find_station_in_scene() -> Station:
 	"""Find a Station node in the current scene"""
@@ -113,7 +113,7 @@ func _update_hand_size_and_layout() -> void:
 		max_width = min(max_width, round(parent_control.size.x))
 
 	if GameConfig.DEBUG_SHOW_WARNINGS:
-		print("[HAND] _update_hand_size_and_layout: parent_control=%s, reference_size=%s, max_width=%s, max_height=%s" % [str(parent_control), str(reference_size), str(max_width), str(max_height)])
+		Logger.log_debug(Logger.LogArea.UI, "[HAND] _update_hand_size_and_layout: parent_control=%s, reference_size=%s, max_width=%s, max_height=%s" % [str(parent_control), str(reference_size), str(max_width), str(max_height)])
 
 	# Wait for layout to update
 	await get_tree().process_frame
@@ -133,7 +133,7 @@ func _update_hand_size_and_layout() -> void:
 	var domino_container_height = domino_container.size.y
 
 	if GameConfig.DEBUG_SHOW_WARNINGS:
-		print("[HAND] _update_hand_size_and_layout: label_height=%s, domino_container_height=%s, children=%d" % [str(label_height), str(domino_container_height), domino_container.get_child_count()])
+		Logger.log_debug(Logger.LogArea.UI, "[HAND] _update_hand_size_and_layout: label_height=%s, domino_container_height=%s, children=%d" % [str(label_height), str(domino_container_height), domino_container.get_child_count()])
 
 	# Add label height and padding
 	var padded_height = domino_container_height + label_height + 16
@@ -155,7 +155,7 @@ func _update_hand_size_and_layout() -> void:
 	self.custom_minimum_size = Vector2(final_width, final_height)
 
 	if GameConfig.DEBUG_SHOW_WARNINGS:
-		print("[HAND] _update_hand_size_and_layout: final_width=%s, final_height=%s, self.custom_minimum_size=%s" % [str(final_width), str(final_height), str(self.custom_minimum_size)])
+		Logger.log_debug(Logger.LogArea.UI, "[HAND] _update_hand_size_and_layout: final_width=%s, final_height=%s, self.custom_minimum_size=%s" % [str(final_width), str(final_height), str(self.custom_minimum_size)])
 
 	if domino_container:
 		domino_container.custom_minimum_size = Vector2(final_width, 0)
@@ -188,7 +188,7 @@ func _ready() -> void:
 	if parent_control and parent_control.has_signal("resized"):
 		parent_control.resized.connect(_on_parent_resized)
 	# Debug log
-	print("Hand initialized: ", name)
+	Logger.log_info(Logger.LogArea.GAME, "Hand initialized: " + name)
 	call_deferred("_update_hand_size_and_layout")
 
 	# Connect signals to monitor dominoes being added or reordered
@@ -196,10 +196,10 @@ func _ready() -> void:
 	domino_container.child_order_changed.connect(_on_domino_child_order_changed)
 
 func _on_domino_child_entered_tree(child):
-	print("[DEBUG][HAND] Child entered tree: %s (at %s)" % [child.name, str(Time.get_ticks_msec())])
+	Logger.log_debug(Logger.LogArea.UI, "[DEBUG][HAND] Child entered tree: %s (at %s)" % [child.name, str(Time.get_ticks_msec())])
 
 func _on_domino_child_order_changed():
-	print("[DEBUG][HAND] Child order changed in domino_container (at %s)" % [str(Time.get_ticks_msec())])
+	Logger.log_debug(Logger.LogArea.UI, "[DEBUG][HAND] Child order changed in domino_container (at %s)" % [str(Time.get_ticks_msec())])
 
 # Called when the parent container is resized
 func _on_parent_resized() -> void:
@@ -214,7 +214,7 @@ func set_label_text(p_text: String) -> void:
 	if my_label:
 		my_label.text = p_text
 	else:
-		push_warning("Hand: my_label is null, cannot set label text.")
+		Logger.log_warning(Logger.LogArea.UI, "Hand: my_label is null, cannot set label text.")
 
 # Gets the label text for the hand
 func get_label_text() -> String:
@@ -244,7 +244,7 @@ func enable_drop_target() -> void:
 		domino_container.mouse_filter = Control.MOUSE_FILTER_PASS
 
 	if GameConfig.DEBUG_SHOW_WARNINGS:
-		print("Hand set as drop target with mouse_filter: " + str(mouse_filter))
+		Logger.log_debug(Logger.LogArea.UI, "Hand set as drop target with mouse_filter: " + str(mouse_filter))
 
 ## Called to test if this control can accept the specified data.
 ## When dropping is attempted, this will be called first and must return true for _drop_data to be called.
@@ -282,4 +282,4 @@ func _drop_data(_position: Vector2, data: Variant) -> void:
 				get_tree().remove_meta("current_drag_domino")
 			if get_tree().has_meta("current_drag_source"):
 				get_tree().remove_meta("current_drag_source")
-			print("Domino moved to hand successfully")
+			Logger.log_info(Logger.LogArea.GAME, "Domino moved to hand successfully")

@@ -3,30 +3,30 @@ extends Control
 ## Server Admin Dashboard for Mexican Train
 ## Provides comprehensive server monitoring and administration interface
 
-# UI references
-@onready var login_panel = $VBox/LoginPanel
-@onready var dashboard_panel = $VBox/DashboardPanel
-@onready var email_input = $VBox/LoginPanel/LoginVBox/EmailInput
-@onready var password_input = $VBox/LoginPanel/LoginVBox/PasswordInput
-@onready var login_button = $VBox/LoginPanel/LoginVBox/LoginButton
-@onready var status_label = $VBox/LoginPanel/LoginVBox/StatusLabel
+# UI references - use get_node() calls with error handling instead of @onready
+var login_panel: Panel
+var dashboard_panel: Panel
+var email_input: LineEdit
+var password_input: LineEdit
+var login_button: Button
+var status_label: Label
 
 # Dashboard UI references
-@onready var admin_info_label = $VBox/DashboardPanel/DashboardVBox/AdminInfoLabel
-@onready var server_status_label = $VBox/DashboardPanel/DashboardVBox/ServerInfoContainer/LeftColumn/ServerStatusLabel
-@onready var version_label = $VBox/DashboardPanel/DashboardVBox/ServerInfoContainer/LeftColumn/VersionLabel
-@onready var uptime_label = $VBox/DashboardPanel/DashboardVBox/ServerInfoContainer/LeftColumn/UptimeLabel
-@onready var active_games_label = $VBox/DashboardPanel/DashboardVBox/ServerInfoContainer/LeftColumn/ActiveGamesLabel
-@onready var active_players_label = $VBox/DashboardPanel/DashboardVBox/ServerInfoContainer/LeftColumn/ActivePlayersLabel
+var admin_info_label: Label
+var server_status_label: Label
+var version_label: Label
+var uptime_label: Label
+var active_games_label: Label
+var active_players_label: Label
 
-@onready var memory_label = $VBox/DashboardPanel/DashboardVBox/ServerInfoContainer/RightColumn/MemoryLabel
-@onready var network_label = $VBox/DashboardPanel/DashboardVBox/ServerInfoContainer/RightColumn/NetworkLabel
-@onready var platform_label = $VBox/DashboardPanel/DashboardVBox/ServerInfoContainer/RightColumn/PlatformLabel
+var memory_label: Label
+var network_label: Label
+var platform_label: Label
 
-@onready var games_list = $VBox/DashboardPanel/DashboardVBox/GamesScrollContainer/GamesList
-@onready var refresh_button = $VBox/DashboardPanel/DashboardVBox/ButtonContainer/RefreshButton
-@onready var logout_button = $VBox/DashboardPanel/DashboardVBox/ButtonContainer/LogoutButton
-@onready var server_control_button = $VBox/DashboardPanel/DashboardVBox/ButtonContainer/ServerControlButton
+var games_list: VBoxContainer
+var refresh_button: Button
+var logout_button: Button
+var server_control_button: Button
 
 # State
 var current_admin_email: String = ""
@@ -35,6 +35,16 @@ var network_manager: NetworkManager
 
 func _ready() -> void:
 	get_window().title = "Mexican Train - Server Administration"
+	
+	# Debug: Check if all UI nodes are properly found
+	print("=== Admin Dashboard Node Check ===")
+	print("login_panel: ", login_panel)
+	print("dashboard_panel: ", dashboard_panel)
+	print("email_input: ", email_input)
+	print("password_input: ", password_input)
+	print("login_button: ", login_button)
+	print("status_label: ", status_label)
+	print("=== End Node Check ===")
 	
 	# Setup network manager
 	network_manager = NetworkManager
@@ -55,19 +65,24 @@ func _ready() -> void:
 	refresh_timer.wait_time = 10.0  # Refresh every 10 seconds
 	refresh_timer.timeout.connect(_update_dashboard_data)
 	add_child(refresh_timer)
-	
-	# Start with login panel visible
+		# Start with login panel visible
 	_show_login_panel()
 	
-	# Pre-fill dev credentials for testing
-	email_input.text = "admin@mexicantrain.local"
-	password_input.text = "admin123"
+	# Pre-fill dev credentials for testing (only if nodes exist)
+	if email_input and password_input:
+		email_input.text = "admin@mexicantrain.local"
+		password_input.text = "admin123"
+	else:
+		print("WARNING: Cannot pre-fill credentials - input nodes are null")
 
 func _show_login_panel() -> void:
-	login_panel.visible = true
-	dashboard_panel.visible = false
-	status_label.text = "Please enter credentials to access server administration"
-	status_label.modulate = Color.WHITE
+	if login_panel:
+		login_panel.visible = true
+	if dashboard_panel:
+		dashboard_panel.visible = false
+	if status_label:
+		status_label.text = "Please enter credentials to access server administration"
+		status_label.modulate = Color.WHITE
 
 func _show_dashboard_panel() -> void:
 	login_panel.visible = false
@@ -76,6 +91,16 @@ func _show_dashboard_panel() -> void:
 	_update_dashboard_data()
 
 func _on_login_pressed() -> void:
+	# Check if input fields are properly initialized
+	if not email_input:
+		print("ERROR: email_input is null!")
+		_show_login_error("Internal error: email input not found")
+		return
+	if not password_input:
+		print("ERROR: password_input is null!")
+		_show_login_error("Internal error: password input not found")
+		return
+		
 	var email = email_input.text.strip_edges()
 	var password = password_input.text
 	

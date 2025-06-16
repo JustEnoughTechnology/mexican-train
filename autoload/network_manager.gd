@@ -50,10 +50,10 @@ func start_server(port: int = DEFAULT_PORT) -> bool:
 		LobbyManager.game_started.connect(_on_lobby_game_started)
 		LobbyManager.lobby_updated.connect(_on_lobby_updated)
 		
-		print("Server started successfully on port %d" % port)
+		Logger.log_info(Logger.LogArea.NETWORK, "Server started successfully on port %d" % port)
 		return true
 	else:
-		print("Failed to start server: %s" % error)
+		Logger.log_error(Logger.LogArea.NETWORK, "Failed to start server: %s" % error)
 		return false
 
 ## Connect to server as client
@@ -65,10 +65,10 @@ func connect_to_server(address: String, port: int = DEFAULT_PORT) -> bool:
 		multiplayer.multiplayer_peer = multiplayer_peer
 		is_server = false
 		
-		print("Attempting to connect to server at %s:%d" % [address, port])
+		Logger.log_info(Logger.LogArea.NETWORK, "Attempting to connect to server at %s:%d" % [address, port])
 		return true
 	else:
-		print("Failed to connect to server: %s" % error)
+		Logger.log_error(Logger.LogArea.NETWORK, "Failed to connect to server: %s" % error)
 		return false
 
 ## Create a new game (client request to server)
@@ -127,7 +127,7 @@ func disconnect_from_server() -> void:
 	local_player_id = 0
 	players.clear()
 	current_game_code = ""
-	print("Disconnected from server")
+	Logger.log_info(Logger.LogArea.NETWORK, "Disconnected from server")
 
 ## Check if server is currently running
 func is_server_running() -> bool:
@@ -211,16 +211,16 @@ func _request_start_game(game_code: String) -> void:
 func _receive_game_created(game_code: String) -> void:
 	current_game_code = game_code
 	game_created.emit(game_code)
-	print("Game created with code: %s" % game_code)
+	Logger.log_info(Logger.LogArea.MULTIPLAYER, "Game created with code: %s" % game_code)
 
 @rpc("any_peer", "call_local", "reliable")
 func _receive_join_result(game_code: String, success: bool) -> void:
 	if success:
 		current_game_code = game_code
 		game_joined.emit(game_code)
-		print("Successfully joined game: %s" % game_code)
+		Logger.log_info(Logger.LogArea.MULTIPLAYER, "Successfully joined game: %s" % game_code)
 	else:
-		print("Failed to join game: %s" % game_code)
+		Logger.log_warning(Logger.LogArea.MULTIPLAYER, "Failed to join game: %s" % game_code)
 
 @rpc("any_peer", "call_local", "reliable")
 func _receive_lobby_data(lobby_data: Dictionary) -> void:
@@ -229,33 +229,33 @@ func _receive_lobby_data(lobby_data: Dictionary) -> void:
 @rpc("any_peer", "call_local", "reliable")
 func _receive_ai_add_result(success: bool) -> void:
 	if success:
-		print("AI player added successfully")
+		Logger.log_info(Logger.LogArea.AI, "AI player added successfully")
 	else:
-		print("Failed to add AI player")
+		Logger.log_warning(Logger.LogArea.AI, "Failed to add AI player")
 
 @rpc("any_peer", "call_local", "reliable")
 func _receive_ready_result(success: bool) -> void:
 	if success:
-		print("Ready status updated")
+		Logger.log_debug(Logger.LogArea.MULTIPLAYER, "Ready status updated")
 	else:
-		print("Failed to update ready status")
+		Logger.log_warning(Logger.LogArea.MULTIPLAYER, "Failed to update ready status")
 
 @rpc("any_peer", "call_local", "reliable")
 func _receive_start_result(success: bool) -> void:
 	if success:
-		print("Game start request successful")
+		Logger.log_info(Logger.LogArea.GAME, "Game start request successful")
 	else:
-		print("Failed to start game")
+		Logger.log_warning(Logger.LogArea.GAME, "Failed to start game")
 
 # Lobby signal handlers (server-side)
 func _on_lobby_game_created(game_code: String, _game_info: Dictionary) -> void:
-	print("Lobby: Game created - %s" % game_code)
+	Logger.log_info(Logger.LogArea.LOBBY, "Game created - %s" % game_code)
 
 func _on_lobby_game_joined(game_code: String, player_id: int) -> void:
-	print("Lobby: Player %d joined game %s" % [player_id, game_code])
+	Logger.log_info(Logger.LogArea.LOBBY, "Player %d joined game %s" % [player_id, game_code])
 
 func _on_lobby_game_started(game_code: String) -> void:
-	print("Lobby: Game started - %s" % game_code)
+	Logger.log_info(Logger.LogArea.LOBBY, "Game started - %s" % game_code)
 	# Notify all players in the game
 	var game_room = LobbyManager.get_game_room(game_code)
 	if game_room:
@@ -273,11 +273,11 @@ func _on_lobby_updated(lobby_data: Dictionary) -> void:
 func _receive_game_started(game_code: String) -> void:
 	current_game_code = game_code
 	game_started.emit(game_code)
-	print("Game started: %s" % game_code)
+	Logger.log_info(Logger.LogArea.GAME, "Game started: %s" % game_code)
 
 # Network event handlers
 func _on_peer_connected(peer_id: int) -> void:
-	print("Peer connected: %d" % peer_id)
+	Logger.log_info(Logger.LogArea.NETWORK, "Peer connected: %d" % peer_id)
 	
 	if is_server:
 		# Get player name from the connected peer if available
@@ -286,7 +286,7 @@ func _on_peer_connected(peer_id: int) -> void:
 		player_connected.emit(peer_id, player_name)
 
 func _on_peer_disconnected(peer_id: int) -> void:
-	print("Peer disconnected: %d" % peer_id)
+	Logger.log_info(Logger.LogArea.NETWORK, "Peer disconnected: %d" % peer_id)
 	
 	if is_server:
 		# Remove player from their current game
@@ -296,7 +296,7 @@ func _on_peer_disconnected(peer_id: int) -> void:
 	player_disconnected.emit(peer_id)
 
 func _on_connected_to_server() -> void:
-	print("Connected to server")
+	Logger.log_info(Logger.LogArea.NETWORK, "Connected to server")
 	network_connected = true
 	local_player_id = multiplayer.get_unique_id()
 	
@@ -304,11 +304,11 @@ func _on_connected_to_server() -> void:
 	request_lobby_data()
 
 func _on_connection_failed() -> void:
-	print("Failed to connect to server")
+	Logger.log_error(Logger.LogArea.NETWORK, "Failed to connect to server")
 	disconnect_from_server()
 
 func _on_server_disconnected() -> void:
-	print("Server disconnected")
+	Logger.log_info(Logger.LogArea.NETWORK, "Server disconnected")
 	disconnect_from_server()
 
 # Game synchronization RPCs (for actual gameplay)

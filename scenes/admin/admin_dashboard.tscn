@@ -1,0 +1,254 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu4hnhkl7ygxd"]
+
+[ext_resource type="Script" path="res://scripts/admin/admin_dashboard.gd" id="1_j8k5m"]
+[ext_resource type="Script" path="res://scripts/admin/admin_login.gd" id="2_n9p7q"]
+[ext_resource type="Script" path="res://scripts/admin/admin_server_panel.gd" id="3_l6m8r"]
+[ext_resource type="Script" path="res://scripts/admin/admin_games_panel.gd" id="4_k9n2s"]
+
+[node name="AdminDashboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_j8k5m")
+
+[node name="LoginPanel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+script = ExtResource("2_n9p7q")
+
+[node name="Background" type="Panel" parent="LoginPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="LoginPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="TitleLabel" type="Label" parent="LoginPanel/VBox"]
+layout_mode = 2
+text = "Admin Authentication"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="LoginPanel/VBox"]
+layout_mode = 2
+
+[node name="EmailInput" type="LineEdit" parent="LoginPanel/VBox"]
+layout_mode = 2
+placeholder_text = "Enter admin email"
+
+[node name="PasswordInput" type="LineEdit" parent="LoginPanel/VBox"]
+layout_mode = 2
+placeholder_text = "Enter password"
+secret = true
+
+[node name="LoginButton" type="Button" parent="LoginPanel/VBox"]
+layout_mode = 2
+text = "Login as Admin"
+
+[node name="StatusLabel" type="Label" parent="LoginPanel/VBox"]
+layout_mode = 2
+text = "Please enter credentials"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="DashboardPanel" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="Panel" parent="DashboardPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MainContainer" type="VBoxContainer" parent="DashboardPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="HeaderContainer" type="HBoxContainer" parent="DashboardPanel/MainContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="DashboardPanel/MainContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Mexican Train - Server Administration Dashboard"
+add_theme_font_size_override("font_size", 20)
+
+[node name="LogoutButton" type="Button" parent="DashboardPanel/MainContainer/HeaderContainer"]
+layout_mode = 2
+text = "Logout"
+
+[node name="HSeparator" type="HSeparator" parent="DashboardPanel/MainContainer"]
+layout_mode = 2
+
+[node name="ContentContainer" type="HBoxContainer" parent="DashboardPanel/MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ServerPanel" type="Control" parent="DashboardPanel/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3_l6m8r")
+
+[node name="Background" type="Panel" parent="DashboardPanel/MainContainer/ServerPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="DashboardPanel/MainContainer/ServerPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+
+[node name="HeaderLabel" type="Label" parent="DashboardPanel/MainContainer/ServerPanel/VBox"]
+layout_mode = 2
+text = "Server Control"
+horizontal_alignment = 1
+add_theme_font_size_override("font_size", 16)
+
+[node name="HSeparator" type="HSeparator" parent="DashboardPanel/MainContainer/ServerPanel/VBox"]
+layout_mode = 2
+
+[node name="StatusContainer" type="VBoxContainer" parent="DashboardPanel/MainContainer/ServerPanel/VBox"]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="DashboardPanel/MainContainer/ServerPanel/VBox/StatusContainer"]
+layout_mode = 2
+text = "Server Status: Unknown"
+
+[node name="InfoContainer" type="VBoxContainer" parent="DashboardPanel/MainContainer/ServerPanel/VBox"]
+layout_mode = 2
+
+[node name="UptimeLabel" type="Label" parent="DashboardPanel/MainContainer/ServerPanel/VBox/InfoContainer"]
+layout_mode = 2
+text = "Uptime: 0s"
+
+[node name="VersionLabel" type="Label" parent="DashboardPanel/MainContainer/ServerPanel/VBox/InfoContainer"]
+layout_mode = 2
+text = "Version: 0.6.0"
+
+[node name="ConnectionsLabel" type="Label" parent="DashboardPanel/MainContainer/ServerPanel/VBox/InfoContainer"]
+layout_mode = 2
+text = "Connections: 0"
+
+[node name="MemoryLabel" type="Label" parent="DashboardPanel/MainContainer/ServerPanel/VBox/InfoContainer"]
+layout_mode = 2
+text = "Memory: 0 MB"
+
+[node name="VSeparator" type="VSeparator" parent="DashboardPanel/MainContainer/ServerPanel/VBox"]
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="DashboardPanel/MainContainer/ServerPanel/VBox"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="DashboardPanel/MainContainer/ServerPanel/VBox/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start Server"
+
+[node name="StopButton" type="Button" parent="DashboardPanel/MainContainer/ServerPanel/VBox/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stop Server"
+
+[node name="VSeparator2" type="VSeparator" parent="DashboardPanel/MainContainer"]
+layout_mode = 2
+
+[node name="GamesPanel" type="Control" parent="DashboardPanel/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_k9n2s")
+
+[node name="Background" type="Panel" parent="DashboardPanel/MainContainer/GamesPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="DashboardPanel/MainContainer/GamesPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+
+[node name="HeaderContainer" type="HBoxContainer" parent="DashboardPanel/MainContainer/GamesPanel/VBox"]
+layout_mode = 2
+
+[node name="HeaderLabel" type="Label" parent="DashboardPanel/MainContainer/GamesPanel/VBox/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Game Monitoring"
+add_theme_font_size_override("font_size", 16)
+
+[node name="RefreshButton" type="Button" parent="DashboardPanel/MainContainer/GamesPanel/VBox/HeaderContainer"]
+layout_mode = 2
+text = "Refresh"
+
+[node name="HSeparator" type="HSeparator" parent="DashboardPanel/MainContainer/GamesPanel/VBox"]
+layout_mode = 2
+
+[node name="StatsContainer" type="HBoxContainer" parent="DashboardPanel/MainContainer/GamesPanel/VBox"]
+layout_mode = 2
+
+[node name="GamesCountLabel" type="Label" parent="DashboardPanel/MainContainer/GamesPanel/VBox/StatsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Active Games: 0"
+
+[node name="PlayersCountLabel" type="Label" parent="DashboardPanel/MainContainer/GamesPanel/VBox/StatsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Total Players: 0"
+
+[node name="HSeparator2" type="HSeparator" parent="DashboardPanel/MainContainer/GamesPanel/VBox"]
+layout_mode = 2
+
+[node name="GamesLabel" type="Label" parent="DashboardPanel/MainContainer/GamesPanel/VBox"]
+layout_mode = 2
+text = "Active Games:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DashboardPanel/MainContainer/GamesPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GamesList" type="VBoxContainer" parent="DashboardPanel/MainContainer/GamesPanel/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

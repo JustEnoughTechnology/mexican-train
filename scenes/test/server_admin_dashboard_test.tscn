@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://0skckkt4ev13"]
 
-[ext_resource type="Script" path="res://scripts/test/test_server_admin_dashboard.gd" id="1_admin"]
+[ext_resource type="Script" uid="uid://crpm3ccvk0oxk" path="res://scripts/test/server_admin_dashboard_test.gd" id="1_admin"]
 
 [node name="ServerAdminDashboard" type="Control"]
 layout_mode = 3

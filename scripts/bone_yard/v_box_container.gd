@@ -4,7 +4,7 @@ extends VBoxContainer
 ## Custom VBoxContainer with bone yard specific functionality
 
 func _ready() -> void:
-	print("VBoxContainer for Bone Yard initialized")
+	Logger.log_info(Logger.LogArea.SYSTEM, "VBoxContainer for Bone Yard initialized")
 	
 	# Add any bone yard specific VBox functionality here
 	setup_bone_yard_layout()

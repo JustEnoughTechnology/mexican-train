@@ -30,7 +30,7 @@ func _check_godot_version() -> void:
 	var version = Engine.get_version_info()
 	var version_str = "%d.%d" % [version["major"], version["minor"]]
 	if version_str < MIN_GODOT_VERSION:
-		push_error("This project requires Godot version %s or higher. Current version: %s. Exiting." % [MIN_GODOT_VERSION, version_str])
+		Logger.log_critical(Logger.LogArea.SYSTEM, "This project requires Godot version %s or higher. Current version: %s. Exiting." % [MIN_GODOT_VERSION, version_str])
 		get_tree().quit()
 
 func get_total_domino_count() -> int:

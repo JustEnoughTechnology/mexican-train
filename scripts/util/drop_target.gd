@@ -16,8 +16,7 @@ func _drop_data(_position: Vector2, data: Variant) -> void:
 		
 		if parent is Hand:
 			# Add the domino to the hand
-			parent.add_domino(data)
-			# Print for debugging
-			print("Added domino to hand: ", data.get_dots())
+			parent.add_domino(data)			# Debug logging
+			Logger.log_debug(Logger.LogArea.GAME, "Added domino to hand: " + str(data.get_dots()))
 		else:
-			print("Could not find Hand parent to add domino")
+			Logger.log_error(Logger.LogArea.GAME, "Could not find Hand parent to add domino")

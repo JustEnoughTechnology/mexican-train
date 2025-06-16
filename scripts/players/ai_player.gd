@@ -15,13 +15,12 @@ func initialize_ai_player(p_number: int, p_name: String = "", p_color: Color = C
 	"""Initialize AI player with AI-specific settings"""
 	if p_name.is_empty():
 		p_name = "AI Player %d" % p_number
-	
-	await initialize_player(p_number, p_name, p_color, false)
-	print("AI Player %d initialized: %s" % [player_number, player_name])
+		await initialize_player(p_number, p_name, p_color, false)
+	Logger.log_info(Logger.LogArea.AI, "AI Player %d initialized: %s" % [player_number, player_name])
 
 func take_turn() -> void:
 	"""AI's turn logic - basic implementation just passes"""
-	print("AI Player %s taking turn..." % player_name)
+	Logger.log_info(Logger.LogArea.AI, "AI Player %s taking turn..." % player_name)
 	
 	# Add a small delay to make AI decisions feel more natural
 	await get_tree().create_timer(ai_decision_delay).timeout
@@ -32,7 +31,7 @@ func take_turn() -> void:
 
 func pass_turn() -> void:
 	"""AI passes their turn"""
-	print("AI Player %s passes their turn" % player_name)
+	Logger.log_info(Logger.LogArea.AI, "AI Player %s passes their turn" % player_name)
 	
 	# Emit signal that turn is complete (if game system needs it)
 	if has_signal("turn_completed"):
@@ -66,7 +65,7 @@ func set_difficulty(level: String) -> void:
 		_:
 			ai_decision_delay = 1.0
 	
-	print("AI Player %s difficulty set to: %s" % [player_name, level])
+	Logger.log_info(Logger.LogArea.AI, "AI Player %s difficulty set to: %s" % [player_name, level])
 
 # Override set_active_turn to handle AI automatically
 func set_active_turn(active: bool) -> void:

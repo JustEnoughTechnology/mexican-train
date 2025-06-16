@@ -74,7 +74,7 @@ func set_pivot_to_center() -> void:
 
 
 func _init(left := 0, right := 0) -> void:
-	print("init:L%d R%d"%[left,right])
+	Logger.log_debug(Logger.LogArea.GAME, "Domino initialized: L%d R%d" % [left, right])
 	data = DominoData.new(left, right)
 
 # Orientation constants (for convenience, mirror DominoData usage)
@@ -157,18 +157,17 @@ func get_preview() -> Control:
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	# Determine the source type by checking parent hierarchy
 	var source_type = _get_source_type()
-	
 	# Block dragging from train and station (engine)
 	if source_type == "train" or source_type == "station":
 		if GameConfig.DEBUG_SHOW_WARNINGS:
-			print("[DOMINO] Drag blocked: Cannot drag from %s" % source_type)
+			Logger.log_warning(Logger.LogArea.GAME, "Drag blocked: Cannot drag from %s" % source_type)
 		return null
 	
 	if GameConfig.DEBUG_SHOW_WARNINGS:
-		print("[DOMINO] _get_drag_data called for domino: %s from %s" % [name, source_type])
-		print("Starting drag operation for domino: " + name)
-		print("[DEBUG] Drag started: Domino %s, parent: %s, source: %s" % [name, get_parent().name, source_type])
-		print("[DEBUG] Domino state: dots=%s, face_up=%s, rotation=%s" % [data.dots, data.is_face_up, rotation_degrees])
+		Logger.log_debug(Logger.LogArea.GAME, "_get_drag_data called for domino: %s from %s" % [name, source_type])
+		Logger.log_debug(Logger.LogArea.GAME, "Starting drag operation for domino: " + name)
+		Logger.log_debug(Logger.LogArea.GAME, "Drag started: Domino %s, parent: %s, source: %s" % [name, get_parent().name, source_type])
+		Logger.log_debug(Logger.LogArea.GAME, "Domino state: dots=%s, face_up=%s, rotation=%s" % [data.dots, data.is_face_up, rotation_degrees])
 
 	var preview = get_preview()
 	set_drag_preview(preview)
@@ -259,7 +258,7 @@ func set_dots(p_left: int, p_right: int) -> void:
 	# Use the DominoData.set_dots() method which preserves order as (x,y)
 	data.set_dots(p_left, p_right)
 	if not front:
-		push_error("[DOMINO] set_dots: 'front' is null for %s. You must add the domino to the scene tree before calling set_dots." % name)
+		Logger.log_error(Logger.LogArea.GAME, "[DOMINO] set_dots: 'front' is null for %s. You must add the domino to the scene tree before calling set_dots." % name)
 		return
 	# Always use oriented texture path, never bare domino
 	var texture_path: String = get_texture_path_for_orientation()
@@ -281,7 +280,7 @@ func get_texture_path_for_orientation() -> String:
 			orientation_suffix = "_bottom"
 		_:
 			# Default to left orientation for invalid orientations
-			print("[DOMINO] Invalid orientation %s, defaulting to left" % data.orientation)
+			Logger.log_warning(Logger.LogArea.GAME, "Invalid orientation %s, defaulting to left" % data.orientation)
 			orientation_suffix = "_left"
 	
 	# Texture files are always named domino-L-R_orientation.svg where L >= R
@@ -291,10 +290,9 @@ func get_texture_path_for_orientation() -> String:
 	
 	# Build oriented texture path using imgpath_oriented format with larger-smaller ordering
 	var oriented_path = imgpath_oriented % [larger_dots, smaller_dots, orientation_suffix.substr(1)]  # Remove leading underscore
-	
-	# Check if the file exists
+		# Check if the file exists
 	if not ResourceLoader.exists(oriented_path):
-		print("[DOMINO] ERROR: Texture file does not exist: %s" % oriented_path)
+		Logger.log_error(Logger.LogArea.GAME, "Texture file does not exist: %s" % oriented_path)
 		# Use a fallback texture that actually exists
 		var fallback_path = "res://assets/tiles/dominos/domino-0-0_left.svg"
 		return fallback_path
@@ -316,7 +314,7 @@ func get_back_texture_path_for_orientation() -> String:
 			orientation_suffix = "_bottom"
 		_:
 			# Default to left orientation for invalid orientations
-			print("[DOMINO] Invalid back orientation %s, defaulting to left" % data.orientation)
+			Logger.log_warning(Logger.LogArea.GAME, "Invalid back orientation %s, defaulting to left" % data.orientation)
 			orientation_suffix = "_left"
 	
 	# Build oriented back texture path
@@ -324,7 +322,7 @@ func get_back_texture_path_for_orientation() -> String:
 	
 	# Check if the file exists
 	if not ResourceLoader.exists(oriented_back_path):
-		print("[DOMINO] ERROR: Back texture file does not exist: %s" % oriented_back_path)
+		Logger.log_error(Logger.LogArea.GAME, "Back texture file does not exist: %s" % oriented_back_path)
 		# Use a fallback texture that actually exists - just use the front texture
 		var fallback_path = "res://assets/tiles/dominos/domino-0-0_left.svg"
 		return fallback_path
