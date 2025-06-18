@@ -34,12 +34,11 @@ func setup_hand(p_player_name: String, p_player_number: int, p_main_scene: Node)
 	
 	# Update window title
 	title = "%s (P%d) - Hand" % [player_name, player_number]
-	
-	# Set up hand with player info
+		# Set up hand with player info
 	if hand and hand.has_method("set_label_text"):
 		hand.set_label_text("%s (P%d)" % [player_name, player_number])
 	
-	print("Floating hand window set up for %s" % player_name)
+	Logger.log_info(Logger.LogArea.UI, "Floating hand window set up for %s" % player_name)
 
 func set_hand_color(color: Color):
 	"""Set the background color for this hand window"""
@@ -75,12 +74,12 @@ func get_domino_count() -> int:
 
 func _on_close_requested():
 	"""Handle window close request"""
-	print("Hand window %d close requested" % player_number)
+	Logger.log_info(Logger.LogArea.UI, "Hand window %d close requested" % player_number)
 	hand_closed.emit(player_number)
 
 func _on_hand_drag_started(domino):
 	"""Handle when a domino starts being dragged from this hand"""
-	print("Domino drag started from floating hand %d" % player_number)
+	Logger.log_debug(Logger.LogArea.UI, "Domino drag started from floating hand %d" % player_number)
 	domino_drag_started.emit(domino, self)
 	
 	# Notify main scene about cross-window drag
@@ -89,7 +88,7 @@ func _on_hand_drag_started(domino):
 
 func _on_hand_drop_completed(domino, drop_position: Vector2):
 	"""Handle when a domino drop is completed"""
-	print("Domino drop completed in floating hand %d" % player_number)
+	Logger.log_debug(Logger.LogArea.UI, "Domino drop completed in floating hand %d" % player_number)
 	
 	# Convert local position to global for main scene
 	var global_pos = Vector2(position) + drop_position

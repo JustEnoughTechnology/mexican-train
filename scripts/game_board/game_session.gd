@@ -30,19 +30,19 @@ func set_multiplayer_mode(enabled: bool, host_id: int = 0) -> void:
 	"""Configure this game session for multiplayer mode"""
 	is_multiplayer_game = enabled
 	game_host_id = host_id
-	print("Game %s - Multiplayer mode: %s (Host ID: %d)" % [game_id, enabled, host_id])
+	Logger.log_info(Logger.LogArea.GAME, "Game %s - Multiplayer mode: %s (Host ID: %d)" % [game_id, enabled, host_id])
 
 func set_current_turn_player(player_id: int) -> void:
 	"""Set the currently active player for this game session"""
 	current_turn_player_id = player_id
 	turn_changed.emit(player_id)
-	print("Game %s - Turn changed to player ID: %d" % [game_id, player_id])
+	Logger.log_info(Logger.LogArea.GAME, "Game %s - Turn changed to player ID: %d" % [game_id, player_id])
 
 func add_player(player: Player) -> void:
 	"""Add a player to this game session"""
 	if players.size() < GameConfig.MAX_PLAYERS:
 		players.append(player)
-		print("Game %s - Player added: %s (Total: %d)" % [game_id, player.name, players.size()])
+		Logger.log_info(Logger.LogArea.GAME, "Game %s - Player added: %s (Total: %d)" % [game_id, player.name, players.size()])
 		game_state_updated.emit()
 
 func remove_player(player: Player) -> void:
@@ -50,7 +50,7 @@ func remove_player(player: Player) -> void:
 	var index = players.find(player)
 	if index >= 0:
 		players.remove_at(index)
-		print("Game %s - Player removed: %s (Remaining: %d)" % [game_id, player.name, players.size()])
+		Logger.log_info(Logger.LogArea.GAME, "Game %s - Player removed: %s (Remaining: %d)" % [game_id, player.name, players.size()])
 		game_state_updated.emit()
 
 func start_game() -> void:
@@ -60,13 +60,13 @@ func start_game() -> void:
 		turn_number = 0
 		current_round = 1
 		starting_domino_value = GameConfig.MAX_DOTS
-		print("Game %s started with %d players" % [game_id, players.size()])
+		Logger.log_info(Logger.LogArea.GAME, "Game %s started with %d players" % [game_id, players.size()])
 		game_state_updated.emit()
 
 func end_game() -> void:
 	"""End this game session"""
 	is_game_active = false
-	print("Game %s ended" % game_id)
+	Logger.log_info(Logger.LogArea.GAME, "Game %s ended" % game_id)
 	game_state_updated.emit()
 
 func get_game_state() -> Dictionary:
