@@ -6,6 +6,26 @@ documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.2] - 2025-06-16
+
+### Fixed
+
+- **Complete Logging System Conversion**
+  - Completed final sweep of all remaining print statements in production code
+  - Converted game session management logging in `scripts/game_board/game_session.gd`
+  - Finalized station component and floating hand window logging conversions
+  - Achieved 100% logging system coverage for all production game files
+  - Zero print/push_error/push_warning statements remain in core game logic
+
+### Technical Details
+
+- **Files Completed in Final Sweep**:
+  - `scripts/game_board/game_session.gd`: 6 print statements → Logger.log_info calls
+  - `scripts/station/station.gd`: 22+ print statements → Logger calls with appropriate levels
+  - `scripts/hand/floating_hand_window.gd`: 4 print statements → Logger calls
+- **Quality Assurance**: All production code verified to use professional logging framework
+- **Backward Compatibility**: Test files preserve existing print statements for development purposes
+
 ## [0.6.1] - 2025-06-16
 
 ### Added
