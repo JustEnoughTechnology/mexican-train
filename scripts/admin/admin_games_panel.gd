@@ -6,10 +6,10 @@ extends Control
 signal refresh_requested
 
 # UI References
-@onready var games_count_label: Label = $VBox/StatsContainer/GamesCountLabel
-@onready var players_count_label: Label = $VBox/StatsContainer/PlayersCountLabel
-@onready var refresh_button: Button = $VBox/HeaderContainer/RefreshButton
-@onready var games_list: VBoxContainer = $VBox/ScrollContainer/GamesList
+@onready var games_count_label: Label = get_node_or_null("VBox/StatsContainer/GamesCountLabel")
+@onready var players_count_label: Label = get_node_or_null("VBox/StatsContainer/PlayersCountLabel")
+@onready var refresh_button: Button = get_node_or_null("VBox/HeaderContainer/RefreshButton")
+@onready var games_list: VBoxContainer = get_node_or_null("VBox/ScrollContainer/GamesList")
 
 func _ready() -> void:
 	setup_ui()

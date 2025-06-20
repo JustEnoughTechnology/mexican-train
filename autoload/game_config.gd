@@ -4,7 +4,7 @@ extends Node
 ## This autoload contains server-wide settings and constants used across the entire application
 
 # Network configuration
-const DEFAULT_PORT = 9957
+const DEFAULT_PORT = 25025
 const MAX_PLAYERS = 8
 
 # Game rules configuration  

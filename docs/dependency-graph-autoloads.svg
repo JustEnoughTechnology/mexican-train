@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .autoload-box { fill: #4a90e2; stroke: #2c5aa0; stroke-width: 2; }
+      .autoload-text { fill: white; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+      .dependency-arrow { stroke: #333; stroke-width: 2; marker-end: url(#arrowhead); }
+      .title-text { fill: #333; font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; text-anchor: middle; }
+      .description-text { fill: #666; font-family: Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+      .layer-text { fill: #555; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="600" y="30" class="title-text">Mexican Train - Autoload Dependencies</text>
+  <text x="600" y="50" class="description-text">Core System Singletons (Load Order & Dependencies)</text>
+  
+  <!-- Layer Labels -->
+  <text x="50" y="120" class="layer-text">BASE LAYER</text>
+  <text x="50" y="220" class="layer-text">LOGGING LAYER</text>
+  <text x="50" y="320" class="layer-text">EVENTS LAYER</text>
+  <text x="50" y="420" class="layer-text">CONFIG LAYER</text>
+  <text x="50" y="520" class="layer-text">MANAGEMENT LAYER</text>
+  <text x="50" y="620" class="layer-text">ADMIN LAYER</text>
+  
+  <!-- Autoload Boxes (Horizontal Layout by Layer) -->
+  
+  <!-- Layer 1: Base -->
+  <rect x="200" y="80" width="120" height="60" class="autoload-box" rx="5"/>
+  <text x="260" y="100" class="autoload-text">Global</text>
+  <text x="260" y="115" class="autoload-text" style="font-size: 10px; font-weight: normal;">Base Config</text>
+  <text x="260" y="130" class="autoload-text" style="font-size: 10px; font-weight: normal;">Utilities</text>
+  
+  <!-- Layer 2: Logging -->
+  <rect x="200" y="180" width="120" height="60" class="autoload-box" rx="5"/>
+  <text x="260" y="200" class="autoload-text">Logger</text>
+  <text x="260" y="215" class="autoload-text" style="font-size: 10px; font-weight: normal;">System Logging</text>
+  <text x="260" y="230" class="autoload-text" style="font-size: 10px; font-weight: normal;">Debug Output</text>
+  
+  <!-- Layer 3: Events -->
+  <rect x="200" y="280" width="120" height="60" class="autoload-box" rx="5"/>
+  <text x="260" y="300" class="autoload-text">EventBus</text>
+  <text x="260" y="315" class="autoload-text" style="font-size: 10px; font-weight: normal;">Signal Hub</text>
+  <text x="260" y="330" class="autoload-text" style="font-size: 10px; font-weight: normal;">Event Routing</text>
+  
+  <!-- Layer 4: Config -->
+  <rect x="200" y="380" width="120" height="60" class="autoload-box" rx="5"/>
+  <text x="260" y="400" class="autoload-text">GameConfig</text>
+  <text x="260" y="415" class="autoload-text" style="font-size: 10px; font-weight: normal;">Game Constants</text>
+  <text x="260" y="430" class="autoload-text" style="font-size: 10px; font-weight: normal;">Network Settings</text>
+  
+  <!-- Layer 5: Management -->
+  <rect x="100" y="480" width="120" height="60" class="autoload-box" rx="5"/>
+  <text x="160" y="500" class="autoload-text">LobbyManager</text>
+  <text x="160" y="515" class="autoload-text" style="font-size: 10px; font-weight: normal;">Game Sessions</text>
+  <text x="160" y="530" class="autoload-text" style="font-size: 10px; font-weight: normal;">Player Mgmt</text>
+  
+  <rect x="300" y="480" width="120" height="60" class="autoload-box" rx="5"/>
+  <text x="360" y="500" class="autoload-text">NetworkManager</text>
+  <text x="360" y="515" class="autoload-text" style="font-size: 10px; font-weight: normal;">Multiplayer</text>
+  <text x="360" y="530" class="autoload-text" style="font-size: 10px; font-weight: normal;">RPCs</text>
+  
+  <!-- Layer 6: Admin -->
+  <rect x="200" y="580" width="120" height="60" class="autoload-box" rx="5"/>
+  <text x="260" y="600" class="autoload-text">ServerAdmin</text>
+  <text x="260" y="615" class="autoload-text" style="font-size: 10px; font-weight: normal;">Auth & Metrics</text>
+  <text x="260" y="630" class="autoload-text" style="font-size: 10px; font-weight: normal;">Server Monitor</text>
+  
+  <!-- Dependency Arrows -->
+  
+  <!-- Global → Logger -->
+  <line x1="260" y1="140" x2="260" y2="180" class="dependency-arrow"/>
+  
+  <!-- Logger → EventBus -->
+  <line x1="260" y1="240" x2="260" y2="280" class="dependency-arrow"/>
+  
+  <!-- EventBus → GameConfig -->
+  <line x1="260" y1="340" x2="260" y2="380" class="dependency-arrow"/>
+  
+  <!-- GameConfig → LobbyManager -->
+  <line x1="260" y1="440" x2="160" y2="480" class="dependency-arrow"/>
+  
+  <!-- GameConfig → NetworkManager -->
+  <line x1="260" y1="440" x2="360" y2="480" class="dependency-arrow"/>
+  
+  <!-- LobbyManager → NetworkManager (bidirectional) -->
+  <line x1="220" y1="510" x2="300" y2="510" class="dependency-arrow"/>
+  <line x1="300" y1="520" x2="220" y2="520" class="dependency-arrow"/>
+  
+  <!-- NetworkManager → ServerAdmin -->
+  <line x1="360" y1="540" x2="260" y2="580" class="dependency-arrow"/>
+  
+  <!-- Logger used by multiple systems -->
+  <line x1="200" y1="210" x2="100" y2="210" class="dependency-arrow" style="stroke: #e74c3c; stroke-dasharray: 5,5;"/>
+  <text x="80" y="200" class="description-text" style="fill: #e74c3c;">Used by all</text>
+  <text x="80" y="215" class="description-text" style="fill: #e74c3c;">systems below</text>
+  
+  <!-- Usage Information -->
+  <rect x="500" y="150" width="300" height="200" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="5"/>
+  <text x="650" y="170" class="autoload-text" style="fill: #333;">Usage Dependencies</text>
+  
+  <text x="520" y="195" style="fill: #333; font-family: Arial, sans-serif; font-size: 11px;">• Global: Configuration for Logger</text>
+  <text x="520" y="210" style="fill: #333; font-family: Arial, sans-serif; font-size: 11px;">• Logger: Used by all other autoloads</text>
+  <text x="520" y="225" style="fill: #333; font-family: Arial, sans-serif; font-size: 11px;">• EventBus: Signal routing for NetworkManager</text>
+  <text x="520" y="240" style="fill: #333; font-family: Arial, sans-serif; font-size: 11px;">• GameConfig: Constants for BoneYard, tests</text>
+  <text x="520" y="255" style="fill: #333; font-family: Arial, sans-serif; font-size: 11px;">• LobbyManager: Game session management</text>
+  <text x="520" y="270" style="fill: #333; font-family: Arial, sans-serif; font-size: 11px;">• NetworkManager: Client/server communication</text>
+  <text x="520" y="285" style="fill: #333; font-family: Arial, sans-serif; font-size: 11px;">• ServerAdmin: Dashboard authentication</text>
+  
+  <text x="520" y="310" style="fill: #e74c3c; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold;">Load Order Critical:</text>
+  <text x="520" y="325" style="fill: #333; font-family: Arial, sans-serif; font-size: 11px;">Dependencies must load in top-down order</text>
+  
+  <!-- Legend -->
+  <rect x="900" y="450" width="250" height="120" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="5"/>
+  <text x="1025" y="470" class="autoload-text" style="fill: #333;">Legend</text>
+  
+  <line x1="920" y1="485" x2="950" y2="485" class="dependency-arrow"/>
+  <text x="960" y="490" style="fill: #333; font-family: Arial, sans-serif; font-size: 11px;">Direct Dependency</text>
+  
+  <line x1="920" y1="505" x2="950" y2="505" style="stroke: #e74c3c; stroke-width: 2; stroke-dasharray: 5,5; marker-end: url(#arrowhead);"/>
+  <text x="960" y="510" style="fill: #333; font-family: Arial, sans-serif; font-size: 11px;">Used By Multiple</text>
+  
+  <rect x="920" y="520" width="20" height="15" class="autoload-box" rx="2"/>
+  <text x="950" y="532" style="fill: #333; font-family: Arial, sans-serif; font-size: 11px;">Autoload Singleton</text>
+  
+  <text x="920" y="555" style="fill: #333; font-family: Arial, sans-serif; font-size: 10px;">All autoloads are globally accessible</text>
+  
+</svg>

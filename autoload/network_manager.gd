@@ -13,12 +13,13 @@ signal game_started(game_code: String)
 
 # Network configuration
 const MAX_PLAYERS = 8
-const DEFAULT_PORT = 9957
+const DEFAULT_PORT = 25025
 
 # Game state
 var is_server: bool = false  # True if this is the central server
 var network_connected: bool = false
 var local_player_id: int = 0
+var current_server_port: int = 0  # Tracks the actual port the server is running on
 var players: Dictionary = {}  # peer_id -> player_data
 var current_game_code: String = ""
 
@@ -36,13 +37,15 @@ func _ready() -> void:
 ## Start as central server (handles lobby and all games)
 func start_server(port: int = DEFAULT_PORT) -> bool:
 	multiplayer_peer = ENetMultiplayerPeer.new()
-	var error = multiplayer_peer.create_server(port, 64)  # Support more connections for lobby
+	# Support more connections for lobby
+	var error = multiplayer_peer.create_server(port, 64)
 	
 	if error == OK:
 		multiplayer.multiplayer_peer = multiplayer_peer
 		is_server = true
 		network_connected = true
 		local_player_id = 1
+		current_server_port = port  # Store the actual port being used
 		
 		# Connect lobby signals to the autoloaded LobbyManager
 		LobbyManager.game_created.connect(_on_lobby_game_created)
@@ -70,6 +73,10 @@ func connect_to_server(address: String, port: int = DEFAULT_PORT) -> bool:
 	else:
 		Logger.log_error(Logger.LogArea.NETWORK, "Failed to connect to server: %s" % error)
 		return false
+
+## Get the current server port (useful for multi-server management)
+func get_current_server_port() -> int:
+	return current_server_port
 
 ## Create a new game (client request to server)
 func create_game() -> void:

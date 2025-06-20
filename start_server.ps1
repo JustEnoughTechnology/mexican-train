@@ -2,7 +2,7 @@
 # Simple PowerShell script to start the headless server
 
 param(
-    [int]$Port = 9957,
+    [int]$Port = 25025,
     [int]$MaxPlayers = 32,
     [switch]$Help
 )
@@ -13,14 +13,14 @@ if ($Help) {
     Write-Host "Usage: .\start_server.ps1 [-Port <number>] [-MaxPlayers <number>] [-Help]"
     Write-Host ""
     Write-Host "Parameters:"
-    Write-Host "  -Port        Server port (default: 9957)"
+    Write-Host "  -Port        Server port (default: 25025)"
     Write-Host "  -MaxPlayers  Maximum players (default: 32)"
     Write-Host "  -Help        Show this help message"
     Write-Host ""
     Write-Host "Examples:"
     Write-Host "  .\start_server.ps1"
     Write-Host "  .\start_server.ps1 -Port 9000"
-    Write-Host "  .\start_server.ps1 -Port 9957 -MaxPlayers 16"
+    Write-Host "  .\start_server.ps1 -Port 25025 -MaxPlayers 16"
     Write-Host ""
     exit 0
 }

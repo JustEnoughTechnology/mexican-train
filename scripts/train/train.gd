@@ -152,7 +152,8 @@ func _can_drop_data(_position: Vector2, data) -> bool:
 	if get_domino_count() == 0:
 		# Look for a station in the scene to get the engine value
 		var station = find_station_in_scene()
-		if station and station.has_engine():		var required_engine_value = station.get_engine_value()
+		if station and station.has_engine():		
+			var required_engine_value = station.get_engine_value()
 			
 			Logger.log_debug(Logger.LogArea.GAME, "\n=== EMPTY TRAIN CONNECTION CHECK ===")
 			Logger.log_debug(Logger.LogArea.GAME, "Station engine value: %d" % required_engine_value)
@@ -179,7 +180,8 @@ func _can_drop_data(_position: Vector2, data) -> bool:
 	Logger.log_debug(Logger.LogArea.GAME, "Checking domino: %s" % drag_domino.name)
 	Logger.log_debug(Logger.LogArea.GAME, "  Original dots: %d-%d (x=%d, y=%d)" % [incoming_dots.x, incoming_dots.y, incoming_dots.x, incoming_dots.y])
 	Logger.log_debug(Logger.LogArea.GAME, "  Original orientation: %d (%s)" % [drag_domino.data.orientation, _orientation_to_string(drag_domino.data.orientation)])
-	Logger.log_debug(Logger.LogArea.GAME, "Last domino: %d-%d, orientation: %d (%s)" % [last_domino.get_dots().x, last_domino.get_dots().y, last_domino.data.orientation, _orientation_to_string(last_domino.data.orientation)])	Logger.log_debug(Logger.LogArea.GAME, "Last domino right side value: %d" % required_dots)
+	Logger.log_debug(Logger.LogArea.GAME, "Last domino: %d-%d, orientation: %d (%s)" % [last_domino.get_dots().x, last_domino.get_dots().y, last_domino.data.orientation, _orientation_to_string(last_domino.data.orientation)])	
+	Logger.log_debug(Logger.LogArea.GAME, "Last domino right side value: %d" % required_dots)
 	Logger.log_debug(Logger.LogArea.GAME, "Checking if %d or %d matches required %d" % [incoming_dots.x, incoming_dots.y, required_dots])
 	
 	# Check if either side of the incoming domino matches the required connection
@@ -187,7 +189,7 @@ func _can_drop_data(_position: Vector2, data) -> bool:
 	
 	Logger.log_debug(Logger.LogArea.GAME, "Can connect: %s" % str(can_connect))
 	Logger.log_debug(Logger.LogArea.GAME, "===============================")
-		if not can_connect:
+	if not can_connect:
 		Logger.log_warning(Logger.LogArea.GAME, "Cannot drop domino %s: needs %d dots to connect, but has %d-%d" % [
 			drag_domino.name, required_dots, incoming_dots.x, incoming_dots.y])
 	
@@ -237,7 +239,8 @@ func _drop_data(_position: Vector2, data) -> void:
 		
 		# ====== DEBUG: FINAL DOMINO STATE ======
 		Logger.log_debug(Logger.LogArea.GAME, "\nFINAL DOMINO STATE (after orientation and add):")
-		Logger.log_debug(Logger.LogArea.GAME, "  Name: %s" % drag_domino.name)		Logger.log_debug(Logger.LogArea.GAME, "  Dots: %d-%d (x=%d, y=%d)" % [drag_domino.get_dots().x, drag_domino.get_dots().y, drag_domino.get_dots().x, drag_domino.get_dots().y])
+		Logger.log_debug(Logger.LogArea.GAME, "  Name: %s" % drag_domino.name)		
+		Logger.log_debug(Logger.LogArea.GAME, "  Dots: %d-%d (x=%d, y=%d)" % [drag_domino.get_dots().x, drag_domino.get_dots().y, drag_domino.get_dots().x, drag_domino.get_dots().y])
 		Logger.log_debug(Logger.LogArea.GAME, "  Orientation: %d (%s)" % [drag_domino.data.orientation, _orientation_to_string(drag_domino.data.orientation)])
 		
 		# Verify connection is correct
@@ -515,4 +518,3 @@ func get_open_end() -> int:
 func clear_train() -> void:
 	"""Clear all dominoes from the train"""
 	clear_dominoes()
-

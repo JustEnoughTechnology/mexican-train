@@ -26,9 +26,10 @@ Write-Host "5. Complete Integration Test (Manual Server Control)" -ForegroundCol
 Write-Host "6. Quick Validation (headless check)" -ForegroundColor White
 Write-Host "7. Start Headless Server (command-line server)" -ForegroundColor Cyan
 Write-Host "8. Complete Integration Test (with headless server)" -ForegroundColor Green
+Write-Host "9. Multi-Server Monitor (view all running servers)" -ForegroundColor Magenta
 Write-Host ""
 
-$choice = Read-Host "Enter choice (1-8)"
+$choice = Read-Host "Enter choice (1-9)"
 
 switch ($choice) {
     "1" {
@@ -49,7 +50,7 @@ switch ($choice) {
     }
     "4" {
         Write-Host "🎮 Opening client lobby..." -ForegroundColor Cyan
-        Write-Host "Connect to: leave blank for localhost:9957, or specify address[:port]" -ForegroundColor Yellow
+        Write-Host "Connect to: leave blank for localhost:25025, or specify address[:port]" -ForegroundColor Yellow
         godot scenes/lobby/client_lobby.tscn
     }    "5" {
         Write-Host "🚀 Starting complete integration test..." -ForegroundColor Cyan
@@ -160,7 +161,7 @@ switch ($choice) {
         Write-Host "🖥️  Starting headless server..." -ForegroundColor Cyan
         Write-Host "This will start a command-line server that you can connect to" -ForegroundColor Yellow
         Write-Host ""
-        Write-Host "Server will start on port 9957" -ForegroundColor White
+        Write-Host "Server will start on port 25025" -ForegroundColor White
         Write-Host "Press Ctrl+C in the server window to stop it" -ForegroundColor Gray
         Write-Host ""
         
@@ -171,7 +172,7 @@ switch ($choice) {
         Write-Host "✅ Headless server started!" -ForegroundColor Green
         Write-Host ""
         Write-Host "Server Info:" -ForegroundColor Yellow
-        Write-Host "  • Address: 127.0.0.1:9957" -ForegroundColor White
+        Write-Host "  • Address: 127.0.0.1:25025" -ForegroundColor White
         Write-Host "  • Use option 4 to test client connections" -ForegroundColor White
         Write-Host "  • Use option 3 to launch admin dashboard" -ForegroundColor White
         Write-Host ""

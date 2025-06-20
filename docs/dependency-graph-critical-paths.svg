@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="1100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .startup-box { fill: #dc3545; stroke: #c82333; stroke-width: 2; }
+      .game-box { fill: #28a745; stroke: #1e7e34; stroke-width: 2; }
+      .admin-box { fill: #ffc107; stroke: #e0a800; stroke-width: 2; }
+      .critical-path { fill: #6f42c1; stroke: #5a2d91; stroke-width: 3; }
+      .text-white { fill: white; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; text-anchor: middle; }
+      .text-dark { fill: #333; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; text-anchor: middle; }
+      .flow-arrow { stroke: #333; stroke-width: 3; marker-end: url(#flowArrow); }
+      .critical-arrow { stroke: #dc3545; stroke-width: 4; marker-end: url(#criticalArrow); }
+      .dependency-arrow { stroke: #666; stroke-width: 2; marker-end: url(#depArrow); stroke-dasharray: 5,5; }
+      .title-text { fill: #333; font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; text-anchor: middle; }
+      .section-title { fill: #555; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; }
+      .description-text { fill: #666; font-family: Arial, sans-serif; font-size: 9px; }
+      .flow-step { fill: #444; font-family: Arial, sans-serif; font-size: 8px; }
+    </style>
+    <marker id="flowArrow" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#333" />
+    </marker>
+    <marker id="criticalArrow" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#dc3545" />
+    </marker>
+    <marker id="depArrow" markerWidth="10" markerHeight="6" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="800" y="30" class="title-text">Mexican Train - Critical Dependency Paths & Startup Flow</text>
+  
+  <!-- Critical Path 1: Server Startup Flow -->
+  <text x="50" y="70" class="section-title">1. SERVER STARTUP FLOW (CRITICAL PATH)</text>
+  
+  <!-- Server Startup Components -->
+  <rect x="50" y="100" width="140" height="50" class="startup-box" rx="5"/>
+  <text x="120" y="120" class="text-white">headless_server.gd</text>
+  <text x="120" y="135" class="text-white" style="font-size: 8px;">Entry Point</text>
+  
+  <rect x="220" y="100" width="140" height="50" class="startup-box" rx="5"/>
+  <text x="290" y="120" class="text-white">NetworkManager</text>
+  <text x="290" y="135" class="text-white" style="font-size: 8px;">Autoload Singleton</text>
+  
+  <rect x="390" y="100" width="140" height="50" class="startup-box" rx="5"/>
+  <text x="460" y="120" class="text-white">LobbyManager</text>
+  <text x="460" y="135" class="text-white" style="font-size: 8px;">Autoload Singleton</text>
+  
+  <rect x="560" y="100" width="140" height="50" class="startup-box" rx="5"/>
+  <text x="630" y="120" class="text-white">Logger</text>
+  <text x="630" y="135" class="text-white" style="font-size: 8px;">Autoload Singleton</text>
+  
+  <rect x="730" y="100" width="140" height="50" class="startup-box" rx="5"/>
+  <text x="800" y="120" class="text-white">Global</text>
+  <text x="800" y="135" class="text-white" style="font-size: 8px;">Autoload Singleton</text>
+  
+  <!-- Server startup flow arrows -->
+  <line x1="190" y1="125" x2="220" y2="125" class="critical-arrow"/>
+  <line x1="360" y1="125" x2="390" y2="125" class="critical-arrow"/>
+  <line x1="530" y1="125" x2="560" y2="125" class="critical-arrow"/>
+  <line x1="700" y1="125" x2="730" y2="125" class="critical-arrow"/>
+  
+  <!-- Startup flow steps -->
+  <text x="50" y="180" class="section-title" style="font-size: 11px;">Startup Sequence:</text>
+  <text x="50" y="200" class="flow-step">1. headless_server.gd._ready() → Initialize command line args</text>
+  <text x="50" y="215" class="flow-step">2. NetworkManager (autoload) → Access singleton</text>
+  <text x="50" y="230" class="flow-step">3. LobbyManager (autoload) → NetworkManager depends on this</text>
+  <text x="50" y="245" class="flow-step">4. Logger (autoload) → Used by all systems for logging</text>
+  <text x="50" y="260" class="flow-step">5. Global (autoload) → Logger gets configuration from this</text>
+  <text x="50" y="275" class="flow-step">6. NetworkManager.start_server() → Create ENetMultiplayerPeer</text>
+  <text x="50" y="290" class="flow-step">7. Server ready to accept connections on port 25025</text>
+  
+  <!-- Critical Path 2: Game Component Flow -->
+  <text x="50" y="330" class="section-title">2. GAME COMPONENT FLOW (INSTANCE DEPENDENCIES)</text>
+  
+  <!-- Game Scene Container -->
+  <rect x="50" y="360" width="160" height="50" class="game-box" rx="5"/>
+  <text x="130" y="380" class="text-white">Game Scene</text>
+  <text x="130" y="395" class="text-white" style="font-size: 8px;">(Integration Test)</text>
+  
+  <!-- Game Components -->
+  <rect x="250" y="330" width="100" height="40" class="game-box" rx="3"/>
+  <text x="300" y="345" class="text-white">BoneYard</text>
+  <text x="300" y="358" class="text-white" style="font-size: 7px;">Instance</text>
+  
+  <rect x="250" y="380" width="100" height="40" class="game-box" rx="3"/>
+  <text x="300" y="395" class="text-white">Hand</text>
+  <text x="300" y="408" class="text-white" style="font-size: 7px;">Instance</text>
+  
+  <rect x="250" y="430" width="100" height="40" class="game-box" rx="3"/>
+  <text x="300" y="445" class="text-white">Station</text>
+  <text x="300" y="458" class="text-white" style="font-size: 7px;">Instance</text>
+  
+  <rect x="250" y="480" width="100" height="40" class="game-box" rx="3"/>
+  <text x="300" y="495" class="text-white">Train</text>
+  <text x="300" y="508" class="text-white" style="font-size: 7px;">Instance</text>
+  
+  <!-- Domino Dependency -->
+  <rect x="400" y="405" width="100" height="40" class="game-box" rx="3"/>
+  <text x="450" y="420" class="text-white">domino.tscn</text>
+  <text x="450" y="433" class="text-white" style="font-size: 7px;">Preloaded</text>
+  
+  <!-- GameConfig Dependency -->
+  <rect x="540" y="405" width="100" height="40" class="game-box" rx="3"/>
+  <text x="590" y="420" class="text-white">GameConfig</text>
+  <text x="590" y="433" class="text-white" style="font-size: 7px;">MAX_DOTS</text>
+  
+  <!-- EventBus Dependency -->
+  <rect x="680" y="405" width="100" height="40" class="game-box" rx="3"/>
+  <text x="730" y="420" class="text-white">EventBus</text>
+  <text x="730" y="433" class="text-white" style="font-size: 7px;">Signals</text>
+  
+  <!-- Game component flow arrows -->
+  <line x1="210" y1="385" x2="250" y2="350" class="flow-arrow"/>
+  <line x1="210" y1="385" x2="250" y2="400" class="flow-arrow"/>
+  <line x1="210" y1="385" x2="250" y2="450" class="flow-arrow"/>
+  <line x1="210" y1="385" x2="250" y2="500" class="flow-arrow"/>
+  
+  <!-- Preload dependencies -->
+  <line x1="350" y1="350" x2="400" y2="425" class="dependency-arrow"/>
+  <line x1="350" y1="400" x2="400" y2="425" class="dependency-arrow"/>
+  
+  <!-- Config dependencies -->
+  <line x1="350" y1="350" x2="540" y2="425" class="dependency-arrow"/>
+  <line x1="500" y1="425" x2="540" y2="425" class="dependency-arrow"/>
+  
+  <!-- Signal dependencies -->
+  <line x1="500" y1="425" x2="680" y2="425" class="dependency-arrow"/>
+  
+  <!-- Critical Path 3: Admin System Flow -->
+  <text x="50" y="570" class="section-title">3. ADMIN SYSTEM FLOW (AUTHENTICATION & MONITORING)</text>
+  
+  <!-- Admin Components -->
+  <rect x="50" y="600" width="140" height="50" class="admin-box" rx="5"/>
+  <text x="120" y="620" class="text-dark">admin_dashboard.tscn</text>
+  <text x="120" y="635" class="text-dark" style="font-size: 8px;">UI Entry Point</text>
+  
+  <rect x="220" y="600" width="140" height="50" class="admin-box" rx="5"/>
+  <text x="290" y="620" class="text-dark">admin_dashboard.gd</text>
+  <text x="290" y="635" class="text-dark" style="font-size: 8px;">Controller Script</text>
+  
+  <rect x="390" y="600" width="140" height="50" class="admin-box" rx="5"/>
+  <text x="460" y="620" class="text-dark">ServerAdmin</text>
+  <text x="460" y="635" class="text-dark" style="font-size: 8px;">Autoload Singleton</text>
+  
+  <rect x="560" y="600" width="140" height="50" class="admin-box" rx="5"/>
+  <text x="630" y="620" class="text-dark">NetworkManager</text>
+  <text x="630" y="635" class="text-dark" style="font-size: 8px;">Server Metrics</text>
+  
+  <rect x="730" y="600" width="140" height="50" class="admin-box" rx="5"/>
+  <text x="800" y="620" class="text-dark">Logger</text>
+  <text x="800" y="635" class="text-dark" style="font-size: 8px;">System Logging</text>
+  
+  <!-- Admin flow arrows -->
+  <line x1="190" y1="625" x2="220" y2="625" class="flow-arrow"/>
+  <line x1="360" y1="625" x2="390" y2="625" class="flow-arrow"/>
+  <line x1="530" y1="625" x2="560" y2="625" class="flow-arrow"/>
+  <line x1="700" y1="625" x2="730" y2="625" class="flow-arrow"/>
+  
+  <!-- Admin flow steps -->
+  <text x="50" y="680" class="section-title" style="font-size: 11px;">Admin Authentication Flow:</text>
+  <text x="50" y="700" class="flow-step">1. Admin Dashboard UI loads → admin_dashboard.gd._ready()</text>
+  <text x="50" y="715" class="flow-step">2. User enters credentials → ServerAdmin.authenticate(email, password)</text>
+  <text x="50" y="730" class="flow-step">3. ServerAdmin validates → emits admin_authenticated signal</text>
+  <text x="50" y="745" class="flow-step">4. Dashboard receives signal → requests server metrics</text>
+  <text x="50" y="760" class="flow-step">5. NetworkManager.get_connected_peer_count() → live data</text>
+  <text x="50" y="775" class="flow-step">6. Logger provides system logs → display in dashboard</text>
+  <text x="50" y="790" class="flow-step">7. Timer updates metrics every 5 seconds</text>
+  
+  <!-- Dependency Strength Analysis -->
+  <text x="950" y="70" class="section-title">DEPENDENCY STRENGTH ANALYSIS</text>
+  
+  <!-- Strong Dependencies -->
+  <rect x="950" y="100" width="300" height="150" fill="#ffe6e6" stroke="#dc3545" stroke-width="2" rx="5"/>
+  <text x="1100" y="125" class="section-title" style="text-anchor: middle; fill: #dc3545;">STRONG DEPENDENCIES</text>
+  <text x="1100" y="140" class="description-text" style="text-anchor: middle; font-weight: bold;">Critical - System Breaks Without These</text>
+  
+  <text x="970" y="160" class="description-text">🔴 Autoload Load Order:</text>
+  <text x="980" y="175" class="description-text">Global → Logger → EventBus → GameConfig → LobbyManager → NetworkManager → ServerAdmin</text>
+  
+  <text x="970" y="195" class="description-text">🔴 Preload Dependencies:</text>
+  <text x="980" y="210" class="description-text">BoneYard/Hand → domino.tscn (cannot function without dominoes)</text>
+  
+  <text x="970" y="225" class="description-text">🔴 NetworkManager ↔ LobbyManager:</text>
+  <text x="980" y="240" class="description-text">Bidirectional RPC/signal dependency (multiplayer core)</text>
+  
+  <!-- Medium Dependencies -->
+  <rect x="950" y="270" width="300" height="120" fill="#fff8e1" stroke="#ffa726" stroke-width="2" rx="5"/>
+  <text x="1100" y="295" class="section-title" style="text-anchor: middle; fill: #ffa726;">MEDIUM DEPENDENCIES</text>
+  <text x="1100" y="310" class="description-text" style="text-anchor: middle; font-weight: bold;">Important - Degraded Function Without</text>
+  
+  <text x="970" y="330" class="description-text">🟡 Admin System → ServerAdmin:</text>
+  <text x="980" y="345" class="description-text">Admin dashboard needs ServerAdmin for authentication</text>
+  
+  <text x="970" y="365" class="description-text">🟡 Game Components → GameConfig:</text>
+  <text x="980" y="380" class="description-text">Uses MAX_DOTS, DEFAULT_PORT for configuration</text>
+  
+  <!-- Weak Dependencies -->
+  <rect x="950" y="410" width="300" height="100" fill="#e8f5e8" stroke="#28a745" stroke-width="2" rx="5"/>
+  <text x="1100" y="435" class="section-title" style="text-anchor: middle; fill: #28a745;">WEAK DEPENDENCIES</text>
+  <text x="1100" y="450" class="description-text" style="text-anchor: middle; font-weight: bold;">Optional - Graceful Degradation</text>
+  
+  <text x="970" y="470" class="description-text">🟢 Test System → Core Components:</text>
+  <text x="980" y="485" class="description-text">Tests depend on core, but core works without tests</text>
+  
+  <text x="970" y="500" class="description-text">🟢 Utility Classes:</text>
+  <text x="980" y="515" class="description-text">Helper functions, can be replaced if needed</text>
+  
+  <!-- Critical Bottlenecks -->
+  <rect x="950" y="530" width="300" height="180" fill="#f3e5f5" stroke="#6f42c1" stroke-width="2" rx="5"/>
+  <text x="1100" y="555" class="section-title" style="text-anchor: middle; fill: #6f42c1;">CRITICAL BOTTLENECKS</text>
+  <text x="1100" y="570" class="description-text" style="text-anchor: middle; font-weight: bold;">Single Points of Failure</text>
+  
+  <text x="970" y="590" class="description-text">⚡ NetworkManager:</text>
+  <text x="980" y="605" class="description-text">Central hub for all multiplayer communication</text>
+  <text x="980" y="620" class="description-text">If this fails, entire multiplayer system breaks</text>
+  
+  <text x="970" y="640" class="description-text">⚡ Logger:</text>
+  <text x="980" y="655" class="description-text">Used by every other autoload for debugging</text>
+  <text x="980" y="670" class="description-text">Failure breaks diagnostic capabilities</text>
+  
+  <text x="970" y="690" class="description-text">⚡ domino.tscn:</text>
+  <text x="980" y="705" class="description-text">Core game piece - preloaded by multiple systems</text>
+  
+  <!-- Risk Assessment -->
+  <rect x="950" y="730" width="300" height="120" fill="#fff5f5" stroke="#dc3545" stroke-width="2" rx="5"/>
+  <text x="1100" y="755" class="section-title" style="text-anchor: middle; fill: #dc3545;">RISK ASSESSMENT</text>
+  
+  <text x="970" y="775" class="description-text" style="font-weight: bold; fill: #28a745;">✅ LOW RISK:</text>
+  <text x="980" y="790" class="description-text">Well-structured autoload system prevents orphaning</text>
+  <text x="980" y="805" class="description-text">Extensive test coverage (87+ test files)</text>
+  
+  <text x="970" y="825" class="description-text" style="font-weight: bold; fill: #ffa726;">⚠️ MEDIUM RISK:</text>
+  <text x="980" y="840" class="description-text">Complex NetworkManager could benefit from refactoring</text>
+  
+  <!-- Summary Box -->
+  <rect x="50" y="830" width="850" height="200" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2" rx="5"/>
+  <text x="475" y="855" class="section-title" style="text-anchor: middle;">DEPENDENCY SUMMARY</text>
+  
+  <text x="70" y="880" class="description-text" style="font-weight: bold;">Project Health: EXCELLENT</text>
+  
+  <text x="70" y="905" class="description-text">🎯 No True Orphans: All core files connected through autoload system or test infrastructure</text>
+  <text x="70" y="920" class="description-text">🔗 Strong Coupling: Critical systems properly depend on each other with clear hierarchy</text>
+  <text x="70" y="935" class="description-text">🧪 Test Coverage: 87+ test files provide comprehensive validation of all components</text>
+  <text x="70" y="950" class="description-text">🏗️ Clean Architecture: Autoload singletons create stable foundation preventing orphaning</text>
+  
+  <text x="70" y="975" class="description-text" style="font-weight: bold;">Recommended Actions:</text>
+  <text x="70" y="990" class="description-text">1. Clean up 7 identified backup/experimental files</text>
+  <text x="70" y="1005" class="description-text">2. Document C# experimental test files or remove them</text>
+  <text x="70" y="1020" class="description-text">3. Consider NetworkManager refactoring for better maintainability</text>
+  
+</svg>

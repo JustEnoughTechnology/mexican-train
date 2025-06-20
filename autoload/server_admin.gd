@@ -58,7 +58,7 @@ func authenticate_admin(email: String, password: String = "") -> bool:
 	
 	# Add to authenticated admins if not already present
 	if not email in authenticated_admins:
-	authenticated_admins.append(email)
+		authenticated_admins.append(email)
 	
 	admin_authenticated.emit(email)
 	Logger.log_info(Logger.LogArea.ADMIN, "Admin authenticated: %s" % email)
@@ -149,7 +149,7 @@ func add_authorized_admin(email: String, requester_email: String) -> bool:
 	
 	if not _is_valid_email(email):
 		return false
-		if not email in ADMIN_EMAILS:
+	if not email in ADMIN_EMAILS:
 		# Note: This only adds for current session, not persistent
 		Logger.log_info(Logger.LogArea.ADMIN, "Admin %s added %s to authorized list (session only)" % [requester_email, email])
 		return true

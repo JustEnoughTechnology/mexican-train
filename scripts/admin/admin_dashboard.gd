@@ -90,12 +90,26 @@ func _on_login_requested(email: String, password: String) -> void:
 		var status_label = login_panel.get_node_or_null("StatusLabel")
 		if status_label:
 			status_label.text = "Authenticating..."
-			status_label.modulate = Color.YELLOW		# Request authentication from server
-	NetworkManager.request_admin_auth(email, password)
-	Logger.log_info(Logger.LogArea.ADMIN, "Requesting authentication from server for: %s" % email)
+			status_label.modulate = Color.YELLOW
 	
-	# Set up authentication timeout
-	_setup_auth_timeout()
+	# Authenticate with local ServerAdmin (since this is a local admin dashboard)
+	var auth_result = ServerAdmin.authenticate_admin(email, password)
+	if auth_result:
+		current_admin_email = email
+		show_dashboard_panel()
+		Logger.log_info(Logger.LogArea.ADMIN, "Admin login successful: %s" % email)
+	else:
+		# Show error message in login panel
+		if login_panel:
+			var status_label = login_panel.get_node_or_null("StatusLabel")
+			if status_label:
+				status_label.text = "Login failed: Invalid credentials"
+				status_label.modulate = Color.RED
+			
+			# Re-enable login button
+			var login_button = login_panel.get_node_or_null("VBox/LoginButton")
+			if login_button:
+				login_button.disabled = false
 
 func _on_server_action_requested(action: String) -> void:	match action:
 		"start_server":
@@ -366,7 +380,7 @@ func show_offline_server_status() -> void:
 
 # Helper functions for connection and authentication handling
 func _handle_connection_failed(error_message: String) -> void:
-	"""Handle failed connection attempts with user feedback"""
+	## Handle failed connection attempts with user feedback
 	Logger.log_error(Logger.LogArea.ADMIN, error_message)
 	
 	if login_panel:
@@ -383,7 +397,7 @@ func _handle_connection_failed(error_message: String) -> void:
 var auth_timeout_timer: Timer
 
 func _setup_auth_timeout() -> void:
-	"""Set up authentication timeout to prevent hanging"""
+	## Set up authentication timeout to prevent hanging
 	if auth_timeout_timer:
 		auth_timeout_timer.queue_free()
 	
@@ -395,7 +409,7 @@ func _setup_auth_timeout() -> void:
 	auth_timeout_timer.start()
 
 func _on_auth_timeout() -> void:
-	"""Handle authentication timeout"""
+	## Handle authentication timeout
 	Logger.log_error(Logger.LogArea.ADMIN, "Authentication timed out - no response from server")
 	
 	if login_panel:

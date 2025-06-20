@@ -42,7 +42,7 @@ func create_game(host_id: int, host_name: String) -> String:
 	}
 	game_created.emit(game_code, game_info)
 	lobby_updated.emit(get_lobby_data())
-		Logger.log_info(Logger.LogArea.LOBBY, "Game created: %s by %s (ID: %d)" % [game_code, host_name, host_id])
+	Logger.log_info(Logger.LogArea.LOBBY, "Game created: %s by %s (ID: %d)" % [game_code, host_name, host_id])
 	return game_code
 
 ## Join an existing game room
@@ -62,7 +62,7 @@ func join_game(game_code: String, player_id: int, player_name: String) -> bool:
 	
 	game.players[player_id] = {"name": player_name, "is_host": false, "is_ready": false}
 	player_to_game[player_id] = game_code
-		game_joined.emit(game_code, player_id)
+	game_joined.emit(game_code, player_id)
 	lobby_updated.emit(get_lobby_data())
 	Logger.log_info(Logger.LogArea.LOBBY, "Player %s (ID: %d) joined game: %s" % [player_name, player_id, game_code])
 	return true
@@ -73,7 +73,8 @@ func start_game(game_code: String, host_id: int) -> bool:
 		Logger.log_warning(Logger.LogArea.LOBBY, "Game not found: %s" % game_code)
 		return false
 	
-	var game = active_games[game_code]	if game.host_id != host_id:
+	var game = active_games[game_code]	
+	if game.host_id != host_id:
 		Logger.log_warning(Logger.LogArea.LOBBY, "Only host can start the game: %s" % game_code)
 		return false
 	
@@ -87,7 +88,8 @@ func start_game(game_code: String, host_id: int) -> bool:
 		return false
 	
 	game.is_started = true
-	game_started.emit(game_code)	lobby_updated.emit(get_lobby_data())
+	game_started.emit(game_code)	
+	lobby_updated.emit(get_lobby_data())
 	Logger.log_info(Logger.LogArea.LOBBY, "Game started: %s" % game_code)
 	return true
 
@@ -105,16 +107,16 @@ func leave_current_game(player_id: int) -> bool:
 		player_to_game.erase(player_id)
 		
 		# Close game if no players left		if game.players.size() == 0:
-			active_games.erase(game_code)
-			Logger.log_info(Logger.LogArea.LOBBY, "Game %s closed - no players remaining" % game_code)
-		else:
+		active_games.erase(game_code)
+		Logger.log_info(Logger.LogArea.LOBBY, "Game %s closed - no players remaining" % game_code)
+	else:
 			# If the leaving player was the host, transfer host to another player
-			if game.host_id == player_id and game.players.size() > 0:
-				var new_host_id = game.players.keys()[0]
-				game.host_id = new_host_id
-				game.host_name = game.players[new_host_id].name
-				game.players[new_host_id].is_host = true
-				Logger.log_info(Logger.LogArea.LOBBY, "Host transferred to player %d in game %s" % [new_host_id, game_code])
+		if game.host_id == player_id and game.players.size() > 0:
+			var new_host_id = game.players.keys()[0]
+			game.host_id = new_host_id
+			game.host_name = game.players[new_host_id].name
+			game.players[new_host_id].is_host = true
+			Logger.log_info(Logger.LogArea.LOBBY, "Host transferred to player %d in game %s" % [new_host_id, game_code])
 		
 		lobby_updated.emit(get_lobby_data())
 		Logger.log_info(Logger.LogArea.LOBBY, "Player %d left game %s" % [player_id, game_code])
@@ -167,7 +169,8 @@ func get_game_info(game_code: String) -> Dictionary:
 	}
 
 ## Add AI player to game
-func add_ai_to_game(game_code: String, requester_id: int) -> bool:	var game = active_games.get(game_code)
+func add_ai_to_game(game_code: String, requester_id: int) -> bool:	
+	var game = active_games.get(game_code)
 	if not game:
 		Logger.log_warning(Logger.LogArea.AI, "Game not found for AI addition: %s" % game_code)
 		return false
@@ -198,7 +201,7 @@ func add_ai_to_game(game_code: String, requester_id: int) -> bool:	var game = ac
 		"is_ai": true,
 		"is_ready": true  # AI players are always ready
 	}
-		lobby_updated.emit(get_lobby_data())
+	lobby_updated.emit(get_lobby_data())
 	Logger.log_info(Logger.LogArea.AI, "AI player added to game %s: %s (ID: %d)" % [game_code, ai_name, ai_id])
 	return true
 
@@ -222,7 +225,8 @@ func _can_game_start(game: Dictionary) -> bool:
 ## Set player ready status
 func set_player_ready(player_id: int, is_ready: bool) -> bool:
 	var game_code = player_to_game.get(player_id)
-	if not game_code:		Logger.log_warning(Logger.LogArea.LOBBY, "Player %d not in any game" % player_id)
+	if not game_code:		
+		Logger.log_warning(Logger.LogArea.LOBBY, "Player %d not in any game" % player_id)
 		return false
 	
 	var game = active_games.get(game_code)

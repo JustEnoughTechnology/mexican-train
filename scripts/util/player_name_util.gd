@@ -9,11 +9,12 @@ static var used_player_names: Array[String] = []
 static var player_name_cache: Dictionary = {}
 
 static func get_player_name() -> String:
-	"""
-	Generate a player name using the following rules:
-	1. Try to get OS username
-	2. If that fails, use "Player" + 3-digit random number (001-999)
-	"""	var os_username = get_os_username()
+	
+	## Generate a player name using the following rules:
+	## 1. Try to get OS username
+	## 2. If that fails, use "Player" + 3-digit random number (001-999)	
+	
+	var os_username = get_os_username()
 	
 	if os_username != "":
 		Logger.log_info(Logger.LogArea.UI, "Using OS username for player: %s" % os_username)
