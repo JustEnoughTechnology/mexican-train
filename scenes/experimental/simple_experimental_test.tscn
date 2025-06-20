@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Shader" path="res://shaders/domino_dot_color.gdshader" id="1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("1")
+shader_parameter/left_dots = 1
+shader_parameter/right_dots = 1
+shader_parameter/is_vertical = true
+
+[sub_resource type="GDScript" id="GDScript_1"]
+script/source = "extends Control
+
+func _ready():
+	print(\"Simple experimental domino validation starting...\")
+		# Try to load a white-dot SVG
+	var svg_path = \"res://assets/experimental/dominos_white/white_domino-1-1_top.svg\"
+	print(\"Attempting to load: \", svg_path)
+	
+	if ResourceLoader.exists(svg_path):
+		print(\"✓ SVG file exists\")
+		var texture = load(svg_path)
+		if texture:
+			print(\"✓ SVG loaded successfully\")
+			$TextureRect.texture = texture
+			print(\"✓ Texture applied to TextureRect\")
+		else:
+			print(\"✗ Failed to load SVG as texture\")
+	else:
+		print(\"✗ SVG file does not exist at path: \", svg_path)
+	
+	# Check shader material
+	var material = $TextureRect.material
+	if material and material is ShaderMaterial:
+		print(\"✓ Shader material is applied\")
+		var shader_mat = material as ShaderMaterial
+		print(\"  - left_dots: \", shader_mat.get_shader_parameter(\"left_dots\"))
+		print(\"  - right_dots: \", shader_mat.get_shader_parameter(\"right_dots\"))
+		print(\"  - is_vertical: \", shader_mat.get_shader_parameter(\"is_vertical\"))
+	else:
+		print(\"✗ Shader material not found or wrong type\")
+"
+
+[node name="SimpleExperimentalTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource("GDScript_1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Simple Experimental Domino Validation"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_minimum_size = Vector2(80, 164)
+material = SubResource("ShaderMaterial_1")
+expand_mode = 1
+
+[node name="StatusLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Check console output for validation results"
+horizontal_alignment = 1
+autowrap_mode = 2

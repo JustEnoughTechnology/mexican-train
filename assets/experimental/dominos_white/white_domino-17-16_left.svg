@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="82" height="40" viewBox="0 0 82 40" version="1.1">
+  <rect style="fill:#ff0000;stroke-width:0.264583" width="41.0" height="40" x="0" y="0" />
+  <rect style="fill:#ff0000;stroke-width:0.264583" width="41.0" height="40" x="41.0" y="0" />
+  <line style="stroke:#000000;stroke-width:2" x1="41.0" y1="0" x2="41.0" y2="40" />
+  <circle cx="6.1499999999999995" cy="7.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="13.837499999999999" cy="7.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="27.162499999999998" cy="7.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="34.849999999999994" cy="7.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="6.1499999999999995" cy="13.5" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="13.837499999999999" cy="13.5" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="27.162499999999998" cy="13.5" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="34.849999999999994" cy="13.5" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="6.1499999999999995" cy="26.5" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="13.837499999999999" cy="26.5" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="27.162499999999998" cy="26.5" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="34.849999999999994" cy="26.5" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="6.1499999999999995" cy="33.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="13.837499999999999" cy="33.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="27.162499999999998" cy="33.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="34.849999999999994" cy="33.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="20.5" cy="20.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="48.175" cy="6.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="56.8875" cy="6.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="66.1125" cy="6.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="74.82499999999999" cy="6.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="48.175" cy="14.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="56.8875" cy="14.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="66.1125" cy="14.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="74.82499999999999" cy="14.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="48.175" cy="24.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="56.8875" cy="24.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="66.1125" cy="24.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="74.82499999999999" cy="24.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="48.175" cy="34.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="56.8875" cy="34.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="66.1125" cy="34.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+  <circle cx="74.82499999999999" cy="34.0" r="3.0" style="fill:#ffffff;stroke-width:0.264583" />
+</svg>
