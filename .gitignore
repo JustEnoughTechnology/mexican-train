@@ -1,10 +1,49 @@
+# Legacy asset exclusions
 assets/tiles/*
 !assets/tiles/dominos/
 !assets/tiles/dominos/**
-# Godot 4+ specific ignores
 
-.godot/*
+# Godot 4+ specific ignores
+.godot/
+*.tmp
 /android/
+/ios/
+builds/
+export_presets.cfg
+
+# Python environment and cache
 .venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VS Code and IDE files
+.vscode/
+*.code-workspace
+
+# System and temporary files
 *.import
-godot/*
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+debug.txt
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Backup and documentation files (optional - uncomment if you want to exclude)
+# *.md
+# CHANGELOG.md
+# README*.md

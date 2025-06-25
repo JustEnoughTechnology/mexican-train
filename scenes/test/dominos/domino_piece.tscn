@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4d5e6f7g8h9i"]
+
+[ext_resource type="Script" path="res://scripts/test/dominos/domino_piece.gd" id="1_0"]
+
+[node name="DominoPiece" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_0")
+
+[node name="HorizontalLayout" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LargestHalf" type="TextureRect" parent="HorizontalLayout"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Separator" type="ColorRect" parent="HorizontalLayout"]
+custom_minimum_size = Vector2(4, 40)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SmallestHalf" type="TextureRect" parent="HorizontalLayout"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VerticalLayout" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LargestHalf" type="TextureRect" parent="VerticalLayout"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Separator" type="ColorRect" parent="VerticalLayout"]
+custom_minimum_size = Vector2(40, 4)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SmallestHalf" type="TextureRect" parent="VerticalLayout"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5

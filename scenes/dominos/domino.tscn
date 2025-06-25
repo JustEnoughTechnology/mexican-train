@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx7m8v3n4kc2p"]
+
+[ext_resource type="Script" path="res://scripts/dominos/domino.gd" id="1"]
+
+[node name="NewDomino" type="Control"]
+custom_minimum_size = Vector2(81, 40)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1")

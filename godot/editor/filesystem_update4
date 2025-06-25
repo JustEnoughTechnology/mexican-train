@@ -1,0 +1,8 @@
+res://scripts/dominos/domino.gd
+res://scripts/dominos/domino_back_test.gd
+res://scripts/dominos/simple_back_test.gd
+res://main.tscn
+res://shaders/domino_1.tres
+res://scenes/dominos/domino_back_test.tscn
+res://scripts/dominos/domino_back_test_fixed.gd
+res://scenes/dominos/domino.tscn

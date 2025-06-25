@@ -3,10 +3,10 @@ shader_type canvas_item;
 // Shader for dynamically coloring domino dots based on the number of dots
 // This allows pre-loaded scenes with runtime color changes
 
-// Uniforms for controlling dot colors
-uniform int left_dots : hint_range(0, 18) = 0;
-uniform int right_dots : hint_range(0, 18) = 0;
-uniform bool is_vertical : hint_default(false) = false;
+// Uniforms for controlling dot colors - direct color approach!
+uniform bool is_vertical = false;
+uniform vec3 top_color = vec3(1.0, 1.0, 1.0);        // Color for top/left region
+uniform vec3 bottom_color = vec3(1.0, 1.0, 1.0);     // Color for bottom/right region
 
 // Color palette for dots (0-18)
 // Based on domino_dot_colors.txt
@@ -32,23 +32,22 @@ const vec3 dot_colors[19] = {
     vec3(1.0, 0.0, 0.0)           // 18 - red
 };
 
-// Function to determine if a pixel is in the left/top half
-bool is_left_half(vec2 uv, bool vertical) {
-    if (vertical) {
-        return uv.y < 0.5; // Top half for vertical
-    } else {
-        return uv.x < 0.5; // Left half for horizontal
-    }
-}
-
-// Function to get the appropriate dot color based on position
+// Function to get the appropriate dot color based on position and orientation
 vec3 get_dot_color_for_position(vec2 uv, bool vertical) {
-    if (is_left_half(uv, vertical)) {
-        // Left half (or top half if vertical) uses left_dots color
-        return dot_colors[clamp(left_dots, 0, 18)];
+    if (vertical) {
+        // Vertical domino: top half vs bottom half
+        if (uv.y < 0.5) {
+            return top_color; // Top half gets top_color
+        } else {
+            return bottom_color; // Bottom half gets bottom_color
+        }
     } else {
-        // Right half (or bottom half if vertical) uses right_dots color
-        return dot_colors[clamp(right_dots, 0, 18)];
+        // Horizontal domino: left half vs right half  
+        if (uv.x < 0.5) {
+            return top_color; // Left half gets top_color (reusing param)
+        } else {
+            return bottom_color; // Right half gets bottom_color (reusing param)
+        }
     }
 }
 
@@ -56,12 +55,18 @@ void fragment() {
     vec2 uv = UV;
     vec4 tex_color = texture(TEXTURE, uv);
     
-    // If this is a white pixel (likely a dot), recolor it
-    if (tex_color.r > 0.9 && tex_color.g > 0.9 && tex_color.b > 0.9) {
+    // Check if this is a black dot pixel
+    float black_threshold = 0.2;
+    if (tex_color.r < black_threshold && tex_color.g < black_threshold && tex_color.b < black_threshold && tex_color.a > 0.5) {
+        // This is a black dot - color it based on position
         vec3 new_color = get_dot_color_for_position(uv, is_vertical);
         COLOR = vec4(new_color, tex_color.a);
+    } else if (tex_color.r > 0.95 && tex_color.g > 0.95 && tex_color.b > 0.95 && tex_color.a > 0.5) {
+        // This is a white background pixel - replace with cream
+        vec3 cream_background = vec3(0.98, 0.97, 0.95); // Warm cream background
+        COLOR = vec4(cream_background, tex_color.a);
     } else {
-        // Keep original color for non-dot pixels
+        // Keep original color for divider lines and other elements
         COLOR = tex_color;
     }
 }

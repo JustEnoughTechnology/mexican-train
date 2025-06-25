@@ -1,0 +1,233 @@
+[gd_scene load_steps=14 format=3 uid="uid://bqm8x7y3h4k5l"]
+
+[ext_resource type="Texture2D" uid="uid://b83141v21pm34" path="res://assets/dominos/half/half-0.svg" id="1_0"]
+[ext_resource type="Texture2D" uid="uid://bppss2ym121s" path="res://assets/dominos/half/half-1.svg" id="1_1"]
+[ext_resource type="Texture2D" uid="uid://1yfqawcm5tjp" path="res://assets/dominos/half/half-2.svg" id="1_2"]
+[ext_resource type="Texture2D" uid="uid://crqjx1ixsi45d" path="res://assets/dominos/half/half-3.svg" id="1_3"]
+[ext_resource type="Texture2D" uid="uid://cplgdttkv4cl" path="res://assets/dominos/half/half-4.svg" id="1_4"]
+[ext_resource type="Texture2D" uid="uid://b8ps0jee3fh6e" path="res://assets/dominos/half/half-5.svg" id="1_5"]
+[ext_resource type="Texture2D" uid="uid://dkv3odfu17afl" path="res://assets/dominos/half/half-6.svg" id="1_6"]
+[ext_resource type="Texture2D" uid="uid://fuci6i1qvxiq" path="res://assets/dominos/half/half-7.svg" id="1_7"]
+[ext_resource type="Texture2D" uid="uid://djwtstw1x3nv3" path="res://assets/dominos/half/half-8.svg" id="1_8"]
+[ext_resource type="Texture2D" uid="uid://bamdf55jrcref" path="res://assets/dominos/half/half-9.svg" id="1_9"]
+[ext_resource type="Texture2D" uid="uid://d02hgb7j1khen" path="res://assets/dominos/half/half-10.svg" id="1_10"]
+[ext_resource type="Texture2D" uid="uid://byqkgcr1wgkck" path="res://assets/dominos/half/half-11.svg" id="1_11"]
+[ext_resource type="Texture2D" uid="uid://b0gv28a4vkhtw" path="res://assets/dominos/half/half-12.svg" id="1_12"]
+
+[node name="TestHalfDominosDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -300.0
+offset_right = 200.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Half Dominos Legibility Test (40x40 px)"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+
+[node name="VBox0" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half0" type="TextureRect" parent="VBoxContainer/GridContainer/VBox0"]
+layout_mode = 2
+texture = ExtResource("1_0")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half0Label" type="Label" parent="VBoxContainer/GridContainer/VBox0"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="VBox1" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half1" type="TextureRect" parent="VBoxContainer/GridContainer/VBox1"]
+layout_mode = 2
+texture = ExtResource("1_1")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half1Label" type="Label" parent="VBoxContainer/GridContainer/VBox1"]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="VBox2" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half2" type="TextureRect" parent="VBoxContainer/GridContainer/VBox2"]
+layout_mode = 2
+texture = ExtResource("1_2")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half2Label" type="Label" parent="VBoxContainer/GridContainer/VBox2"]
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="VBox3" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half3" type="TextureRect" parent="VBoxContainer/GridContainer/VBox3"]
+layout_mode = 2
+texture = ExtResource("1_3")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half3Label" type="Label" parent="VBoxContainer/GridContainer/VBox3"]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+
+[node name="VBox4" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half4" type="TextureRect" parent="VBoxContainer/GridContainer/VBox4"]
+layout_mode = 2
+texture = ExtResource("1_4")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half4Label" type="Label" parent="VBoxContainer/GridContainer/VBox4"]
+layout_mode = 2
+text = "4"
+horizontal_alignment = 1
+
+[node name="VBox5" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half5" type="TextureRect" parent="VBoxContainer/GridContainer/VBox5"]
+layout_mode = 2
+texture = ExtResource("1_5")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half5Label" type="Label" parent="VBoxContainer/GridContainer/VBox5"]
+layout_mode = 2
+text = "5"
+horizontal_alignment = 1
+
+[node name="VBox6" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half6" type="TextureRect" parent="VBoxContainer/GridContainer/VBox6"]
+layout_mode = 2
+texture = ExtResource("1_6")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half6Label" type="Label" parent="VBoxContainer/GridContainer/VBox6"]
+layout_mode = 2
+text = "6"
+horizontal_alignment = 1
+
+[node name="VBox7" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half7" type="TextureRect" parent="VBoxContainer/GridContainer/VBox7"]
+layout_mode = 2
+texture = ExtResource("1_7")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half7Label" type="Label" parent="VBoxContainer/GridContainer/VBox7"]
+layout_mode = 2
+text = "7 (H)"
+horizontal_alignment = 1
+
+[node name="VBox8" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half8" type="TextureRect" parent="VBoxContainer/GridContainer/VBox8"]
+layout_mode = 2
+texture = ExtResource("1_8")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half8Label" type="Label" parent="VBoxContainer/GridContainer/VBox8"]
+layout_mode = 2
+text = "8 (O)"
+horizontal_alignment = 1
+
+[node name="VBox9" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half9" type="TextureRect" parent="VBoxContainer/GridContainer/VBox9"]
+layout_mode = 2
+texture = ExtResource("1_9")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half9Label" type="Label" parent="VBoxContainer/GridContainer/VBox9"]
+layout_mode = 2
+text = "9"
+horizontal_alignment = 1
+
+[node name="VBox10" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half10" type="TextureRect" parent="VBoxContainer/GridContainer/VBox10"]
+layout_mode = 2
+texture = ExtResource("1_10")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half10Label" type="Label" parent="VBoxContainer/GridContainer/VBox10"]
+layout_mode = 2
+text = "10 (O)"
+horizontal_alignment = 1
+
+[node name="VBox11" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half11" type="TextureRect" parent="VBoxContainer/GridContainer/VBox11"]
+layout_mode = 2
+texture = ExtResource("1_11")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half11Label" type="Label" parent="VBoxContainer/GridContainer/VBox11"]
+layout_mode = 2
+text = "11 (O+)"
+horizontal_alignment = 1
+
+[node name="VBox12" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Half12" type="TextureRect" parent="VBoxContainer/GridContainer/VBox12"]
+layout_mode = 2
+texture = ExtResource("1_12")
+expand_mode = 0
+stretch_mode = 1
+
+[node name="Half12Label" type="Label" parent="VBoxContainer/GridContainer/VBox12"]
+layout_mode = 2
+text = "12"
+horizontal_alignment = 1
