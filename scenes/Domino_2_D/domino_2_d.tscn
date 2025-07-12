@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwjldyjwi6wvt"]
+
+[ext_resource type="Script" path="res://scripts/Domino_2_D/domino_2_d.gd" id="1_3gr5n"]
+
+[node name="Domino2D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3gr5n")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+
+[node name="LeftHalf" type="Node" parent="CenterContainer"]
+
+[node name="RightHalf" type="Node" parent="CenterContainer"]
+
+[node name="OrientationLabel" type="Label" parent="."]
+layout_mode = 0

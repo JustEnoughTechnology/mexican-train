@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7oq1yb2ec2lb"]
+
+[ext_resource type="PackedScene" uid="uid://cwjldyjwi6wvt" path="res://scenes/Domino_2_D/domino_2_d.tscn" id="1"]
+[ext_resource type="Script" uid="uid://t81ymbtw0y60" path="res://scenes/test/Domino2DTest.gd" id="2"]
+[ext_resource type="Script" path="res://scenes/test/DropTarget.gd" id="3"]
+
+[node name="Domino2DTest" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 0
+
+[node name="Controls" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="LabelDots" type="Label" parent="VBox/Controls"]
+layout_mode = 2
+text = "Dots:"
+
+[node name="SpinLeft" type="SpinBox" parent="VBox/Controls"]
+layout_mode = 2
+max_value = 12.0
+value = 6.0
+
+[node name="SpinRight" type="SpinBox" parent="VBox/Controls"]
+layout_mode = 2
+max_value = 12.0
+value = 6.0
+
+[node name="ButtonSetDots" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+text = "Set Dots"
+
+[node name="ButtonFlip" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+text = "Flip"
+
+[node name="ButtonOrient" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+text = "Rotate"
+
+[node name="Domino2DInstance" parent="VBox" instance=ExtResource("1")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="DropTarget" type="Panel" parent="."]
+layout_mode = 2
+anchor_left = 0.6
+anchor_top = 0.1
+anchor_right = 0.95
+anchor_bottom = 0.9
+custom_minimum_size = Vector2(200, 200)
+modulate = Color(0.8, 0.9, 1, 0.5)
+script = ExtResource("3")
+
+[node name="DropLabel" type="Label" parent="DropTarget"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Drop Domino Here"
+vertical_alignment = 1
+horizontal_alignment = 1

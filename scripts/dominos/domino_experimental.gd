@@ -1,22 +1,16 @@
 extends Control
-class_name Domino
+class_name DominoExperimental
 
 ## Lightweight domino wrapper that loads pre-built BaseDomino scenes
 ## This replaces the old dynamic domino system with static scene loading
 
-# Essential signals for compatibility with existing game systems
+# Signals - for compatibility with old Domino class
+signal orientation_changed(new_orientation: NewDomino.Orientation, old_orientation: NewDomino.Orientation)
+signal face_changed(is_face_up: bool)
+@warning_ignore("unused_signal")
 signal mouse_right_pressed(p_domino: NewDomino)
+@warning_ignore("unused_signal")
 signal domino_dropped(target: NewDomino, dropped: NewDomino)
-
-# Face up/down state for domino backs
-@export var is_face_up: bool = true : set = set_face_up
-
-# Highlighting state (used in drag/drop operations)
-var is_highlighted: bool = false
-var old_modulate: Color = Color.WHITE
-
-# Drag and drop state
-var is_being_dragged: bool = false
 
 enum Orientation {
 	HORIZONTAL_LEFT,   # Largest on left, smallest on right (0, 0)
@@ -28,56 +22,68 @@ enum Orientation {
 @export var largest_value: int = 6 : set = set_largest_value
 @export var smallest_value: int = 3 : set = set_smallest_value
 @export var orientation: NewDomino.Orientation = NewDomino.Orientation.HORIZONTAL_LEFT : set = set_orientation
+@export var face_up: bool = true : set = set_face_up
 
-# Current loaded BaseDomino instance
+# Current loaded BaseDomino instance (face) or back scene
 var current_base_domino: Control = null
 
 func _ready():
 	# Load the appropriate BaseDomino scene
 	if largest_value >= 0 and smallest_value >= 0:
-		load_base_domino_scene()
+		load_domino_scene()
 
 func set_largest_value(value: int):
 	var old_largest = largest_value
 	largest_value = clamp(value, 0, 12)
 	if is_inside_tree() and old_largest != largest_value:
-		load_base_domino_scene()
+		load_domino_scene()
 
 func set_smallest_value(value: int):
 	var old_smallest = smallest_value
 	smallest_value = clamp(value, 0, 12)
 	if is_inside_tree() and old_smallest != smallest_value:
-		load_base_domino_scene()
+		load_domino_scene()
 
 func set_orientation(value: NewDomino.Orientation):
 	var old_orientation = orientation
 	orientation = value
 	if is_inside_tree() and old_orientation != orientation:
-		load_base_domino_scene()
+		load_domino_scene()
+		# Emit signal for future system integration
+		orientation_changed.emit(orientation, old_orientation)
 
-func load_base_domino_scene():
-	"""Load the appropriate pre-built BaseDomino scene based on current values."""
-	
-	# Remove existing BaseDomino if present
-	if current_base_domino:
+func set_face_up(value: bool):
+	var old_face_up = face_up
+	face_up = value
+	if is_inside_tree() and old_face_up != face_up:
+		load_domino_scene()
+		# Emit signal for future system integration
+		face_changed.emit(face_up)
+
+func load_domino_scene():
+	"""Load the appropriate scene based on face_up state."""
+	# Clear existing scene
+	if current_base_domino != null:
+		remove_child(current_base_domino)
 		current_base_domino.queue_free()
 		current_base_domino = null
 	
-	# Build the scene path
-	var scene_path = get_base_domino_scene_path()
+	var scene_path: String
+	if face_up:
+		scene_path = get_base_domino_scene_path()
+	else:
+		scene_path = get_domino_back_scene_path()
 	
 	# Load the scene
 	var scene = load(scene_path)
 	if scene == null:
-		print("ERROR: Could not load BaseDomino scene: ", scene_path)
+		print("ERROR: Could not load domino scene: ", scene_path)
 		return
-	
-	# Instantiate and add to our scene
+		# Instantiate and add to our scene
 	current_base_domino = scene.instantiate()
 	add_child(current_base_domino)
 	
-	# Make sure it fills our container
-	current_base_domino.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	# Don't force full rect - let the scene maintain its own size
 
 func get_base_domino_scene_path() -> String:
 	"""Get the file path for the appropriate BaseDomino scene."""
@@ -104,6 +110,16 @@ func get_base_domino_scene_path() -> String:
 	return "res://scenes/dominos/base_dominos/base_domino_%d_%d_%s.tscn" % [
 		actual_largest, actual_smallest, orientation_suffix
 	]
+
+func get_domino_back_scene_path() -> String:
+	"""Get the file path for the appropriate back scene."""
+	match orientation:
+		Orientation.HORIZONTAL_LEFT, Orientation.HORIZONTAL_RIGHT:
+			return "res://scenes/dominos/domino_back_horizontal.tscn"
+		Orientation.VERTICAL_TOP, Orientation.VERTICAL_BOTTOM:
+			return "res://scenes/dominos/domino_back_vertical.tscn"
+		_:
+			return "res://scenes/dominos/domino_back_horizontal.tscn"  # fallback
 
 func get_domino_info() -> Dictionary:
 	"""Get information about this domino."""
@@ -158,108 +174,11 @@ func can_connect_to(other_domino: NewDomino) -> bool:
 			smallest_value == other_domino.largest_value or
 			smallest_value == other_domino.smallest_value)
 
-# === COMPATIBILITY METHODS FOR OLD DOMINO INTERFACE ===
+# Face manipulation methods for compatibility with old domino interface
+func toggle_face():
+	"""Toggle between face up and face down."""
+	set_face_up(!face_up)
 
-func set_face_up(value: bool):
-	"""Set whether the domino is face up or face down."""
-	var old_face_up = is_face_up
-	is_face_up = value
-	if is_inside_tree() and old_face_up != is_face_up:
-		load_domino_scene()
-
-func load_domino_scene():
-	"""Load either front (BaseDomino) or back scene based on face up/down state."""
-	if is_face_up:
-		load_base_domino_scene()
-	else:
-		load_domino_back_scene()
-
-func load_domino_back_scene():
-	"""Load the appropriate domino back scene."""
-	# Remove existing domino if present
-	if current_base_domino:
-		current_base_domino.queue_free()
-		current_base_domino = null
-	
-	# Determine back scene path based on orientation
-	var back_scene_path: String
-	if orientation == Orientation.HORIZONTAL_LEFT or orientation == Orientation.HORIZONTAL_RIGHT:
-		back_scene_path = "res://scenes/dominos/domino_back_horizontal.tscn"
-	else:
-		back_scene_path = "res://scenes/dominos/domino_back_vertical.tscn"
-	
-	# Load and instantiate the back scene
-	var scene = load(back_scene_path)
-	if scene == null:
-		print("ERROR: Could not load domino back scene: ", back_scene_path)
-		return
-	
-	current_base_domino = scene.instantiate()
-	add_child(current_base_domino)
-	
-	# Set proper size (don't use full rect for backs)
-	current_base_domino.custom_minimum_size = get_expected_size()
-
-# Old domino interface compatibility
-func get_dots() -> Vector2:
-	"""Get domino dot values as Vector2 for compatibility."""
-	return Vector2(largest_value, smallest_value)
-
-func set_dots(left: int, right: int):
-	"""Set domino dot values from individual values."""
-	largest_value = max(left, right)
-	smallest_value = min(left, right)
-
-func toggle_dots():
-	"""Toggle face up/down state for compatibility."""
-	set_face_up(not is_face_up)
-
-func set_face_up_legacy(face_up: bool):
-	"""Legacy method name for compatibility."""
-	set_face_up(face_up)
-
-# Mouse event handling for signals
-func _gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			# Emit the right-click signal
-			mouse_right_pressed.emit(self)
-		elif event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			# Start drag operation
-			is_being_dragged = true
-
-# Drag and drop support
-func _get_drag_data(_position):
-	"""Handle drag start for compatibility with old system."""
-	if not is_being_dragged:
-		return null
-	
-	# Create drag preview (simplified version)
-	var preview = duplicate()
-	preview.modulate.a = 0.7
-	set_drag_preview(preview)
-	
-	return self
-
-func _can_drop_data(_position, data):
-	"""Check if we can accept dropped data."""
-	return data is NewDomino
-
-func _drop_data(_position, data):
-	"""Handle data being dropped on this domino."""
-	if data is NewDomino:
-		domino_dropped.emit(self, data)
-
-# Highlighting support for drag/drop
-func highlight():
-	"""Highlight this domino for drag/drop feedback."""
-	if not is_highlighted:
-		old_modulate = modulate
-		modulate = Color(1.2, 1.2, 1.2, 1.0)
-		is_highlighted = true
-
-func unhighlight():
-	"""Remove highlight from this domino."""
-	if is_highlighted:
-		modulate = old_modulate
-		is_highlighted = false
+func is_face_up() -> bool:
+	"""Check if domino is face up."""
+	return face_up

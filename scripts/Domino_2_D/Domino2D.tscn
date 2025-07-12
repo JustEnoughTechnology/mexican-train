@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+# This file has been moved to scenes/Domino_2_D/domino_2_d.tscn and scripts/domino_2_d/domino_2_d.gd
+# Please use the new locations for all future work.
+
+[node name="Domino2D" type="Control"]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+
+[node name="LeftHalf" type="Node" parent="CenterContainer"]
+
+[node name="RightHalf" type="Node" parent="CenterContainer"]
+
+[node name="OrientationLabel" type="Label" parent="."]
