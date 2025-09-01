@@ -1,0 +1,29 @@
+{
+  "description": "Inappropriate patterns and leetspeak for username filtering",
+  "version": "1.0", 
+  "last_updated": "2025-08-17",
+  "patterns": [
+    "f*ck",
+    "sh*t",
+    "d*mn",
+    "h*ll",
+    "b*tch",
+    "a**",
+    "f4ck",
+    "sh1t",
+    "k1ll",
+    "d34th",
+    "h4te",
+    "5ex",
+    "dr0g",
+    "n4zi",
+    "b0mb",
+    "pwn",
+    "rekt",
+    "noobz",
+    "scrub",
+    "tryhard",
+    "camper",
+    "hacker"
+  ]
+}

@@ -1,0 +1,1671 @@
+{
+  "tournament_id": "tournament_20250830_194400",
+  "strategies": [
+    "sleepy_caboose",
+    "slow_freight",
+    "local_express",
+    "fast_passenger",
+    "locomotive_legend"
+  ],
+  "rounds_per_matchup": 5,
+  "games_per_match": 13,
+  "matches": [
+    {
+      "match_id": "tournament_sleepy_caboose_vs_slow_freight_r1",
+      "timestamp": "2025-08-30T19:44:06.035887",
+      "duration_seconds": 5.46,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_slow_freight_r2",
+      "timestamp": "2025-08-30T19:44:06.982975",
+      "duration_seconds": 0.95,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_slow_freight_r3",
+      "timestamp": "2025-08-30T19:44:07.290548",
+      "duration_seconds": 0.31,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_slow_freight_r4",
+      "timestamp": "2025-08-30T19:44:31.696210",
+      "duration_seconds": 24.41,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_slow_freight_r5",
+      "timestamp": "2025-08-30T19:44:33.518663",
+      "duration_seconds": 1.82,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_local_express_r1",
+      "timestamp": "2025-08-30T19:45:11.439803",
+      "duration_seconds": 37.92,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_local_express_r2",
+      "timestamp": "2025-08-30T19:45:15.556729",
+      "duration_seconds": 4.12,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_local_express_r3",
+      "timestamp": "2025-08-30T19:45:23.857297",
+      "duration_seconds": 8.3,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_local_express_r4",
+      "timestamp": "2025-08-30T19:46:22.992760",
+      "duration_seconds": 59.14,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_local_express_r5",
+      "timestamp": "2025-08-30T19:46:39.145773",
+      "duration_seconds": 16.15,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_fast_passenger_r1",
+      "timestamp": "2025-08-30T19:47:02.426151",
+      "duration_seconds": 23.28,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_fast_passenger_r2",
+      "timestamp": "2025-08-30T19:47:07.736886",
+      "duration_seconds": 5.31,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_fast_passenger_r3",
+      "timestamp": "2025-08-30T19:47:09.053393",
+      "duration_seconds": 1.32,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_fast_passenger_r4",
+      "timestamp": "2025-08-30T19:47:10.320634",
+      "duration_seconds": 1.27,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_fast_passenger_r5",
+      "timestamp": "2025-08-30T19:47:20.361172",
+      "duration_seconds": 10.04,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_locomotive_legend_r1",
+      "timestamp": "2025-08-30T19:47:23.539962",
+      "duration_seconds": 3.18,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_locomotive_legend_r2",
+      "timestamp": "2025-08-30T19:47:37.465385",
+      "duration_seconds": 13.93,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_locomotive_legend_r3",
+      "timestamp": "2025-08-30T19:47:47.161156",
+      "duration_seconds": 9.7,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_locomotive_legend_r4",
+      "timestamp": "2025-08-30T19:47:49.500880",
+      "duration_seconds": 2.34,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_sleepy_caboose_vs_locomotive_legend_r5",
+      "timestamp": "2025-08-30T19:47:50.757423",
+      "duration_seconds": 1.26,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "sleepy_caboose_AI": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_local_express_r1",
+      "timestamp": "2025-08-30T19:48:17.543174",
+      "duration_seconds": 26.79,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_local_express_r2",
+      "timestamp": "2025-08-30T19:48:25.361075",
+      "duration_seconds": 7.82,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_local_express_r3",
+      "timestamp": "2025-08-30T19:48:29.041379",
+      "duration_seconds": 3.68,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_local_express_r4",
+      "timestamp": "2025-08-30T19:48:35.773343",
+      "duration_seconds": 6.73,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_local_express_r5",
+      "timestamp": "2025-08-30T19:48:40.389157",
+      "duration_seconds": 4.62,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_fast_passenger_r1",
+      "timestamp": "2025-08-30T19:48:51.374058",
+      "duration_seconds": 10.98,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_fast_passenger_r2",
+      "timestamp": "2025-08-30T19:48:53.973901",
+      "duration_seconds": 2.6,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_fast_passenger_r3",
+      "timestamp": "2025-08-30T19:48:58.424316",
+      "duration_seconds": 4.45,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_fast_passenger_r4",
+      "timestamp": "2025-08-30T19:49:12.846171",
+      "duration_seconds": 14.42,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_fast_passenger_r5",
+      "timestamp": "2025-08-30T19:49:29.421079",
+      "duration_seconds": 16.57,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_locomotive_legend_r1",
+      "timestamp": "2025-08-30T19:49:32.861133",
+      "duration_seconds": 3.44,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_locomotive_legend_r2",
+      "timestamp": "2025-08-30T19:49:37.527143",
+      "duration_seconds": 4.67,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_locomotive_legend_r3",
+      "timestamp": "2025-08-30T19:49:41.659378",
+      "duration_seconds": 4.13,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_locomotive_legend_r4",
+      "timestamp": "2025-08-30T19:49:49.773068",
+      "duration_seconds": 8.11,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_slow_freight_vs_locomotive_legend_r5",
+      "timestamp": "2025-08-30T19:50:10.278486",
+      "duration_seconds": 20.51,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "slow_freight_AI": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_local_express_vs_fast_passenger_r1",
+      "timestamp": "2025-08-30T19:50:14.930381",
+      "duration_seconds": 4.65,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_local_express_vs_fast_passenger_r2",
+      "timestamp": "2025-08-30T19:50:30.990866",
+      "duration_seconds": 16.06,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_local_express_vs_fast_passenger_r3",
+      "timestamp": "2025-08-30T19:50:34.436135",
+      "duration_seconds": 3.44,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_local_express_vs_fast_passenger_r4",
+      "timestamp": "2025-08-30T19:51:00.410404",
+      "duration_seconds": 25.97,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_local_express_vs_fast_passenger_r5",
+      "timestamp": "2025-08-30T19:51:17.255928",
+      "duration_seconds": 16.85,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_local_express_vs_locomotive_legend_r1",
+      "timestamp": "2025-08-30T19:51:57.690771",
+      "duration_seconds": 40.43,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_local_express_vs_locomotive_legend_r2",
+      "timestamp": "2025-08-30T19:51:59.181158",
+      "duration_seconds": 1.49,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_local_express_vs_locomotive_legend_r3",
+      "timestamp": "2025-08-30T19:52:14.941409",
+      "duration_seconds": 15.76,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_local_express_vs_locomotive_legend_r4",
+      "timestamp": "2025-08-30T19:52:17.333122",
+      "duration_seconds": 2.39,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_local_express_vs_locomotive_legend_r5",
+      "timestamp": "2025-08-30T19:52:29.776585",
+      "duration_seconds": 12.44,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "local_express_AI": {
+          "strategy": "local_express",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_fast_passenger_vs_locomotive_legend_r1",
+      "timestamp": "2025-08-30T19:52:32.174213",
+      "duration_seconds": 2.4,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_fast_passenger_vs_locomotive_legend_r2",
+      "timestamp": "2025-08-30T19:52:49.684522",
+      "duration_seconds": 17.51,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_fast_passenger_vs_locomotive_legend_r3",
+      "timestamp": "2025-08-30T19:53:05.258039",
+      "duration_seconds": 15.57,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_fast_passenger_vs_locomotive_legend_r4",
+      "timestamp": "2025-08-30T19:53:11.573621",
+      "duration_seconds": 6.32,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    },
+    {
+      "match_id": "tournament_fast_passenger_vs_locomotive_legend_r5",
+      "timestamp": "2025-08-30T19:53:16.415651",
+      "duration_seconds": 4.84,
+      "games_played": 0,
+      "games_to_play": 13,
+      "players": {
+        "fast_passenger_AI": {
+          "strategy": "fast_passenger",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "locomotive_legend_AI": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    }
+  ],
+  "summary": {
+    "sleepy_caboose": {
+      "matches_played": 20,
+      "matches_won": 0,
+      "total_games_won": 0,
+      "total_games_played": 0,
+      "average_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "win_rate": 0.0,
+      "game_win_rate": 0
+    },
+    "slow_freight": {
+      "matches_played": 20,
+      "matches_won": 0,
+      "total_games_won": 0,
+      "total_games_played": 0,
+      "average_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "win_rate": 0.0,
+      "game_win_rate": 0
+    },
+    "local_express": {
+      "matches_played": 20,
+      "matches_won": 0,
+      "total_games_won": 0,
+      "total_games_played": 0,
+      "average_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "win_rate": 0.0,
+      "game_win_rate": 0
+    },
+    "fast_passenger": {
+      "matches_played": 20,
+      "matches_won": 0,
+      "total_games_won": 0,
+      "total_games_played": 0,
+      "average_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "win_rate": 0.0,
+      "game_win_rate": 0
+    },
+    "locomotive_legend": {
+      "matches_played": 20,
+      "matches_won": 0,
+      "total_games_won": 0,
+      "total_games_played": 0,
+      "average_score": 0,
+      "scores": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "win_rate": 0.0,
+      "game_win_rate": 0
+    }
+  }
+}

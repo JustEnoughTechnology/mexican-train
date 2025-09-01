@@ -1,0 +1,75 @@
+{
+  "session_id": "api_session_20250831_025259",
+  "created_at": "2025-08-31T02:52:59.508573",
+  "description": "API-consistent match: chain_strategist vs locomotive_legend",
+  "testing_method": "api_consistent",
+  "matches": [
+    {
+      "match_id": "api_match_4f9fda47",
+      "timestamp": "2025-08-31T02:52:59.513572",
+      "duration_seconds": 0.0,
+      "games_played": 2,
+      "games_to_play": 2,
+      "testing_method": "api_consistent",
+      "players": {
+        "AI_1_chain_strategist": {
+          "strategy": "chain_strategist",
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0,
+          "messages_received": 3
+        },
+        "AI_2_locomotive_legend": {
+          "strategy": "locomotive_legend",
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0,
+          "messages_received": 2
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": true,
+      "final_state": {
+        "game_id": "api_match_4f9fda47",
+        "players": [
+          "AI_1_chain_strategist"
+        ],
+        "current_player": null,
+        "current_round": 12,
+        "engine_value": 12,
+        "trains": {},
+        "mexican_train": null,
+        "boneyard_count": 0,
+        "player_hand_counts": {},
+        "player_hands": {},
+        "round_scores": {
+          "AI_1_chain_strategist": []
+        },
+        "started": false,
+        "name": "Game api_match_4f9fda47",
+        "description": "",
+        "host": "AI_1_chain_strategist",
+        "max_players": 4,
+        "min_players": 2,
+        "allow_spectators": true,
+        "visibility": "public",
+        "spectators": [],
+        "spectator_count": 0,
+        "ai_enabled": true,
+        "ai_skill_level": 1,
+        "ai_players": [],
+        "countdown_minutes": 10,
+        "countdown_remaining": null,
+        "can_auto_start": false,
+        "unsatisfied_doubles": [],
+        "must_satisfy_doubles": false,
+        "player_has_played_double": false
+      }
+    }
+  ]
+}

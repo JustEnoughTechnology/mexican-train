@@ -1,0 +1,209 @@
+{
+  "session_id": "api_session_20250831_025315",
+  "created_at": "2025-08-31T02:53:15.141426",
+  "description": "API-consistent batch: 3 matches of chain_strategist vs locomotive_legend",
+  "testing_method": "api_consistent",
+  "matches": [
+    {
+      "match_id": "api_batch_1",
+      "timestamp": "2025-08-31T02:53:15.143792",
+      "duration_seconds": 0.0,
+      "games_played": 2,
+      "games_to_play": 2,
+      "testing_method": "api_consistent",
+      "players": {
+        "AI_1_chain_strategist": {
+          "strategy": "chain_strategist",
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0,
+          "messages_received": 3
+        },
+        "AI_2_locomotive_legend": {
+          "strategy": "locomotive_legend",
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0,
+          "messages_received": 2
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": true,
+      "final_state": {
+        "game_id": "api_batch_1",
+        "players": [
+          "AI_1_chain_strategist"
+        ],
+        "current_player": null,
+        "current_round": 12,
+        "engine_value": 12,
+        "trains": {},
+        "mexican_train": null,
+        "boneyard_count": 0,
+        "player_hand_counts": {},
+        "player_hands": {},
+        "round_scores": {
+          "AI_1_chain_strategist": []
+        },
+        "started": false,
+        "name": "Game api_batch_1",
+        "description": "",
+        "host": "AI_1_chain_strategist",
+        "max_players": 4,
+        "min_players": 2,
+        "allow_spectators": true,
+        "visibility": "public",
+        "spectators": [],
+        "spectator_count": 0,
+        "ai_enabled": true,
+        "ai_skill_level": 1,
+        "ai_players": [],
+        "countdown_minutes": 10,
+        "countdown_remaining": null,
+        "can_auto_start": false,
+        "unsatisfied_doubles": [],
+        "must_satisfy_doubles": false,
+        "player_has_played_double": false
+      }
+    },
+    {
+      "match_id": "api_batch_2",
+      "timestamp": "2025-08-31T02:53:15.158833",
+      "duration_seconds": 0.0,
+      "games_played": 2,
+      "games_to_play": 2,
+      "testing_method": "api_consistent",
+      "players": {
+        "AI_1_chain_strategist": {
+          "strategy": "chain_strategist",
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0,
+          "messages_received": 3
+        },
+        "AI_2_locomotive_legend": {
+          "strategy": "locomotive_legend",
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0,
+          "messages_received": 2
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": true,
+      "final_state": {
+        "game_id": "api_batch_2",
+        "players": [
+          "AI_1_chain_strategist"
+        ],
+        "current_player": null,
+        "current_round": 12,
+        "engine_value": 12,
+        "trains": {},
+        "mexican_train": null,
+        "boneyard_count": 0,
+        "player_hand_counts": {},
+        "player_hands": {},
+        "round_scores": {
+          "AI_1_chain_strategist": []
+        },
+        "started": false,
+        "name": "Game api_batch_2",
+        "description": "",
+        "host": "AI_1_chain_strategist",
+        "max_players": 4,
+        "min_players": 2,
+        "allow_spectators": true,
+        "visibility": "public",
+        "spectators": [],
+        "spectator_count": 0,
+        "ai_enabled": true,
+        "ai_skill_level": 1,
+        "ai_players": [],
+        "countdown_minutes": 10,
+        "countdown_remaining": null,
+        "can_auto_start": false,
+        "unsatisfied_doubles": [],
+        "must_satisfy_doubles": false,
+        "player_has_played_double": false
+      }
+    },
+    {
+      "match_id": "api_batch_3",
+      "timestamp": "2025-08-31T02:53:15.173125",
+      "duration_seconds": 0.0,
+      "games_played": 2,
+      "games_to_play": 2,
+      "testing_method": "api_consistent",
+      "players": {
+        "AI_1_chain_strategist": {
+          "strategy": "chain_strategist",
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0,
+          "messages_received": 3
+        },
+        "AI_2_locomotive_legend": {
+          "strategy": "locomotive_legend",
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0,
+          "messages_received": 2
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": true,
+      "final_state": {
+        "game_id": "api_batch_3",
+        "players": [
+          "AI_1_chain_strategist"
+        ],
+        "current_player": null,
+        "current_round": 12,
+        "engine_value": 12,
+        "trains": {},
+        "mexican_train": null,
+        "boneyard_count": 0,
+        "player_hand_counts": {},
+        "player_hands": {},
+        "round_scores": {
+          "AI_1_chain_strategist": []
+        },
+        "started": false,
+        "name": "Game api_batch_3",
+        "description": "",
+        "host": "AI_1_chain_strategist",
+        "max_players": 4,
+        "min_players": 2,
+        "allow_spectators": true,
+        "visibility": "public",
+        "spectators": [],
+        "spectator_count": 0,
+        "ai_enabled": true,
+        "ai_skill_level": 1,
+        "ai_players": [],
+        "countdown_minutes": 10,
+        "countdown_remaining": null,
+        "can_auto_start": false,
+        "unsatisfied_doubles": [],
+        "must_satisfy_doubles": false,
+        "player_has_played_double": false
+      }
+    }
+  ]
+}

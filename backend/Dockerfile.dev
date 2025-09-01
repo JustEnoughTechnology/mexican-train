@@ -11,6 +11,9 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
+# Install psutil separately first to avoid dependency conflicts
+RUN pip install psutil>=5.9.0
+
 # Copy Python project files
 COPY pyproject.toml uv.lock* ./
 

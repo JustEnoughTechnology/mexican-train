@@ -1,0 +1,37 @@
+{
+  "session_id": "session_20250830_194840",
+  "created_at": "2025-08-30T19:48:40.791168",
+  "description": "Single match: sleepy_caboose vs slow_freight",
+  "matches": [
+    {
+      "match_id": "test_match_d50358b3",
+      "timestamp": "2025-08-30T19:48:42.857214",
+      "duration_seconds": 2.07,
+      "games_played": 0,
+      "games_to_play": 1,
+      "players": {
+        "AI_1_sleepy_caboose": {
+          "strategy": "sleepy_caboose",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        },
+        "AI_2_slow_freight": {
+          "strategy": "slow_freight",
+          "skill_level": 3,
+          "total_score": 0,
+          "games_won": 0,
+          "average_game_score": 0,
+          "best_game_score": 0,
+          "worst_game_score": 0
+        }
+      },
+      "winner": null,
+      "game_results": [],
+      "match_completed": false
+    }
+  ]
+}

@@ -11,6 +11,15 @@ class User(Base):
     hashed_password = Column(String, nullable=False)
     is_active = Column(Boolean, default=True)
     is_admin = Column(Boolean, default=False)
+    is_email_verified = Column(Boolean, default=False)
+    
+    # Authentication tokens
+    email_verify_token = Column(String, nullable=True)
+    password_reset_token = Column(String, nullable=True)
+    magic_link_token = Column(String, nullable=True)
+    token_expires_at = Column(DateTime(timezone=True), nullable=True)
+    
+    # Timestamps
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     last_seen = Column(DateTime(timezone=True), onupdate=func.now())
     

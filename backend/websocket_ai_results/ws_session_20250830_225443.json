@@ -1,0 +1,7 @@
+{
+  "session_id": "ws_session_20250830_225443",
+  "created_at": "2025-08-30T22:54:43.914283",
+  "description": "WebSocket batch: 500 matches of sleepy_caboose vs slow_freight vs local_express vs fast_passenger vs locomotive_legend vs chain_strategist vs custom_aggressive",
+  "backend_url": "ws://localhost:8002",
+  "matches": []
+}

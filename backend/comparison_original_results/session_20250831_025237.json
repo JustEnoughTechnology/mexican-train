@@ -1,0 +1,65 @@
+{
+  "session_id": "session_20250831_025237",
+  "created_at": "2025-08-31T02:52:37.171416",
+  "description": "Comparison Test - Original Method",
+  "matches": [
+    {
+      "match_id": "comparison_original",
+      "timestamp": "2025-08-31T02:52:37.187528",
+      "duration_seconds": 0.01,
+      "games_played": 3,
+      "games_to_play": 3,
+      "players": {
+        "AI_1_chain_strategist": {
+          "strategy": "chain_strategist",
+          "skill_level": 3,
+          "total_score": 35,
+          "games_won": 2,
+          "average_game_score": 11.7,
+          "best_game_score": 0,
+          "worst_game_score": 19
+        },
+        "AI_2_locomotive_legend": {
+          "strategy": "locomotive_legend",
+          "skill_level": 3,
+          "total_score": 34,
+          "games_won": 1,
+          "average_game_score": 11.3,
+          "best_game_score": 0,
+          "worst_game_score": 30
+        }
+      },
+      "winner": "AI_2_locomotive_legend",
+      "game_results": [
+        {
+          "game_number": 1,
+          "game_id": "comparison_original_game_1",
+          "scores": {
+            "AI_1_chain_strategist": 19,
+            "AI_2_locomotive_legend": 0
+          },
+          "winner": "AI_2_locomotive_legend"
+        },
+        {
+          "game_number": 2,
+          "game_id": "comparison_original_game_2",
+          "scores": {
+            "AI_1_chain_strategist": 16,
+            "AI_2_locomotive_legend": 30
+          },
+          "winner": "AI_1_chain_strategist"
+        },
+        {
+          "game_number": 3,
+          "game_id": "comparison_original_game_3",
+          "scores": {
+            "AI_1_chain_strategist": 0,
+            "AI_2_locomotive_legend": 4
+          },
+          "winner": "AI_1_chain_strategist"
+        }
+      ],
+      "match_completed": true
+    }
+  ]
+}

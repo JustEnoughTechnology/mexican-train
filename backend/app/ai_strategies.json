@@ -1,0 +1,130 @@
+{
+  "tactics": {
+    "random": {
+      "description": "Choose moves randomly",
+      "weight": 1.0
+    },
+    "maximize_pips": {
+      "description": "Prefer playing dominoes with higher pip counts to reduce penalties",
+      "weight": 1.0
+    },
+    "minimize_pips": {
+      "description": "Prefer playing dominoes with lower pip counts",
+      "weight": 1.0
+    },
+    "prefer_own_train": {
+      "description": "Prefer playing on own train to keep it closed",
+      "weight": 2.0
+    },
+    "prefer_mexican_train": {
+      "description": "Prefer playing on the Mexican train",
+      "weight": 1.5
+    },
+    "prefer_open_trains": {
+      "description": "Prefer playing on opponent's open trains",
+      "weight": 1.8
+    },
+    "block_opponents": {
+      "description": "Try to play dominoes that make it harder for opponents",
+      "weight": 1.2
+    },
+    "preserve_doubles": {
+      "description": "Avoid playing doubles unless necessary",
+      "weight": 1.3
+    },
+    "dump_doubles": {
+      "description": "Play doubles when possible to avoid being stuck",
+      "weight": 1.4
+    },
+    "endgame_awareness": {
+      "description": "Adjust strategy when few dominoes remain",
+      "weight": 2.0
+    },
+    "hand_composition": {
+      "description": "Consider overall hand makeup when choosing moves",
+      "weight": 1.6
+    },
+    "chain_length": {
+      "description": "Prefer moves that enable the longest chain of plays from current hand",
+      "weight": 1.8
+    }
+  },
+  "strategies": {
+    "sleepy_caboose": {
+      "name": "Sleepy Caboose",
+      "description": "Random moves, perfect for beginners",
+      "tactics": [{ "name": "random", "weight": 1.0, "priority": 1 }]
+    },
+    "slow_freight": {
+      "name": "Slow Freight",
+      "description": "Focuses on reducing penalties by playing high-value dominoes",
+      "tactics": [{ "name": "maximize_pips", "weight": 1.0, "priority": 1 }]
+    },
+    "local_express": {
+      "name": "Local Express",
+      "description": "Basic hand management with train preferences",
+      "tactics": [
+        { "name": "prefer_own_train", "weight": 2.0, "priority": 1 },
+        { "name": "maximize_pips", "weight": 1.2, "priority": 2 },
+        { "name": "prefer_mexican_train", "weight": 1.0, "priority": 3 }
+      ]
+    },
+    "fast_passenger": {
+      "name": "Fast Passenger",
+      "description": "Opponent awareness with strategic blocking",
+      "tactics": [
+        { "name": "prefer_own_train", "weight": 2.2, "priority": 1 },
+        { "name": "block_opponents", "weight": 1.5, "priority": 2 },
+        { "name": "prefer_open_trains", "weight": 1.8, "priority": 3 },
+        { "name": "maximize_pips", "weight": 1.1, "priority": 4 }
+      ]
+    },
+    "locomotive_legend": {
+      "name": "Locomotive Legend",
+      "description": "Advanced multi-factor optimization",
+      "tactics": [
+        { "name": "hand_composition", "weight": 2.0, "priority": 3 },
+        { "name": "prefer_own_train", "weight": 2.2, "priority": 4 },
+        { "name": "block_opponents", "weight": 1.8, "priority": 5 },
+        { "name": "dump_doubles", "weight": 1.6, "priority": 6 },
+        { "name": "prefer_open_trains", "weight": 1.4, "priority": 7 }
+      ]
+    },
+    "custom_aggressive": {
+      "name": "Aggressive Blocker",
+      "description": "Custom strategy focused on blocking opponents",
+      "tactics": [
+        { "name": "block_opponents", "weight": 3.0, "priority": 1 },
+        { "name": "prefer_open_trains", "weight": 2.5, "priority": 2 },
+        { "name": "dump_doubles", "weight": 2.0, "priority": 3 },
+        { "name": "maximize_pips", "weight": 1.0, "priority": 4 }
+      ]
+    },
+    "custom_conservative": {
+      "name": "Conservative Player",
+      "description": "Custom strategy focused on self-protection",
+      "tactics": [
+        { "name": "prefer_own_train", "weight": 3.0, "priority": 1 },
+        { "name": "preserve_doubles", "weight": 2.0, "priority": 2 },
+        { "name": "maximize_pips", "weight": 1.8, "priority": 3 },
+        { "name": "prefer_mexican_train", "weight": 1.2, "priority": 4 }
+      ]
+    },
+    "chain_strategist": {
+      "name": "Chain Strategist",
+      "description": "Test strategy that prioritizes chain length optimization",
+      "tactics": [
+        { "name": "chain_length", "weight": 3.0, "priority": 1 },
+        { "name": "prefer_own_train", "weight": 2.0, "priority": 2 },
+        { "name": "maximize_pips", "weight": 1.5, "priority": 3 }
+      ]
+    }
+  },
+  "level_mappings": {
+    "1": "sleepy_caboose",
+    "2": "slow_freight",
+    "3": "local_express",
+    "4": "fast_passenger",
+    "5": "locomotive_legend"
+  }
+}
